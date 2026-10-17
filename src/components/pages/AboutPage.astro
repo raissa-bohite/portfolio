@@ -1,0 +1,36 @@
+---
+import ContactBand from '@/components/molecules/ContactBand.astro';
+import AboutHero from '@/components/organisms/AboutHero.astro';
+import AboutStory from '@/components/organisms/AboutStory.astro';
+import AboutTimeline from '@/components/organisms/AboutTimeline.astro';
+import AwardsSection from '@/components/organisms/AwardsSection.astro';
+import BeyondCodeSection from '@/components/organisms/BeyondCodeSection.astro';
+import LanguagesSection from '@/components/organisms/LanguagesSection.astro';
+import RoadmapSection from '@/components/organisms/RoadmapSection.astro';
+import BaseLayout from '@/components/templates/BaseLayout.astro';
+import type { Locale } from '@/i18n/config';
+import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const page = getDictionary(locale).aboutPage;
+const alternates = getAlternateLinks((alternateLocale) => getRoutePath('about', alternateLocale));
+---
+
+<BaseLayout locale={locale} title={page.seoTitle} description={page.seoDescription} currentRoute="about" alternates={alternates}>
+  <AboutHero locale={locale} />
+  <AboutStory locale={locale} />
+  <AboutTimeline locale={locale} />
+  <AwardsSection locale={locale} />
+  <LanguagesSection locale={locale} />
+  <BeyondCodeSection locale={locale} />
+  <RoadmapSection locale={locale} />
+  <ContactBand
+    eyebrow={page.contactBand.eyebrow}
+    title={page.contactBand.title}
+    cta={page.contactBand.cta}
+    href={getRoutePath('contact', locale)}
+  />
+</BaseLayout>

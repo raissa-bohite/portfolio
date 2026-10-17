@@ -1,0 +1,21 @@
+---
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const story = getDictionary(locale).aboutPage.story;
+---
+
+<section data-scroll-group aria-labelledby="story-title" class="container-page pb-24">
+  <div class="grid gap-x-6 gap-y-6 lg:grid-cols-12">
+    <div data-scroll-item class="lg:col-span-4">
+      <SectionHeading id="story-title" eyebrow={story.eyebrow} title={story.title} />
+    </div>
+    <div class="flex flex-col gap-4 lg:col-span-8">
+      {story.paragraphs.map((paragraph) => <p data-scroll-item class="m-0 max-w-[62ch] text-lg">{paragraph}</p>)}
+    </div>
+  </div>
+</section>

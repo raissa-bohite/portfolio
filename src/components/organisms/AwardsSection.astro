@@ -1,0 +1,33 @@
+---
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const awards = getDictionary(locale).aboutPage.awards;
+---
+
+<section aria-labelledby="awards-title" class="container-page flex flex-col gap-10 pb-24">
+  <SectionHeading id="awards-title" eyebrow={awards.eyebrow} title={awards.title} />
+  <ul data-scroll-group class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4 p-0">
+    {
+      awards.items.map((award) => (
+        <li data-scroll-item class="glass flex flex-col gap-2.5 p-6">
+          <span
+            class:list={[
+              'self-start rounded-full border-[1.5px] px-3 py-1 text-sm font-bold whitespace-nowrap',
+              award.rank === 'first' ? 'border-sig bg-sig text-[#1E0F45]' : 'border-sig-text text-sig-text'
+            ]}
+          >
+            {award.badge}
+          </span>
+          <h3 class="m-0 text-xl leading-snug font-bold text-ink">{award.title}</h3>
+          <p class="m-0">{award.text}</p>
+          <p class="mt-auto mb-0 text-sm text-muted">{award.event}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

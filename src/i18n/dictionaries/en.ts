@@ -175,6 +175,82 @@ export const en: Dictionary = {
       learnings: 'What I learned'
     }
   },
+  aboutPage: {
+    seoTitle: 'About · Raïssa Bohité',
+    seoDescription: "From linguistics to code: my path, my working languages and where I'm heading.",
+    eyebrow: 'About',
+    title: 'From linguistics to code',
+    intro:
+      "I'm Raïssa Bohité, a front-end developer in Abidjan. Before writing code, I learned to break down a foreign language. I apply the same method to every interface today.",
+    contactCta: 'Get in touch',
+    location: "Abidjan, Côte d'Ivoire",
+    story: {
+      eyebrow: 'My story',
+      title: 'An unconventional path, by choice',
+      paragraphs: [
+        "I started with a bachelor's degree in German at Alassane Ouattara University in Bouaké. Studying a language means learning to understand a structure before producing anything.",
+        "I then trained in full-stack development at DigiFemmes through hands-on projects, and in cybersecurity at WeCode. Today I build the front end of LEBEDOO, Freewan's fintech product, and my own products, such as Fassbar.",
+        'This path gave me a habit I keep: understanding the need, the context and the users before building.'
+      ]
+    },
+    timeline: {
+      eyebrow: 'Background',
+      title: 'Key milestones',
+      codeLabel: 'My path summarised in code',
+      codeCaption: 'Each step lights up as you scroll through the timeline.',
+      steps: [
+        { period: '2020 – 2023', title: "Bachelor's degree in German language and literature", place: 'Alassane Ouattara University, Bouaké', code: 'allemand' },
+        { period: 'Oct. 2023 – 2025', title: 'Full-stack development training', place: 'DigiFemmes, project-based learning', code: 'full-stack' },
+        { period: '2025', title: 'Junior cybersecurity analyst', place: 'WeCode, with a Cisco cybersecurity certification', code: 'cybersécurité' },
+        { period: 'Alongside', title: 'Graphic designer', place: 'La Ruche Universelle, visual identity and print materials', code: 'graphisme' },
+        { period: 'Today', title: 'Front-end developer at Freewan', place: "On LEBEDOO, Freewan's fintech product, and creator of Fassbar", code: 'front-end' }
+      ]
+    },
+    awards: {
+      eyebrow: 'Awards',
+      title: 'Three hackathon first prizes',
+      items: [
+        { rank: 'first', badge: '1st prize', title: 'DiplomaChain', text: 'Blockchain-based diploma authentication', event: 'WeCode Hackathon, 2025' },
+        { rank: 'first', badge: '1st prize', title: 'AI credit scoring', text: 'Assessing credit risk with alternative data', event: 'Féminitement Digital, DigiFemmes, 2025' },
+        { rank: 'finalist', badge: 'Finalist', title: 'Orivie', text: 'Health platform built on open data', event: 'IvoireTech Forum, ANSUT, 2025' },
+        { rank: 'first', badge: '1st prize', title: 'Academic exchange forum', text: 'Interface and back-end integration in Go', event: 'DigiFemmes Hackathon, 2024' }
+      ]
+    },
+    languages: {
+      eyebrow: 'Languages',
+      title: 'I work in three languages',
+      items: [
+        { code: 'fr', name: 'French', level: 'Native' },
+        { code: 'de', name: 'German', level: "Fluent · bachelor's degree in German studies" },
+        { code: 'en', name: 'English', level: 'Technical' }
+      ]
+    },
+    beyond: {
+      eyebrow: 'Beyond code',
+      title: 'What feeds my work',
+      items: [
+        { icon: 'design', title: 'Graphic design', text: 'My graphic design work sharpens my eye for hierarchy, colour and typography.' },
+        { icon: 'motion', title: 'Motion design', text: 'Promo videos produced in code with Remotion, as for Moomen Pro.' },
+        { icon: 'languages', title: 'Languages', text: 'They taught me rigour, and they inspired Fassbar.' }
+      ]
+    },
+    roadmap: {
+      eyebrow: "What's next",
+      title: "Where I'm heading",
+      intro: "Front-end is my foundation. I'm gradually expanding into infrastructure, security and responsible AI.",
+      steps: [
+        { stage: 'Today', title: 'Front-end development', text: 'Interfaces and dashboards in production.' },
+        { stage: 'Next step', title: 'Cloud and DevSecOps', text: 'Deploying and securing applications end to end.' },
+        { stage: 'Then', title: 'AI and cybersecurity', text: 'Understanding language models and their risks.' },
+        { stage: 'Goal', title: 'AI governance', text: 'Helping organisations use AI safely and compliantly.' }
+      ]
+    },
+    contactBand: {
+      eyebrow: 'Contact',
+      title: "Let's work together",
+      cta: 'Write a message'
+    }
+  },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',
     secondaryLabel: 'Secondary links',

@@ -1,6 +1,9 @@
 ---
 import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Clapperboard from '@lucide/astro/icons/clapperboard';
+import Languages from '@lucide/astro/icons/languages';
+import Palette from '@lucide/astro/icons/palette';
 import Sparkle from '@lucide/astro/icons/sparkle';
 
 type Props = {
@@ -11,7 +14,14 @@ type Props = {
 
 const { icon, title, text } = Astro.props;
 
-const icons = { dashboard: LayoutDashboard, security: ShieldCheck, ai: Sparkle } as const;
+const icons = {
+  dashboard: LayoutDashboard,
+  security: ShieldCheck,
+  ai: Sparkle,
+  design: Palette,
+  motion: Clapperboard,
+  languages: Languages
+} as const;
 const Icon = icons[icon as keyof typeof icons] ?? LayoutDashboard;
 ---
 

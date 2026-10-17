@@ -1,14 +1,53 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import BatteryFull from '@lucide/astro/icons/battery-full';
+import Signal from '@lucide/astro/icons/signal';
+import Wifi from '@lucide/astro/icons/wifi';
 
-type Props = { image: ImageMetadata; alt: string; caption: string };
-const { image, alt, caption } = Astro.props;
+type Props = {
+  image: ImageMetadata;
+  alt: string;
+  caption: string;
+  screen?: 'brand' | 'light';
+};
+
+const { image, alt, caption, screen = 'light' } = Astro.props;
+
+// Les couleurs reprennent le haut et le bas de chaque capture pour que la barre d'état s'y fonde
+const screenClasses = {
+  brand: 'bg-[#0DA479] text-white',
+  light: 'bg-[#F4FCFB] text-[#0F1F1A]'
+} as const;
 ---
 
-<figure data-scroll-item class="m-0 flex flex-col items-center gap-3">
-  <div class="w-full max-w-60 rounded-[32px] bg-[#1E0F45] p-2 shadow-glass">
-    <Image src={image} alt={alt} widths={[240, 480]} sizes="240px" loading="lazy" class="block h-auto w-full rounded-surface" />
+<figure data-scroll-item class="m-0 flex flex-col items-center gap-4">
+  <!-- Maquette d'iPhone dessinée en CSS : châssis, boutons latéraux, Dynamic Island et barre d'accueil -->
+  <div
+    class="relative w-full max-w-[250px] rounded-[48px] bg-linear-to-b from-[#3B3B43] via-[#1A1A1F] to-[#2A2A31] p-[9px] shadow-[0_40px_80px_-40px_rgb(30_15_69/0.55),inset_0_0_0_1.5px_rgb(255_255_255/0.08)]"
+  >
+    <span aria-hidden="true" class="absolute top-[16%] -left-[3px] h-[5%] w-[3px] rounded-l-sm bg-[#26262C]"></span>
+    <span aria-hidden="true" class="absolute top-[24%] -left-[3px] h-[9%] w-[3px] rounded-l-sm bg-[#26262C]"></span>
+    <span aria-hidden="true" class="absolute top-[35%] -left-[3px] h-[9%] w-[3px] rounded-l-sm bg-[#26262C]"></span>
+    <span aria-hidden="true" class="absolute top-[27%] -right-[3px] h-[13%] w-[3px] rounded-r-sm bg-[#26262C]"></span>
+
+    <div class:list={['relative overflow-hidden rounded-[39px]', screenClasses[screen]]}>
+      <div aria-hidden="true" class="relative flex h-11 items-center justify-between px-6 text-[13px] font-semibold">
+        <span>9:41</span>
+        <span class="absolute top-2.5 left-1/2 h-[26px] w-[34%] -translate-x-1/2 rounded-full bg-black"></span>
+        <span class="flex items-center gap-1">
+          <Signal size={13} stroke-width={2.5} />
+          <Wifi size={13} stroke-width={2.5} />
+          <BatteryFull size={17} stroke-width={2} />
+        </span>
+      </div>
+      <Image src={image} alt={alt} widths={[250, 500]} sizes="232px" loading="lazy" class="block h-auto w-full" />
+      <div aria-hidden="true" class="flex h-6 items-end justify-center pb-2">
+        <span class="h-1 w-[36%] rounded-full bg-current opacity-80"></span>
+      </div>
+    </div>
   </div>
-  <figcaption class="text-center text-sm font-medium text-muted">{caption}</figcaption>
+  <figcaption class="text-center text-sm font-medium text-muted">
+    {caption}
+  </figcaption>
 </figure>

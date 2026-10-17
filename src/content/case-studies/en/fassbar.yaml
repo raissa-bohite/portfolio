@@ -29,6 +29,7 @@ approach:
     - image: ../../../assets/case-studies/fassbar/splash.jpg
       alt: Fassbar splash screen with the mascot and the tagline "Master your course"
       caption: Splash screen
+      screen: brand
     - image: ../../../assets/case-studies/fassbar/login.jpg
       alt: "Fassbar sign-in screen: an email field and a \"Get a code\" button"
       caption: Passwordless sign-in with a one-time code

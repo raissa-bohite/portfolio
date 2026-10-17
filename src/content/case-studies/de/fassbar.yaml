@@ -29,6 +29,7 @@ approach:
     - image: ../../../assets/case-studies/fassbar/splash.jpg
       alt: Startbildschirm von Fassbar mit dem Maskottchen und dem Slogan „Werde zum Meister deines Kurses“
       caption: Startbildschirm
+      screen: brand
     - image: ../../../assets/case-studies/fassbar/login.jpg
       alt: "Anmeldebildschirm von Fassbar: ein E-Mail-Feld und eine Schaltfläche „Code erhalten“"
       caption: Anmeldung per Einmalcode, ohne Passwort

@@ -29,6 +29,7 @@ approach:
     - image: ../../../assets/case-studies/fassbar/splash.jpg
       alt: Écran de démarrage de Fassbar avec la mascotte et le slogan « Deviens le maître de ton cours »
       caption: Écran de démarrage
+      screen: brand
     - image: ../../../assets/case-studies/fassbar/login.jpg
       alt: "Écran de connexion de Fassbar : un champ email et un bouton « Recevoir un code »"
       caption: Connexion par code, sans mot de passe

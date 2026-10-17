@@ -71,7 +71,7 @@ const headingClasses = 'm-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold
           caseStudy.approach.gallery.length > 0 && (
             <div class="mt-2 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6">
               {caseStudy.approach.gallery.map((item) => (
-                <PhoneFrame image={item.image} alt={item.alt} caption={item.caption} />
+                <PhoneFrame image={item.image} alt={item.alt} caption={item.caption} screen={item.screen} />
               ))}
             </div>
           )

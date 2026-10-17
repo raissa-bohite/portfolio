@@ -46,7 +46,17 @@ const caseStudies = defineCollection({
       role: z.object({ paragraphs, highlights: z.array(z.string().min(1)).min(1) }),
       approach: z.object({
         paragraphs,
-        gallery: z.array(z.object({ image: image(), alt: z.string().min(1), caption: z.string().min(1) })).default([])
+        gallery: z
+          .array(
+            z.object({
+              image: image(),
+              alt: z.string().min(1),
+              caption: z.string().min(1),
+              // Teinte du haut de l'écran capturé : la barre d'état du mockup s'y raccorde
+              screen: z.enum(['brand', 'light']).default('light')
+            })
+          )
+          .default([])
       }),
       technical: z.object({
         intro: z.string().min(1),

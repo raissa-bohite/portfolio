@@ -15,8 +15,8 @@ const icons = { dashboard: LayoutDashboard, security: ShieldCheck, ai: Sparkle }
 const Icon = icons[icon as keyof typeof icons] ?? LayoutDashboard;
 ---
 
-<article class="glass flex flex-col gap-3 p-8">
-  <div class="flex size-12 items-center justify-center rounded-control bg-tint text-tint-ink">
+<article data-scroll-item class="glass flex flex-col gap-3 p-8">
+  <div data-scroll-pop class="flex size-12 items-center justify-center rounded-control bg-tint text-tint-ink">
     <Icon aria-hidden="true" size={22} />
   </div>
   <h3 class="mt-2 mb-0 text-2xl leading-tight font-bold text-ink">{title}</h3>

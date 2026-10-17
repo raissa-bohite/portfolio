@@ -15,7 +15,8 @@ type Props = {
 };
 
 const { locale, projects } = Astro.props;
-const labels = getDictionary(locale).home.carousel;
+const dictionary = getDictionary(locale);
+const labels = dictionary.home.carousel;
 ---
 
 <div
@@ -34,7 +35,11 @@ const labels = getDictionary(locale).home.carousel;
         <a
           href={project.href}
           data-card={index}
-          aria-label={formatMessage(labels.cardLabel, { name: project.name, kind: project.kind })}
+          aria-label={formatMessage(labels.cardLabel, {
+            name: project.name,
+            kind: project.kind,
+            action: project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject
+          })}
           tabindex={index === 0 ? 0 : -1}
           aria-hidden={index === 0 ? undefined : 'true'}
           class:list={[

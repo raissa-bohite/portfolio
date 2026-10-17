@@ -25,7 +25,8 @@ export const en: Dictionary = {
   common: {
     cv: 'Download my CV',
     caseStudy: 'Read the case study',
-    allProjects: 'All projects'
+    allProjects: 'All projects',
+    viewProject: 'View the project'
   },
   home: {
     availability: 'Available for a job or a project',
@@ -42,7 +43,7 @@ export const en: Dictionary = {
       pause: 'Pause the project slideshow',
       play: 'Resume the project slideshow',
       position: 'Project {current} of {total}',
-      cardLabel: '{name}, {kind}, read the case study'
+      cardLabel: '{name}, {kind}, {action}'
     },
     stack: {
       label: 'Technologies I use'
@@ -140,6 +141,39 @@ export const en: Dictionary = {
     again: 'Send another message',
     failure: "The message wasn't sent. Try again, or email raissabohite@gmail.com directly.",
     verificationError: 'The anti-bot check failed. Reload the page and try again.'
+  },
+  projectsPage: {
+    eyebrow: 'Projects',
+    title: 'Five products live, built with care',
+    intro:
+      'An AI tutor, an online shop, school management software and two product websites. Hover a project to see its summary, open it to read more.',
+    seoTitle: 'Projects · Raïssa Bohité',
+    seoDescription: 'Five live products, from an AI tutor to e-commerce, designed and built with care.'
+  },
+  projectPage: {
+    breadcrumb: 'Breadcrumb',
+    factsLabel: 'Project facts',
+    role: 'Role',
+    team: 'Team',
+    period: 'Period',
+    status: 'Status',
+    stack: 'Technologies',
+    kind: 'Project type',
+    visit: 'Visit the live project',
+    previewLabel: 'Main preview',
+    galleryLabel: 'More screenshots',
+    caseStudyPending: 'The full case study for this project is in progress.',
+    next: 'Next project',
+    tocTitle: 'Contents',
+    tocLabel: 'Case study contents',
+    sections: {
+      context: 'Context and problem',
+      role: 'My role',
+      approach: 'Approach',
+      technical: 'Technical choices',
+      results: 'Results',
+      learnings: 'What I learned'
+    }
   },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',

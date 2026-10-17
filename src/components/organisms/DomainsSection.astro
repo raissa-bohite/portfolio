@@ -16,9 +16,3 @@ const domains = getDictionary(locale).home.domains;
     {domains.items.map((domain) => <DomainCard icon={domain.icon} title={domain.title} text={domain.text} />)}
   </div>
 </section>
-
-<script>
-  import { setupScrollReveal } from '@/scripts/scroll-reveal';
-
-  for (const group of document.querySelectorAll<HTMLElement>('[data-scroll-group]')) setupScrollReveal(group);
-</script>

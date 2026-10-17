@@ -11,28 +11,39 @@ import type { ProjectSummary } from '@/lib/projects';
 type Props = {
   locale: Locale;
   projects: ProjectSummary[];
+  // « teaser » sur l'accueil (avec titre de section), « full » sur la page Projets qui porte déjà son h1
+  variant?: 'teaser' | 'full';
 };
 
-const { locale, projects } = Astro.props;
+const { locale, projects, variant = 'teaser' } = Astro.props;
 const dictionary = getDictionary(locale);
+const RowHeading = variant === 'full' ? 'h2' : 'h3';
 ---
 
-<section id="projets" aria-labelledby="projects-title" class="container-page flex flex-col gap-12 pt-16 pb-24">
-  <div class="flex flex-wrap items-end justify-between gap-4">
-    <SectionHeading id="projects-title" eyebrow={dictionary.home.projects.eyebrow} title={dictionary.home.projects.title} />
-    <a href={getRoutePath('projects', locale)} class="inline-flex min-h-12 items-center text-base font-semibold underline decoration-[1.5px] underline-offset-[5px]">
-      {dictionary.common.allProjects}
-    </a>
-  </div>
+<section
+  aria-labelledby={variant === 'teaser' ? 'projects-title' : undefined}
+  aria-label={variant === 'full' ? dictionary.projectsPage.eyebrow : undefined}
+  class:list={['container-page flex flex-col gap-12', variant === 'teaser' ? 'pt-16 pb-24' : 'pb-24']}
+>
+  {
+    variant === 'teaser' && (
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <SectionHeading id="projects-title" eyebrow={dictionary.home.projects.eyebrow} title={dictionary.home.projects.title} />
+        <a href={getRoutePath('projects', locale)} class="inline-flex min-h-12 items-center text-base font-semibold underline decoration-[1.5px] underline-offset-[5px]">
+          {dictionary.common.allProjects}
+        </a>
+      </div>
+    )
+  }
 
   <div class="glass px-5 py-2 sm:px-8" data-project-index>
     {
       projects.map((project, index) => (
         <article data-row data-open={String(index === 0)} class="group border-t border-line first:border-t-0">
           <a href={project.href} class="grid grid-cols-[minmax(0,1fr)_48px] items-center gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto_48px] md:gap-6 md:py-7 text-ink no-underline hover:text-ink">
-            <h3 class="m-0 text-[clamp(28px,3.4vw,44px)] leading-[1.1] font-bold tracking-[-0.02em] transition duration-400 ease-out-soft group-data-[open=true]:translate-x-2 group-data-[open=true]:text-action">
+            <RowHeading class="m-0 text-[clamp(28px,3.4vw,44px)] leading-[1.1] font-bold tracking-[-0.02em] transition duration-400 ease-out-soft group-data-[open=true]:translate-x-2 group-data-[open=true]:text-action">
               {project.name}
-            </h3>
+            </RowHeading>
             <span class="col-start-1 row-start-2 -mt-3 text-sm font-medium text-muted md:col-start-2 md:row-start-1 md:mt-0">{project.kind}</span>
             <span
               aria-hidden="true"
@@ -55,7 +66,7 @@ const dictionary = getDictionary(locale);
                     ))}
                   </ul>
                   <a href={project.href} class="inline-flex min-h-12 items-center text-base font-semibold underline-offset-[5px]" tabindex="-1" aria-hidden="true">
-                    {dictionary.common.caseStudy}
+                    {project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
                   </a>
                 </div>
                 <Image

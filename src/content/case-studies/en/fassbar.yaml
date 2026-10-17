@@ -1,0 +1,63 @@
+project: fassbar
+locale: en
+eyebrow: Case study · Personal product
+title: Fassbar, the AI tutor that makes course material understandable
+lead: "\"What was hard to understand becomes fassbar.\" An AI tutor that starts from students' own course material to create summaries, exercises and explanations, instead of answering off-syllabus."
+seoTitle: Fassbar, an AI tutor for languages · Case study
+seoDescription: How I designed and built, on my own, an AI tutor that turns students' courses into summaries and exercises.
+meta:
+  role: Product, design, development, deployment
+  team: Solo
+  period: 2025 – present
+  status: Beta with first testers
+context:
+  - German studies students at Ivorian universities work with dense course material written in German. General-purpose AI tools often answer off-syllabus, or at a language level far from their documents.
+  - "The starting question: how do you help a student understand their own course, rather than a topic in general?"
+role:
+  paragraphs:
+    - "I carried the project on my own, from research to launch: product definition, design, full development, deployment and first beta testers."
+  highlights:
+    - Product definition
+    - Design of 41 screens
+    - Full-stack development
+    - Deployment and beta
+approach:
+  paragraphs:
+    - "One principle guided every decision: start from the document without being confined to it. The AI stays faithful to the course and clearly flags when it goes beyond it."
+    - Summaries are written in the document's language, with difficult words translated into French. Course themes become clickable to explore each concept.
+  gallery:
+    - image: ../../../assets/case-studies/fassbar/splash.jpg
+      alt: Fassbar splash screen with the mascot and the tagline "Master your course"
+      caption: Splash screen
+    - image: ../../../assets/case-studies/fassbar/login.jpg
+      alt: "Fassbar sign-in screen: an email field and a \"Get a code\" button"
+      caption: Passwordless sign-in with a one-time code
+    - image: ../../../assets/case-studies/fassbar/dashboard.jpg
+      alt: Fassbar dashboard with imported courses and shortcuts to corrections and notes
+      caption: Course dashboard
+technical:
+  intro: Each choice answers a specific constraint.
+  decisions:
+    - title: Clean Architecture
+      text: Domain, application, infrastructure and presentation kept apart, so the product can evolve without a rewrite.
+    - title: Cloudflare D1 and R2
+      text: Database and document storage close to the application, on the same platform.
+    - title: Passwordless sign-in
+      text: "A one-time code sent by email: nothing for students to remember, no password to protect."
+    - title: Conversation history
+      text: Sent to the AI with every exchange, so exercises stay consistent from one question to the next.
+  stack: [SvelteKit, TypeScript, Tailwind CSS, Drizzle ORM, Cloudflare, Claude API, Better Auth]
+results:
+  intro: The product went from an idea to a beta used by real students.
+  metrics:
+    - value: "110"
+      label: sign-ups in 24 hours on the waitlist
+    - value: "41"
+      label: screens designed before development
+    - value: "5"
+      label: sprints delivered
+    - value: 10 to 15
+      label: beta testers
+learnings:
+  - "AI needs context: without the conversation history, exercises ended up contradicting each other. Giving it memory of the exchange fixed the issue."
+  - "Choose tools for the runtime from day one: on Cloudflare, I replaced Node.js-oriented libraries with the native Web Crypto API and with unpdf for reading PDFs."

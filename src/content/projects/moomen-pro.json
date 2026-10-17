@@ -1,7 +1,11 @@
 {
   "order": 5,
   "name": "Moomen Pro",
-  "kind": { "fr": "Landing page et motion design", "en": "Landing page and motion design", "de": "Landingpage und Motion Design" },
+  "kind": {
+    "fr": "Landing page et motion design",
+    "en": "Landing page and motion design",
+    "de": "Landingpage und Motion Design"
+  },
   "role": {
     "fr": "Client · landing page et motion design",
     "en": "Client · landing page and motion design",
@@ -12,12 +16,26 @@
     "en": "The website and promo video of a management app for small businesses: sales, stock, customers and debts.",
     "de": "Website und Präsentationsvideo einer Verwaltungs-App für KMU: Verkäufe, Lager, Kunden und offene Posten."
   },
-  "stack": ["Astro", "Tailwind", "Remotion"],
+  "stack": [
+    "Astro",
+    "Tailwind",
+    "Remotion"
+  ],
   "cover": "../../assets/projects/moomen.jpg",
   "coverAlt": {
     "fr": "Landing page de Moomen Pro, l'application de gestion pour PME",
     "en": "Moomen Pro landing page, the management app for small businesses",
     "de": "Landingpage von Moomen Pro, der Verwaltungs-App für KMU"
   },
-  "liveUrl": "https://moomen.pro"
+  "liveUrl": "https://moomen.pro",
+  "gallery": [
+    {
+      "image": "../../assets/projects/gallery/moomen-sectors.jpg",
+      "alt": {
+        "fr": "Section des métiers couverts par Moomen Pro : boutiques, artisans, supermarchés, restaurateurs, coiffeurs",
+        "en": "Section listing the trades Moomen Pro covers: shops, artisans, supermarkets, caterers, hair salons",
+        "de": "Abschnitt mit den Branchen von Moomen Pro: Läden, Handwerk, Supermärkte, Gastronomie, Friseure"
+      }
+    }
+  ]
 }

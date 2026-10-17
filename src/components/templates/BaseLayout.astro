@@ -82,3 +82,10 @@ const personData = {
     <SiteFooter locale={locale} />
   </body>
 </html>
+
+<script>
+  // Toutes les pages partagent la même révélation au défilement : les sections la déclarent par data-scroll-group
+  import { setupScrollReveal } from '@/scripts/scroll-reveal';
+
+  for (const group of document.querySelectorAll<HTMLElement>('[data-scroll-group]')) setupScrollReveal(group);
+</script>

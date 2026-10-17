@@ -1,7 +1,11 @@
 {
   "order": 4,
   "name": "Ateliya",
-  "kind": { "fr": "Landing page et vitrine", "en": "Landing page and showcase", "de": "Landingpage und Schaufenster" },
+  "kind": {
+    "fr": "Landing page et vitrine",
+    "en": "Landing page and showcase",
+    "de": "Landingpage und Schaufenster"
+  },
   "role": {
     "fr": "Projet devenu produit · landing page et vitrine Malliya",
     "en": "Project turned product · landing page and Malliya showcase",
@@ -12,12 +16,33 @@
     "en": "The website of the app that manages clients, measurements, orders and payments for tailoring workshops, and the online showcase for designers.",
     "de": "Die Website der App, mit der Schneiderateliers Kunden, Maße, Aufträge und Zahlungen verwalten, und das Online-Schaufenster für Modedesigner."
   },
-  "stack": ["Astro", "Tailwind"],
+  "stack": [
+    "Astro",
+    "Tailwind"
+  ],
   "cover": "../../assets/projects/ateliya.jpg",
   "coverAlt": {
     "fr": "Landing page d'Ateliya, l'application des ateliers de couture",
     "en": "Ateliya landing page, the app for tailoring workshops",
     "de": "Landingpage von Ateliya, der App für Schneiderateliers"
   },
-  "liveUrl": "https://ateliya.com"
+  "liveUrl": "https://ateliya.com",
+  "gallery": [
+    {
+      "image": "../../assets/projects/gallery/ateliya-features.jpg",
+      "alt": {
+        "fr": "Section « Pourquoi choisir Ateliya » : gestion des clients, suivi des commandes, prise de mesures et paiements intégrés",
+        "en": "\"Why choose Ateliya\" section: client management, order tracking, measurements and built-in payments",
+        "de": "Abschnitt „Warum Ateliya“: Kundenverwaltung, Auftragsverfolgung, Maße und integrierte Zahlungen"
+      }
+    },
+    {
+      "image": "../../assets/projects/gallery/ateliya-clients.jpg",
+      "alt": {
+        "fr": "Section « Vos clients » avec l'écran d'accueil de l'application sur téléphone",
+        "en": "\"Your clients\" section with the app home screen on a phone",
+        "de": "Abschnitt „Ihre Kunden“ mit dem Startbildschirm der App auf dem Smartphone"
+      }
+    }
+  ]
 }

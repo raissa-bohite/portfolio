@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+type Props = { image: ImageMetadata; alt: string; caption: string };
+const { image, alt, caption } = Astro.props;
+---
+
+<figure data-scroll-item class="m-0 flex flex-col items-center gap-3">
+  <div class="w-full max-w-60 rounded-[32px] bg-[#1E0F45] p-2 shadow-glass">
+    <Image src={image} alt={alt} widths={[240, 480]} sizes="240px" loading="lazy" class="block h-auto w-full rounded-surface" />
+  </div>
+  <figcaption class="text-center text-sm font-medium text-muted">{caption}</figcaption>
+</figure>

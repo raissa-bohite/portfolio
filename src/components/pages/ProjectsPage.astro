@@ -1,0 +1,27 @@
+---
+import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import ProjectIndex from '@/components/organisms/ProjectIndex.astro';
+import BaseLayout from '@/components/templates/BaseLayout.astro';
+import type { Locale } from '@/i18n/config';
+import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+import { getProjectSummaries } from '@/lib/projects';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const page = getDictionary(locale).projectsPage;
+const projects = await getProjectSummaries(locale);
+const alternates = getAlternateLinks((alternateLocale) => getRoutePath('projects', alternateLocale));
+---
+
+<BaseLayout locale={locale} title={page.seoTitle} description={page.seoDescription} currentRoute="projects" alternates={alternates}>
+  <section data-scroll-group class="container-page flex flex-col gap-4 pt-16 pb-12">
+    <div data-scroll-item class="flex flex-col gap-3">
+      <Eyebrow>{page.eyebrow}</Eyebrow>
+      <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{page.title}</h1>
+    </div>
+    <p data-scroll-item class="m-0 max-w-[60ch] text-xl leading-[1.55]">{page.intro}</p>
+  </section>
+  <ProjectIndex locale={locale} projects={projects} variant="full" />
+</BaseLayout>

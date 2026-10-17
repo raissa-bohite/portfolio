@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Tag from '@/components/atoms/Tag.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+import type { ProjectSummary } from '@/lib/projects';
+
+type Props = { locale: Locale; project: ProjectSummary };
+
+const { locale, project } = Astro.props;
+const labels = getDictionary(locale).projectPage;
+---
+
+<div class="container-page flex flex-col gap-12 pb-24">
+  <div data-scroll-group class="grid gap-6 lg:grid-cols-12">
+    <div data-scroll-item class="flex flex-col gap-4 lg:col-span-7">
+      <p class="m-0 max-w-[64ch] rounded-control border border-line bg-glass px-5 py-4 text-[15px] text-muted">{labels.caseStudyPending}</p>
+    </div>
+    <div data-scroll-item class="flex flex-col gap-3 lg:col-span-5">
+      <h2 class="m-0 text-sm font-semibold text-sig-text">{labels.stack}</h2>
+      <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+        {
+          project.stack.map((technology) => (
+            <li>
+              <Tag>{technology}</Tag>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  {
+    project.gallery.length > 0 && (
+      <section aria-label={labels.galleryLabel} data-scroll-group class="grid gap-6 md:grid-cols-2">
+        {project.gallery.map((item) => (
+          <div data-scroll-item class="glass overflow-hidden p-3">
+            <Image
+              src={item.image}
+              alt={item.alt}
+              widths={[640, 1200]}
+              sizes="(min-width: 768px) 576px, 94vw"
+              loading="lazy"
+              class="block h-auto w-full rounded-control bg-white"
+            />
+          </div>
+        ))}
+      </section>
+    )
+  }
+</div>

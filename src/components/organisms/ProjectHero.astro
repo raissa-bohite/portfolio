@@ -1,0 +1,44 @@
+---
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import Button from '@/components/atoms/Button.astro';
+import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import Breadcrumb from '@/components/molecules/Breadcrumb.astro';
+import type { Locale } from '@/i18n/config';
+import { getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = {
+  locale: Locale;
+  name: string;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  liveUrl: string | undefined;
+};
+
+const { locale, name, eyebrow, title, lead, liveUrl } = Astro.props;
+const dictionary = getDictionary(locale);
+---
+
+<section data-scroll-group class="container-page flex flex-col gap-6 pt-16 pb-12">
+  <Breadcrumb
+    label={dictionary.projectPage.breadcrumb}
+    parent={{ href: getRoutePath('projects', locale), label: dictionary.nav.projects }}
+    current={name}
+  />
+  <div data-scroll-item class="flex flex-col gap-3">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h1 class="m-0 max-w-[20ch] text-display font-bold text-ink">{title}</h1>
+  </div>
+  <p data-scroll-item class="m-0 max-w-[60ch] text-xl leading-[1.55]">{lead}</p>
+  {
+    liveUrl && (
+      <div data-scroll-item>
+        <Button href={liveUrl} rel="noopener" target="_blank">
+          {dictionary.projectPage.visit}
+          <ArrowUpRight aria-hidden="true" size={18} />
+        </Button>
+      </div>
+    )
+  }
+</section>

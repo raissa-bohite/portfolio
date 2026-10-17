@@ -1,0 +1,60 @@
+---
+import FactList from '@/components/molecules/FactList.astro';
+import NextProjectCard from '@/components/molecules/NextProjectCard.astro';
+import CaseStudyBody from '@/components/organisms/CaseStudyBody.astro';
+import ProjectCover from '@/components/organisms/ProjectCover.astro';
+import ProjectHero from '@/components/organisms/ProjectHero.astro';
+import ProjectSummaryBody from '@/components/organisms/ProjectSummaryBody.astro';
+import BaseLayout from '@/components/templates/BaseLayout.astro';
+import type { Locale } from '@/i18n/config';
+import { getAlternateLinks, getProjectPath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+import { findCaseStudy, getNextProject, getProjectSummaries } from '@/lib/projects';
+
+type Props = { locale: Locale; slug: string };
+
+const { locale, slug } = Astro.props;
+const dictionary = getDictionary(locale);
+const labels = dictionary.projectPage;
+const projects = await getProjectSummaries(locale);
+const projectIndex = projects.findIndex((item) => item.slug === slug);
+const project = projects[projectIndex];
+if (!project) throw new Error(`Projet introuvable : ${slug}`);
+const caseStudy = await findCaseStudy(slug, locale);
+const nextProject = getNextProject(projects, projectIndex);
+const alternates = getAlternateLinks((alternateLocale) => getProjectPath(slug, alternateLocale));
+
+// Sans étude de cas rédigée, la page reste utile : la fiche du projet et ses captures
+const title = caseStudy?.seoTitle ?? `${project.name} · ${project.kind}`;
+const description = caseStudy?.seoDescription ?? project.description;
+const facts = caseStudy
+  ? [
+      { term: labels.role, value: caseStudy.meta.role },
+      { term: labels.team, value: caseStudy.meta.team },
+      { term: labels.period, value: caseStudy.meta.period },
+      { term: labels.status, value: caseStudy.meta.status }
+    ]
+  : [
+      { term: labels.kind, value: project.kind },
+      { term: labels.role, value: project.role }
+    ];
+---
+
+<BaseLayout locale={locale} title={title} description={description} currentRoute="projects" alternates={alternates}>
+  <ProjectHero
+    locale={locale}
+    name={project.name}
+    eyebrow={caseStudy?.eyebrow ?? project.kind}
+    title={caseStudy?.title ?? project.name}
+    lead={caseStudy?.lead ?? project.description}
+    liveUrl={project.liveUrl}
+  />
+  <div class="container-page pb-12">
+    <FactList label={labels.factsLabel} facts={facts} />
+  </div>
+  <div data-scroll-group>
+    <ProjectCover label={labels.previewLabel} image={project.cover} alt={project.coverAlt} />
+  </div>
+  {caseStudy ? <CaseStudyBody locale={locale} caseStudy={caseStudy} /> : <ProjectSummaryBody locale={locale} project={project} />}
+  {nextProject && <NextProjectCard href={nextProject.href} label={labels.next} name={nextProject.name} kind={nextProject.kind} />}
+</BaseLayout>

@@ -13,9 +13,14 @@ export type ProjectSummary = {
   cover: ImageMetadata;
   coverAlt: string;
   href: string;
+  liveUrl: string | undefined;
+  gallery: { image: ImageMetadata; alt: string }[];
+  hasCaseStudy: boolean;
 };
 
-export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Locale): ProjectSummary {
+export type CaseStudy = CollectionEntry<'caseStudies'>['data'];
+
+export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Locale, hasCaseStudy: boolean): ProjectSummary {
   const { data } = entry;
   return {
     slug: entry.id,
@@ -26,13 +31,31 @@ export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Loc
     stack: data.stack,
     cover: data.cover,
     coverAlt: data.coverAlt[locale],
-    href: getProjectPath(entry.id, locale)
+    href: getProjectPath(entry.id, locale),
+    liveUrl: data.liveUrl,
+    gallery: data.gallery.map((item) => ({ image: item.image, alt: item.alt[locale] })),
+    hasCaseStudy
   };
 }
 
+export async function findCaseStudy(slug: string, locale: Locale): Promise<CaseStudy | undefined> {
+  const caseStudies = await getCollection('caseStudies', (entry) => entry.data.project === slug && entry.data.locale === locale);
+  return caseStudies[0]?.data;
+}
+
 export async function getProjectSummaries(locale: Locale): Promise<ProjectSummary[]> {
-  const entries = await getCollection('projects');
+  const [entries, caseStudies] = await Promise.all([
+    getCollection('projects'),
+    getCollection('caseStudies', (entry) => entry.data.locale === locale)
+  ]);
+  const projectsWithCaseStudy = new Set(caseStudies.map((entry) => entry.data.project));
   return entries
     .toSorted((first, second) => first.data.order - second.data.order)
-    .map((entry) => toProjectSummary(entry, locale));
+    .map((entry) => toProjectSummary(entry, locale, projectsWithCaseStudy.has(entry.id)));
+}
+
+// Le projet suivant boucle : après le dernier, on revient au premier
+export function getNextProject<Item>(items: readonly Item[], currentIndex: number): Item | undefined {
+  if (items.length === 0) return undefined;
+  return items[(currentIndex + 1) % items.length];
 }

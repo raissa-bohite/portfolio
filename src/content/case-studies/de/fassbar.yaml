@@ -1,0 +1,63 @@
+project: fassbar
+locale: de
+eyebrow: Fallstudie · Eigenes Produkt
+title: Fassbar, der KI-Tutor, der Kursinhalte verständlich macht
+lead: „Was schwer zu verstehen war, wird fassbar.“ Ein KI-Tutor, der von den eigenen Kursunterlagen der Studierenden ausgeht und daraus Zusammenfassungen, Übungen und Erklärungen erstellt, statt am Lehrplan vorbei zu antworten.
+seoTitle: Fassbar, KI-Tutor für Sprachen · Fallstudie
+seoDescription: Wie ich allein einen KI-Tutor gestaltet und entwickelt habe, der Kursunterlagen in Zusammenfassungen und Übungen verwandelt.
+meta:
+  role: Konzeption, Design, Entwicklung, Deployment
+  team: Allein
+  period: 2025 – heute
+  status: Beta mit ersten Testpersonen
+context:
+  - Germanistikstudierende an ivorischen Universitäten arbeiten mit dichten, deutschsprachigen Kursunterlagen. Allgemeine KI-Tools antworten oft am Lehrplan vorbei oder auf einem Sprachniveau, das weit von ihren Texten entfernt ist.
+  - "Die Ausgangsfrage: Wie hilft man Studierenden, ihren eigenen Kurs besser zu verstehen, statt ein Thema im Allgemeinen?"
+role:
+  paragraphs:
+    - "Ich habe das Projekt allein getragen, von der Recherche bis zum Livegang: Produktdefinition, Design, komplette Entwicklung, Deployment und Betreuung der ersten Testpersonen."
+  highlights:
+    - Produktdefinition
+    - Design von 41 Screens
+    - Full-Stack-Entwicklung
+    - Deployment und Beta
+approach:
+  paragraphs:
+    - "Ein Prinzip leitete alle Entscheidungen: vom Dokument ausgehen, ohne sich darauf zu beschränken. Die KI bleibt dem Kurs treu und kennzeichnet klar, wenn sie darüber hinausgeht."
+    - Zusammenfassungen entstehen in der Sprache des Dokuments, schwierige Wörter werden ins Französische übersetzt. Die Themen des Kurses lassen sich anklicken und vertiefen.
+  gallery:
+    - image: ../../../assets/case-studies/fassbar/splash.jpg
+      alt: Startbildschirm von Fassbar mit dem Maskottchen und dem Slogan „Werde zum Meister deines Kurses“
+      caption: Startbildschirm
+    - image: ../../../assets/case-studies/fassbar/login.jpg
+      alt: "Anmeldebildschirm von Fassbar: ein E-Mail-Feld und eine Schaltfläche „Code erhalten“"
+      caption: Anmeldung per Einmalcode, ohne Passwort
+    - image: ../../../assets/case-studies/fassbar/dashboard.jpg
+      alt: Dashboard von Fassbar mit importierten Kursen und Zugängen zu Korrekturen und Notizen
+      caption: Kurs-Dashboard
+technical:
+  intro: Jede Entscheidung antwortet auf eine konkrete Rahmenbedingung.
+  decisions:
+    - title: Clean Architecture
+      text: Domain, Anwendung, Infrastruktur und Präsentation sind getrennt, damit sich das Produkt ohne Neuschreiben weiterentwickeln lässt.
+    - title: Cloudflare D1 und R2
+      text: Datenbank und Dokumentenspeicher nah an der Anwendung, auf derselben Plattform.
+    - title: Anmeldung ohne Passwort
+      text: "Ein Einmalcode per E-Mail: Studierende müssen sich nichts merken, und es gibt kein Passwort zu schützen."
+    - title: Gesprächsverlauf
+      text: Wird bei jedem Austausch an die KI übergeben, damit die Übungen von Frage zu Frage stimmig bleiben.
+  stack: [SvelteKit, TypeScript, Tailwind CSS, Drizzle ORM, Cloudflare, Claude API, Better Auth]
+results:
+  intro: Das Produkt ist von der Idee zu einer Beta gewachsen, die echte Studierende nutzen.
+  metrics:
+    - value: "110"
+      label: Anmeldungen in 24 Stunden auf der Warteliste
+    - value: "41"
+      label: Screens vor der Entwicklung gestaltet
+    - value: "5"
+      label: abgeschlossene Sprints
+    - value: 10 bis 15
+      label: Beta-Testpersonen
+learnings:
+  - "KI braucht Kontext: Ohne den Gesprächsverlauf widersprachen sich die Übungen irgendwann. Der KI das Gedächtnis des Austauschs zu geben, löste das Problem."
+  - "Werkzeuge von Anfang an nach der Laufzeitumgebung wählen: Auf Cloudflare habe ich Node.js-Bibliotheken durch die native Web Crypto API und unpdf zum Lesen von PDFs ersetzt."

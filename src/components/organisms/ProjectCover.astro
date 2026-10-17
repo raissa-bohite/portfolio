@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+type Props = { label: string; image: ImageMetadata; alt: string };
+const { label, image, alt } = Astro.props;
+---
+
+<section aria-label={label} class="container-page pb-24">
+  <div class="glass overflow-hidden p-3">
+    <Image
+      data-scroll-mask
+      src={image}
+      alt={alt}
+      widths={[640, 1200, 1800]}
+      sizes="(min-width: 1248px) 1176px, 94vw"
+      loading="eager"
+      fetchpriority="high"
+      class="block h-auto w-full rounded-control bg-white"
+    />
+  </div>
+</section>

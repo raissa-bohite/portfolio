@@ -30,7 +30,8 @@ const dictionary = {
   common: {
     cv: 'Télécharger le CV',
     caseStudy: "Lire l'étude de cas",
-    allProjects: 'Tous les projets'
+    allProjects: 'Tous les projets',
+    viewProject: 'Voir le projet'
   },
   home: {
     availability: 'Disponible pour un poste ou une mission',
@@ -47,7 +48,7 @@ const dictionary = {
       pause: 'Mettre en pause le défilement des projets',
       play: 'Reprendre le défilement des projets',
       position: 'Projet {current} sur {total}',
-      cardLabel: '{name}, {kind}, lire l’étude de cas'
+      cardLabel: '{name}, {kind}, {action}'
     },
     stack: {
       label: 'Technologies utilisées'
@@ -150,6 +151,39 @@ const dictionary = {
     failure:
       "Le message n'est pas parti. Réessayez, ou écrivez directement à raissabohite@gmail.com.",
     verificationError: 'La vérification anti-robot a échoué. Rechargez la page et réessayez.'
+  },
+  projectsPage: {
+    eyebrow: 'Projets',
+    title: 'Cinq produits en ligne, conçus avec soin',
+    intro:
+      'Un tuteur IA, une boutique en ligne, un logiciel de gestion scolaire, deux sites produits. Survolez un projet pour en voir le résumé, ouvrez-le pour la suite.',
+    seoTitle: 'Projets · Raïssa Bohité',
+    seoDescription: 'Cinq produits en ligne, du tuteur IA à l’e-commerce, conçus et développés avec soin.'
+  },
+  projectPage: {
+    breadcrumb: "Fil d'Ariane",
+    factsLabel: 'Fiche du projet',
+    role: 'Rôle',
+    team: 'Équipe',
+    period: 'Période',
+    status: 'Statut',
+    stack: 'Technologies',
+    kind: 'Type de projet',
+    visit: 'Voir le projet en ligne',
+    previewLabel: 'Aperçu principal',
+    galleryLabel: 'Autres captures',
+    caseStudyPending: 'L’étude de cas détaillée de ce projet est en préparation.',
+    next: 'Projet suivant',
+    tocTitle: 'Sommaire',
+    tocLabel: "Sommaire de l'étude de cas",
+    sections: {
+      context: 'Contexte et problème',
+      role: 'Mon rôle',
+      approach: 'Démarche',
+      technical: 'Choix techniques',
+      results: 'Résultats',
+      learnings: "Ce que j'ai appris"
+    }
   },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',

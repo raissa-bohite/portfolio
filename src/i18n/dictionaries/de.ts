@@ -25,7 +25,8 @@ export const de: Dictionary = {
   common: {
     cv: 'Lebenslauf herunterladen',
     caseStudy: 'Fallstudie lesen',
-    allProjects: 'Alle Projekte'
+    allProjects: 'Alle Projekte',
+    viewProject: 'Projekt ansehen'
   },
   home: {
     availability: 'Verfügbar für eine Stelle oder ein Projekt',
@@ -42,7 +43,7 @@ export const de: Dictionary = {
       pause: 'Projekt-Diashow anhalten',
       play: 'Projekt-Diashow fortsetzen',
       position: 'Projekt {current} von {total}',
-      cardLabel: '{name}, {kind}, Fallstudie lesen'
+      cardLabel: '{name}, {kind}, {action}'
     },
     stack: {
       label: 'Technologien, die ich nutze'
@@ -142,6 +143,39 @@ export const de: Dictionary = {
     failure:
       'Die Nachricht wurde nicht gesendet. Versuchen Sie es erneut oder schreiben Sie direkt an raissabohite@gmail.com.',
     verificationError: 'Die Anti-Bot-Prüfung ist fehlgeschlagen. Laden Sie die Seite neu und versuchen Sie es erneut.'
+  },
+  projectsPage: {
+    eyebrow: 'Projekte',
+    title: 'Fünf Produkte online, mit Sorgfalt gebaut',
+    intro:
+      'Ein KI-Tutor, ein Onlineshop, eine Schulverwaltungssoftware und zwei Produktwebsites. Fahren Sie über ein Projekt, um die Zusammenfassung zu sehen, und öffnen Sie es für mehr.',
+    seoTitle: 'Projekte · Raïssa Bohité',
+    seoDescription: 'Fünf Produkte online, vom KI-Tutor bis zum E-Commerce, mit Sorgfalt gestaltet und entwickelt.'
+  },
+  projectPage: {
+    breadcrumb: 'Brotkrumennavigation',
+    factsLabel: 'Projektsteckbrief',
+    role: 'Rolle',
+    team: 'Team',
+    period: 'Zeitraum',
+    status: 'Status',
+    stack: 'Technologien',
+    kind: 'Projektart',
+    visit: 'Projekt online ansehen',
+    previewLabel: 'Hauptansicht',
+    galleryLabel: 'Weitere Screenshots',
+    caseStudyPending: 'Die ausführliche Fallstudie zu diesem Projekt ist in Vorbereitung.',
+    next: 'Nächstes Projekt',
+    tocTitle: 'Inhalt',
+    tocLabel: 'Inhalt der Fallstudie',
+    sections: {
+      context: 'Kontext und Problem',
+      role: 'Meine Rolle',
+      approach: 'Vorgehen',
+      technical: 'Technische Entscheidungen',
+      results: 'Ergebnisse',
+      learnings: 'Was ich gelernt habe'
+    }
   },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',

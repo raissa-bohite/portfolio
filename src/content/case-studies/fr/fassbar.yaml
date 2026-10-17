@@ -1,0 +1,63 @@
+project: fassbar
+locale: fr
+eyebrow: Étude de cas · Produit personnel
+title: Fassbar, le tuteur IA qui rend les cours compréhensibles
+lead: « Ce qui était dur à comprendre devient fassbar. » Un tuteur IA qui part des cours des étudiants pour produire des résumés, des exercices et des explications, au lieu de répondre à côté du programme.
+seoTitle: Fassbar, tuteur IA pour les langues · Étude de cas
+seoDescription: Comment j'ai conçu et développé seule un tuteur IA qui transforme les cours des étudiants en résumés et exercices.
+meta:
+  role: Conception, design, développement, déploiement
+  team: Seule
+  period: 2025 – aujourd'hui
+  status: Bêta avec de premiers testeurs
+context:
+  - Les étudiants en germanistique des universités ivoiriennes travaillent sur des cours denses, rédigés en allemand. Les outils d'IA généralistes répondent souvent à côté de leur programme, ou dans un niveau de langue trop éloigné de leurs documents.
+  - "La question de départ : comment aider un étudiant à mieux comprendre son propre cours, plutôt qu'un sujet en général ?"
+role:
+  paragraphs:
+    - "J'ai porté le projet seule, de la recherche à la mise en ligne : définition du produit, maquettes, développement complet, déploiement et suivi des premiers testeurs."
+  highlights:
+    - Définition du produit
+    - Design de 41 écrans
+    - Développement full-stack
+    - Déploiement et bêta
+approach:
+  paragraphs:
+    - "Un principe a guidé toutes les décisions : partir du document, sans s'y enfermer. L'IA reste fidèle au cours de l'étudiant, et signale clairement quand elle apporte une explication qui va au-delà."
+    - Le résumé est rédigé dans la langue du document, avec les mots difficiles traduits en français. Les thèmes du cours deviennent cliquables pour approfondir chaque notion.
+  gallery:
+    - image: ../../../assets/case-studies/fassbar/splash.jpg
+      alt: Écran de démarrage de Fassbar avec la mascotte et le slogan « Deviens le maître de ton cours »
+      caption: Écran de démarrage
+    - image: ../../../assets/case-studies/fassbar/login.jpg
+      alt: "Écran de connexion de Fassbar : un champ email et un bouton « Recevoir un code »"
+      caption: Connexion par code, sans mot de passe
+    - image: ../../../assets/case-studies/fassbar/dashboard.jpg
+      alt: Tableau de bord de Fassbar avec les cours importés et les accès Corriger et Mes notes
+      caption: Tableau de bord des cours
+technical:
+  intro: Chaque choix répond à une contrainte précise.
+  decisions:
+    - title: Clean Architecture
+      text: Domaine, application, infrastructure et présentation séparés, pour faire évoluer le produit sans tout réécrire.
+    - title: Cloudflare D1 et R2
+      text: Base de données et stockage des documents au plus près de l'application, sur la même plateforme.
+    - title: Connexion sans mot de passe
+      text: "Un code à usage unique envoyé par email : rien à retenir pour l'étudiant, aucun mot de passe à protéger."
+    - title: Historique de conversation
+      text: Transmis à l'IA à chaque échange, pour que les exercices restent cohérents d'une question à l'autre.
+  stack: [SvelteKit, TypeScript, Tailwind CSS, Drizzle ORM, Cloudflare, Claude API, Better Auth]
+results:
+  intro: Le produit est passé de l'idée à une bêta utilisée par de vrais étudiants.
+  metrics:
+    - value: "110"
+      label: inscrits en 24 h sur la liste d'attente
+    - value: "41"
+      label: écrans conçus avant le développement
+    - value: "5"
+      label: sprints livrés
+    - value: 10 à 15
+      label: testeurs en bêta
+learnings:
+  - "Une IA a besoin de contexte : sans l'historique de la conversation, les exercices finissaient par se contredire. Lui donner la mémoire de l'échange a réglé le problème."
+  - "Choisir ses outils selon l'environnement d'exécution dès le départ : sur Cloudflare, j'ai remplacé des bibliothèques pensées pour Node.js par l'API Web Crypto native et par unpdf pour lire les PDF."

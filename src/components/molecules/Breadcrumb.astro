@@ -1,0 +1,17 @@
+---
+type Props = {
+  label: string;
+  parent: { href: string; label: string };
+  current: string;
+};
+
+const { label, parent, current } = Astro.props;
+---
+
+<nav aria-label={label} class="text-sm text-muted">
+  <ol class="m-0 flex list-none flex-wrap items-center gap-2 p-0">
+    <li><a href={parent.href} class="text-muted underline-offset-4 hover:text-ink">{parent.label}</a></li>
+    <li aria-hidden="true">/</li>
+    <li><span aria-current="page" class="font-semibold text-ink">{current}</span></li>
+  </ol>
+</nav>

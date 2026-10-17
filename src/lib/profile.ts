@@ -3,8 +3,7 @@ export const profile = {
   name: 'Raïssa Bohité',
   email: 'raissabohite@gmail.com',
   linkedinUrl: 'https://www.linkedin.com/in/raissa-bohite',
-  // À confirmer : identifiant GitHub public
-  githubUrl: 'https://github.com/raissabohite',
+  githubUrl: 'https://github.com/raissa-bohite',
   city: 'Abidjan',
   country: 'CI'
 } as const;

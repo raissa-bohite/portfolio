@@ -99,7 +99,7 @@ export const de: Dictionary = {
           current: false
         },
         {
-          period: '2024 – 2025',
+          period: '2025',
           text: 'Full-Stack bei DigiFemmes, Cybersicherheit bei WeCode',
           current: false
         },

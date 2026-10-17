@@ -107,7 +107,7 @@ const dictionary = {
           current: false
         },
         {
-          period: '2025',
+          period: '2023 – 2025',
           text: 'Full-stack chez DigiFemmes, cybersécurité chez WeCode',
           current: false
         },

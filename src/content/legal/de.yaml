@@ -1,0 +1,45 @@
+locale: de
+eyebrow: Rechtliche Hinweise
+title: Impressum
+seoTitle: Impressum · Raïssa Bohité
+seoDescription: Anbieterin, Hosting, personenbezogene Daten, Cookies, geistiges Eigentum und Credits des Portfolios von Raïssa Bohité.
+updatedLabel: Zuletzt aktualisiert
+updatedAt: 2026-10-17
+sections:
+  - id: editor
+    title: Anbieterin der Website
+    facts:
+      - { term: Name, value: Raïssa Bohité }
+      - { term: Tätigkeit, value: Front-End-Entwicklerin }
+      - { term: Standort, value: "Abidjan, Côte d’Ivoire" }
+      - { term: Kontakt, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
+      - { term: Inhaltlich verantwortlich, value: Raïssa Bohité }
+  - id: hosting
+    title: Hosting
+    facts:
+      - { term: Hoster, value: "Cloudflare, Inc. (Cloudflare Pages)" }
+      - { term: Adresse, value: "101 Townsend St, San Francisco, CA 94107, USA" }
+      - { term: Website, value: cloudflare.com, href: "https://www.cloudflare.com" }
+  - id: data
+    title: Personenbezogene Daten
+    paragraphs:
+      - "Daten übermitteln Sie nur über das Kontaktformular: Ihren Namen, Ihre E-Mail-Adresse, die Art des Anliegens und Ihre Nachricht."
+      - "Diese Angaben dienen ausschließlich der Beantwortung Ihrer Nachricht. Sie werden weder verkauft noch weitergegeben noch zu Werbezwecken genutzt. Sie werden über den Versanddienst Resend per E-Mail zugestellt und höchstens 12 Monate aufbewahrt, danach gelöscht."
+      - "Gemäß dem ivorischen Gesetz Nr. 2013-450 vom 19. Juni 2013 zum Schutz personenbezogener Daten können Sie Auskunft, Berichtigung oder Löschung Ihrer Daten verlangen, indem Sie an {email} schreiben. Sie können sich auch an die ARTCI wenden, die ivorische Datenschutzbehörde."
+  - id: cookies
+    title: Cookies und Reichweitenmessung
+    paragraphs:
+      - "Diese Website setzt keine Werbe- oder Tracking-Cookies. Die Besucherzahlen werden mit Cloudflare Web Analytics gemessen, das ohne Cookies und ohne Identifizierung der Besucher funktioniert. Deshalb erscheint kein Einwilligungsbanner."
+      - Ihre Wahl zwischen hellem und dunklem Design wird in Ihrem Browser gespeichert. Sie verlässt Ihr Gerät nie.
+      - Das Formular ist durch Cloudflare Turnstile vor automatisierten Einsendungen geschützt. Turnstile wertet technische Browsersignale aus, ohne Werbe-Cookies.
+  - id: property
+    title: Geistiges Eigentum
+    paragraphs:
+      - "Der Quellcode des Portfolios ist auf GitHub unter der MIT-Lizenz veröffentlicht. Texte, Fotos und Design bleiben Eigentum von Raïssa Bohité: alle Rechte vorbehalten."
+      - Die vorgestellten Projekte bleiben Eigentum der jeweiligen Kunden. Namen, Logos und Screenshots von Yofeii Délices, Ateliya, Moomen Pro und dem Schul-ERP werden mit deren Einverständnis als berufliche Referenzen gezeigt.
+  - id: credits
+    title: Credits
+    facts:
+      - { term: Schriften, value: "Bricolage Grotesque und JetBrains Mono, unter der SIL Open Font License" }
+      - { term: Icons, value: "Lucide, unter der ISC-Lizenz" }
+      - { term: Gestaltung und Entwicklung, value: Raïssa Bohité }

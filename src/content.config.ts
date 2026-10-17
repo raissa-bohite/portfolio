@@ -71,4 +71,28 @@ const caseStudies = defineCollection({
     })
 });
 
-export const collections = { projects, caseStudies };
+// Mentions légales : un fichier par langue, en sections que le sommaire reprend automatiquement
+const legal = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/legal' }),
+  schema: z.object({
+    locale: z.enum(locales),
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    seoTitle: z.string().min(1).max(60),
+    seoDescription: z.string().min(1).max(155),
+    updatedLabel: z.string().min(1),
+    updatedAt: z.coerce.date(),
+    sections: z
+      .array(
+        z.object({
+          id: z.string().regex(/^[a-z-]+$/),
+          title: z.string().min(1),
+          paragraphs: z.array(z.string().min(1)).default([]),
+          facts: z.array(z.object({ term: z.string().min(1), value: z.string().min(1), href: z.url().optional() })).default([])
+        })
+      )
+      .min(1)
+  })
+});
+
+export const collections = { projects, caseStudies, legal };

@@ -272,6 +272,9 @@ export const en: Dictionary = {
     location: "Abidjan, Côte d'Ivoire",
     timezone: 'Greenwich Mean Time (GMT), open to remote work.'
   },
+  legalPage: {
+    tocLabel: 'Legal notice contents'
+  },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',
     secondaryLabel: 'Secondary links',

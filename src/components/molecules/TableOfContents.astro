@@ -1,0 +1,33 @@
+---
+type Props = {
+  title: string;
+  label: string;
+  items: readonly { id: string; title: string }[];
+};
+
+const { title, label, items } = Astro.props;
+---
+
+<aside class="hidden lg:col-span-3 lg:block">
+  <nav aria-label={label} class="sticky top-32 flex flex-col gap-1">
+    <p class="mt-0 mb-2 ml-3 text-sm font-semibold text-sig-text">{title}</p>
+    {
+      items.map((item) => (
+        <a
+          href={`#${item.id}`}
+          data-toc-link={item.id}
+          class="group flex min-h-11 items-center gap-3 rounded-control px-3 text-[15px] font-medium text-muted no-underline transition-colors hover:bg-tint hover:text-ink aria-[current=true]:bg-tint aria-[current=true]:font-semibold aria-[current=true]:text-ink"
+        >
+          <span aria-hidden="true" class="size-1.5 rounded-full bg-line transition-colors group-aria-[current=true]:bg-sig" />
+          {item.title}
+        </a>
+      ))
+    }
+  </nav>
+</aside>
+
+<script>
+  import { setupTableOfContents } from '@/scripts/reading';
+
+  setupTableOfContents(document);
+</script>

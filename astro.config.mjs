@@ -34,14 +34,15 @@ export default defineConfig({
         "default-src 'self'",
         "img-src 'self' data:",
         "font-src 'self'",
-        "connect-src 'self' https://challenges.cloudflare.com",
+        "connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com",
         "frame-src https://challenges.cloudflare.com",
         "form-action 'self'",
         "base-uri 'self'",
         "object-src 'none'"
       ],
       scriptDirective: {
-        resources: ["'self'", 'https://challenges.cloudflare.com'],
+        // Cloudflare Web Analytics injecte son script de mesure, sans cookie
+        resources: ["'self'", 'https://challenges.cloudflare.com', 'https://static.cloudflareinsights.com'],
         hashes: [/** @type {`sha256-${string}`} */ (themeInitHash)]
       }
     }

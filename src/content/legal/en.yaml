@@ -1,0 +1,45 @@
+locale: en
+eyebrow: Legal information
+title: Legal notice
+seoTitle: Legal notice · Raïssa Bohité
+seoDescription: Publisher, hosting, personal data, cookies, intellectual property and credits for Raïssa Bohité's portfolio.
+updatedLabel: Last updated
+updatedAt: 2026-10-17
+sections:
+  - id: editor
+    title: Publisher
+    facts:
+      - { term: Name, value: Raïssa Bohité }
+      - { term: Occupation, value: Front-end developer }
+      - { term: Location, value: "Abidjan, Côte d'Ivoire" }
+      - { term: Contact, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
+      - { term: Publication director, value: Raïssa Bohité }
+  - id: hosting
+    title: Hosting
+    facts:
+      - { term: Host, value: "Cloudflare, Inc. (Cloudflare Pages)" }
+      - { term: Address, value: "101 Townsend St, San Francisco, CA 94107, United States" }
+      - { term: Website, value: cloudflare.com, href: "https://www.cloudflare.com" }
+  - id: data
+    title: Personal data
+    paragraphs:
+      - "The only place where you share data is the contact form: your name, your email address, the type of request and your message."
+      - "This information is used only to reply to you. It is never sold, shared or used for advertising. It is delivered by email through the Resend sending service, then kept for 12 months at most before being deleted."
+      - "Under Ivorian law no. 2013-450 of 19 June 2013 on the protection of personal data, you can ask to access, correct or delete your data by writing to {email}. You can also contact ARTCI, the Ivorian data protection authority."
+  - id: cookies
+    title: Cookies and analytics
+    paragraphs:
+      - "This site sets no advertising or tracking cookies. Traffic is measured with Cloudflare Web Analytics, which works without cookies and without identifying visitors. That is why no consent banner is shown."
+      - Your light or dark theme choice is stored in your browser. It never leaves your device.
+      - The form is protected against automated submissions by Cloudflare Turnstile, which analyses technical browsing signals without advertising cookies.
+  - id: property
+    title: Intellectual property
+    paragraphs:
+      - "The portfolio source code is published on GitHub under the MIT licence. The texts, photos and design remain the property of Raïssa Bohité: all rights reserved."
+      - The projects shown remain the property of their respective clients. The names, logos and screenshots of Yofeii Délices, Ateliya, Moomen Pro and the school ERP are shown with their consent, as professional references.
+  - id: credits
+    title: Credits
+    facts:
+      - { term: Fonts, value: "Bricolage Grotesque and JetBrains Mono, under the SIL Open Font License" }
+      - { term: Icons, value: "Lucide, under the ISC licence" }
+      - { term: Design and development, value: Raïssa Bohité }

@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import TableOfContents from '@/components/molecules/TableOfContents.astro';
+import BaseLayout from '@/components/templates/BaseLayout.astro';
+import type { Locale } from '@/i18n/config';
+import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+import { profile } from '@/lib/profile';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const dictionary = getDictionary(locale);
+const [entry] = await getCollection('legal', (item) => item.data.locale === locale);
+if (!entry) throw new Error(`Mentions légales manquantes pour la langue ${locale}`);
+const legal = entry.data;
+const alternates = getAlternateLinks((alternateLocale) => getRoutePath('legal', alternateLocale));
+const updatedAt = new Intl.DateTimeFormat(locale, { dateStyle: 'long', timeZone: 'UTC' }).format(legal.updatedAt);
+const tocItems = legal.sections.map((section) => ({ id: section.id, title: section.title }));
+const EMAIL_TOKEN = '{email}';
+// Typographie française : espace avant les deux-points
+const labelSeparator = locale === 'fr' ? ' : ' : ': ';
+---
+
+<BaseLayout locale={locale} title={legal.seoTitle} description={legal.seoDescription} currentRoute="legal" alternates={alternates}>
+  <section class="container-page flex flex-col gap-3 pt-16 pb-12">
+    <Eyebrow>{legal.eyebrow}</Eyebrow>
+    <h1 class="m-0 text-display font-bold text-ink">{legal.title}</h1>
+    <p class="m-0 text-muted">
+      {legal.updatedLabel}{labelSeparator}<time datetime={legal.updatedAt.toISOString().slice(0, 10)}>{updatedAt}</time>
+    </p>
+  </section>
+
+  <div class="container-page pb-24">
+    <div class="grid gap-6 lg:grid-cols-12">
+      <TableOfContents title={dictionary.projectPage.tocTitle} label={dictionary.legalPage.tocLabel} items={tocItems} />
+      <article class="glass flex flex-col gap-12 p-8 md:p-12 lg:col-span-9">
+        {
+          legal.sections.map((section) => (
+            <section id={section.id} data-toc-section aria-labelledby={`${section.id}-title`} class="flex scroll-mt-32 flex-col gap-4">
+              <h2 id={`${section.id}-title`} class="m-0 text-[clamp(24px,2.6vw,30px)] leading-[1.2] font-bold text-ink">
+                {section.title}
+              </h2>
+              {section.facts.length > 0 && (
+                <dl class="m-0 grid gap-x-6 gap-y-3 sm:grid-cols-[minmax(0,14rem)_1fr]">
+                  {section.facts.map((fact) => (
+                    <>
+                      <dt class="text-[15px] font-medium text-muted">{fact.term}</dt>
+                      <dd class="m-0 font-semibold text-ink">{fact.href ? <a href={fact.href}>{fact.value}</a> : fact.value}</dd>
+                    </>
+                  ))}
+                </dl>
+              )}
+              {section.paragraphs.map((paragraph) => {
+                // Le jeton {email} devient un vrai lien, sans jamais injecter de HTML depuis le contenu
+                const [before, after] = paragraph.split(EMAIL_TOKEN);
+                return (
+                  <p class="m-0 max-w-[68ch]">
+                    {before}
+                    {after !== undefined && <a href={`mailto:${profile.email}`}>{profile.email}</a>}
+                    {after}
+                  </p>
+                );
+              })}
+            </section>
+          ))
+        }
+      </article>
+    </div>
+  </div>
+</BaseLayout>

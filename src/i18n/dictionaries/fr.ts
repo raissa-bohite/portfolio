@@ -282,6 +282,9 @@ const dictionary = {
     location: "Abidjan, Côte d'Ivoire",
     timezone: 'Heure de Greenwich (GMT), ouverte au travail à distance.'
   },
+  legalPage: {
+    tocLabel: 'Sommaire des mentions légales'
+  },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',
     secondaryLabel: 'Liens secondaires',

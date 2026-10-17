@@ -3,6 +3,7 @@ import Tag from '@/components/atoms/Tag.astro';
 import DecisionCard from '@/components/molecules/DecisionCard.astro';
 import MetricCard from '@/components/molecules/MetricCard.astro';
 import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
+import TableOfContents from '@/components/molecules/TableOfContents.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import type { CaseStudy } from '@/lib/projects';
@@ -25,23 +26,7 @@ const headingClasses = 'm-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold
 
 <div class="container-page pb-24">
   <div class="grid gap-6 lg:grid-cols-12">
-    <aside class="hidden lg:col-span-3 lg:block">
-      <nav aria-label={labels.tocLabel} class="sticky top-32 flex flex-col gap-1">
-        <p class="mt-0 mb-2 ml-3 text-sm font-semibold text-sig-text">{labels.tocTitle}</p>
-        {
-          sections.map((section) => (
-            <a
-              href={`#${section.id}`}
-              data-toc-link={section.id}
-              class="group flex min-h-11 items-center gap-3 rounded-control px-3 text-[15px] font-medium text-muted no-underline transition-colors hover:bg-tint hover:text-ink aria-[current=true]:bg-tint aria-[current=true]:font-semibold aria-[current=true]:text-ink"
-            >
-              <span aria-hidden="true" class="size-1.5 rounded-full bg-line transition-colors group-aria-[current=true]:bg-sig" />
-              {section.title}
-            </a>
-          ))
-        }
-      </nav>
-    </aside>
+    <TableOfContents title={labels.tocTitle} label={labels.tocLabel} items={sections} />
 
     <article data-case-study class="flex flex-col gap-[72px] lg:col-span-9">
       <section id="context" data-toc-section aria-labelledby="context-title" class="flex scroll-mt-32 flex-col gap-4">
@@ -116,10 +101,9 @@ const headingClasses = 'm-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold
 </div>
 
 <script>
-  import { setupReadingProgress, setupTableOfContents } from '@/scripts/case-study';
+  import { setupReadingProgress } from '@/scripts/reading';
 
   const article = document.querySelector<HTMLElement>('[data-case-study]');
   const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
   if (article && progress) setupReadingProgress(article, progress);
-  setupTableOfContents(document);
 </script>

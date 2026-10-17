@@ -132,6 +132,12 @@ const dictionary = {
     email: 'Votre email',
     emailPlaceholder: 'nom@domaine.com',
     emailError: 'Saisissez une adresse complète, par exemple nom@domaine.com.',
+    typeLegend: 'Votre demande concerne',
+    typeHints: {
+      job: 'CDI, CDD ou alternance',
+      project: 'Projet en freelance',
+      other: 'Question, collaboration'
+    },
     type: 'Votre demande',
     types: {
       job: "Une offre d'emploi",
@@ -260,6 +266,21 @@ const dictionary = {
       title: 'Travaillons ensemble',
       cta: 'Écrire un message'
     }
+  },
+  contactPage: {
+    seoTitle: 'Contact · Raïssa Bohité',
+    seoDescription: 'Un poste, une mission ou une question ? Écrivez-moi en français, en anglais ou en allemand.',
+    eyebrow: 'Contact',
+    title: 'Un poste, une mission, une question ?',
+    intro: 'Décrivez votre besoin en quelques lignes. Je vous réponds en français, en allemand ou en anglais.',
+    directEmail: 'Email direct',
+    copy: "Copier l'email",
+    copied: "L'adresse est dans votre presse-papiers.",
+    copyFailed: "La copie n'a pas fonctionné : sélectionnez l'adresse à la main.",
+    elsewhere: 'Ailleurs',
+    whereWhen: 'Où et quand',
+    location: "Abidjan, Côte d'Ivoire",
+    timezone: 'Heure de Greenwich (GMT), ouverte au travail à distance.'
   },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',

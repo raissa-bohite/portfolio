@@ -27,6 +27,7 @@
   --tint: #e7deff;
   --tint-ink: #36188a;
   --line: #e2d8f7;
+  --danger: #b42318;
   --orb-1: #d9ccff;
   --orb-2: #ffd9c2;
 }
@@ -48,6 +49,7 @@
   --tint: #2a1a5c;
   --tint-ink: #d8ccff;
   --line: rgb(255 255 255 / 0.12);
+  --danger: #ff8a7a;
   --orb-1: #3a1f8a;
   --orb-2: #5a2a1a;
 }
@@ -71,6 +73,7 @@
   --color-tint: var(--tint);
   --color-tint-ink: var(--tint-ink);
   --color-line: var(--line);
+  --color-danger: var(--danger);
   --color-orb-1: var(--orb-1);
   --color-orb-2: var(--orb-2);
 

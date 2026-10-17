@@ -44,7 +44,9 @@ function setState(container: HTMLElement, state: FormState): void {
   if (submit) {
     submit.disabled = state === 'sending';
     const label = state === 'sending' ? submit.dataset['labelSending'] : submit.dataset['labelIdle'];
-    if (label) submit.textContent = label;
+    // Seul le libellé change : l'icône du bouton reste en place
+    const labelElement = submit.querySelector<HTMLElement>('[data-submit-label]') ?? submit;
+    if (label) labelElement.textContent = label;
   }
 }
 

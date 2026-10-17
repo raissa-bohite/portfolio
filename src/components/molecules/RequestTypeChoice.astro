@@ -1,0 +1,20 @@
+---
+type Props = {
+  name: string;
+  value: string;
+  label: string;
+  hint: string;
+  checked?: boolean;
+};
+
+const { name, value, label, hint, checked = false } = Astro.props;
+---
+
+<!-- Bouton radio natif, habillé en carte : navigation au clavier et lecteurs d'écran fonctionnent sans script -->
+<label
+  class="flex cursor-pointer flex-col gap-1 rounded-control border-[1.5px] border-line bg-glass-strong p-4 transition-colors hover:border-muted has-checked:border-action has-checked:bg-tint has-focus-visible:outline-3 has-focus-visible:outline-offset-3 has-focus-visible:outline-sig"
+>
+  <input type="radio" name={name} value={value} checked={checked} class="sr-only" />
+  <span class="text-base font-bold text-ink">{label}</span>
+  <span class="text-sm text-muted">{hint}</span>
+</label>

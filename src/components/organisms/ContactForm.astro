@@ -1,83 +1,109 @@
 ---
+import CircleCheck from '@lucide/astro/icons/circle-check';
+import Send from '@lucide/astro/icons/send';
 import FormField from '@/components/molecules/FormField.astro';
+import RequestTypeChoice from '@/components/molecules/RequestTypeChoice.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
-import { contactLimits } from '@/lib/contact-schema';
+import { contactLimits, contactRequestTypes } from '@/lib/contact-schema';
 
 type Props = {
   locale: Locale;
+  // « compact » sur l'accueil (liste déroulante), « full » sur la page Contact (cartes de choix)
+  variant?: 'compact' | 'full';
   class?: string;
 };
 
-const { locale, class: className } = Astro.props;
+const { locale, variant = 'compact', class: className } = Astro.props;
 const form = getDictionary(locale).contactForm;
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.types[value], hint: form.typeHints[value] }));
 ---
 
 <div data-contact-form data-state="idle" class:list={['group/form', className]}>
-  <form action="/api/contact" method="post" aria-label={form.label} class="grid gap-4 group-data-[state=success]/form:hidden sm:grid-cols-2">
+  <form action="/api/contact" method="post" aria-label={form.label} class="flex flex-col gap-6 group-data-[state=success]/form:hidden">
     <input type="hidden" name="locale" value={locale} />
     <div class="absolute -left-[9999px]" aria-hidden="true">
-      <label for="contact-website">Website</label>
-      <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      <label for={`${variant}-website`}>Website</label>
+      <input id={`${variant}-website`} name="website" type="text" tabindex="-1" autocomplete="off" />
     </div>
-    <FormField id="contact-name" name="name" label={form.name} autocomplete="name" error={form.nameError} maxLength={contactLimits.nameMax} />
+
+    {
+      variant === 'full' ? (
+        <fieldset class="m-0 flex flex-col gap-3 border-0 p-0">
+          <legend class="mb-3 text-sm font-semibold text-ink">{form.typeLegend}</legend>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-3">
+            {typeOptions.map((option, index) => (
+              <RequestTypeChoice name="type" value={option.value} label={option.label} hint={option.hint} checked={index === 0} />
+            ))}
+          </div>
+        </fieldset>
+      ) : (
+        <FormField
+          id={`${variant}-type`}
+          name="type"
+          kind="select"
+          label={form.type}
+          error=""
+          maxLength={20}
+          options={typeOptions.map(({ value, label }) => ({ value, label }))}
+        />
+      )
+    }
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <FormField id={`${variant}-name`} name="name" label={form.name} autocomplete="name" error={form.nameError} maxLength={contactLimits.nameMax} />
+      <FormField
+        id={`${variant}-email`}
+        name="email"
+        type="email"
+        label={form.email}
+        autocomplete="email"
+        placeholder={form.emailPlaceholder}
+        error={form.emailError}
+        maxLength={contactLimits.emailMax}
+      />
+    </div>
     <FormField
-      id="contact-email"
-      name="email"
-      type="email"
-      label={form.email}
-      autocomplete="email"
-      placeholder={form.emailPlaceholder}
-      error={form.emailError}
-      maxLength={contactLimits.emailMax}
-    />
-    <FormField
-      id="contact-type"
-      name="type"
-      kind="select"
-      label={form.type}
-      error=""
-      maxLength={20}
-      class="sm:col-span-2"
-      options={[
-        { value: 'job', label: form.types.job },
-        { value: 'project', label: form.types.project },
-        { value: 'other', label: form.types.other }
-      ]}
-    />
-    <FormField
-      id="contact-message"
+      id={`${variant}-message`}
       name="message"
       kind="textarea"
+      rows={variant === 'full' ? 6 : 4}
       label={form.message}
       help={form.messageHelp}
       error={form.messageError}
       minLength={contactLimits.messageMin}
       maxLength={contactLimits.messageMax}
-      class="sm:col-span-2"
     />
-    {turnstileSiteKey && <div class="cf-turnstile sm:col-span-2" data-sitekey={turnstileSiteKey} data-language={locale} />}
-    <p class="m-0 text-sm text-muted sm:col-span-2">{form.privacy}</p>
-    <p role="alert" class="m-0 hidden rounded-control bg-tint p-4 text-sm font-medium text-ink group-data-[state=failure]/form:block sm:col-span-2">
+    {turnstileSiteKey && <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-language={locale} />}
+    <p role="alert" class="m-0 hidden rounded-control border border-danger/40 bg-glass-strong p-4 text-sm font-medium text-ink group-data-[state=failure]/form:block">
       {form.failure}
     </p>
-    <div class="sm:col-span-2">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <p class="m-0 max-w-[44ch] text-sm text-muted">{form.privacy}</p>
       <button
         type="submit"
         data-label-idle={form.submit}
         data-label-sending={form.sending}
-        class="min-h-12 cursor-pointer rounded-control border-0 bg-action px-6 font-sans text-base font-semibold text-action-ink transition-colors hover:bg-action-hover disabled:cursor-wait disabled:opacity-70"
+        class="inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-control border-0 bg-action px-6 font-sans text-base font-semibold text-action-ink transition-colors hover:bg-action-hover disabled:cursor-wait disabled:opacity-70"
       >
-        {form.submit}
+        <span data-submit-label>{form.submit}</span>
+        <Send aria-hidden="true" size={18} />
       </button>
     </div>
   </form>
 
-  <div data-success tabindex="-1" class="hidden flex-col items-start gap-3 group-data-[state=success]/form:flex">
-    <h3 class="m-0 text-2xl font-bold text-ink">{form.successTitle}</h3>
-    <p data-success-text data-template={form.successText} class="m-0"></p>
-    <button type="button" data-action="again" class="min-h-12 cursor-pointer rounded-control border-[1.5px] border-action bg-transparent px-6 font-sans text-base font-semibold text-action">
+  <div data-success tabindex="-1" role="status" class="hidden flex-col items-start gap-4 py-6 group-data-[state=success]/form:flex">
+    <span aria-hidden="true" class="flex size-14 items-center justify-center rounded-control bg-tint text-tint-ink">
+      <CircleCheck size={26} />
+    </span>
+    <h2 class="m-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold text-ink">{form.successTitle}</h2>
+    <p data-success-text data-template={form.successText} class="m-0 max-w-[48ch]"></p>
+    <button
+      type="button"
+      data-action="again"
+      class="min-h-12 cursor-pointer rounded-control border-[1.5px] border-action bg-glass-strong px-6 font-sans text-base font-semibold text-action"
+    >
       {form.again}
     </button>
   </div>

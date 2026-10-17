@@ -124,6 +124,12 @@ export const en: Dictionary = {
     email: 'Your email',
     emailPlaceholder: 'name@domain.com',
     emailError: 'Enter a full address, for example name@domain.com.',
+    typeLegend: 'Your request is about',
+    typeHints: {
+      job: 'Permanent, fixed-term or apprenticeship',
+      project: 'Freelance work',
+      other: 'Question, collaboration'
+    },
     type: 'Your request',
     types: {
       job: 'A job offer',
@@ -250,6 +256,21 @@ export const en: Dictionary = {
       title: "Let's work together",
       cta: 'Write a message'
     }
+  },
+  contactPage: {
+    seoTitle: 'Contact · Raïssa Bohité',
+    seoDescription: 'A job, a project or a question? Write to me in English, French or German.',
+    eyebrow: 'Contact',
+    title: 'A job, a project, a question?',
+    intro: 'Describe what you need in a few lines. I reply in English, French or German.',
+    directEmail: 'Direct email',
+    copy: 'Copy email',
+    copied: 'The address is in your clipboard.',
+    copyFailed: "Copying didn't work: please select the address manually.",
+    elsewhere: 'Elsewhere',
+    whereWhen: 'Where and when',
+    location: "Abidjan, Côte d'Ivoire",
+    timezone: 'Greenwich Mean Time (GMT), open to remote work.'
   },
   footer: {
     copyright: '© 2026 Raïssa Bohité, Abidjan',

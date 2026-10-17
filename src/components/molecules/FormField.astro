@@ -12,6 +12,7 @@ type Props = {
   required?: boolean;
   minLength?: number;
   maxLength: number;
+  rows?: number;
   options?: { value: string; label: string }[];
   class?: string;
 };
@@ -29,6 +30,7 @@ const {
   required = true,
   minLength,
   maxLength,
+  rows = 4,
   options = [],
   class: className
 } = Astro.props;
@@ -37,7 +39,7 @@ const helpId = help ? `${id}-help` : undefined;
 const errorId = `${id}-error`;
 const describedBy = [helpId].filter(Boolean).join(' ') || undefined;
 const controlClasses =
-  'w-full rounded-control border-[1.5px] border-line bg-glass-strong px-4 font-sans text-base text-ink placeholder:text-muted aria-invalid:border-sig-text';
+  'w-full rounded-control border-[1.5px] border-line bg-glass-strong px-4 font-sans text-base text-ink placeholder:text-muted hover:border-muted aria-invalid:border-danger';
 ---
 
 <div class:list={['flex flex-col gap-2', className]} data-field>
@@ -47,7 +49,7 @@ const controlClasses =
       <textarea
         id={id}
         name={name}
-        rows="4"
+        rows={rows}
         required={required}
         minlength={minLength}
         maxlength={maxLength}
@@ -78,5 +80,5 @@ const controlClasses =
     )
   }
   {help && <p id={helpId} class="m-0 text-sm text-muted">{help}</p>}
-  <p id={errorId} class="m-0 hidden text-sm font-medium text-sig-text" data-error-message={error}></p>
+  <p id={errorId} class="m-0 hidden text-sm font-medium text-danger" data-error-message={error}></p>
 </div>

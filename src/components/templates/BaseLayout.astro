@@ -1,0 +1,84 @@
+---
+import '@/styles/global.css';
+import SiteFooter from '@/components/organisms/SiteFooter.astro';
+import SiteHeader from '@/components/organisms/SiteHeader.astro';
+import { defaultLocale, openGraphLocales, type Locale } from '@/i18n/config';
+import type { AlternateLink, RouteId } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+import { profile } from '@/lib/profile';
+import themeInitScript from '@/scripts/theme-init.inline.js?raw';
+
+type Props = {
+  locale: Locale;
+  title: string;
+  description: string;
+  currentRoute: RouteId;
+  alternates: AlternateLink[];
+};
+
+const { locale, title, description, currentRoute, alternates } = Astro.props;
+const dictionary = getDictionary(locale);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const defaultAlternate = alternates.find((alternate) => alternate.locale === defaultLocale);
+const socialImageUrl = new URL('/og-image.jpg', Astro.site);
+
+// Données structurées : aident les moteurs de recherche à relier le site à la personne
+const personData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: dictionary.meta.homeTitle.split('·')[1]?.trim(),
+  email: `mailto:${profile.email}`,
+  url: Astro.site?.toString(),
+  address: { '@type': 'PostalAddress', addressLocality: profile.city, addressCountry: profile.country },
+  sameAs: [profile.linkedinUrl, profile.githubUrl],
+  knowsLanguage: ['fr', 'de', 'en']
+};
+---
+
+<!doctype html>
+<html lang={locale} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.locale} href={new URL(alternate.path, Astro.site)} />)}
+    {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4F0FC" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:locale" content={openGraphLocales[locale]} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personData)} />
+
+    <!-- Appliqué avant l'affichage pour éviter un flash du mauvais thème -->
+    <script is:inline set:html={themeInitScript} />
+  </head>
+  <body class="relative min-h-screen overflow-x-hidden">
+    <a href="#main" class="sr-only z-50 rounded-control bg-action px-4 py-3 font-semibold text-action-ink focus:not-sr-only focus:fixed focus:top-4 focus:left-4">
+      {dictionary.nav.skip}
+    </a>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute -top-[200px] -left-[240px] size-[760px] rounded-full bg-orb-1 opacity-85 blur-[120px]"></div>
+      <div class="absolute top-[300px] -right-[200px] size-[600px] rounded-full bg-orb-2 opacity-70 blur-[130px]"></div>
+      <div class="absolute top-[2000px] left-1/5 size-[700px] rounded-full bg-orb-1 opacity-60 blur-[140px]"></div>
+    </div>
+    <SiteHeader locale={locale} currentRoute={currentRoute} alternates={alternates} />
+    <main id="main" tabindex="-1" class="relative">
+      <slot />
+    </main>
+    <SiteFooter locale={locale} />
+  </body>
+</html>

@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'button'> & {
+  label: string;
+  size?: 'medium' | 'small';
+};
+
+const { label, size = 'medium', class: className, ...attributes } = Astro.props;
+---
+
+<button
+  type="button"
+  aria-label={label}
+  class:list={[
+    'inline-flex cursor-pointer items-center justify-center rounded-control text-ink transition-colors duration-200',
+    size === 'medium' ? 'size-11 border border-line bg-glass-strong hover:bg-tint' : 'size-10 border-0 bg-transparent hover:bg-tint',
+    className
+  ]}
+  {...attributes}
+>
+  <slot />
+</button>

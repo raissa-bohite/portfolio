@@ -1,0 +1,18 @@
+---
+import DomainCard from '@/components/molecules/DomainCard.astro';
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const domains = getDictionary(locale).home.domains;
+---
+
+<section aria-labelledby="domains-title" class="container-page flex flex-col gap-12 py-24">
+  <SectionHeading id="domains-title" eyebrow={domains.eyebrow} title={domains.title} />
+  <div class="grid gap-6 md:grid-cols-3">
+    {domains.items.map((domain) => <DomainCard icon={domain.icon} title={domain.title} text={domain.text} />)}
+  </div>
+</section>

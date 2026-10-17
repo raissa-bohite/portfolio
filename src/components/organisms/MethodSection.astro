@@ -1,0 +1,44 @@
+---
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import type { Locale } from '@/i18n/config';
+import { formatMessage, getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const method = getDictionary(locale).home.method;
+const heights = ['25%', '50%', '75%', '100%'];
+const heightClasses = ['h-1/4', 'h-1/2', 'h-3/4', 'h-full'];
+---
+
+<section aria-labelledby="method-title" class="container-page flex flex-col gap-12 py-24">
+  <SectionHeading id="method-title" eyebrow={method.eyebrow} title={method.title} />
+  <ol data-histogram aria-label={method.listLabel} class="m-0 grid list-none items-end gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      method.steps.map((step, index) => (
+        <li class="flex flex-col gap-5">
+          <div class="flex h-48 items-end border-b-2 border-line lg:h-80">
+            <div
+              data-bar
+              data-height={heights[index]}
+              class:list={[
+                'group flex min-h-[72px] w-full flex-col justify-between overflow-hidden rounded-t-control bg-action p-5 text-action-ink transition-colors duration-300 [&.is-current]:bg-sig [&.is-current]:text-[#1E0F45]',
+                heightClasses[index]
+              ]}
+            >
+              <span class="font-mono text-[15px] font-semibold" lang="fr">{step.code}</span>
+              <span class="text-sm font-semibold opacity-80">{formatMessage(method.step, { n: index + 1 })}</span>
+            </div>
+          </div>
+          <p data-bar-text class="m-0 text-base">{step.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<script>
+  import { setupHistogram } from '@/scripts/histogram';
+
+  for (const list of document.querySelectorAll<HTMLElement>('[data-histogram]')) setupHistogram(list);
+</script>

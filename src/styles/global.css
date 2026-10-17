@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/bricolage-grotesque/opsz.css';
+@import '@fontsource/jetbrains-mono/latin-500.css';
+@import '@fontsource/jetbrains-mono/latin-600.css';
+
+/* Le thème suit le système par défaut ; data-theme sur <html> force un choix explicite */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+/* Écrans tactiles : pas de survol, donc les lignes de projets restent dépliées */
+@custom-variant hover-none (@media (hover: none));
+
+/* Jetons du design system : rôles, pas couleurs. Le violet signale ce qui se clique, l'orange l'état actif */
+:root {
+  color-scheme: light;
+  --bg: #f4f0fc;
+  --glass: rgb(255 255 255 / 0.62);
+  --glass-strong: rgb(255 255 255 / 0.75);
+  --glass-border: rgb(255 255 255 / 0.9);
+  --shadow: 0 24px 48px -28px rgb(74 35 160 / 0.28);
+  --ink: #1e0f45;
+  --text: #3e3266;
+  --muted: #6b5f8f;
+  --action: #4a23a0;
+  --action-hover: #36188a;
+  --action-ink: #ffffff;
+  --sig: #f26a1b;
+  --sig-text: #b83e0b;
+  --tint: #e7deff;
+  --tint-ink: #36188a;
+  --line: #e2d8f7;
+  --orb-1: #d9ccff;
+  --orb-2: #ffd9c2;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #120a2b;
+  --glass: rgb(255 255 255 / 0.06);
+  --glass-strong: rgb(255 255 255 / 0.09);
+  --glass-border: rgb(255 255 255 / 0.12);
+  --shadow: 0 24px 48px -28px rgb(0 0 0 / 0.6);
+  --ink: #f3eeff;
+  --text: #d6ccf2;
+  --muted: #a99dd0;
+  --action: #c4b2ff;
+  --action-hover: #d8ccff;
+  --action-ink: #120a2b;
+  --sig-text: #ff9a5c;
+  --tint: #2a1a5c;
+  --tint-ink: #d8ccff;
+  --line: rgb(255 255 255 / 0.12);
+  --orb-1: #3a1f8a;
+  --orb-2: #5a2a1a;
+}
+
+@theme inline {
+  --font-sans: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-border: var(--glass-border);
+  --color-ink: var(--ink);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-ink: var(--action-ink);
+  --color-sig: var(--sig);
+  --color-sig-text: var(--sig-text);
+  --color-tint: var(--tint);
+  --color-tint-ink: var(--tint-ink);
+  --color-line: var(--line);
+  --color-orb-1: var(--orb-1);
+  --color-orb-2: var(--orb-2);
+
+  --radius-control: 12px;
+  --radius-surface: 24px;
+  --shadow-glass: var(--shadow);
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-blink: blink 1s steps(1) infinite;
+  --animate-type: type 1s steps(30) 0.3s forwards;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes type {
+    to {
+      width: 30ch;
+    }
+  }
+
+  --text-display: clamp(2.5rem, 4.4vw, 3.75rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.02em;
+  --text-h2: clamp(2rem, 4vw, 2.75rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+}
+
+@layer base {
+  html {
+    overflow-x: clip;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    /* Les formes « display » de Bricolage sont trop serrées : on fige l'axe optique */
+    font-optical-sizing: none;
+    font-variation-settings: 'opsz' 28;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    transition: background-color 0.4s ease;
+  }
+
+  body {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--sig);
+    outline-offset: 3px;
+  }
+
+  a {
+    color: var(--action);
+  }
+
+  a:hover {
+    color: var(--action-hover);
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-surface);
+  }
+
+  .container-page {
+    margin-inline: auto;
+    max-width: 1200px;
+    padding-inline: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

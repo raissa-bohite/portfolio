@@ -1,0 +1,22 @@
+{
+  "order": 1,
+  "name": "Fassbar",
+  "kind": { "fr": "Produit IA", "en": "AI product", "de": "KI-Produkt" },
+  "role": {
+    "fr": "Produit personnel · conception, design et développement",
+    "en": "Personal product · product, design and development",
+    "de": "Eigenes Produkt · Konzeption, Design und Entwicklung"
+  },
+  "description": {
+    "fr": "Transforme les cours des étudiants en résumés, exercices et conversations, à partir de leurs propres documents.",
+    "en": "Turns students' own course documents into summaries, exercises and conversations.",
+    "de": "Verwandelt die Kursunterlagen von Studierenden in Zusammenfassungen, Übungen und Gespräche."
+  },
+  "stack": ["SvelteKit", "Cloudflare", "Claude API"],
+  "cover": "../../assets/projects/fassbar.jpg",
+  "coverAlt": {
+    "fr": "Page d'accueil de Fassbar, le tuteur IA pour les cours de langues",
+    "en": "Fassbar home page, the AI tutor for language courses",
+    "de": "Startseite von Fassbar, dem KI-Tutor für Sprachkurse"
+  }
+}

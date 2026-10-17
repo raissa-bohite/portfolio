@@ -1,0 +1,37 @@
+---
+import Moon from '@lucide/astro/icons/moon';
+import Sun from '@lucide/astro/icons/sun';
+import IconButton from '@/components/atoms/IconButton.astro';
+
+type Props = {
+  labelDark: string;
+  labelLight: string;
+};
+
+const { labelDark, labelLight } = Astro.props;
+---
+
+<IconButton label={labelDark} data-theme-toggle data-label-dark={labelDark} data-label-light={labelLight} aria-pressed="false">
+  <Moon aria-hidden="true" size={18} class="dark:hidden" />
+  <Sun aria-hidden="true" size={18} class="hidden dark:block" />
+</IconButton>
+
+<script>
+  import { applyTheme, readCurrentTheme, type Theme } from '@/scripts/theme';
+
+  function syncToggle(toggle: HTMLElement, theme: Theme): void {
+    const isDark = theme === 'dark';
+    toggle.setAttribute('aria-pressed', String(isDark));
+    const label = isDark ? toggle.dataset['labelLight'] : toggle.dataset['labelDark'];
+    if (label) toggle.setAttribute('aria-label', label);
+  }
+
+  for (const toggle of document.querySelectorAll<HTMLElement>('[data-theme-toggle]')) {
+    syncToggle(toggle, readCurrentTheme());
+    toggle.addEventListener('click', () => {
+      const nextTheme: Theme = readCurrentTheme() === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      syncToggle(toggle, nextTheme);
+    });
+  }
+</script>

@@ -1,0 +1,92 @@
+---
+import FormField from '@/components/molecules/FormField.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+import { contactLimits } from '@/lib/contact-schema';
+
+type Props = {
+  locale: Locale;
+  class?: string;
+};
+
+const { locale, class: className } = Astro.props;
+const form = getDictionary(locale).contactForm;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+<div data-contact-form data-state="idle" class:list={['group/form', className]}>
+  <form action="/api/contact" method="post" aria-label={form.label} class="grid gap-4 group-data-[state=success]/form:hidden sm:grid-cols-2">
+    <input type="hidden" name="locale" value={locale} />
+    <div class="absolute -left-[9999px]" aria-hidden="true">
+      <label for="contact-website">Website</label>
+      <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <FormField id="contact-name" name="name" label={form.name} autocomplete="name" error={form.nameError} maxLength={contactLimits.nameMax} />
+    <FormField
+      id="contact-email"
+      name="email"
+      type="email"
+      label={form.email}
+      autocomplete="email"
+      placeholder={form.emailPlaceholder}
+      error={form.emailError}
+      maxLength={contactLimits.emailMax}
+    />
+    <FormField
+      id="contact-type"
+      name="type"
+      kind="select"
+      label={form.type}
+      error=""
+      maxLength={20}
+      class="sm:col-span-2"
+      options={[
+        { value: 'job', label: form.types.job },
+        { value: 'project', label: form.types.project },
+        { value: 'other', label: form.types.other }
+      ]}
+    />
+    <FormField
+      id="contact-message"
+      name="message"
+      kind="textarea"
+      label={form.message}
+      help={form.messageHelp}
+      error={form.messageError}
+      minLength={contactLimits.messageMin}
+      maxLength={contactLimits.messageMax}
+      class="sm:col-span-2"
+    />
+    {turnstileSiteKey && <div class="cf-turnstile sm:col-span-2" data-sitekey={turnstileSiteKey} data-language={locale} />}
+    <p class="m-0 text-sm text-muted sm:col-span-2">{form.privacy}</p>
+    <p role="alert" class="m-0 hidden rounded-control bg-tint p-4 text-sm font-medium text-ink group-data-[state=failure]/form:block sm:col-span-2">
+      {form.failure}
+    </p>
+    <div class="sm:col-span-2">
+      <button
+        type="submit"
+        data-label-idle={form.submit}
+        data-label-sending={form.sending}
+        class="min-h-12 cursor-pointer rounded-control border-0 bg-action px-6 font-sans text-base font-semibold text-action-ink transition-colors hover:bg-action-hover disabled:cursor-wait disabled:opacity-70"
+      >
+        {form.submit}
+      </button>
+    </div>
+  </form>
+
+  <div data-success tabindex="-1" class="hidden flex-col items-start gap-3 group-data-[state=success]/form:flex">
+    <h3 class="m-0 text-2xl font-bold text-ink">{form.successTitle}</h3>
+    <p data-success-text data-template={form.successText} class="m-0"></p>
+    <button type="button" data-action="again" class="min-h-12 cursor-pointer rounded-control border-[1.5px] border-action bg-transparent px-6 font-sans text-base font-semibold text-action">
+      {form.again}
+    </button>
+  </div>
+</div>
+
+{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
+
+<script>
+  import { setupContactForm } from '@/scripts/contact-form';
+
+  for (const container of document.querySelectorAll<HTMLElement>('[data-contact-form]')) setupContactForm(container);
+</script>

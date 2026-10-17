@@ -1,0 +1,82 @@
+---
+type Props = {
+  id: string;
+  name: string;
+  label: string;
+  kind?: 'input' | 'textarea' | 'select';
+  type?: 'text' | 'email';
+  autocomplete?: string;
+  placeholder?: string;
+  help?: string;
+  error: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength: number;
+  options?: { value: string; label: string }[];
+  class?: string;
+};
+
+const {
+  id,
+  name,
+  label,
+  kind = 'input',
+  type = 'text',
+  autocomplete,
+  placeholder,
+  help,
+  error,
+  required = true,
+  minLength,
+  maxLength,
+  options = [],
+  class: className
+} = Astro.props;
+
+const helpId = help ? `${id}-help` : undefined;
+const errorId = `${id}-error`;
+const describedBy = [helpId].filter(Boolean).join(' ') || undefined;
+const controlClasses =
+  'w-full rounded-control border-[1.5px] border-line bg-glass-strong px-4 font-sans text-base text-ink placeholder:text-muted aria-invalid:border-sig-text';
+---
+
+<div class:list={['flex flex-col gap-2', className]} data-field>
+  <label for={id} class="text-sm font-semibold text-ink">{label}</label>
+  {
+    kind === 'textarea' ? (
+      <textarea
+        id={id}
+        name={name}
+        rows="4"
+        required={required}
+        minlength={minLength}
+        maxlength={maxLength}
+        aria-describedby={describedBy}
+        data-error-id={errorId}
+        class:list={[controlClasses, 'resize-y py-3']}
+      />
+    ) : kind === 'select' ? (
+      <select id={id} name={name} required={required} aria-describedby={describedBy} data-error-id={errorId} class:list={[controlClasses, 'min-h-12']}>
+        {options.map((option) => (
+          <option value={option.value}>{option.label}</option>
+        ))}
+      </select>
+    ) : (
+      <input
+        id={id}
+        name={name}
+        type={type}
+        autocomplete={autocomplete}
+        placeholder={placeholder}
+        required={required}
+        minlength={minLength}
+        maxlength={maxLength}
+        aria-describedby={describedBy}
+        data-error-id={errorId}
+        class:list={[controlClasses, 'min-h-12']}
+      />
+    )
+  }
+  {help && <p id={helpId} class="m-0 text-sm text-muted">{help}</p>}
+  <p id={errorId} class="m-0 hidden text-sm font-medium text-sig-text" data-error-message={error}></p>
+</div>

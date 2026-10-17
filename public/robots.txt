@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raissa-bohite.pages.dev/sitemap-index.xml

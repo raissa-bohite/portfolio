@@ -1,0 +1,36 @@
+---
+import { localeNames, type Locale } from '@/i18n/config';
+import type { AlternateLink } from '@/i18n/routes';
+
+type Props = {
+  currentLocale: Locale;
+  alternates: AlternateLink[];
+  label: string;
+};
+
+const { currentLocale, alternates, label } = Astro.props;
+---
+
+<nav aria-label={label}>
+  <ul class="m-0 flex list-none items-center gap-0.5 p-0">
+    {
+      alternates.map(({ locale, path }) => (
+        <li>
+          <a
+            href={path}
+            hreflang={locale}
+            lang={locale}
+            aria-current={locale === currentLocale ? 'true' : undefined}
+            class:list={[
+              'inline-flex min-h-11 min-w-10 items-center justify-center rounded-control px-2 text-[15px] font-semibold uppercase no-underline',
+              locale === currentLocale ? 'text-ink' : 'text-muted hover:bg-tint hover:text-ink'
+            ]}
+          >
+            <span aria-hidden="true">{locale}</span>
+            <span class="sr-only">{localeNames[locale]}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

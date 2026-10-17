@@ -1,0 +1,24 @@
+---
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Sparkle from '@lucide/astro/icons/sparkle';
+
+type Props = {
+  icon: string;
+  title: string;
+  text: string;
+};
+
+const { icon, title, text } = Astro.props;
+
+const icons = { dashboard: LayoutDashboard, security: ShieldCheck, ai: Sparkle } as const;
+const Icon = icons[icon as keyof typeof icons] ?? LayoutDashboard;
+---
+
+<article class="glass flex flex-col gap-3 p-8">
+  <div class="flex size-12 items-center justify-center rounded-control bg-tint text-tint-ink">
+    <Icon aria-hidden="true" size={22} />
+  </div>
+  <h3 class="mt-2 mb-0 text-2xl leading-tight font-bold text-ink">{title}</h3>
+  <p class="m-0">{text}</p>
+</article>

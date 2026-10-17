@@ -1,0 +1,23 @@
+{
+  "order": 4,
+  "name": "Ateliya",
+  "kind": { "fr": "Landing page et vitrine", "en": "Landing page and showcase", "de": "Landingpage und Schaufenster" },
+  "role": {
+    "fr": "Projet devenu produit · landing page et vitrine Malliya",
+    "en": "Project turned product · landing page and Malliya showcase",
+    "de": "Vom Projekt zum Produkt · Landingpage und Schaufenster Malliya"
+  },
+  "description": {
+    "fr": "Le site de l'application qui gère clients, mesures, commandes et paiements des ateliers de couture, et la vitrine en ligne des stylistes.",
+    "en": "The website of the app that manages clients, measurements, orders and payments for tailoring workshops, and the online showcase for designers.",
+    "de": "Die Website der App, mit der Schneiderateliers Kunden, Maße, Aufträge und Zahlungen verwalten, und das Online-Schaufenster für Modedesigner."
+  },
+  "stack": ["Astro", "Tailwind"],
+  "cover": "../../assets/projects/ateliya.jpg",
+  "coverAlt": {
+    "fr": "Landing page d'Ateliya, l'application des ateliers de couture",
+    "en": "Ateliya landing page, the app for tailoring workshops",
+    "de": "Landingpage von Ateliya, der App für Schneiderateliers"
+  },
+  "liveUrl": "https://ateliya.com"
+}

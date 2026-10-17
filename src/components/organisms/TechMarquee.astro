@@ -1,0 +1,54 @@
+---
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const label = getDictionary(locale).home.stack.label;
+const technologies = [
+  'TypeScript',
+  'Next.js',
+  'SvelteKit',
+  'Astro',
+  'React',
+  'Tailwind CSS',
+  'Zod',
+  'Cloudflare',
+  'Drizzle ORM',
+  'Claude API',
+  'Vitest',
+  'Remotion',
+  'OWASP Top 10',
+  'Git'
+];
+// Deux copies identiques pour une boucle continue ; seule la liste accessible est lue
+const loop = [...technologies, ...technologies];
+---
+
+<section aria-label={label} class="relative pt-2 pb-14">
+  <ul class="sr-only">
+    {technologies.map((technology) => <li>{technology}</li>)}
+  </ul>
+  <div
+    aria-hidden="true"
+    class="overflow-hidden border-y border-line py-5 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]"
+  >
+    <div data-marquee class="flex w-max items-center gap-7 pr-7">
+      {
+        loop.map((technology) => (
+          <>
+            <span class="text-lg font-semibold whitespace-nowrap text-muted">{technology}</span>
+            <span class="size-[5px] flex-none rounded-full bg-sig" />
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { setupMarquee } from '@/scripts/marquee';
+
+  for (const track of document.querySelectorAll<HTMLElement>('[data-marquee]')) setupMarquee(track);
+</script>

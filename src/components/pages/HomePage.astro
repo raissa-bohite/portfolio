@@ -1,0 +1,37 @@
+---
+import AboutTeaser from '@/components/organisms/AboutTeaser.astro';
+import ContactSection from '@/components/organisms/ContactSection.astro';
+import DomainsSection from '@/components/organisms/DomainsSection.astro';
+import HeroSection from '@/components/organisms/HeroSection.astro';
+import MethodSection from '@/components/organisms/MethodSection.astro';
+import ProjectIndex from '@/components/organisms/ProjectIndex.astro';
+import TechMarquee from '@/components/organisms/TechMarquee.astro';
+import BaseLayout from '@/components/templates/BaseLayout.astro';
+import type { Locale } from '@/i18n/config';
+import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+import { getProjectSummaries } from '@/lib/projects';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const dictionary = getDictionary(locale);
+const projects = await getProjectSummaries(locale);
+const alternates = getAlternateLinks((alternateLocale) => getRoutePath('home', alternateLocale));
+---
+
+<BaseLayout
+  locale={locale}
+  title={dictionary.meta.homeTitle}
+  description={dictionary.meta.homeDescription}
+  currentRoute="home"
+  alternates={alternates}
+>
+  <HeroSection locale={locale} projects={projects} />
+  <TechMarquee locale={locale} />
+  <ProjectIndex locale={locale} projects={projects} />
+  <DomainsSection locale={locale} />
+  <MethodSection locale={locale} />
+  <AboutTeaser locale={locale} />
+  <ContactSection locale={locale} />
+</BaseLayout>

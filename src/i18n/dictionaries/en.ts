@@ -114,7 +114,7 @@ export const en: Dictionary = {
     contact: {
       eyebrow: 'Contact',
       title: 'A job, a project, a question?',
-      text: 'Write to me in English, French or German.'
+      text: 'Write to me in French or German. Messages in English are welcome too.'
     }
   },
   contactForm: {
@@ -224,7 +224,7 @@ export const en: Dictionary = {
     },
     languages: {
       eyebrow: 'Languages',
-      title: 'I work in three languages',
+      title: 'My languages',
       items: [
         { code: 'fr', name: 'French', level: 'Native' },
         { code: 'de', name: 'German', level: "Intermediate · bachelor's degree in German studies" },
@@ -259,10 +259,10 @@ export const en: Dictionary = {
   },
   contactPage: {
     seoTitle: 'Contact · Raïssa Bohité',
-    seoDescription: 'A job, a project or a question? Write to me in English, French or German.',
+    seoDescription: 'A job, a project or a question? Write to me in French, German or English.',
     eyebrow: 'Contact',
     title: 'A job, a project, a question?',
-    intro: 'Describe what you need in a few lines. I reply in English, French or German.',
+    intro: 'Describe what you need in a few lines. I reply in French or German.',
     directEmail: 'Direct email',
     copy: 'Copy email',
     copied: 'The address is in your clipboard.',

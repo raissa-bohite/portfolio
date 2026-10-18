@@ -237,8 +237,8 @@ const dictionary = {
       title: 'Je travaille en trois langues',
       items: [
         { code: 'fr', name: 'Français', level: 'Langue maternelle' },
-        { code: 'de', name: 'Allemand', level: "Courant · licence d'études allemandes" },
-        { code: 'en', name: 'Anglais', level: 'Technique' }
+        { code: 'de', name: 'Allemand', level: "Intermédiaire · licence d'études allemandes" },
+        { code: 'en', name: 'Anglais', level: 'Notions' }
       ]
     },
     beyond: {

@@ -229,8 +229,8 @@ export const de: Dictionary = {
       title: 'Ich arbeite in drei Sprachen',
       items: [
         { code: 'fr', name: 'Französisch', level: 'Muttersprache' },
-        { code: 'de', name: 'Deutsch', level: 'Fließend · Bachelor in Germanistik' },
-        { code: 'en', name: 'Englisch', level: 'Fachsprache' }
+        { code: 'de', name: 'Deutsch', level: 'Gute Kenntnisse · Bachelor in Germanistik' },
+        { code: 'en', name: 'Englisch', level: 'Grundkenntnisse' }
       ]
     },
     beyond: {

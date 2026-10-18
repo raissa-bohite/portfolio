@@ -227,8 +227,8 @@ export const en: Dictionary = {
       title: 'I work in three languages',
       items: [
         { code: 'fr', name: 'French', level: 'Native' },
-        { code: 'de', name: 'German', level: "Fluent · bachelor's degree in German studies" },
-        { code: 'en', name: 'English', level: 'Technical' }
+        { code: 'de', name: 'German', level: "Intermediate · bachelor's degree in German studies" },
+        { code: 'en', name: 'English', level: 'Basic' }
       ]
     },
     beyond: {

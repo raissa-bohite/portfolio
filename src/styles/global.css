@@ -18,12 +18,12 @@
   --shadow: 0 24px 48px -28px rgb(74 35 160 / 0.28);
   --ink: #1e0f45;
   --text: #3e3266;
-  --muted: #6b5f8f;
+  --muted: #5f5385;
   --action: #4a23a0;
   --action-hover: #36188a;
   --action-ink: #ffffff;
   --sig: #f26a1b;
-  --sig-text: #b83e0b;
+  --sig-text: #9e3409;
   --tint: #e7deff;
   --tint-ink: #36188a;
   --line: #e2d8f7;
@@ -41,7 +41,7 @@
   --shadow: 0 24px 48px -28px rgb(0 0 0 / 0.6);
   --ink: #f3eeff;
   --text: #d6ccf2;
-  --muted: #a99dd0;
+  --muted: #b3a8d8;
   --action: #c4b2ff;
   --action-hover: #d8ccff;
   --action-ink: #120a2b;
@@ -134,6 +134,12 @@
 
   a:hover {
     color: var(--action-hover);
+  }
+
+  /* Un lien dans un paragraphe se distingue autrement que par la couleur (WCAG 1.4.1) */
+  p > a {
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
   }
 }
 

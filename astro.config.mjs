@@ -15,6 +15,10 @@ const themeInitHash = `sha256-${createHash('sha256').update(themeInitScript).dig
 export default defineConfig({
   site: SITE_URL,
   output: 'static',
+  build: {
+    // Une seule petite feuille de style : l'intégrer évite une requête bloquante au premier affichage
+    inlineStylesheets: 'always'
+  },
   trailingSlash: 'ignore',
   integrations: [
     sitemap({

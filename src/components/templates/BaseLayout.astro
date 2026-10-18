@@ -7,6 +7,7 @@ import type { AlternateLink, RouteId } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
 import { profile } from '@/lib/profile';
 import themeInitScript from '@/scripts/theme-init.inline.js?raw';
+import bricolageLatinUrl from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url';
 
 type Props = {
   locale: Locale;
@@ -46,6 +47,8 @@ const personData = {
     <link rel="canonical" href={canonicalUrl} />
     {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.locale} href={new URL(alternate.path, Astro.site)} />)}
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}
+    <!-- Police principale préchargée : le texte du haut de page s'affiche plus tôt dans sa forme finale -->
+    <link rel="preload" href={bricolageLatinUrl} as="font" type="font/woff2" crossorigin />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#F4F0FC" />
     <link rel="icon" href="/favicon.png" type="image/png" />

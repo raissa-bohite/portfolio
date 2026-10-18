@@ -37,7 +37,8 @@ const home = dictionary.home;
           ))
         }<span aria-hidden="true" class="animate-blink font-mono font-semibold text-sig">_</span>
       </h1>
-      <p data-reveal class="m-0 max-w-[40ch] text-xl leading-[1.55]">{home.intro}</p>
+      <!-- Pas d'animation sur ce paragraphe : c'est le plus grand élément visible au chargement (LCP) -->
+      <p class="m-0 max-w-[40ch] text-xl leading-[1.55]">{home.intro}</p>
       <div data-reveal class="mt-2 flex flex-wrap gap-3">
         <Button href={getRoutePath('projects', locale)}>{home.ctaProjects}</Button>
         <Button href={getCvPath(locale)} variant="secondary" download>

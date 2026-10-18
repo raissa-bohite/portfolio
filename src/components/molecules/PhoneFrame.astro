@@ -16,7 +16,8 @@ const { image, alt, caption, screen = 'light' } = Astro.props;
 
 // Les couleurs reprennent le haut et le bas de chaque capture pour que la barre d'état s'y fonde
 const screenClasses = {
-  brand: 'bg-[#0DA479] text-white',
+  // Texte sombre sur le vert : le blanc n'atteindrait pas le contraste AA à cette taille
+  brand: 'bg-[#0DA479] text-[#0F1F1A]',
   light: 'bg-[#F4FCFB] text-[#0F1F1A]'
 } as const;
 ---

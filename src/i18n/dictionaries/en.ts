@@ -114,7 +114,7 @@ export const en: Dictionary = {
     contact: {
       eyebrow: 'Contact',
       title: 'A job, a project, a question?',
-      text: 'Write to me in French or German. Messages in English are welcome too.'
+      text: 'You can write to me in French, German or English.'
     }
   },
   contactForm: {
@@ -228,7 +228,7 @@ export const en: Dictionary = {
       items: [
         { code: 'fr', name: 'French', level: 'Native' },
         { code: 'de', name: 'German', level: "Intermediate · bachelor's degree in German studies" },
-        { code: 'en', name: 'English', level: 'Basic' }
+        { code: 'en', name: 'English', level: 'Basic · reading technical documentation' }
       ]
     },
     beyond: {
@@ -262,7 +262,7 @@ export const en: Dictionary = {
     seoDescription: 'A job, a project or a question? Write to me in French, German or English.',
     eyebrow: 'Contact',
     title: 'A job, a project, a question?',
-    intro: 'Describe what you need in a few lines. I reply in French or German.',
+    intro: 'Describe what you need in a few lines, in French, German or English.',
     directEmail: 'Direct email',
     copy: 'Copy email',
     copied: 'The address is in your clipboard.',

@@ -114,7 +114,7 @@ export const de: Dictionary = {
     contact: {
       eyebrow: 'Kontakt',
       title: 'Eine Stelle, ein Projekt, eine Frage?',
-      text: 'Schreiben Sie mir auf Deutsch oder Französisch.'
+      text: 'Sie können mir auf Deutsch, Französisch oder Englisch schreiben.'
     }
   },
   contactForm: {
@@ -230,7 +230,7 @@ export const de: Dictionary = {
       items: [
         { code: 'fr', name: 'Französisch', level: 'Muttersprache' },
         { code: 'de', name: 'Deutsch', level: 'Gute Kenntnisse · Bachelor in Germanistik' },
-        { code: 'en', name: 'Englisch', level: 'Grundkenntnisse' }
+        { code: 'en', name: 'Englisch', level: 'Grundkenntnisse · Lesen technischer Dokumentation' }
       ]
     },
     beyond: {
@@ -261,10 +261,10 @@ export const de: Dictionary = {
   },
   contactPage: {
     seoTitle: 'Kontakt · Raïssa Bohité',
-    seoDescription: 'Eine Stelle, ein Projekt oder eine Frage? Schreiben Sie mir auf Deutsch oder Französisch.',
+    seoDescription: 'Eine Stelle, ein Projekt oder eine Frage? Schreiben Sie mir auf Deutsch, Französisch oder Englisch.',
     eyebrow: 'Kontakt',
     title: 'Eine Stelle, ein Projekt, eine Frage?',
-    intro: 'Beschreiben Sie Ihr Anliegen in wenigen Zeilen. Ich antworte auf Deutsch oder Französisch.',
+    intro: 'Beschreiben Sie Ihr Anliegen in wenigen Zeilen, auf Deutsch, Französisch oder Englisch.',
     directEmail: 'Direkte E-Mail',
     copy: 'E-Mail kopieren',
     copied: 'Die Adresse ist in Ihrer Zwischenablage.',

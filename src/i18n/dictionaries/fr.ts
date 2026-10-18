@@ -122,7 +122,7 @@ const dictionary = {
     contact: {
       eyebrow: 'Contact',
       title: 'Un poste, une mission, une question ?',
-      text: 'Écrivez-moi en français ou en allemand.'
+      text: 'Vous pouvez m’écrire en français, en allemand ou en anglais.'
     }
   },
   contactForm: {
@@ -238,7 +238,7 @@ const dictionary = {
       items: [
         { code: 'fr', name: 'Français', level: 'Langue maternelle' },
         { code: 'de', name: 'Allemand', level: "Intermédiaire · licence d'études allemandes" },
-        { code: 'en', name: 'Anglais', level: 'Notions' }
+        { code: 'en', name: 'Anglais', level: 'Notions · lecture de documentation technique' }
       ]
     },
     beyond: {
@@ -269,10 +269,10 @@ const dictionary = {
   },
   contactPage: {
     seoTitle: 'Contact · Raïssa Bohité',
-    seoDescription: 'Un poste, une mission ou une question ? Écrivez-moi en français ou en allemand.',
+    seoDescription: 'Un poste, une mission ou une question ? Écrivez-moi en français, en allemand ou en anglais.',
     eyebrow: 'Contact',
     title: 'Un poste, une mission, une question ?',
-    intro: 'Décrivez votre besoin en quelques lignes. Je vous réponds en français ou en allemand.',
+    intro: 'Décrivez votre besoin en quelques lignes, en français, en allemand ou en anglais.',
     directEmail: 'Email direct',
     copy: "Copier l'email",
     copied: "L'adresse est dans votre presse-papiers.",

@@ -38,7 +38,7 @@ const dictionary = {
     signature: "comprendre().then(construire);",
     titleWords: ["Comprendre", "avant", "de", "construire."],
     intro:
-      "Développeuse front-end, orientée full-stack. Je conçois des interfaces et des tableaux de bord clairs, accessibles et sécurisés, et je construis le back-end quand le projet le demande.",
+      "Développeuse front-end, orientée full-stack, je conçois des interfaces et des tableaux de bord clairs, accessibles et sécurisés, et je construis le back-end quand le projet le demande.",
     ctaProjects: "Voir les projets",
     carousel: {
       label: "Aperçu des projets",

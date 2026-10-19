@@ -1,6 +1,5 @@
 ---
-import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
-import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Check from '@lucide/astro/icons/check';
 import Sparkle from '@lucide/astro/icons/sparkle';
 import Tag from '@/components/atoms/Tag.astro';
 import SectionHeading from '@/components/molecules/SectionHeading.astro';
@@ -13,105 +12,87 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const domains = dictionary.home.domains;
-const [interfaces, security, ai] = domains.items;
 const skillsLabel = dictionary.projectPage.stack;
-const iconClasses = 'flex size-12 flex-none items-center justify-center rounded-control bg-tint text-tint-ink';
-const titleClasses = 'm-0 text-2xl leading-tight font-bold text-ink';
+// Même langage que la galerie des projets : une vignette colorée qui porte le visuel, le texte en dessous
+const tileClasses = 'relative aspect-[4/3] overflow-hidden rounded-surface';
+const floatClasses = 'absolute transition-transform duration-500 ease-out-soft group-hover:-translate-x-1.5 group-hover:-translate-y-1.5';
 ---
 
-<!--
-  Grille en mosaïque : chaque domaine a sa propre preuve visuelle (une vraie capture, du vrai code de sécurité),
-  avec les mêmes cartes vitrées que le reste de la page d'accueil.
--->
 <section aria-labelledby="domains-title" class="container-page flex flex-col gap-12 py-24">
   <SectionHeading id="domains-title" eyebrow={domains.eyebrow} title={domains.title} />
-  <div data-scroll-group class="grid gap-6 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
+  <div data-scroll-group class="grid gap-x-8 gap-y-14 md:grid-cols-3">
     {
-      interfaces && (
-        <article data-scroll-item class="glass flex flex-col gap-6 overflow-hidden p-8 lg:col-span-2 lg:flex-row lg:items-center">
-          <div class="flex flex-col gap-3 lg:w-[42%] lg:flex-none">
-            <div data-scroll-pop class={iconClasses}>
-              <LayoutDashboard aria-hidden="true" size={22} />
+      domains.items.map((domain) => (
+        <article data-scroll-item class="group flex flex-col gap-5">
+          {domain.icon === 'dashboard' && (
+            <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-[#6d3fd6] to-[#4a23a0]`}>
+              <div class={`${floatClasses} top-[16%] left-[12%] w-[112%] overflow-hidden rounded-tl-[14px] bg-white shadow-[0_24px_50px_-18px_rgb(0_0_0/0.5)]`}>
+                <div class="flex gap-1 border-b border-[#ece6f6] px-2.5 py-1.5">
+                  <span class="size-1.5 rounded-full bg-[#ff5f57]" />
+                  <span class="size-1.5 rounded-full bg-[#febc2e]" />
+                  <span class="size-1.5 rounded-full bg-[#28c840]" />
+                </div>
+                <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
+              </div>
             </div>
-            <h3 class={`${titleClasses} mt-2`}>{interfaces.title}</h3>
-            <p class="m-0">{interfaces.text}</p>
+          )}
+
+          {domain.icon === 'security' && (
+            <div aria-hidden="true" class={`${tileClasses} bg-tint dark:bg-[#2a1a5c]`}>
+              <pre
+                class={`${floatClasses} top-[14%] left-[10%] m-0 w-[104%] rounded-tl-[14px] bg-[#1e0f45] p-5 font-mono text-[12px] leading-[1.75] text-[#d6ccf2] shadow-[0_24px_50px_-18px_rgb(30_15_69/0.6)]`}
+              ><span class="text-[#9c90c4]">// contact-handler.ts</span>
+if (!isSameOrigin(request))
+  return jsonResponse(403, …);
+const parsed = contactSchema
+  .safeParse(payload);
+
+<span class="text-[#9c90c4]">// headers</span>
+<span class="text-[#ff9a5c]">Content-Security-Policy</span>:
+  default-src 'self'</pre>
+            </div>
+          )}
+
+          {domain.icon === 'ai' && (
+            <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-[#f58a45] to-[#e0590c]`}>
+              <div class={`${floatClasses} top-[14%] left-[12%] flex w-full flex-col gap-3 rounded-tl-[14px] bg-white p-5 shadow-[0_24px_50px_-18px_rgb(80_20_0/0.45)]`}>
+                <div class="flex items-center gap-2 self-end rounded-full bg-[#e7deff] px-4 py-2.5">
+                  <span class="h-2 w-24 rounded-full bg-[#4a23a0]/70" />
+                  <span class="h-2 w-10 rounded-full bg-[#4a23a0]/40" />
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="flex size-8 flex-none items-center justify-center rounded-full bg-[#f26a1b] text-white">
+                    <Sparkle size={16} />
+                  </span>
+                  <div class="flex flex-1 flex-col gap-2 rounded-2xl rounded-tl-sm bg-[#faf8ff] p-3.5">
+                    <span class="h-2 w-[85%] rounded-full bg-[#1e0f45]/70" />
+                    <span class="h-2 w-[65%] rounded-full bg-[#1e0f45]/35" />
+                    <span class="h-2 w-[75%] rounded-full bg-[#1e0f45]/35" />
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-11">
+                  <span class="flex size-5 items-center justify-center rounded-full bg-[#28c840] text-white">
+                    <Check size={12} />
+                  </span>
+                  <span class="h-2 w-20 rounded-full bg-[#28c840]/50" />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div class="flex flex-col gap-3">
+            <h3 class="m-0 text-2xl leading-tight font-bold tracking-[-0.015em] text-ink">{domain.title}</h3>
+            <p class="m-0">{domain.text}</p>
             <ul class="m-0 mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
-              {interfaces.skills.map((skill) => (
+              {domain.skills.map((skill) => (
                 <li>
                   <Tag>{skill}</Tag>
                 </li>
               ))}
             </ul>
           </div>
-          <!-- Illustration décorative de tableau de bord (fichier SVG animé, servi comme image) -->
-          <div aria-hidden="true" class="-mr-16 -mb-16 overflow-hidden rounded-tl-[18px] border border-line bg-white shadow-glass lg:-mr-20 lg:mb-[-72px] lg:flex-1">
-            <div class="flex gap-1.5 border-b border-line px-4 py-2.5">
-              <span class="size-2.5 rounded-full bg-[#ff5f57]" />
-              <span class="size-2.5 rounded-full bg-[#febc2e]" />
-              <span class="size-2.5 rounded-full bg-[#28c840]" />
-            </div>
-            <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
-          </div>
         </article>
-      )
-    }
-
-    {
-      security && (
-        <article data-theme="dark" data-scroll-item class="flex flex-col gap-3 rounded-surface border border-glass-border bg-bg p-8 text-text shadow-glass lg:row-span-2">
-          <div data-scroll-pop class={iconClasses}>
-            <ShieldCheck aria-hidden="true" size={22} />
-          </div>
-          <h3 class={`${titleClasses} mt-2`}>{security.title}</h3>
-          <p class="m-0">{security.text}</p>
-          <!-- Extrait réel de ce portfolio : validation côté serveur et en-tête de sécurité -->
-          <pre
-            aria-hidden="true"
-            class="m-0 mt-auto overflow-x-auto rounded-control border border-line bg-white/[0.04] p-4 font-mono text-[13px] leading-[1.7] text-text"
-          ><span class="text-muted">// contact-handler.ts</span>
-if (!isSameOrigin(request))
-  return jsonResponse(403, …);
-const parsed = contactSchema
-  .safeParse(payload);
-
-<span class="text-muted">// headers</span>
-<span class="text-sig-text">Content-Security-Policy</span>:
-  default-src 'self';
-  frame-ancestors 'none'</pre>
-          <ul class="m-0 mt-2 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
-            {security.skills.map((skill) => (
-              <li>
-                <Tag>{skill}</Tag>
-              </li>
-            ))}
-          </ul>
-        </article>
-      )
-    }
-
-    {
-      ai && (
-        <article data-scroll-item class="glass relative flex flex-col gap-3 overflow-hidden p-8 lg:col-span-2">
-          <!-- Halo orange : la couleur de l'état actif dans le design system -->
-          <div aria-hidden="true" class="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-sig/15 blur-3xl" />
-          <div class="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
-            <div data-scroll-pop class="flex size-12 flex-none items-center justify-center rounded-control bg-sig text-white">
-              <Sparkle aria-hidden="true" size={22} />
-            </div>
-            <div class="flex flex-col gap-3">
-              <h3 class={titleClasses}>{ai.title}</h3>
-              <p class="m-0 max-w-[60ch]">{ai.text}</p>
-              <ul class="m-0 mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
-                {ai.skills.map((skill) => (
-                  <li>
-                    <Tag>{skill}</Tag>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </article>
-      )
+      ))
     }
   </div>
 </section>

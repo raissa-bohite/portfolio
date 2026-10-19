@@ -1,0 +1,70 @@
+project: moomen-pro
+locale: de
+eyebrow: Fallstudie · Kundenprojekt
+title: Moomen Pro, eine Website, die Lust auf Anmeldung macht
+lead: "Moomen Pro hilft Händlern in Westafrika, Verkäufe, Bestände, Belege und Kunden vom Smartphone aus zu verwalten. Ich habe die Website neu gebaut: Produktvorstellung, Preise in der Landeswährung und ein Shop für Verbrauchsmaterial."
+seoTitle: Moomen Pro, Website-Neugestaltung und Shop · Fallstudie
+seoDescription: Neugestaltung der Website von Moomen Pro, einer Kassen-App für KMU, mit Astro, Preisen nach Land und einem Shop mit Bestellung über WhatsApp.
+meta:
+  role: Frontend-Entwicklerin, UI/UX und API-Integration
+  team: Für Moomen Pro (KORANEX)
+  period: "2026"
+  status: Online
+context:
+  - "Moomen Pro ist eine Kassen- und Verwaltungs-App für KMU in Westafrika: Verkäufe, Bestände, Bestellungen, Kunden, offene Posten und PDF-Belege."
+  - "Die alte Website stellte das Produkt nicht gut dar: Das Design war veraltet und das Erlebnis wenig ansprechend, sodass sie nicht zur Anmeldung motivierte. Der Kunde wollte eine moderne Website, die die App vorstellt, die Angebote klar zeigt und auch Verbrauchsmaterial wie Thermodrucker und Papierrollen verkauft."
+role:
+  paragraphs:
+    - "Ich habe das Frontend von Anfang bis Ende übernommen: das UI/UX-Design aller Seiten, von der Startseite bis zu den rechtlichen Seiten, dann ihre Entwicklung und die Anbindung von zwei APIs, für die Preise und für den Shop."
+  highlights:
+    - UI/UX-Design von rund fünfzehn Seiten
+    - Anbindung der Preis-API
+    - Shop für Verbrauchsmaterial
+    - Präsentationsvideo mit Remotion
+approach:
+  paragraphs:
+    - "Die Zielgruppe surft vor allem mobil, oft mit langsamer Verbindung. Die Website wird daher als statische HTML-Seiten erzeugt, die schnell laden und gut gefunden werden."
+    - "Auf diesem Markt läuft ein Kauf oft über ein Gespräch. Statt eines Warenkorbs hat jedes Produkt einen Button, der WhatsApp mit dem bereits eingetragenen Produkt öffnet: ein Schritt weniger und eine vertraute Gewohnheit. Die Preise erscheinen in der Währung des Landes, damit niemand bei der Wahl des Abos umrechnen muss. Hintergründe, Typografie und Komponenten sind auf allen Seiten gleich, auch auf den rechtlichen Seiten."
+  gallery:
+    - image: ../../../assets/case-studies/moomen/pricing.jpg
+      alt: "Preise: Länderauswahl, drei Monats- oder Jahrestarife in CFA-Franc und ein kostenloser Tarif"
+      caption: Preise in der Landeswährung
+      frame: desktop
+    - image: ../../../assets/case-studies/moomen/sectors.jpg
+      alt: "Abschnitt „Für wen ist Moomen Pro?“: Läden, Handwerk, Supermärkte, Lebensmittelhändler, Gastronomie, Friseure"
+      caption: Die Zielbranchen
+      frame: desktop
+    - image: ../../../assets/case-studies/moomen/shop.jpg
+      alt: Shop für Verbrauchsmaterial mit Suche, Kategoriefiltern und Produktkarten
+      caption: Shop für Verbrauchsmaterial
+      frame: desktop
+    - image: ../../../assets/case-studies/moomen/product.jpg
+      alt: "Produktseite: Preis in CFA-Franc, Menge, Button Über WhatsApp bestellen und Lagerinformationen"
+      caption: Direkte Bestellung über WhatsApp
+      frame: desktop
+technical:
+  intro: Drei konkrete Probleme haben das Projekt geprägt, und vier Schutzmaßnahmen sichern seine Qualität.
+  decisions:
+    - title: Ein Layout, das nur in Produktion kaputt war
+      text: "Lokal funktionierte alles; online sah die Desktop-Version aus wie die mobile. Ich habe die Ursache im CSS-Kompressor des Builds gefunden, der die Media Queries von Tailwind entfernte. Ich habe ihn deaktiviert, da Vite das CSS bereits minifiziert, und eine Media-Query-Syntax erzwungen, die auch ältere Browser verstehen."
+    - title: Der ganze Katalog, nicht nur die erste Seite
+      text: "Die Shop-API lieferte ihre Ergebnisse seitenweise, die Website zeigte aber nur die erste Seite. Ich habe zuerst einen Button „Mehr laden“ ergänzt, dann eine nummerierte Paginierung, die bei einem großen Katalog übersichtlicher ist."
+    - title: Die Währung aus zwei Endpunkten
+      text: "Die Währung jedes Landes kam von einem öffentlichen Endpunkt, die Zahlungsdaten von einem älteren. Ich habe beide Quellen kombiniert, um den richtigen Preis in der richtigen Währung anzuzeigen."
+    - title: SEO, Barrierefreiheit und Performance
+      text: "Kanonische URLs, eine generierte Sitemap, Metadaten und strukturierte Daten in JSON-LD. Ein Skip-Link, Landmarks und Unterstützung der Einstellung für reduzierte Bewegung. Selbst gehostete Schriften und komprimiertes HTML, JavaScript und SVG."
+    - title: Eine Konfiguration, die klar scheitert
+      text: "Die API-URL kommt aus einer Umgebungsvariable. Fehlt sie, bricht der Build mit einer klaren Meldung ab, statt eine leere Website zu erzeugen."
+  stack: [Astro, Tailwind CSS, TypeScript, REST-API, Remotion]
+results:
+  intro: "Die neue Website ist online. Sie stellt die App vor, zeigt die Angebote in der Währung jedes Landes und verkauft Verbrauchsmaterial mit direkter Bestellung über WhatsApp."
+  metrics:
+    - value: "15"
+      label: Seiten mit einheitlichem Design
+    - value: "2"
+      label: angebundene APIs, Preise und Shop
+    - value: "2"
+      label: kombinierte Endpunkte für die richtige Währung
+learnings:
+  - "Immer den Produktions-Build testen, nicht nur den Entwicklungsserver: Der Layout-Fehler trat erst nach dem Kompilieren auf."
+  - "Rückblickend würde ich automatisierte Tests für die Währungs- und Paginierungslogik ergänzen und die Conversion messen, also Anmeldungen und WhatsApp-Klicks, um die UX-Entscheidungen mit Daten zu belegen."

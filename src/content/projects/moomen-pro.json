@@ -2,40 +2,31 @@
   "order": 5,
   "name": "Moomen Pro",
   "kind": {
-    "fr": "Landing page et motion design",
-    "en": "Landing page and motion design",
-    "de": "Landingpage und Motion Design"
+    "fr": "Site vitrine, boutique et motion design",
+    "en": "Website, shop and motion design",
+    "de": "Website, Shop und Motion Design"
   },
   "role": {
-    "fr": "Client · landing page et motion design",
-    "en": "Client · landing page and motion design",
-    "de": "Kunde · Landingpage und Motion Design"
+    "fr": "Développeuse front-end · UI/UX et intégration API",
+    "en": "Front-end developer · UI/UX and API integration",
+    "de": "Frontend-Entwicklerin · UI/UX und API-Integration"
   },
   "description": {
-    "fr": "Le site et la vidéo de présentation d'une application de gestion pour les PME : ventes, stocks, clients et dettes.",
-    "en": "The website and promo video of a management app for small businesses: sales, stock, customers and debts.",
-    "de": "Website und Präsentationsvideo einer Verwaltungs-App für KMU: Verkäufe, Lager, Kunden und offene Posten."
+    "fr": "La refonte du site d'une application de caisse et de gestion pour PME : présentation, tarifs par pays et boutique de consommables.",
+    "en": "The redesign of the website of a point-of-sale and management app for small businesses: product pages, pricing by country and a supplies shop.",
+    "de": "Die Neugestaltung der Website einer Kassen- und Verwaltungs-App für KMU: Produktvorstellung, Preise nach Land und ein Shop für Verbrauchsmaterial."
   },
   "stack": [
     "Astro",
     "Tailwind",
+    "TypeScript",
     "Remotion"
   ],
   "cover": "../../assets/projects/moomen.jpg",
   "coverAlt": {
-    "fr": "Landing page de Moomen Pro, l'application de gestion pour PME",
-    "en": "Moomen Pro landing page, the management app for small businesses",
-    "de": "Landingpage von Moomen Pro, der Verwaltungs-App für KMU"
+    "fr": "Page d'accueil de Moomen Pro : « Gérez votre business simplement », avec l'application sur téléphone",
+    "en": "Moomen Pro home page: \"Manage your business simply\", with the app on a phone",
+    "de": "Startseite von Moomen Pro: „Verwalten Sie Ihr Geschäft einfach“, mit der App auf dem Smartphone"
   },
-  "liveUrl": "https://moomen.pro",
-  "gallery": [
-    {
-      "image": "../../assets/projects/gallery/moomen-sectors.jpg",
-      "alt": {
-        "fr": "Section des métiers couverts par Moomen Pro : boutiques, artisans, supermarchés, restaurateurs, coiffeurs",
-        "en": "Section listing the trades Moomen Pro covers: shops, artisans, supermarkets, caterers, hair salons",
-        "de": "Abschnitt mit den Branchen von Moomen Pro: Läden, Handwerk, Supermärkte, Gastronomie, Friseure"
-      }
-    }
-  ]
+  "liveUrl": "https://moomen.pro"
 }

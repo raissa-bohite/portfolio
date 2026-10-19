@@ -27,5 +27,12 @@
     "en": "Fassbar home page, the AI tutor for language courses",
     "de": "Startseite von Fassbar, dem KI-Tutor für Sprachkurse"
   },
-  "liveUrl": "https://fassbar-new.pages.dev"
+  "liveUrl": "https://fassbar-new.pages.dev",
+  "accent": "mint",
+  "shots": [
+    "../../assets/case-studies/fassbar/dashboard.jpg",
+    "../../assets/case-studies/fassbar/login.jpg",
+    "../../assets/case-studies/fassbar/splash.jpg"
+  ],
+  "shotFrame": "phone"
 }

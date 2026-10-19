@@ -23,6 +23,11 @@ const projects = defineCollection({
       cover: image(),
       coverAlt: localizedText,
       liveUrl: z.url().optional(),
+      // Couleur de marque du projet, utilisée comme fond de sa vignette dans la galerie
+      accent: z.enum(['mint', 'crimson', 'forest', 'gold', 'royal']),
+      // Captures secondaires composées autour de la couverture dans la vignette de la galerie
+      shots: z.array(image()).max(3).default([]),
+      shotFrame: z.enum(['desktop', 'phone']).default('desktop'),
       gallery: z.array(z.object({ image: image(), alt: localizedText })).default([])
     })
 });

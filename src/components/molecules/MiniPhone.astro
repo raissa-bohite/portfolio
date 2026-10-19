@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+type Props = { image: ImageMetadata; class?: string };
+const { image, class: className } = Astro.props;
+---
+
+<!-- Petit téléphone décoratif pour les vignettes de la galerie -->
+<div aria-hidden="true" class:list={['rounded-[22px] bg-[#1a1a1f] p-[4px] shadow-[0_24px_50px_-18px_rgb(0_0_0/0.55)]', className]}>
+  <Image src={image} alt="" widths={[240, 400]} sizes="160px" loading="lazy" class="block aspect-[9/19.5] h-auto w-full rounded-[18px] object-cover object-top" />
+</div>

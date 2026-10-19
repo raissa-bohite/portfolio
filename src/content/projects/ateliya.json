@@ -27,5 +27,11 @@
     "en": "Ateliya home page: a dressmaker checks the app on her phone",
     "de": "Startseite von Ateliya: Eine Schneiderin nutzt die App auf ihrem Smartphone"
   },
-  "liveUrl": "https://ateliya.com"
+  "liveUrl": "https://ateliya.com",
+  "accent": "gold",
+  "shots": [
+    "../../assets/case-studies/ateliya/features.jpg",
+    "../../assets/case-studies/ateliya/showcase.jpg"
+  ],
+  "shotFrame": "desktop"
 }

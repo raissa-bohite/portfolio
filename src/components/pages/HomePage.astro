@@ -4,7 +4,7 @@ import ContactSection from '@/components/organisms/ContactSection.astro';
 import DomainsSection from '@/components/organisms/DomainsSection.astro';
 import HeroSection from '@/components/organisms/HeroSection.astro';
 import MethodSection from '@/components/organisms/MethodSection.astro';
-import ProjectIndex from '@/components/organisms/ProjectIndex.astro';
+import ProjectGallery from '@/components/organisms/ProjectGallery.astro';
 import TechMarquee from '@/components/organisms/TechMarquee.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
@@ -29,7 +29,7 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('home', a
 >
   <HeroSection locale={locale} projects={projects} />
   <TechMarquee locale={locale} />
-  <ProjectIndex locale={locale} projects={projects} />
+  <ProjectGallery locale={locale} projects={projects} />
   <DomainsSection locale={locale} />
   <MethodSection locale={locale} />
   <AboutTeaser locale={locale} />

@@ -14,6 +14,9 @@ export type ProjectSummary = {
   coverAlt: string;
   href: string;
   liveUrl: string | undefined;
+  accent: CollectionEntry<'projects'>['data']['accent'];
+  shots: ImageMetadata[];
+  shotFrame: CollectionEntry<'projects'>['data']['shotFrame'];
   gallery: { image: ImageMetadata; alt: string }[];
   hasCaseStudy: boolean;
 };
@@ -33,6 +36,9 @@ export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Loc
     coverAlt: data.coverAlt[locale],
     href: getProjectPath(entry.id, locale),
     liveUrl: data.liveUrl,
+    accent: data.accent,
+    shots: data.shots,
+    shotFrame: data.shotFrame,
     gallery: data.gallery.map((item) => ({ image: item.image, alt: item.alt[locale] })),
     hasCaseStudy
   };

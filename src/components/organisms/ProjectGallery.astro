@@ -1,0 +1,29 @@
+---
+import ProjectShot from '@/components/molecules/ProjectShot.astro';
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import type { Locale } from '@/i18n/config';
+import { getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+import type { ProjectSummary } from '@/lib/projects';
+
+type Props = { locale: Locale; projects: ProjectSummary[] };
+
+const { locale, projects } = Astro.props;
+const dictionary = getDictionary(locale);
+const [featuredProject, ...otherProjects] = projects;
+const actionLabel = (project: ProjectSummary): string => (project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject);
+---
+
+<!-- Galerie de l'accueil : le premier projet en grand, les autres en mosaïque de deux colonnes -->
+<section aria-labelledby="projects-title" class="container-page flex flex-col gap-12 pt-16 pb-24">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <SectionHeading id="projects-title" eyebrow={dictionary.home.projects.eyebrow} title={dictionary.home.projects.title} />
+    <a href={getRoutePath('projects', locale)} class="inline-flex min-h-12 items-center text-base font-semibold underline decoration-[1.5px] underline-offset-[5px]">
+      {dictionary.common.allProjects}
+    </a>
+  </div>
+  <div data-scroll-group class="grid gap-x-8 gap-y-14 md:grid-cols-2">
+    {featuredProject && <ProjectShot project={featuredProject} actionLabel={actionLabel(featuredProject)} featured />}
+    {otherProjects.map((project) => <ProjectShot project={project} actionLabel={actionLabel(project)} />)}
+  </div>
+</section>

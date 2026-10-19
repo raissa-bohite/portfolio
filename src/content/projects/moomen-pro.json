@@ -28,5 +28,11 @@
     "en": "Moomen Pro home page: \"Manage your business simply\", with the app on a phone",
     "de": "Startseite von Moomen Pro: „Verwalten Sie Ihr Geschäft einfach“, mit der App auf dem Smartphone"
   },
-  "liveUrl": "https://moomen.pro"
+  "liveUrl": "https://moomen.pro",
+  "accent": "royal",
+  "shots": [
+    "../../assets/case-studies/moomen/pricing.jpg",
+    "../../assets/case-studies/moomen/product.jpg"
+  ],
+  "shotFrame": "desktop"
 }

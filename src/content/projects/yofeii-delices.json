@@ -27,5 +27,11 @@
     "en": "Yofeii Délices home page: banner showing the range of spice blends",
     "de": "Startseite von Yofeii Délices: Banner mit der Auswahl an Gewürzmischungen"
   },
-  "liveUrl": "https://yofeii-delices.com"
+  "liveUrl": "https://yofeii-delices.com",
+  "accent": "crimson",
+  "shots": [
+    "../../assets/case-studies/yofeii/product.jpg",
+    "../../assets/case-studies/yofeii/admin-catalog.jpg"
+  ],
+  "shotFrame": "desktop"
 }

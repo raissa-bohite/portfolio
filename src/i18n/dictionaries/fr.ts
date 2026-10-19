@@ -40,16 +40,6 @@ const dictionary = {
     intro:
       'Développeuse front-end, orientée full-stack, à Abidjan. Je conçois des interfaces et des tableaux de bord clairs, accessibles et sécurisés, et je construis le back-end quand le projet le demande.',
     ctaProjects: 'Voir les projets',
-    carousel: {
-      label: 'Aperçu des projets',
-      roleDescription: 'carrousel',
-      previous: 'Projet précédent',
-      next: 'Projet suivant',
-      pause: 'Mettre en pause le défilement des projets',
-      play: 'Reprendre le défilement des projets',
-      position: 'Projet {current} sur {total}',
-      cardLabel: '{name}, {kind}, {action}'
-    },
     stack: {
       label: 'Technologies utilisées'
     },

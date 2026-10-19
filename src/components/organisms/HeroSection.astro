@@ -1,26 +1,69 @@
 ---
 import Download from '@lucide/astro/icons/download';
+import { Picture } from 'astro:assets';
 import Button from '@/components/atoms/Button.astro';
 import AvailabilityBadge from '@/components/molecules/AvailabilityBadge.astro';
-import ProjectCarousel from '@/components/organisms/ProjectCarousel.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
-import type { ProjectSummary } from '@/lib/projects';
+import workspaceImage from '@/assets/hero/workspace.jpg';
 
 type Props = {
   locale: Locale;
-  projects: ProjectSummary[];
 };
 
-const { locale, projects } = Astro.props;
+const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const home = dictionary.home;
+
+// Points lumineux posés sur les lumières de la ville et leurs reflets dans la lagune (positions dans le style)
+const cityLightCount = 10;
+const reflectionCount = 3;
 ---
 
-<section data-hero class="container-page pt-20 pb-12" aria-labelledby="hero-title">
-  <div class="grid items-center gap-x-6 gap-y-12 lg:grid-cols-12">
-    <div class="flex flex-col gap-6 lg:col-span-5">
+<!--
+  La scène est sombre quel que soit le thème : data-theme="dark" applique localement les jetons sombres,
+  ce qui garantit le contraste du texte posé sur l'image.
+-->
+<section
+  data-hero
+  data-theme="dark"
+  class="relative isolate -mt-20 flex min-h-[max(40rem,100svh)] items-end overflow-hidden bg-bg pt-36 pb-14 lg:items-center lg:pb-20"
+  aria-labelledby="hero-title"
+>
+  <div aria-hidden="true" class="absolute inset-0 -z-10">
+    <div data-hero-parallax class="hero-parallax absolute -inset-4">
+      <div class="hero-frame">
+        <div class="hero-kenburns absolute inset-0">
+          <Picture
+            src={workspaceImage}
+            alt=""
+            formats={['avif', 'webp']}
+            widths={[768, 1280, 1920]}
+            sizes="(max-aspect-ratio: 16/9) 180vh, 100vw"
+            loading="eager"
+            fetchpriority="high"
+            class="absolute inset-0 h-full w-full"
+          />
+          <div class="hero-sunset absolute inset-0"></div>
+          <div class="hero-lamp absolute"></div>
+          <!-- Un conteneur par groupe : les positions sont ciblées avec nth-of-type -->
+          <div class="absolute inset-0">
+            {Array.from({ length: cityLightCount }, () => <span class="hero-light absolute" />)}
+          </div>
+          <div class="absolute inset-0">
+            {Array.from({ length: reflectionCount }, () => <span class="hero-reflection absolute" />)}
+          </div>
+          <span class="hero-steam absolute"></span>
+          <span class="hero-steam hero-steam-late absolute"></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-shade absolute inset-0"></div>
+  </div>
+
+  <div class="container-page w-full">
+    <div class="flex max-w-xl flex-col gap-6">
       <AvailabilityBadge href={getRoutePath('contact', locale)} label={home.availability} />
       <p class="m-0 font-mono text-sm font-medium text-sig-text" lang="fr">
         <span class="inline-block w-0 animate-type overflow-hidden align-bottom whitespace-nowrap motion-reduce:w-auto">{home.signature}</span>
@@ -37,8 +80,7 @@ const home = dictionary.home;
           ))
         }<span aria-hidden="true" class="animate-blink font-mono font-semibold text-sig">_</span>
       </h1>
-      <!-- Pas d'animation sur ce paragraphe : c'est le plus grand élément visible au chargement (LCP) -->
-      <p class="m-0 max-w-[40ch] text-xl leading-[1.55]">{home.intro}</p>
+      <p class="m-0 max-w-[40ch] text-xl leading-[1.55] text-ink/90">{home.intro}</p>
       <div data-reveal class="mt-2 flex flex-wrap gap-3">
         <Button href={getRoutePath('projects', locale)}>{home.ctaProjects}</Button>
         <Button href={getCvPath(locale)} variant="secondary" download>
@@ -47,15 +89,190 @@ const home = dictionary.home;
         </Button>
       </div>
     </div>
-    <div class="lg:col-span-7">
-      <ProjectCarousel locale={locale} projects={projects} />
-    </div>
   </div>
 </section>
 
+<style>
+  /* Le cadre reproduit object-fit: cover en gardant le ratio de l'image : les effets restent calés sur la photo */
+  .hero-parallax {
+    container-type: size;
+    transform: translate3d(var(--shift-x, 0), var(--shift-y, 0), 0);
+    transition: transform 0.8s var(--ease-out-soft);
+  }
+
+  .hero-frame {
+    --image-ratio: 1.7917;
+    --frame-width: max(100cqw, 100cqh * var(--image-ratio));
+    --frame-height: max(100cqh, 100cqw / var(--image-ratio));
+    position: absolute;
+    width: var(--frame-width);
+    height: var(--frame-height);
+    /* Sur écran étroit, on cadre sur le bureau (72 %) plutôt que sur le centre de la pièce */
+    left: calc((100cqw - var(--frame-width)) * 0.72);
+    top: calc((100cqh - var(--frame-height)) * 0.5);
+  }
+
+  .hero-kenburns {
+    transform-origin: 72% 58%;
+  }
+
+  /* Lumière chaude du soleil couchant, filtrée par le claustra */
+  .hero-sunset {
+    background: radial-gradient(ellipse 30% 45% at 80% 30%, rgb(255 154 92 / 0.22), transparent 70%);
+    mix-blend-mode: screen;
+  }
+
+  .hero-lamp {
+    left: 86%;
+    top: 30%;
+    width: 16%;
+    height: 30%;
+    background: radial-gradient(closest-side, rgb(255 170 90 / 0.28), transparent);
+    mix-blend-mode: screen;
+  }
+
+  .hero-light {
+    width: 0.7%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(255 236 200 / 0.95), rgb(255 190 120 / 0.4) 55%, transparent);
+    opacity: 0.5;
+  }
+
+  .hero-light:nth-of-type(1) { left: 32.6%; top: 44.6%; }
+  .hero-light:nth-of-type(2) { left: 35.9%; top: 49.4%; }
+  .hero-light:nth-of-type(3) { left: 39.4%; top: 48.6%; }
+  .hero-light:nth-of-type(4) { left: 42.3%; top: 45%; }
+  .hero-light:nth-of-type(5) { left: 44.2%; top: 46.4%; }
+  .hero-light:nth-of-type(6) { left: 47.8%; top: 48.2%; }
+  .hero-light:nth-of-type(7) { left: 50.4%; top: 45.2%; }
+  .hero-light:nth-of-type(8) { left: 52.8%; top: 48.6%; }
+  .hero-light:nth-of-type(9) { left: 54.6%; top: 46.8%; }
+  .hero-light:nth-of-type(10) { left: 58.6%; top: 48.3%; }
+
+  .hero-reflection {
+    width: 0.5%;
+    height: 5%;
+    border-radius: 50%;
+    background: linear-gradient(rgb(255 210 150 / 0.55), transparent);
+    filter: blur(2px);
+    opacity: 0.4;
+    transform-origin: top;
+  }
+
+  .hero-reflection:nth-of-type(1) { left: 36.3%; top: 52.4%; }
+  .hero-reflection:nth-of-type(2) { left: 44.8%; top: 52.6%; }
+  .hero-reflection:nth-of-type(3) { left: 53.3%; top: 52.8%; }
+
+  /* Vapeur de la tasse */
+  .hero-steam {
+    left: 78.2%;
+    top: 58%;
+    width: 1.2%;
+    height: 5%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(255 255 255 / 0.35), transparent);
+    filter: blur(4px);
+    opacity: 0;
+  }
+
+  /* Dégradés de lisibilité : le texte reste sur un fond sombre, quelle que soit la largeur d'écran */
+  .hero-shade {
+    background:
+      linear-gradient(to top, rgb(18 10 43 / 0.97) 0%, rgb(18 10 43 / 0.9) 50%, rgb(18 10 43 / 0.5) 76%, rgb(18 10 43 / 0.15) 92%),
+      linear-gradient(to bottom, rgb(18 10 43 / 0.55), transparent 22%);
+  }
+
+  @media (min-width: 64rem) {
+    .hero-shade {
+      background:
+        linear-gradient(to right, rgb(18 10 43 / 0.9) 0%, rgb(18 10 43 / 0.72) 34%, transparent 62%),
+        linear-gradient(to top, rgb(18 10 43 / 0.6), transparent 30%),
+        linear-gradient(to bottom, rgb(18 10 43 / 0.45), transparent 20%);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-kenburns {
+      animation: hero-push 32s ease-in-out infinite alternate;
+    }
+
+    .hero-sunset {
+      animation: hero-sunset 18s ease-in-out infinite alternate;
+    }
+
+    .hero-lamp {
+      animation: hero-glow 7s ease-in-out infinite alternate;
+    }
+
+    .hero-light {
+      animation: hero-twinkle 3.2s ease-in-out infinite alternate;
+    }
+
+    .hero-light:nth-of-type(2n) { animation-duration: 4.1s; animation-delay: -1.3s; }
+    .hero-light:nth-of-type(3n) { animation-duration: 2.6s; animation-delay: -0.7s; }
+    .hero-light:nth-of-type(5n) { animation-duration: 5s; animation-delay: -2.2s; }
+
+    .hero-reflection {
+      animation: hero-shimmer 2.8s ease-in-out infinite alternate;
+    }
+
+    .hero-reflection:nth-of-type(2) { animation-delay: -1s; }
+    .hero-reflection:nth-of-type(3) { animation-delay: -1.9s; }
+
+    .hero-steam {
+      animation: hero-steam 6s ease-out infinite;
+    }
+
+    .hero-steam-late {
+      animation-delay: -3s;
+    }
+
+    [data-paused] .hero-kenburns,
+    [data-paused] .hero-kenburns * {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes hero-push {
+    from { transform: scale(1); }
+    to { transform: scale(1.06); }
+  }
+
+  @keyframes hero-sunset {
+    from { transform: translate3d(-6%, -3%, 0); opacity: 0.6; }
+    to { transform: translate3d(4%, 4%, 0); opacity: 1; }
+  }
+
+  @keyframes hero-glow {
+    from { opacity: 0.75; }
+    to { opacity: 1; }
+  }
+
+  @keyframes hero-twinkle {
+    from { opacity: 0.15; }
+    to { opacity: 0.9; }
+  }
+
+  @keyframes hero-shimmer {
+    from { opacity: 0.2; transform: scaleY(0.7); }
+    to { opacity: 0.6; transform: scaleY(1.15); }
+  }
+
+  @keyframes hero-steam {
+    0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.8); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translate3d(30%, -120%, 0) scale(1.4); }
+  }
+</style>
+
 <script>
+  import { initHeroScene } from '@/scripts/hero-scene';
   import { playIntro } from '@/scripts/intro';
 
   const hero = document.querySelector<HTMLElement>('[data-hero]');
-  if (hero) playIntro(hero);
+  if (hero) {
+    initHeroScene(hero);
+    playIntro(hero);
+  }
 </script>

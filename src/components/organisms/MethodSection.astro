@@ -15,7 +15,7 @@ const heightClasses = ['h-1/4', 'h-1/2', 'h-3/4', 'h-full'];
 <section aria-labelledby="method-title" class="bg-tint/45 py-24 dark:bg-white/[0.03]">
   <div class="container-page flex flex-col gap-12">
   <SectionHeading id="method-title" eyebrow={method.eyebrow} title={method.title} />
-  <ol data-histogram aria-label={method.listLabel} class="m-0 grid list-none items-end gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
+  <ol data-histogram aria-label={method.listLabel} class="m-0 grid list-none items-start gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
     {
       method.steps.map((step, index) => (
         <li class="flex flex-col gap-5">

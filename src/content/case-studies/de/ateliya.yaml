@@ -70,8 +70,8 @@ results:
       label: Seiten laden React
     - value: "0"
       label: Spuren von React im HTML der Startseite
-    - value: 4,17 → 5,17
-      label: Kontrast bei der WCAG-Prüfung korrigiert
+    - value: "5,17:1"
+      label: "Textkontrast nach der WCAG-Prüfung, vorher 4,17:1"
     - value: "4"
       label: unterstützte mobile Zahlungsmittel
 learnings:

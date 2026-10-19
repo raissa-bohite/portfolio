@@ -70,8 +70,8 @@ results:
       label: pages seulement chargent React
     - value: "0"
       label: trace de React dans le HTML de l'accueil
-    - value: 4,17 → 5,17
-      label: contraste corrigé lors de l'audit WCAG
+    - value: "5,17:1"
+      label: "contraste du texte après l'audit WCAG, contre 4,17:1 avant"
     - value: "4"
       label: moyens de paiement mobile pris en charge
 learnings:

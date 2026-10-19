@@ -70,8 +70,8 @@ results:
       label: pages only load React
     - value: "0"
       label: traces of React in the home page HTML
-    - value: 4.17 → 5.17
-      label: contrast ratio fixed during the WCAG audit
+    - value: "5.17:1"
+      label: "text contrast after the WCAG audit, up from 4.17:1"
     - value: "4"
       label: mobile payment methods supported
 learnings:

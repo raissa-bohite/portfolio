@@ -1,0 +1,67 @@
+project: ateliya
+locale: fr
+eyebrow: Étude de cas · Mission client
+title: Ateliya, refaire le site d'une app pour ateliers de couture
+lead: "Ateliya aide les couturiers d'Afrique de l'Ouest à gérer clients, mesures, commandes et paiements. J'ai refait le design de son site vitrine, celui qui donne envie de télécharger l'app et de s'abonner, avec les mêmes pages, les mêmes parcours et les mêmes API."
+seoTitle: Ateliya, refonte du site vitrine · Étude de cas
+seoDescription: Refonte du site d'Ateliya en Astro, avec React chargé seulement sur l'inscription et les tarifs, formulaires sécurisés et paiement par mobile money.
+meta:
+  role: Développeuse front-end
+  team: Seule, avec validation de la cliente page par page
+  period: Octobre 2026
+  status: En ligne
+context:
+  - "Ateliya est une application de gestion pour les couturiers et les ateliers de couture, sur le marché ouest-africain, avec un paiement par mobile money. Le site vitrine a un rôle précis : donner envie de télécharger l'app et de s'abonner."
+  - "L'ancien site, déjà en Astro, fonctionnait, mais son design ne convenait plus à la cliente. Le périmètre était donc une refonte du design uniquement : mêmes pages, mêmes parcours, mêmes API."
+role:
+  paragraphs:
+    - "J'ai mené le projet seule, de bout en bout : cadrage, design à partir de la charte de la cliente, intégration, sécurité des formulaires, SEO et accessibilité. La cliente validait chaque page avant que je passe à la suivante."
+    - "Plusieurs contraintes cadraient le travail : un hébergement mutualisé sans Node, donc un site entièrement statique ; une charte imposée, vert, or, ivoire et la police Cormorant Garamond ; et deux parcours sensibles, une inscription qui crée un vrai compte et un abonnement avec un vrai paiement par Wave, Orange Money, MTN ou Moov."
+  highlights:
+    - Cadrage et design
+    - Intégration Astro et React
+    - Sécurité des formulaires et du paiement
+    - SEO et accessibilité
+approach:
+  paragraphs:
+    - "Je me suis inspirée de Paykko et de Djamo : sections en couleur pleine, ton énergique, animations. J'ai repris leur mécanique sans leur police : Cormorant Garamond reste, par respect de la charte."
+    - "Un motif de point de couture sépare les sections et ancre le site dans l'univers du métier. La section de présentation reste fixée pendant le défilement, et la maquette de l'app passe par trois états : clients, commandes, activité. Les fonctionnalités sont illustrées en isométrique, et une vraie capture de l'app est incrustée dans la photo d'accueil."
+  gallery:
+    - image: ../../../assets/case-studies/ateliya/features.jpg
+      alt: "Section « Pourquoi choisir Ateliya » : quatre cartes en couleur pleine avec illustrations isométriques"
+      caption: Fonctionnalités en couleur pleine
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/showcase.jpg
+      alt: "Section « Chaque client, bien accompagné » : maquette de l'app fixée pendant le défilement, avec trois étapes"
+      caption: Présentation fixée au défilement
+      frame: desktop
+technical:
+  intro: La décision la plus importante a été de revenir à Astro. Les autres choix protègent la performance et la sécurité des deux parcours sensibles.
+  decisions:
+    - title: De Next.js à Astro
+      text: "Comme demandé au départ, j'ai migré le site vers Next.js en export statique. Trois jours plus tard, je suis revenue à Astro, en gardant la version Next.js sur une branche. Un site vitrine dont rien ne change d'une requête à l'autre n'a pas besoin de charger un framework JavaScript sur chaque page."
+    - title: React seulement où il sert
+      text: "React n'est chargé que sur les tarifs et l'inscription, les deux pages avec un vrai état en plusieurs étapes et des appels API. J'ai vérifié qu'aucune trace de React n'apparaît dans le HTML de l'accueil."
+    - title: Une vidéo d'accueil qui ne ralentit pas la page
+      text: "La photo est le fond par défaut, ce qui protège le temps d'affichage. La vidéo n'est ajoutée que sur grand écran, sans réduction des animations ni économie de données, et n'apparaît en fondu qu'une fois sa lecture vraiment lancée. Un bouton permet de la mettre en pause."
+    - title: Des animations sans bibliothèque
+      text: "Un IntersectionObserver et des classes CSS suffisent. Les éléments sont visibles par défaut : si le JavaScript échoue, rien ne reste caché."
+    - title: Des formulaires qui ne font pas confiance
+      text: "Validation stricte de l'email et du téléphone, mot de passe d'au moins 8 caractères avec indicateur de force, récapitulatif avant l'envoi et garde contre la double soumission. Les messages d'erreur sont toujours des textes prévus, jamais l'erreur brute, et la longueur des champs reçus de l'API est bornée."
+    - title: Un paiement tenu à distance
+      text: "L'URL de redirection vers le paiement n'est acceptée qu'en https, l'iframe est isolée avec sandbox, et aucune carte bancaire n'est saisie sur le site."
+  stack: [Astro 7, React, Tailwind CSS, TypeScript, mobile money]
+results:
+  intro: "Le nouveau site est en ligne, entièrement statique, avec React limité à deux pages. Le SEO s'appuie sur des données structurées Organization, SoftwareApplication et FAQPage, un sitemap automatique et une image Open Graph aux couleurs de la marque. Les images sont servies en AVIF et WebP."
+  metrics:
+    - value: "2"
+      label: pages seulement chargent React
+    - value: "0"
+      label: trace de React dans le HTML de l'accueil
+    - value: 4,17 → 5,17
+      label: contraste corrigé lors de l'audit WCAG
+    - value: "4"
+      label: moyens de paiement mobile pris en charge
+learnings:
+  - "Choisir l'outil selon le besoin, pas selon la mode. Revenir en arrière après trois jours sur Next.js n'était pas un échec : c'était la bonne décision pour un site où rien ne change d'une visite à l'autre."
+  - "Les détails demandent de la patience. Il m'a fallu une dizaine d'itérations, détourage, recadrage, tailles adaptées à la hauteur de l'écran, pour que les maquettes de la section de présentation restent cohérentes."

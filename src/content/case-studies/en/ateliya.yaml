@@ -1,0 +1,67 @@
+project: ateliya
+locale: en
+eyebrow: Case study · Client project
+title: Ateliya, redesigning the website of an app for tailoring workshops
+lead: "Ateliya helps West African tailors manage clients, measurements, orders and payments. I redesigned its marketing website, the one that makes people download the app and subscribe, keeping the same pages, journeys and APIs."
+seoTitle: Ateliya, website redesign · Case study
+seoDescription: An Astro redesign of the Ateliya website, with React loaded only on sign-up and pricing, secure forms and mobile money payments.
+meta:
+  role: Front-end developer
+  team: Solo, with page-by-page client approval
+  period: October 2026
+  status: Live
+context:
+  - "Ateliya is a management app for tailors and tailoring workshops in the West African market, with mobile money payments. Its marketing website has one job: make people want to download the app and subscribe."
+  - "The old site, already built with Astro, worked, but its design no longer suited the client. The scope was therefore a design overhaul only: same pages, same journeys, same APIs."
+role:
+  paragraphs:
+    - "I ran the project alone from start to finish: scoping, design based on the client's brand guidelines, development, form security, SEO and accessibility. The client approved each page before I moved on to the next."
+    - "Several constraints framed the work: shared hosting without Node, so a fully static site; mandatory brand guidelines, green, gold, ivory and the Cormorant Garamond typeface; and two sensitive journeys, a sign-up that creates a real account and a subscription with real payment through Wave, Orange Money, MTN or Moov."
+  highlights:
+    - Scoping and design
+    - Astro and React development
+    - Form and payment security
+    - SEO and accessibility
+approach:
+  paragraphs:
+    - "I took inspiration from Paykko and Djamo: solid-colour sections, an energetic tone, animation. I borrowed their mechanics but not their typeface: Cormorant Garamond stays, out of respect for the brand guidelines."
+    - "A stitch pattern separates the sections and roots the site in the trade. The showcase section stays pinned while scrolling, and the app mockup moves through three states: clients, orders, activity. Features are illustrated isometrically, and a real app screenshot is set into the home page photo."
+  gallery:
+    - image: ../../../assets/case-studies/ateliya/features.jpg
+      alt: "\"Why choose Ateliya\" section: four solid-colour cards with isometric illustrations"
+      caption: Features in solid colours
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/showcase.jpg
+      alt: "\"Every client, well looked after\" section: app mockup pinned while scrolling, with three steps"
+      caption: Showcase pinned on scroll
+      frame: desktop
+technical:
+  intro: The most important decision was going back to Astro. The other choices protect performance and the security of the two sensitive journeys.
+  decisions:
+    - title: From Next.js back to Astro
+      text: "As initially requested, I migrated the site to Next.js with static export. Three days later, I went back to Astro and kept the Next.js version on a branch. A marketing site where nothing changes from one request to the next does not need to load a JavaScript framework on every page."
+    - title: React only where it helps
+      text: "React loads only on pricing and sign-up, the two pages with real multi-step state and API calls. I checked that no trace of React appears in the home page HTML."
+    - title: A hero video that does not slow the page
+      text: "The photo is the default background, which protects load time. The video is added only on large screens, without reduced motion or data saver, and fades in only once playback has really started. A button lets visitors pause it."
+    - title: Animations without a library
+      text: "An IntersectionObserver and CSS classes are enough. Elements are visible by default: if JavaScript fails, nothing stays hidden."
+    - title: Forms that trust nothing
+      text: "Strict email and phone validation, a password of at least 8 characters with a strength meter, a summary step before sending and a guard against double submission. Error messages are always predefined text, never the raw error, and the length of fields received from the API is capped."
+    - title: Payment kept at arm's length
+      text: "The payment redirect URL is accepted over https only, the iframe is sandboxed, and no card number is ever entered on the site."
+  stack: [Astro 7, React, Tailwind CSS, TypeScript, mobile money]
+results:
+  intro: "The new site is live, fully static, with React limited to two pages. SEO relies on Organization, SoftwareApplication and FAQPage structured data, an automatic sitemap and an Open Graph image in the brand colours. Images are served as AVIF and WebP."
+  metrics:
+    - value: "2"
+      label: pages only load React
+    - value: "0"
+      label: traces of React in the home page HTML
+    - value: 4.17 → 5.17
+      label: contrast ratio fixed during the WCAG audit
+    - value: "4"
+      label: mobile payment methods supported
+learnings:
+  - "Choose the tool for the need, not for the trend. Going back after three days on Next.js was not a failure: it was the right call for a site where nothing changes from one visit to the next."
+  - "Details take patience. It took about ten iterations, cut-outs, cropping, sizes based on screen height, to keep the showcase mockups consistent."

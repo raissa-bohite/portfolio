@@ -2,14 +2,14 @@
   "order": 4,
   "name": "Ateliya",
   "kind": {
-    "fr": "Landing page et vitrine",
-    "en": "Landing page and showcase",
-    "de": "Landingpage und Schaufenster"
+    "fr": "Refonte de site vitrine",
+    "en": "Website redesign",
+    "de": "Website-Neugestaltung"
   },
   "role": {
-    "fr": "Projet devenu produit · landing page et vitrine Malliya",
-    "en": "Project turned product · landing page and Malliya showcase",
-    "de": "Vom Projekt zum Produkt · Landingpage und Schaufenster Malliya"
+    "fr": "Développeuse front-end · design, intégration et sécurité",
+    "en": "Front-end developer · design, build and security",
+    "de": "Frontend-Entwicklerin · Design, Umsetzung und Sicherheit"
   },
   "description": {
     "fr": "Le site de l'application qui gère clients, mesures, commandes et paiements des ateliers de couture, et la vitrine en ligne des stylistes.",
@@ -18,31 +18,14 @@
   },
   "stack": [
     "Astro",
+    "React",
     "Tailwind"
   ],
   "cover": "../../assets/projects/ateliya.jpg",
   "coverAlt": {
-    "fr": "Landing page d'Ateliya, l'application des ateliers de couture",
-    "en": "Ateliya landing page, the app for tailoring workshops",
-    "de": "Landingpage von Ateliya, der App für Schneiderateliers"
+    "fr": "Page d'accueil d'Ateliya : une couturière consulte l'application sur son téléphone",
+    "en": "Ateliya home page: a dressmaker checks the app on her phone",
+    "de": "Startseite von Ateliya: Eine Schneiderin nutzt die App auf ihrem Smartphone"
   },
-  "liveUrl": "https://ateliya.com",
-  "gallery": [
-    {
-      "image": "../../assets/projects/gallery/ateliya-features.jpg",
-      "alt": {
-        "fr": "Section « Pourquoi choisir Ateliya » : gestion des clients, suivi des commandes, prise de mesures et paiements intégrés",
-        "en": "\"Why choose Ateliya\" section: client management, order tracking, measurements and built-in payments",
-        "de": "Abschnitt „Warum Ateliya“: Kundenverwaltung, Auftragsverfolgung, Maße und integrierte Zahlungen"
-      }
-    },
-    {
-      "image": "../../assets/projects/gallery/ateliya-clients.jpg",
-      "alt": {
-        "fr": "Section « Vos clients » avec l'écran d'accueil de l'application sur téléphone",
-        "en": "\"Your clients\" section with the app home screen on a phone",
-        "de": "Abschnitt „Ihre Kunden“ mit dem Startbildschirm der App auf dem Smartphone"
-      }
-    }
-  ]
+  "liveUrl": "https://ateliya.com"
 }

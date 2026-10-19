@@ -1,21 +1,20 @@
 ---
 import Plus from '@lucide/astro/icons/plus';
 import Tag from '@/components/atoms/Tag.astro';
-import BrowserFrame from '@/components/molecules/BrowserFrame.astro';
 import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
+import ScreenshotTile from '@/components/molecules/ScreenshotTile.astro';
 import type { Locale } from '@/i18n/config';
 import { formatMessage, getDictionary } from '@/i18n/translate';
 import type { CaseStudy } from '@/lib/projects';
 
-type Props = { locale: Locale; caseStudy: CaseStudy; host: string };
+type Props = { locale: Locale; caseStudy: CaseStudy; accentClass: string };
 
-const { locale, caseStudy, host } = Astro.props;
+const { locale, caseStudy, accentClass } = Astro.props;
 const labels = getDictionary(locale).projectPage;
 const phoneShots = caseStudy.approach.gallery.filter((item) => item.frame === 'phone');
 const desktopShots = caseStudy.approach.gallery.filter((item) => item.frame === 'desktop');
-const [featuredShot, ...otherShots] = desktopShots;
-// Nombre impair de captures secondaires : la dernière prend toute la largeur pour ne pas laisser de trou
-const lastShotSpansRow = otherShots.length % 2 === 1;
+// La première capture en panoramique ; si le reste est impair, la dernière aussi, pour ne pas laisser de trou
+const isWideShot = (index: number): boolean => index === 0 || (desktopShots.length % 2 === 0 && index === desktopShots.length - 1);
 
 const sectionNumber = (position: number): string => String(position).padStart(2, '0');
 const labelClasses = 'm-0 font-mono text-sm font-semibold text-sig-text';
@@ -68,46 +67,33 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
       </div>
     </div>
 
+    <!-- Captures sur la couleur du projet ; les écrans mobiles sont posés sur un panneau de la même couleur -->
     {
       caseStudy.approach.gallery.length > 0 && (
-        <div class="bg-tint/45 py-16 sm:py-20 dark:bg-white/[0.03]">
-          <div data-scroll-group role="group" aria-label={labels.screenshotsLabel} class="container-page flex w-full flex-col gap-8">
-            {featuredShot && (
-              <BrowserFrame
-                image={featuredShot.image}
-                alt={featuredShot.alt}
-                caption={featuredShot.caption}
-                host={host}
-                enlargeLabel={formatMessage(labels.enlarge, { caption: featuredShot.caption })}
-                sizes="(min-width: 1248px) 1152px, 92vw"
-              />
-            )}
-            {otherShots.length > 0 && (
-              <div class="grid gap-8 sm:grid-cols-2">
-                {otherShots.map((shot, index) => (
-                  <div class={lastShotSpansRow && index === otherShots.length - 1 ? 'sm:col-span-2' : ''}>
-                    <BrowserFrame
-                      image={shot.image}
-                      alt={shot.alt}
-                      caption={shot.caption}
-                      host={host}
-                      enlargeLabel={formatMessage(labels.enlarge, { caption: shot.caption })}
-                      sizes="(min-width: 1248px) 560px, (min-width: 640px) 46vw, 92vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-            {phoneShots.length > 0 && (
-              <div class="flex flex-wrap justify-center gap-10">
-                {phoneShots.map((shot) => (
-                  <div class="w-full max-w-[250px]">
-                    <PhoneFrame image={shot.image} alt={shot.alt} caption={shot.caption} screen={shot.screen} />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+        <div data-scroll-group role="group" aria-label={labels.screenshotsLabel} class="container-page flex w-full flex-col gap-x-8 gap-y-12">
+          {desktopShots.length > 0 && (
+            <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2">
+              {desktopShots.map((shot, index) => (
+                <ScreenshotTile
+                  image={shot.image}
+                  alt={shot.alt}
+                  caption={shot.caption}
+                  enlargeLabel={formatMessage(labels.enlarge, { caption: shot.caption })}
+                  accentClass={accentClass}
+                  wide={isWideShot(index)}
+                />
+              ))}
+            </div>
+          )}
+          {phoneShots.length > 0 && (
+            <div class={`flex flex-wrap justify-center gap-10 rounded-surface px-6 py-14 ${accentClass}`}>
+              {phoneShots.map((shot) => (
+                <div class="w-full max-w-[230px] [&_figcaption]:rounded-full [&_figcaption]:bg-white [&_figcaption]:px-3 [&_figcaption]:py-1 [&_figcaption]:text-[#1e0f45]">
+                  <PhoneFrame image={shot.image} alt={shot.alt} caption={shot.caption} screen={shot.screen} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )
     }

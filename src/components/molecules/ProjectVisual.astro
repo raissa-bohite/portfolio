@@ -2,6 +2,7 @@
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import MiniBrowser from '@/components/molecules/MiniBrowser.astro';
 import MiniPhone from '@/components/molecules/MiniPhone.astro';
+import { accentBackgroundClasses } from '@/lib/accents';
 import type { ProjectSummary } from '@/lib/projects';
 
 type Props = {
@@ -27,14 +28,6 @@ const phonePositions = [
   'top-[26%] left-[96%] group-hover:-translate-y-4'
 ];
 
-// Fonds aux couleurs de marque de chaque projet : la galerie montre d'emblée des univers différents
-const accentClasses = {
-  mint: 'bg-[#0da479]',
-  crimson: 'bg-[#c8323f]',
-  forest: 'bg-[#2f5b45]',
-  gold: 'bg-[#e0940f]',
-  royal: 'bg-[#1e4fc4]'
-} as const;
 ---
 
 <!-- Vignette façon « shot » : les captures flottent sur la couleur du projet, coupées par le bord, et se soulèvent au survol -->
@@ -43,7 +36,7 @@ const accentClasses = {
   aria-label={label}
   class:list={[
     'relative overflow-hidden rounded-surface',
-    accentClasses[project.accent],
+    accentBackgroundClasses[project.accent],
     aspectClass ?? (featured ? 'aspect-[4/3] md:aspect-[21/9]' : 'aspect-[4/3]')
   ]}
 >

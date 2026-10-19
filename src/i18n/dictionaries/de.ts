@@ -59,17 +59,20 @@ export const de: Dictionary = {
         {
           icon: 'dashboard',
           title: 'Oberflächen und Dashboards',
-          text: 'Übersichtliche Oberflächen, die Daten nutzbar machen – von der Website bis zum Backoffice.'
+          text: 'Übersichtliche Oberflächen, die Daten nutzbar machen – von der Website bis zum Backoffice.',
+          skills: ["React", "Next.js", "Astro", "SvelteKit", "Tailwind CSS"]
         },
         {
           icon: 'security',
           title: 'Websicherheit',
-          text: 'OWASP-Best-Practices von Anfang an mitgedacht, nicht erst am Ende ergänzt.'
+          text: 'OWASP-Best-Practices von Anfang an mitgedacht, nicht erst am Ende ergänzt.',
+          skills: ["OWASP", "CSP", "Zod-Validierung", "Cisco-Zertifikat"]
         },
         {
           icon: 'ai',
           title: 'KI und agentische Entwicklung',
-          text: 'Ich binde KI-APIs in meine Produkte ein und entwickle mit Coding-Agenten. Ich weiß, wo sie helfen und wo nicht, und prüfe immer ihre Ergebnisse.'
+          text: 'Ich binde KI-APIs in meine Produkte ein und entwickle mit Coding-Agenten. Ich weiß, wo sie helfen und wo nicht, und prüfe immer ihre Ergebnisse.',
+          skills: ["Claude API", "Coding-Agenten"]
         }
       ]
     },

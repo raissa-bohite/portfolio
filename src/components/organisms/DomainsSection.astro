@@ -1,18 +1,117 @@
 ---
-import DomainCard from '@/components/molecules/DomainCard.astro';
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Sparkle from '@lucide/astro/icons/sparkle';
+import Tag from '@/components/atoms/Tag.astro';
 import SectionHeading from '@/components/molecules/SectionHeading.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
+import dashboardIllustration from '@/assets/illustrations/dashboard.svg';
 
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
-const domains = getDictionary(locale).home.domains;
+const dictionary = getDictionary(locale);
+const domains = dictionary.home.domains;
+const [interfaces, security, ai] = domains.items;
+const skillsLabel = dictionary.projectPage.stack;
+const iconClasses = 'flex size-12 flex-none items-center justify-center rounded-control bg-tint text-tint-ink';
+const titleClasses = 'm-0 text-2xl leading-tight font-bold text-ink';
 ---
 
+<!--
+  Grille en mosaïque : chaque domaine a sa propre preuve visuelle (une vraie capture, du vrai code de sécurité),
+  avec les mêmes cartes vitrées que le reste de la page d'accueil.
+-->
 <section aria-labelledby="domains-title" class="container-page flex flex-col gap-12 py-24">
   <SectionHeading id="domains-title" eyebrow={domains.eyebrow} title={domains.title} />
-  <div data-scroll-group class="grid gap-6 md:grid-cols-3">
-    {domains.items.map((domain) => <DomainCard icon={domain.icon} title={domain.title} text={domain.text} />)}
+  <div data-scroll-group class="grid gap-6 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
+    {
+      interfaces && (
+        <article data-scroll-item class="glass flex flex-col gap-6 overflow-hidden p-8 lg:col-span-2 lg:flex-row lg:items-center">
+          <div class="flex flex-col gap-3 lg:w-[42%] lg:flex-none">
+            <div data-scroll-pop class={iconClasses}>
+              <LayoutDashboard aria-hidden="true" size={22} />
+            </div>
+            <h3 class={`${titleClasses} mt-2`}>{interfaces.title}</h3>
+            <p class="m-0">{interfaces.text}</p>
+            <ul class="m-0 mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
+              {interfaces.skills.map((skill) => (
+                <li>
+                  <Tag>{skill}</Tag>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- Illustration décorative de tableau de bord (fichier SVG animé, servi comme image) -->
+          <div aria-hidden="true" class="-mr-16 -mb-16 overflow-hidden rounded-tl-[18px] border border-line bg-white shadow-glass lg:-mr-20 lg:mb-[-72px] lg:flex-1">
+            <div class="flex gap-1.5 border-b border-line px-4 py-2.5">
+              <span class="size-2.5 rounded-full bg-[#ff5f57]" />
+              <span class="size-2.5 rounded-full bg-[#febc2e]" />
+              <span class="size-2.5 rounded-full bg-[#28c840]" />
+            </div>
+            <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
+          </div>
+        </article>
+      )
+    }
+
+    {
+      security && (
+        <article data-theme="dark" data-scroll-item class="flex flex-col gap-3 rounded-surface border border-glass-border bg-bg p-8 text-text shadow-glass lg:row-span-2">
+          <div data-scroll-pop class={iconClasses}>
+            <ShieldCheck aria-hidden="true" size={22} />
+          </div>
+          <h3 class={`${titleClasses} mt-2`}>{security.title}</h3>
+          <p class="m-0">{security.text}</p>
+          <!-- Extrait réel de ce portfolio : validation côté serveur et en-tête de sécurité -->
+          <pre
+            aria-hidden="true"
+            class="m-0 mt-auto overflow-x-auto rounded-control border border-line bg-white/[0.04] p-4 font-mono text-[13px] leading-[1.7] text-text"
+          ><span class="text-muted">// contact-handler.ts</span>
+if (!isSameOrigin(request))
+  return jsonResponse(403, …);
+const parsed = contactSchema
+  .safeParse(payload);
+
+<span class="text-muted">// headers</span>
+<span class="text-sig-text">Content-Security-Policy</span>:
+  default-src 'self';
+  frame-ancestors 'none'</pre>
+          <ul class="m-0 mt-2 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
+            {security.skills.map((skill) => (
+              <li>
+                <Tag>{skill}</Tag>
+              </li>
+            ))}
+          </ul>
+        </article>
+      )
+    }
+
+    {
+      ai && (
+        <article data-scroll-item class="glass relative flex flex-col gap-3 overflow-hidden p-8 lg:col-span-2">
+          <!-- Halo orange : la couleur de l'état actif dans le design system -->
+          <div aria-hidden="true" class="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-sig/15 blur-3xl" />
+          <div class="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
+            <div data-scroll-pop class="flex size-12 flex-none items-center justify-center rounded-control bg-sig text-white">
+              <Sparkle aria-hidden="true" size={22} />
+            </div>
+            <div class="flex flex-col gap-3">
+              <h3 class={titleClasses}>{ai.title}</h3>
+              <p class="m-0 max-w-[60ch]">{ai.text}</p>
+              <ul class="m-0 mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
+                {ai.skills.map((skill) => (
+                  <li>
+                    <Tag>{skill}</Tag>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
+      )
+    }
   </div>
 </section>

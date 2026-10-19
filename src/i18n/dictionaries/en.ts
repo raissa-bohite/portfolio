@@ -59,17 +59,20 @@ export const en: Dictionary = {
         {
           icon: 'dashboard',
           title: 'Interfaces and dashboards',
-          text: 'Readable screens that make data useful, from showcase sites to back offices.'
+          text: 'Readable screens that make data useful, from showcase sites to back offices.',
+          skills: ["React", "Next.js", "Astro", "SvelteKit", "Tailwind CSS"]
         },
         {
           icon: 'security',
           title: 'Web security',
-          text: 'OWASP best practices built in from the start, not bolted on at the end.'
+          text: 'OWASP best practices built in from the start, not bolted on at the end.',
+          skills: ["OWASP", "CSP", "Zod validation", "Cisco certification"]
         },
         {
           icon: 'ai',
           title: 'AI and agentic development',
-          text: 'I integrate AI APIs into my products and develop with coding agents. I know where they help, where they fail, and I always review their output.'
+          text: 'I integrate AI APIs into my products and develop with coding agents. I know where they help, where they fail, and I always review their output.',
+          skills: ["Claude API", "Coding agents"]
         }
       ]
     },

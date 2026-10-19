@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" fill="none">
+  <!-- Illustration décorative : un tableau de bord abstrait aux couleurs du design system -->
+  <defs>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a23a0" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#4a23a0" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .bar { transform-box: fill-box; transform-origin: bottom; animation: grow 1.4s cubic-bezier(.2,.7,.2,1) both; }
+      .bar:nth-of-type(2) { animation-delay: .1s } .bar:nth-of-type(3) { animation-delay: .2s }
+      .bar:nth-of-type(4) { animation-delay: .3s } .bar:nth-of-type(5) { animation-delay: .4s }
+      .bar:nth-of-type(6) { animation-delay: .5s }
+      .line { stroke-dasharray: 520; animation: draw 2s cubic-bezier(.2,.7,.2,1) .3s both; }
+      .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-in-out 2s infinite; }
+      .ring { stroke-dasharray: 150 220; animation: ring 1.6s cubic-bezier(.2,.7,.2,1) .4s both; }
+      @keyframes grow { from { transform: scaleY(0) } }
+      @keyframes draw { from { stroke-dashoffset: 520 } to { stroke-dashoffset: 0 } }
+      @keyframes pulse { 50% { transform: scale(1.6); opacity: .35 } }
+      @keyframes ring { from { stroke-dasharray: 0 220 } }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important } }
+    </style>
+  </defs>
+
+  <rect width="640" height="400" fill="#faf8ff"/>
+
+  <!-- Barre latérale -->
+  <rect x="0" y="0" width="128" height="400" fill="#1e0f45"/>
+  <rect x="20" y="24" width="28" height="28" rx="8" fill="#f26a1b"/>
+  <rect x="56" y="32" width="52" height="10" rx="5" fill="#ffffff" fill-opacity=".85"/>
+  <rect x="14" y="84" width="100" height="30" rx="8" fill="#4a23a0"/>
+  <rect x="26" y="95" width="10" height="8" rx="2" fill="#e7deff"/>
+  <rect x="44" y="95" width="54" height="8" rx="4" fill="#e7deff"/>
+  <g fill="#ffffff" fill-opacity=".35">
+    <rect x="26" y="135" width="10" height="8" rx="2"/><rect x="44" y="135" width="46" height="8" rx="4"/>
+    <rect x="26" y="165" width="10" height="8" rx="2"/><rect x="44" y="165" width="58" height="8" rx="4"/>
+    <rect x="26" y="195" width="10" height="8" rx="2"/><rect x="44" y="195" width="40" height="8" rx="4"/>
+    <rect x="26" y="225" width="10" height="8" rx="2"/><rect x="44" y="225" width="52" height="8" rx="4"/>
+  </g>
+
+  <!-- En-tête -->
+  <rect x="152" y="22" width="150" height="14" rx="7" fill="#1e0f45"/>
+  <rect x="152" y="44" width="96" height="8" rx="4" fill="#b3a8d8"/>
+  <rect x="440" y="22" width="120" height="30" rx="15" fill="#ffffff" stroke="#e2d8f7"/>
+  <circle cx="596" cy="37" r="15" fill="#e7deff"/>
+  <circle cx="596" cy="37" r="6" fill="#4a23a0"/>
+
+  <!-- Indicateurs -->
+  <g>
+    <rect x="152" y="72" width="140" height="74" rx="14" fill="#ffffff" stroke="#e2d8f7"/>
+    <rect x="168" y="88" width="56" height="8" rx="4" fill="#b3a8d8"/>
+    <rect x="168" y="106" width="84" height="18" rx="6" fill="#1e0f45"/>
+    <rect x="258" y="110" width="22" height="10" rx="5" fill="#d9f2e3"/>
+
+    <rect x="304" y="72" width="140" height="74" rx="14" fill="#ffffff" stroke="#e2d8f7"/>
+    <rect x="320" y="88" width="64" height="8" rx="4" fill="#b3a8d8"/>
+    <rect x="320" y="106" width="70" height="18" rx="6" fill="#1e0f45"/>
+    <rect x="410" y="110" width="22" height="10" rx="5" fill="#ffe1cf"/>
+
+    <rect x="456" y="72" width="160" height="74" rx="14" fill="#4a23a0"/>
+    <rect x="472" y="88" width="60" height="8" rx="4" fill="#e7deff" fill-opacity=".8"/>
+    <rect x="472" y="106" width="90" height="18" rx="6" fill="#ffffff"/>
+  </g>
+
+  <!-- Courbe d'activité -->
+  <rect x="152" y="160" width="300" height="218" rx="16" fill="#ffffff" stroke="#e2d8f7"/>
+  <rect x="170" y="178" width="90" height="10" rx="5" fill="#1e0f45"/>
+  <g stroke="#efe9fb" stroke-width="1">
+    <line x1="170" y1="230" x2="434" y2="230"/><line x1="170" y1="270" x2="434" y2="270"/>
+    <line x1="170" y1="310" x2="434" y2="310"/><line x1="170" y1="350" x2="434" y2="350"/>
+  </g>
+  <path d="M170 320 C200 312 214 290 244 292 S290 318 318 288 S364 246 392 252 S420 232 434 222 V350 H170 Z" fill="url(#area)"/>
+  <path class="line" d="M170 320 C200 312 214 290 244 292 S290 318 318 288 S364 246 392 252 S420 232 434 222" stroke="#4a23a0" stroke-width="3" stroke-linecap="round"/>
+  <circle class="pulse" cx="434" cy="222" r="10" fill="#f26a1b" fill-opacity=".35"/>
+  <circle cx="434" cy="222" r="5" fill="#f26a1b"/>
+
+  <!-- Ventes par produit -->
+  <rect x="464" y="160" width="152" height="106" rx="16" fill="#ffffff" stroke="#e2d8f7"/>
+  <g>
+    <rect class="bar" x="482" y="222" width="14" height="30" rx="4" fill="#d9ccff"/>
+    <rect class="bar" x="503" y="206" width="14" height="46" rx="4" fill="#d9ccff"/>
+    <rect class="bar" x="524" y="214" width="14" height="38" rx="4" fill="#d9ccff"/>
+    <rect class="bar" x="545" y="186" width="14" height="66" rx="4" fill="#f26a1b"/>
+    <rect class="bar" x="566" y="198" width="14" height="54" rx="4" fill="#d9ccff"/>
+    <rect class="bar" x="587" y="210" width="14" height="42" rx="4" fill="#d9ccff"/>
+  </g>
+
+  <!-- Répartition -->
+  <rect x="464" y="276" width="152" height="102" rx="16" fill="#ffffff" stroke="#e2d8f7"/>
+  <circle cx="510" cy="327" r="30" stroke="#efe9fb" stroke-width="10"/>
+  <circle class="ring" cx="510" cy="327" r="30" stroke="#4a23a0" stroke-width="10" stroke-linecap="round" transform="rotate(-90 510 327)"/>
+  <rect x="552" y="310" width="48" height="8" rx="4" fill="#1e0f45"/>
+  <rect x="552" y="326" width="36" height="8" rx="4" fill="#b3a8d8"/>
+  <rect x="552" y="342" width="42" height="8" rx="4" fill="#ffe1cf"/>
+</svg>

@@ -65,16 +65,19 @@ const dictionary = {
           icon: "dashboard",
           title: "Interfaces et tableaux de bord",
           text: "Des écrans lisibles qui rendent les données utiles, du site vitrine au back-office.",
+          skills: ["React", "Next.js", "Astro", "SvelteKit", "Tailwind CSS"]
         },
         {
           icon: "security",
           title: "Sécurité web",
           text: "Les bonnes pratiques OWASP appliquées dès la conception, pas ajoutées à la fin.",
+          skills: ["OWASP", "CSP", "Validation Zod", "Certification Cisco"]
         },
         {
           icon: "ai",
           title: "IA et développement agentique",
           text: "J'intègre les API d'IA dans mes produits et je développe avec des agents de code. Je sais où ils aident, où ils échouent, et je vérifie ce qu'ils produisent.",
+          skills: ["Claude API", "Agents de code"]
         },
       ],
     },

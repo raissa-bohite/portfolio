@@ -1,6 +1,6 @@
 ---
 import Eyebrow from '@/components/atoms/Eyebrow.astro';
-import ProjectIndex from '@/components/organisms/ProjectIndex.astro';
+import ProjectRow from '@/components/molecules/ProjectRow.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
@@ -10,7 +10,8 @@ import { getProjectSummaries } from '@/lib/projects';
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
-const page = getDictionary(locale).projectsPage;
+const dictionary = getDictionary(locale);
+const page = dictionary.projectsPage;
 const projects = await getProjectSummaries(locale);
 const alternates = getAlternateLinks((alternateLocale) => getRoutePath('projects', alternateLocale));
 ---
@@ -23,5 +24,18 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('projects
     </div>
     <p data-scroll-item class="m-0 max-w-[60ch] text-xl leading-[1.55]">{page.intro}</p>
   </section>
-  <ProjectIndex locale={locale} projects={projects} variant="full" />
+  <!-- Projets en lignes alternées : la vignette colorée change de côté à chaque projet -->
+  <section aria-label={page.eyebrow} data-scroll-group class="container-page flex flex-col gap-24 pt-8 pb-28">
+    {
+      projects.map((project, index) => (
+        <ProjectRow
+          project={project}
+          position={index + 1}
+          actionLabel={project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
+          stackLabel={dictionary.projectPage.stack}
+          reversed={index % 2 === 1}
+        />
+      ))
+    }
+  </section>
 </BaseLayout>

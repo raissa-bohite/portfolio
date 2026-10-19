@@ -144,7 +144,7 @@ export const en: Dictionary = {
     eyebrow: 'Projects',
     title: 'Five products live, built with care',
     intro:
-      'An AI tutor, an online shop, school management software and two product websites. Hover a project to see its summary, open it to read more.',
+      'An AI tutor, an online shop, school management software and two product websites. Open a project to read its case study.',
     seoTitle: 'Projects · Raïssa Bohité',
     seoDescription: 'Five live products, from an AI tutor to e-commerce, designed and built with care.'
   },

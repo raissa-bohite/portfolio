@@ -146,7 +146,7 @@ export const de: Dictionary = {
     eyebrow: 'Projekte',
     title: 'Fünf Produkte online, mit Sorgfalt gebaut',
     intro:
-      'Ein KI-Tutor, ein Onlineshop, eine Schulverwaltungssoftware und zwei Produktwebsites. Fahren Sie über ein Projekt, um die Zusammenfassung zu sehen, und öffnen Sie es für mehr.',
+      'Ein KI-Tutor, ein Onlineshop, eine Schulverwaltungssoftware und zwei Produktwebsites. Öffnen Sie ein Projekt, um seine Fallstudie zu lesen.',
     seoTitle: 'Projekte · Raïssa Bohité',
     seoDescription: 'Fünf Produkte online, vom KI-Tutor bis zum E-Commerce, mit Sorgfalt gestaltet und entwickelt.'
   },

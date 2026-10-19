@@ -154,7 +154,7 @@ const dictionary = {
     eyebrow: "Projets",
     title: "Cinq produits en ligne, conçus avec soin",
     intro:
-      "Un tuteur IA, une boutique en ligne, un logiciel de gestion scolaire, deux sites produits. Survolez un projet pour en voir le résumé, ouvrez-le pour la suite.",
+      "Un tuteur IA, une boutique en ligne, un logiciel de gestion scolaire, deux sites produits. Ouvrez un projet pour lire son étude de cas.",
     seoTitle: "Projets · Raïssa Bohité",
     seoDescription:
       "Cinq produits en ligne, du tuteur IA à l’e-commerce, conçus et développés avec soin.",

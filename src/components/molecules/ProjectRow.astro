@@ -1,0 +1,63 @@
+---
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import Tag from '@/components/atoms/Tag.astro';
+import ProjectVisual from '@/components/molecules/ProjectVisual.astro';
+import type { ProjectSummary } from '@/lib/projects';
+
+type Props = {
+  project: ProjectSummary;
+  position: number;
+  actionLabel: string;
+  stackLabel: string;
+  reversed?: boolean;
+};
+
+const { project, position, actionLabel, stackLabel, reversed = false } = Astro.props;
+const number = String(position).padStart(2, '0');
+---
+
+<!-- Ligne de la page Projets : la vignette colorée d'un côté, la fiche du projet de l'autre, en alternance -->
+<article data-scroll-item class="group relative grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+  <div class:list={['lg:col-span-7', reversed && 'lg:order-2']}>
+    <ProjectVisual project={project} actionLabel={actionLabel} aspectClass="aspect-[4/3] lg:aspect-[16/11]" />
+  </div>
+  <div class:list={['flex flex-col gap-4 lg:col-span-5', reversed && 'lg:order-1']}>
+    <p class="m-0 flex items-center gap-3 text-sm font-semibold">
+      <span class="font-mono text-sig-text">{number}</span>
+      <span class="text-action">{project.kind}</span>
+    </p>
+    <h2 class="m-0 text-[clamp(32px,3.6vw,48px)] leading-[1.05] font-bold tracking-[-0.02em] text-ink">
+      <!-- Le lien couvre toute la ligne, mais son texte reste le nom du projet -->
+      <a href={project.href} class="text-ink no-underline after:absolute after:inset-0 after:rounded-surface hover:text-action focus-visible:outline-none">
+        {project.name}
+      </a>
+    </h2>
+    <p class="m-0 text-lg leading-[1.6]">{project.description}</p>
+    <p class="m-0 text-[15px] font-medium text-muted">{project.role}</p>
+    <ul class="m-0 flex list-none flex-wrap gap-2 p-0" aria-label={stackLabel}>
+      {
+        project.stack.map((technology) => (
+          <li>
+            <Tag>{technology}</Tag>
+          </li>
+        ))
+      }
+    </ul>
+    <span
+      aria-hidden="true"
+      class="mt-2 inline-flex min-h-12 items-center gap-2 self-start rounded-control bg-action px-5 text-[15px] font-semibold text-action-ink transition-colors group-hover:bg-action-hover"
+    >
+      {actionLabel}
+      <ArrowUpRight size={18} class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </span>
+  </div>
+</article>
+
+<style>
+  /* Le contour de focus s'affiche sur toute la ligne, pas seulement sur le nom */
+  article:has(a:focus-visible) {
+    outline: 3px solid var(--sig);
+    outline-offset: 8px;
+    border-radius: var(--radius-surface);
+  }
+</style>

@@ -27,5 +27,14 @@
     "en": "Fassbar home page, the AI tutor for language courses",
     "de": "Startseite von Fassbar, dem KI-Tutor für Sprachkurse"
   },
-  "liveUrl": "https://fassbar-new.pages.dev"
+  "liveUrl": "https://fassbar-new.pages.dev",
+  "highlight": {
+    "fr": "110 inscrits en 24 h sur la liste d'attente",
+    "en": "110 waitlist sign-ups in 24 hours",
+    "de": "110 Anmeldungen in 24 Stunden auf der Warteliste"
+  },
+  "mobileShot": {
+    "image": "../../assets/case-studies/fassbar/dashboard.jpg",
+    "screen": "light"
+  }
 }

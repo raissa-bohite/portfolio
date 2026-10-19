@@ -1,7 +1,11 @@
 {
   "order": 2,
   "name": "Yofeii Délices",
-  "kind": { "fr": "E-commerce et tableau de bord", "en": "E-commerce and dashboard", "de": "E-Commerce und Dashboard" },
+  "kind": {
+    "fr": "E-commerce et tableau de bord",
+    "en": "E-commerce and dashboard",
+    "de": "E-Commerce und Dashboard"
+  },
   "role": {
     "fr": "Client · interfaces du site et du tableau de bord",
     "en": "Client · storefront and dashboard interfaces",
@@ -12,12 +16,20 @@
     "en": "The online shop of a natural spice brand, and the back office that runs it.",
     "de": "Der Onlineshop einer Marke für natürliche Gewürzmischungen und das Backoffice dahinter."
   },
-  "stack": ["Astro", "React"],
+  "stack": [
+    "Astro",
+    "React"
+  ],
   "cover": "../../assets/projects/yofeii.jpg",
   "coverAlt": {
     "fr": "Boutique en ligne Yofeii Délices : collection de mélanges d'épices",
     "en": "Yofeii Délices online shop: collection of spice blends",
     "de": "Onlineshop von Yofeii Délices: Kollektion von Gewürzmischungen"
   },
-  "liveUrl": "https://yofeii-delices.com"
+  "liveUrl": "https://yofeii-delices.com",
+  "highlight": {
+    "fr": "Boutique en ligne et back-office",
+    "en": "Online shop and back office",
+    "de": "Onlineshop und Backoffice"
+  }
 }

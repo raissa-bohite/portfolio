@@ -23,7 +23,10 @@ const projects = defineCollection({
       cover: image(),
       coverAlt: localizedText,
       liveUrl: z.url().optional(),
-      gallery: z.array(z.object({ image: image(), alt: localizedText })).default([])
+      gallery: z.array(z.object({ image: image(), alt: localizedText })).default([]),
+      // Vitrine de l'accueil : un fait vérifiable mis en avant, et l'écran mobile quand il existe
+      highlight: localizedText.optional(),
+      mobileShot: z.object({ image: image(), screen: z.enum(['brand', 'light']).default('light') }).optional()
     })
 });
 

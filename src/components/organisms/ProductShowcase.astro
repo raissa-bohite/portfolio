@@ -1,0 +1,99 @@
+---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Pause from '@lucide/astro/icons/pause';
+import Play from '@lucide/astro/icons/play';
+import IconButton from '@/components/atoms/IconButton.astro';
+import DeviceLaptop from '@/components/molecules/DeviceLaptop.astro';
+import DevicePhone from '@/components/molecules/DevicePhone.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+import type { ProjectSummary } from '@/lib/projects';
+
+type Props = {
+  locale: Locale;
+  projects: ProjectSummary[];
+};
+
+const { locale, projects } = Astro.props;
+const dictionary = getDictionary(locale);
+const labels = dictionary.home.showcase;
+---
+
+<!-- Vitrine produit : onglets ARIA, un panneau par projet avec ses appareils, défilement automatique avec pause -->
+<section
+  data-showcase
+  aria-label={labels.label}
+  data-label-pause={labels.pause}
+  data-label-play={labels.play}
+  class="group/showcase flex flex-col gap-6"
+>
+  <div class="flex items-center justify-between gap-3">
+    <div role="tablist" aria-label={labels.tablistLabel} class="-my-1 flex min-w-0 gap-1.5 overflow-x-auto py-1 [scrollbar-width:none] sm:flex-wrap">
+      {
+        projects.map((project, index) => (
+          <button
+            type="button"
+            role="tab"
+            id={`showcase-tab-${project.slug}`}
+            aria-controls={`showcase-panel-${project.slug}`}
+            aria-selected={index === 0 ? 'true' : 'false'}
+            tabindex={index === 0 ? 0 : -1}
+            data-tab={index}
+            class="relative min-h-10 flex-none cursor-pointer overflow-hidden rounded-full whitespace-nowrap border border-glass-border bg-glass-strong px-4 font-sans text-sm font-semibold text-muted transition-colors hover:text-ink aria-selected:border-transparent aria-selected:bg-ink aria-selected:text-bg"
+          >
+            {project.name}
+            <span aria-hidden="true" data-tab-progress class="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-sig" />
+          </button>
+        ))
+      }
+    </div>
+    <IconButton label={labels.pause} size="small" data-action="pause" data-paused="false" class="group/pause hidden flex-none group-data-ready/showcase:inline-flex">
+      <Pause aria-hidden="true" size={18} class="group-data-[paused=true]/pause:hidden" />
+      <Play aria-hidden="true" size={18} class="hidden group-data-[paused=true]/pause:block" />
+    </IconButton>
+  </div>
+
+  {
+    projects.map((project, index) => (
+      <div
+        role="tabpanel"
+        id={`showcase-panel-${project.slug}`}
+        aria-labelledby={`showcase-tab-${project.slug}`}
+        data-panel={index}
+        hidden={index !== 0}
+        class="flex flex-col gap-6"
+      >
+        <div data-stage class:list={['relative pb-[4%]', project.mobileShot ? 'pr-[12%]' : 'px-[6%]']}>
+          <DeviceLaptop image={project.cover} alt={project.coverAlt} loading={index === 0 ? 'eager' : 'lazy'} />
+          {project.mobileShot && (
+            <div data-phone class="absolute right-0 bottom-0 w-[24%] min-w-[96px]">
+              <DevicePhone image={project.mobileShot.image} alt="" screen={project.mobileShot.screen} size="compact" />
+            </div>
+          )}
+        </div>
+        <div data-caption class="flex flex-wrap items-end justify-between gap-4">
+          <div class="flex flex-col gap-1">
+            <p class="m-0 text-sm font-medium text-muted">{project.kind}</p>
+            <h2 class="m-0 text-2xl leading-tight font-bold text-ink">{project.name}</h2>
+            {project.highlight && (
+              <p class="m-0 flex items-center gap-2 text-[15px] font-semibold text-sig-text">
+                <span aria-hidden="true" class="size-1.5 rounded-full bg-sig" />
+                {project.highlight}
+              </p>
+            )}
+          </div>
+          <a href={project.href} class="inline-flex min-h-11 items-center gap-2 font-semibold no-underline">
+            {project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
+            <ArrowRight aria-hidden="true" size={18} />
+          </a>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  import { setupShowcase } from '@/scripts/showcase';
+
+  for (const showcase of document.querySelectorAll<HTMLElement>('[data-showcase]')) setupShowcase(showcase);
+</script>

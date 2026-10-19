@@ -73,7 +73,7 @@ results:
       label: écrans dans le back-office
     - value: "7"
       label: semaines pour développer le back-office
-    - value: "~40"
+    - value: "40"
       label: endpoints simulés en mode démo
     - value: "2"
       label: failles de paiement repérées et documentées

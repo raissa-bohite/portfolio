@@ -73,7 +73,7 @@ results:
       label: Ansichten im Backoffice
     - value: "7"
       label: Wochen Entwicklung für das Backoffice
-    - value: "~40"
+    - value: "40"
       label: simulierte Endpunkte im Demo-Modus
     - value: "2"
       label: Zahlungslücken gefunden und dokumentiert

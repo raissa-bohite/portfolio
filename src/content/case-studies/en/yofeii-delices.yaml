@@ -73,7 +73,7 @@ results:
       label: screens in the back office
     - value: "7"
       label: weeks to build the back office
-    - value: "~40"
+    - value: "40"
       label: endpoints simulated in demo mode
     - value: "2"
       label: payment flaws found and documented

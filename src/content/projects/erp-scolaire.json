@@ -1,11 +1,7 @@
 {
   "order": 3,
   "name": "ERP scolaire",
-  "kind": {
-    "fr": "Application métier",
-    "en": "Business application",
-    "de": "Fachanwendung"
-  },
+  "kind": { "fr": "Application métier", "en": "Business application", "de": "Fachanwendung" },
   "role": {
     "fr": "Client · développement front-end",
     "en": "Client · front-end development",
@@ -16,21 +12,11 @@
     "en": "Management software for multiple schools: enrolment, registrations, payments and arrears, in use at a pilot client.",
     "de": "Verwaltungssoftware für mehrere Schulen: Schülerzahlen, Anmeldungen, Zahlungen und Rückstände, im Einsatz bei einem Pilotkunden."
   },
-  "stack": [
-    "Next.js",
-    "Tailwind",
-    "Axios",
-    "MSW"
-  ],
+  "stack": ["Next.js", "Tailwind", "Axios", "MSW"],
   "cover": "../../assets/projects/erp.jpg",
   "coverAlt": {
     "fr": "Tableau de bord de l'ERP scolaire d'EPC AL ANIFIYAT : effectifs et croissance des inscriptions",
     "en": "EPC AL ANIFIYAT school ERP dashboard: enrolment figures and growth",
     "de": "Dashboard des Schul-ERP von EPC AL ANIFIYAT: Schülerzahlen und Anmeldungsentwicklung"
-  },
-  "highlight": {
-    "fr": "En service chez un client pilote",
-    "en": "In use at a pilot client",
-    "de": "Im Einsatz bei einem Pilotkunden"
   }
 }

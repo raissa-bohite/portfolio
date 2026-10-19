@@ -15,8 +15,6 @@ export type ProjectSummary = {
   href: string;
   liveUrl: string | undefined;
   gallery: { image: ImageMetadata; alt: string }[];
-  highlight: string | undefined;
-  mobileShot: { image: ImageMetadata; screen: 'brand' | 'light' } | undefined;
   hasCaseStudy: boolean;
 };
 
@@ -36,8 +34,6 @@ export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Loc
     href: getProjectPath(entry.id, locale),
     liveUrl: data.liveUrl,
     gallery: data.gallery.map((item) => ({ image: item.image, alt: item.alt[locale] })),
-    highlight: data.highlight?.[locale],
-    mobileShot: data.mobileShot,
     hasCaseStudy
   };
 }

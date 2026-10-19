@@ -6,7 +6,7 @@ export function playIntro(hero: HTMLElement): void {
   if (prefersReducedMotion()) return;
   const words = hero.querySelectorAll('[data-word]');
   const reveals = hero.querySelectorAll('[data-reveal]');
-  const stage = hero.querySelector('[data-showcase]');
+  const stage = hero.querySelector('[data-carousel]');
   const timeline = gsap.timeline({ delay: 1.1, defaults: { ease: 'power3.out' } });
   timeline.from(words, { yPercent: 110, duration: 0.7, stagger: 0.08 });
   if (stage) timeline.from(stage, { opacity: 0, y: 40, duration: 0.9 }, '-=0.5');

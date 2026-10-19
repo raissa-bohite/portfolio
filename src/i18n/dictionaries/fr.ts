@@ -7,7 +7,7 @@ type Widen<Value> = Value extends string
 
 const dictionary = {
   meta: {
-    homeTitle: 'Raïssa Bohité · Développeuse front-end à Abidjan',
+    homeTitle: 'Raïssa Bohité · Développeuse front-end, orientée full-stack',
     homeDescription:
       'Interfaces et tableaux de bord clairs, accessibles et sécurisés. Découvrez mes projets : Fassbar, Yofeii Délices, Ateliya, Moomen Pro.',
     portraitAlt: 'Portrait de Raïssa Bohité'
@@ -38,7 +38,7 @@ const dictionary = {
     signature: 'comprendre().then(construire);',
     titleWords: ['Comprendre', 'avant', 'de', 'construire.'],
     intro:
-      'Développeuse front-end à Abidjan. Je conçois des interfaces et des tableaux de bord clairs, accessibles et sécurisés.',
+      'Développeuse front-end, orientée full-stack, à Abidjan. Je conçois des interfaces et des tableaux de bord clairs, accessibles et sécurisés, et je construis le back-end quand le projet le demande.',
     ctaProjects: 'Voir les projets',
     carousel: {
       label: 'Aperçu des projets',
@@ -73,8 +73,8 @@ const dictionary = {
         },
         {
           icon: 'ai',
-          title: 'IA dans le flux de travail',
-          text: "Des outils d'IA utilisés avec méthode : je sais où ils aident, où ils échouent, et je vérifie ce qu'ils produisent."
+          title: 'IA et développement agentique',
+          text: "J'intègre les API d'IA dans mes produits et je développe avec des agents de code. Je sais où ils aident, où ils échouent, et je vérifie ce qu'ils produisent."
         }
       ]
     },
@@ -197,7 +197,7 @@ const dictionary = {
     eyebrow: 'À propos',
     title: 'De la linguistique au code',
     intro:
-      "Je suis Raïssa Bohité, développeuse front-end à Abidjan. Avant d'écrire du code, j'ai appris à décortiquer une langue étrangère. C'est la même méthode que j'applique aujourd'hui à chaque interface.",
+      "Je suis Raïssa Bohité, développeuse front-end orientée full-stack, à Abidjan. Avant d'écrire du code, j'ai appris à décortiquer une langue étrangère. C'est la même méthode que j'applique aujourd'hui à chaque interface.",
     contactCta: 'Me contacter',
     location: "Abidjan, Côte d'Ivoire",
     story: {
@@ -253,9 +253,9 @@ const dictionary = {
     roadmap: {
       eyebrow: 'Et ensuite',
       title: 'Là où je veux aller',
-      intro: "Le front-end est ma base. J'élargis progressivement vers l'infrastructure, la sécurité et l'IA responsable.",
+      intro: "Le front-end est ma base, et je construis déjà le back-end de mes propres produits. J'élargis progressivement vers l'infrastructure, la sécurité et l'IA responsable.",
       steps: [
-        { stage: "Aujourd'hui", title: 'Développement front-end', text: 'Interfaces et tableaux de bord en production.' },
+        { stage: "Aujourd'hui", title: 'Front-end, orientée full-stack', text: 'Interfaces et tableaux de bord en production, back-end sur mes propres produits.' },
         { stage: 'Prochaine étape', title: 'Cloud et DevSecOps', text: 'Déployer et sécuriser des applications de bout en bout.' },
         { stage: 'Ensuite', title: 'IA et cybersécurité', text: 'Comprendre les modèles de langage et leurs risques.' },
         { stage: 'Objectif', title: "Gouvernance de l'IA", text: "Aider les organisations à utiliser l'IA de façon sûre et conforme." }

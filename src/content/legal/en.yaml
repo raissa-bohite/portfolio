@@ -10,7 +10,7 @@ sections:
     title: Publisher
     facts:
       - { term: Name, value: Raïssa Bohité }
-      - { term: Occupation, value: Front-end developer }
+      - { term: Occupation, value: "Front-end developer, full-stack leaning" }
       - { term: Location, value: "Abidjan, Côte d'Ivoire" }
       - { term: Contact, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
       - { term: Publication director, value: Raïssa Bohité }

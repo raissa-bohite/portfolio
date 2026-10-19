@@ -2,7 +2,7 @@ import type { Dictionary } from './fr';
 
 export const de: Dictionary = {
   meta: {
-    homeTitle: 'Raïssa Bohité · Front-End-Entwicklerin in Abidjan',
+    homeTitle: 'Raïssa Bohité · Front-End-Entwicklerin mit Full-Stack-Fokus',
     homeDescription:
       'Klare, barrierefreie und sichere Oberflächen und Dashboards. Entdecken Sie meine Projekte: Fassbar, Yofeii Délices, Ateliya, Moomen Pro.',
     portraitAlt: 'Porträt von Raïssa Bohité'
@@ -33,7 +33,7 @@ export const de: Dictionary = {
     signature: 'comprendre().then(construire);',
     titleWords: ['Erst', 'verstehen,', 'dann', 'bauen.'],
     intro:
-      'Front-End-Entwicklerin in Abidjan. Ich gestalte und entwickle klare, barrierefreie und sichere Oberflächen und Dashboards.',
+      'Front-End-Entwicklerin mit Full-Stack-Fokus in Abidjan. Ich gestalte und entwickle klare, barrierefreie und sichere Oberflächen und Dashboards und baue das Back-End, wenn das Projekt es braucht.',
     ctaProjects: 'Projekte ansehen',
     carousel: {
       label: 'Projektvorschau',
@@ -68,8 +68,8 @@ export const de: Dictionary = {
         },
         {
           icon: 'ai',
-          title: 'KI im Arbeitsalltag',
-          text: 'KI-Werkzeuge mit Methode: Ich weiß, wo sie helfen und wo nicht, und prüfe immer ihre Ergebnisse.'
+          title: 'KI und agentische Entwicklung',
+          text: 'Ich binde KI-APIs in meine Produkte ein und entwickle mit Coding-Agenten. Ich weiß, wo sie helfen und wo nicht, und prüfe immer ihre Ergebnisse.'
         }
       ]
     },
@@ -189,7 +189,7 @@ export const de: Dictionary = {
     eyebrow: 'Über mich',
     title: 'Von der Linguistik zum Code',
     intro:
-      'Ich bin Raïssa Bohité, Front-End-Entwicklerin in Abidjan. Bevor ich Code geschrieben habe, habe ich gelernt, eine Fremdsprache zu zerlegen. Dieselbe Methode wende ich heute auf jede Oberfläche an.',
+      'Ich bin Raïssa Bohité, Front-End-Entwicklerin mit Full-Stack-Fokus in Abidjan. Bevor ich Code geschrieben habe, habe ich gelernt, eine Fremdsprache zu zerlegen. Dieselbe Methode wende ich heute auf jede Oberfläche an.',
     contactCta: 'Kontakt aufnehmen',
     location: 'Abidjan, Côte d’Ivoire',
     story: {
@@ -245,9 +245,9 @@ export const de: Dictionary = {
     roadmap: {
       eyebrow: 'Wie es weitergeht',
       title: 'Wohin ich will',
-      intro: 'Das Front-End ist meine Basis. Schritt für Schritt erweitere ich mein Profil um Infrastruktur, Sicherheit und verantwortungsvolle KI.',
+      intro: 'Das Front-End ist meine Basis, und das Back-End meiner eigenen Produkte baue ich bereits selbst. Schritt für Schritt erweitere ich mein Profil um Infrastruktur, Sicherheit und verantwortungsvolle KI.',
       steps: [
-        { stage: 'Heute', title: 'Front-End-Entwicklung', text: 'Oberflächen und Dashboards im Produktivbetrieb.' },
+        { stage: 'Heute', title: 'Front-End mit Full-Stack-Fokus', text: 'Oberflächen und Dashboards im Produktivbetrieb, Back-End in eigenen Produkten.' },
         { stage: 'Nächster Schritt', title: 'Cloud und DevSecOps', text: 'Anwendungen durchgängig bereitstellen und absichern.' },
         { stage: 'Danach', title: 'KI und Cybersicherheit', text: 'Sprachmodelle und ihre Risiken verstehen.' },
         { stage: 'Ziel', title: 'KI-Governance', text: 'Organisationen helfen, KI sicher und regelkonform einzusetzen.' }

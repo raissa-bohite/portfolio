@@ -2,7 +2,7 @@ import type { Dictionary } from './fr';
 
 export const en: Dictionary = {
   meta: {
-    homeTitle: 'Raïssa Bohité · Front-end developer in Abidjan',
+    homeTitle: 'Raïssa Bohité · Front-end developer, full-stack leaning',
     homeDescription:
       'Clear, accessible and secure interfaces and dashboards. Explore my projects: Fassbar, Yofeii Délices, Ateliya, Moomen Pro.',
     portraitAlt: 'Portrait of Raïssa Bohité'
@@ -33,7 +33,7 @@ export const en: Dictionary = {
     signature: 'comprendre().then(construire);',
     titleWords: ['Understand', 'before', 'you', 'build.'],
     intro:
-      'Front-end developer based in Abidjan. I design and build clear, accessible and secure interfaces and dashboards.',
+      'Front-end developer, full-stack leaning, based in Abidjan. I design and build clear, accessible and secure interfaces and dashboards, and I build the back end when the project needs it.',
     ctaProjects: 'View projects',
     carousel: {
       label: 'Project preview',
@@ -68,8 +68,8 @@ export const en: Dictionary = {
         },
         {
           icon: 'ai',
-          title: 'AI in the workflow',
-          text: 'AI tools used with method: I know where they help, where they fail, and I always review their output.'
+          title: 'AI and agentic development',
+          text: 'I integrate AI APIs into my products and develop with coding agents. I know where they help, where they fail, and I always review their output.'
         }
       ]
     },
@@ -187,7 +187,7 @@ export const en: Dictionary = {
     eyebrow: 'About',
     title: 'From linguistics to code',
     intro:
-      "I'm Raïssa Bohité, a front-end developer in Abidjan. Before writing code, I learned to break down a foreign language. I apply the same method to every interface today.",
+      "I'm Raïssa Bohité, a full-stack-leaning front-end developer in Abidjan. Before writing code, I learned to break down a foreign language. I apply the same method to every interface today.",
     contactCta: 'Get in touch',
     location: "Abidjan, Côte d'Ivoire",
     story: {
@@ -243,9 +243,9 @@ export const en: Dictionary = {
     roadmap: {
       eyebrow: "What's next",
       title: "Where I'm heading",
-      intro: "Front-end is my foundation. I'm gradually expanding into infrastructure, security and responsible AI.",
+      intro: "Front-end is my foundation, and I already build the back end of my own products. I'm gradually expanding into infrastructure, security and responsible AI.",
       steps: [
-        { stage: 'Today', title: 'Front-end development', text: 'Interfaces and dashboards in production.' },
+        { stage: 'Today', title: 'Front-end, full-stack leaning', text: 'Interfaces and dashboards in production, back end on my own products.' },
         { stage: 'Next step', title: 'Cloud and DevSecOps', text: 'Deploying and securing applications end to end.' },
         { stage: 'Then', title: 'AI and cybersecurity', text: 'Understanding language models and their risks.' },
         { stage: 'Goal', title: 'AI governance', text: 'Helping organisations use AI safely and compliantly.' }

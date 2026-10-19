@@ -10,7 +10,7 @@ sections:
     title: Anbieterin der Website
     facts:
       - { term: Name, value: Raïssa Bohité }
-      - { term: Tätigkeit, value: Front-End-Entwicklerin }
+      - { term: Tätigkeit, value: Front-End-Entwicklerin mit Full-Stack-Fokus }
       - { term: Standort, value: "Abidjan, Côte d’Ivoire" }
       - { term: Kontakt, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
       - { term: Inhaltlich verantwortlich, value: Raïssa Bohité }

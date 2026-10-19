@@ -10,7 +10,7 @@ sections:
     title: Éditrice du site
     facts:
       - { term: Nom, value: Raïssa Bohité }
-      - { term: Activité, value: Développeuse front-end }
+      - { term: Activité, value: "Développeuse front-end, orientée full-stack" }
       - { term: Localisation, value: "Abidjan, Côte d'Ivoire" }
       - { term: Contact, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
       - { term: Directrice de la publication, value: Raïssa Bohité }

@@ -1,0 +1,82 @@
+project: yofeii-delices
+locale: en
+eyebrow: Case study · Client project
+title: Yofeii Délices, a spice shop and its back office
+lead: "A seasoning and marinade brand needed to sell online and run its shop without relying on a developer. I built the whole front end: the site where customers buy, and the back office where the team runs the shop."
+seoTitle: Yofeii Délices, e-commerce and back office · Case study
+seoDescription: An Astro and React online shop with Stripe payments, and a React back office of more than thirty screens for catalogue, orders and customers.
+meta:
+  role: Lead front-end developer
+  team: With a back-end developer (Laravel API)
+  period: "2026"
+  status: Live
+context:
+  - "Yofeii Délices sells seasonings and marinades for thieb, fish, meat and gratins. The brand needed a site where customers can discover the products, fill a cart, create an account and pay securely online."
+  - "It also needed an internal tool. The goal was simple: make the team independent. Adding a product, tracking an order, refunding a customer or changing a banner on the site should no longer require a developer."
+role:
+  paragraphs:
+    - "I built the entire front end of the project: the e-commerce site and the back office. The back end, a Laravel API, was built in parallel by another developer, with whom I worked throughout the project."
+  highlights:
+    - E-commerce site in Astro and React
+    - Back office with more than 30 screens
+    - Stripe payments and security
+    - Design system and visual redesign
+approach:
+  paragraphs:
+    - "On the site, visitors browse the catalogue, view each product with its photos, ingredients and customer reviews, and can buy bundles that group several products. The cart is kept when the page is closed, and saved on the server when the customer is signed in. Customers sign in with a code sent by email, shipping costs are calculated from the country and the cart weight, and payment goes through Stripe: card, Apple Pay or Google Pay."
+    - "The back office has more than thirty screens across about fifteen business areas. Its core is the catalogue: products, categories, ingredients and bundles with their own stock. Administrators track each order, change its status, set a delivery date and can refund a Stripe payment in part or in full. They also manage shipping countries, customers, newsletters, review and testimonial moderation, and the home page banners. A dashboard sums up activity: revenue, trending products and latest orders."
+  gallery:
+    - image: ../../../assets/case-studies/yofeii/product.jpg
+      alt: "Product page: photos, discounted price, size, quantity, customer reviews and Add to cart button"
+      caption: Site · product page
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/collection.jpg
+      alt: Collection with category filters and sorting by relevance, price or rating
+      caption: Site · collection and filters
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/cart.jpg
+      alt: Cart with quantity controls, removal and order summary
+      caption: Site · cart
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/checkout.jpg
+      alt: "Checkout: sign in or guest purchase, personal and delivery details, order summary"
+      caption: Site · checkout
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
+      alt: "Back office, catalogue: products with category, price, stock status and filters"
+      caption: Back office · catalogue and stock
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
+      alt: "Back office, banners: home page visuals with their titles, ready to edit or delete"
+      caption: Back office · site banners
+      frame: desktop
+technical:
+  intro: The API was evolving alongside my front end, and the site takes payments. Every choice answers one of these two constraints.
+  decisions:
+    - title: An always up-to-date catalogue
+      text: "The site was first generated once, at deployment: a product added in the back office did not appear. I spotted the problem, explained the solution to the back-end team in a written document, then switched the site to server rendering. Products, prices and stock are now always current."
+    - title: Payment confirmed by Stripe
+      text: "While reviewing the code, I found that the browser was telling the server an order had been paid. I removed that flow: Stripe now notifies the server directly, and the site waits for that confirmation."
+    - title: Prices recalculated by the server
+      text: "Prices were sent by the browser, so they could be changed. The fix had to happen on the server: I wrote a document for the back-end team with an example attack and the list of fixes to make."
+    - title: A single gateway to the API
+      text: "In the back office, every request goes through one apiFetch function, below plain TypeScript services and TanStack Query hooks. When the API renamed a field, I changed one file and no page."
+    - title: A demo mode kept out of production
+      text: "When the API was down, an environment variable simulated about forty endpoints in memory. This code is loaded dynamically, so it never ships to production, and a badge reminds users the data is fictitious."
+    - title: A design system for thirty screens
+      text: "Tokens, light and dark themes, and base components organised with Atomic Design. This foundation let me redo the whole visual design in June without rewriting the page logic."
+  stack: [Astro, React 19, TypeScript, Vite, TanStack Query, Tailwind CSS 4, React Router 7, Framer Motion, Stripe, Laravel API]
+results:
+  intro: "The site and the back office are live. The brand manages its catalogue, orders and content on its own."
+  metrics:
+    - value: 30+
+      label: screens in the back office
+    - value: "7"
+      label: weeks to build the back office
+    - value: "~40"
+      label: endpoints simulated in demo mode
+    - value: "2"
+      label: payment flaws found and documented
+learnings:
+  - "Looking back, I would write tests for the back office. The service layer lends itself well to testing, since it does not depend on React, and their absence is a real gap for a tool that handles payments."
+  - "I would also store the session token in an httpOnly cookie rather than in the browser's localStorage, to better protect access to a tool that can refund customers."

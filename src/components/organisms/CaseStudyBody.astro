@@ -3,6 +3,7 @@ import Tag from '@/components/atoms/Tag.astro';
 import DecisionCard from '@/components/molecules/DecisionCard.astro';
 import MetricCard from '@/components/molecules/MetricCard.astro';
 import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
+import ScreenshotFrame from '@/components/molecules/ScreenshotFrame.astro';
 import TableOfContents from '@/components/molecules/TableOfContents.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
@@ -20,6 +21,8 @@ const sections = [
   { id: 'results', title: labels.sections.results },
   { id: 'learnings', title: labels.sections.learnings }
 ] as const;
+const phoneShots = caseStudy.approach.gallery.filter((item) => item.frame === 'phone');
+const desktopShots = caseStudy.approach.gallery.filter((item) => item.frame === 'desktop');
 const paragraphClasses = 'm-0 max-w-[64ch]';
 const headingClasses = 'm-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold tracking-[-0.015em] text-ink';
 ---
@@ -53,10 +56,19 @@ const headingClasses = 'm-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold
         <h2 id="approach-title" class={headingClasses}>{labels.sections.approach}</h2>
         {caseStudy.approach.paragraphs.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
         {
-          caseStudy.approach.gallery.length > 0 && (
+          phoneShots.length > 0 && (
             <div class="mt-2 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6">
-              {caseStudy.approach.gallery.map((item) => (
+              {phoneShots.map((item) => (
                 <PhoneFrame image={item.image} alt={item.alt} caption={item.caption} screen={item.screen} />
+              ))}
+            </div>
+          )
+        }
+        {
+          desktopShots.length > 0 && (
+            <div class="mt-2 grid gap-6 sm:grid-cols-2">
+              {desktopShots.map((item) => (
+                <ScreenshotFrame image={item.image} alt={item.alt} caption={item.caption} />
               ))}
             </div>
           )

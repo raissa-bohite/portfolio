@@ -53,7 +53,9 @@ const caseStudies = defineCollection({
               alt: z.string().min(1),
               caption: z.string().min(1),
               // Teinte du haut de l'écran capturé : la barre d'état du mockup s'y raccorde
-              screen: z.enum(['brand', 'light']).default('light')
+              screen: z.enum(['brand', 'light']).default('light'),
+              // Capture mobile dans une maquette de téléphone, ou capture d'ordinateur en pleine largeur
+              frame: z.enum(['phone', 'desktop']).default('phone')
             })
           )
           .default([])

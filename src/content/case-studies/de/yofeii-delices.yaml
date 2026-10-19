@@ -1,0 +1,82 @@
+project: yofeii-delices
+locale: de
+eyebrow: Fallstudie · Kundenprojekt
+title: Yofeii Délices, ein Gewürzshop und sein Backoffice
+lead: "Eine Marke für Würzmischungen und Marinaden wollte online verkaufen und ihren Shop ohne Entwickler verwalten. Ich habe das gesamte Frontend gebaut: die Website, auf der Kunden einkaufen, und das Backoffice, mit dem das Team den Shop betreibt."
+seoTitle: Yofeii Délices, E-Commerce und Backoffice · Fallstudie
+seoDescription: Onlineshop mit Astro, React und Stripe-Zahlung sowie ein React-Backoffice mit über dreißig Ansichten für Katalog, Bestellungen und Kunden.
+meta:
+  role: Leitende Frontend-Entwicklerin
+  team: Mit einem Backend-Entwickler (Laravel-API)
+  period: "2026"
+  status: Online
+context:
+  - "Yofeii Délices verkauft Würzmischungen und Marinaden für Thieb, Fisch, Fleisch und Gratins. Die Marke brauchte eine Website, auf der Kunden die Produkte entdecken, einen Warenkorb füllen, ein Konto anlegen und sicher online bezahlen."
+  - "Außerdem brauchte sie ein internes Werkzeug. Das Ziel war einfach: Das Team sollte selbstständig arbeiten. Ein Produkt anlegen, eine Bestellung verfolgen, einem Kunden Geld erstatten oder ein Banner der Website ändern sollte keinen Entwickler mehr erfordern."
+role:
+  paragraphs:
+    - "Ich habe das gesamte Frontend des Projekts entwickelt: die E-Commerce-Website und das Backoffice. Das Backend, eine Laravel-API, wurde parallel von einem anderen Entwickler gebaut, mit dem ich während des ganzen Projekts zusammengearbeitet habe."
+  highlights:
+    - E-Commerce-Website mit Astro und React
+    - Backoffice mit über 30 Ansichten
+    - Stripe-Zahlung und Sicherheit
+    - Designsystem und visuelles Redesign
+approach:
+  paragraphs:
+    - "Auf der Website durchstöbern Besucher den Katalog, sehen jedes Produkt mit Fotos, Zutaten und Kundenbewertungen und können Sets kaufen, die mehrere Produkte bündeln. Der Warenkorb bleibt erhalten, wenn die Seite geschlossen wird, und wird bei angemeldeten Kunden auf dem Server gespeichert. Die Anmeldung erfolgt mit einem Code per E-Mail, die Versandkosten richten sich nach Land und Gewicht des Warenkorbs, und bezahlt wird über Stripe: Karte, Apple Pay oder Google Pay."
+    - "Das Backoffice umfasst über dreißig Ansichten in rund fünfzehn Fachbereichen. Herzstück ist der Katalog: Produkte, Kategorien, Zutaten und Sets mit eigenem Bestand. Administratoren verfolgen jede Bestellung, ändern ihren Status, legen ein Lieferdatum fest und können eine Stripe-Zahlung ganz oder teilweise erstatten. Sie verwalten außerdem Lieferländer, Kunden, Newsletter, die Moderation von Bewertungen und Erfahrungsberichten sowie die Banner der Startseite. Ein Dashboard fasst die Aktivität zusammen: Umsatz, gefragte Produkte und letzte Bestellungen."
+  gallery:
+    - image: ../../../assets/case-studies/yofeii/product.jpg
+      alt: "Produktseite: Fotos, reduzierter Preis, Format, Menge, Kundenbewertungen und Button In den Warenkorb"
+      caption: Website · Produktseite
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/collection.jpg
+      alt: Kollektion mit Kategoriefiltern und Sortierung nach Relevanz, Preis oder Bewertung
+      caption: Website · Kollektion und Filter
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/cart.jpg
+      alt: Warenkorb mit Mengenänderung, Entfernen und Zusammenfassung
+      caption: Website · Warenkorb
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/checkout.jpg
+      alt: "Bestellung: Anmeldung oder Gastkauf, persönliche Daten, Lieferadresse und Zusammenfassung"
+      caption: Website · Bestellung
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
+      alt: "Backoffice, Katalog: Produkte mit Kategorie, Preis, Lagerstatus und Filtern"
+      caption: Backoffice · Katalog und Bestand
+      frame: desktop
+    - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
+      alt: "Backoffice, Banner: Bilder der Startseite mit Titeln, zum Bearbeiten oder Löschen"
+      caption: Backoffice · Banner der Website
+      frame: desktop
+technical:
+  intro: Die API entwickelte sich parallel zu meinem Frontend, und über die Website fließt Geld. Jede Entscheidung antwortet auf eine dieser beiden Bedingungen.
+  decisions:
+    - title: Ein stets aktueller Katalog
+      text: "Die Website wurde zunächst nur einmal beim Deployment erzeugt: Ein im Backoffice angelegtes Produkt erschien nicht. Ich habe das Problem erkannt, die Lösung dem Backend-Team schriftlich erklärt und die Website auf serverseitiges Rendering umgestellt. Produkte, Preise und Bestände sind jetzt immer aktuell."
+    - title: Zahlung von Stripe bestätigt
+      text: "Beim Lesen des Codes habe ich festgestellt, dass der Browser dem Server meldete, eine Bestellung sei bezahlt. Ich habe diesen Ablauf entfernt: Jetzt benachrichtigt Stripe den Server direkt, und die Website wartet auf diese Bestätigung."
+    - title: Preise vom Server berechnet
+      text: "Die Preise wurden vom Browser gesendet und ließen sich daher verändern. Die Korrektur musste auf dem Server erfolgen: Ich habe für das Backend-Team ein Dokument mit einem Angriffsbeispiel und der Liste der nötigen Korrekturen geschrieben."
+    - title: Ein einziger Zugang zur API
+      text: "Im Backoffice laufen alle Anfragen über eine Funktion apiFetch, unter Services in reinem TypeScript und TanStack-Query-Hooks. Wenn die API ein Feld umbenannte, änderte ich eine Datei und keine einzige Seite."
+    - title: Ein Demo-Modus ohne Produktionscode
+      text: "Wenn die API nicht erreichbar war, simulierte eine Umgebungsvariable rund vierzig Endpunkte im Speicher. Dieser Code wird dynamisch geladen und gelangt nie in die Produktion, und ein Hinweis zeigt an, dass es sich um fiktive Daten handelt."
+    - title: Ein Designsystem für dreißig Ansichten
+      text: "Tokens, helles und dunkles Theme und Basiskomponenten nach Atomic Design. Diese Grundlage hat es mir ermöglicht, im Juni das gesamte Design zu erneuern, ohne die Logik der Seiten neu zu schreiben."
+  stack: [Astro, React 19, TypeScript, Vite, TanStack Query, Tailwind CSS 4, React Router 7, Framer Motion, Stripe, Laravel-API]
+results:
+  intro: "Website und Backoffice sind online. Die Marke verwaltet Katalog, Bestellungen und Inhalte selbstständig."
+  metrics:
+    - value: 30+
+      label: Ansichten im Backoffice
+    - value: "7"
+      label: Wochen Entwicklung für das Backoffice
+    - value: "~40"
+      label: simulierte Endpunkte im Demo-Modus
+    - value: "2"
+      label: Zahlungslücken gefunden und dokumentiert
+learnings:
+  - "Rückblickend würde ich Tests für das Backoffice schreiben. Die Service-Schicht eignet sich gut dafür, da sie nicht von React abhängt, und ihr Fehlen ist eine echte Lücke für ein Werkzeug, das mit Zahlungen arbeitet."
+  - "Außerdem würde ich das Sitzungstoken in einem httpOnly-Cookie statt im localStorage des Browsers speichern, um den Zugang zu einem Werkzeug besser zu schützen, mit dem man Kunden Geld erstatten kann."

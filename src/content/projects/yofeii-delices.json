@@ -27,39 +27,5 @@
     "en": "Yofeii Délices home page: banner showing the range of spice blends",
     "de": "Startseite von Yofeii Délices: Banner mit der Auswahl an Gewürzmischungen"
   },
-  "liveUrl": "https://yofeii-delices.com",
-  "gallery": [
-    {
-      "image": "../../assets/projects/gallery/yofeii-product.jpg",
-      "alt": {
-        "fr": "Fiche produit : photos, prix, format, quantité et avis clients",
-        "en": "Product page: photos, price, size, quantity and customer reviews",
-        "de": "Produktseite: Fotos, Preis, Format, Menge und Kundenbewertungen"
-      }
-    },
-    {
-      "image": "../../assets/projects/gallery/yofeii-collection.jpg",
-      "alt": {
-        "fr": "Collection avec filtres par catégorie et tri par prix ou par note",
-        "en": "Collection with category filters and sorting by price or rating",
-        "de": "Kollektion mit Kategoriefiltern und Sortierung nach Preis oder Bewertung"
-      }
-    },
-    {
-      "image": "../../assets/projects/gallery/yofeii-cart.jpg",
-      "alt": {
-        "fr": "Panier avec modification des quantités et récapitulatif",
-        "en": "Cart with quantity controls and order summary",
-        "de": "Warenkorb mit Mengenänderung und Zusammenfassung"
-      }
-    },
-    {
-      "image": "../../assets/projects/gallery/yofeii-checkout.jpg",
-      "alt": {
-        "fr": "Commande : connexion ou achat en invité, informations personnelles et de livraison",
-        "en": "Checkout: sign in or guest purchase, personal and delivery details",
-        "de": "Bestellung: Anmeldung oder Gastkauf, persönliche Daten und Lieferadresse"
-      }
-    }
-  ]
+  "liveUrl": "https://yofeii-delices.com"
 }

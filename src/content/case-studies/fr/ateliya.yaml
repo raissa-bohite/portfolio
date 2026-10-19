@@ -35,6 +35,18 @@ approach:
       alt: "Section « Chaque client, bien accompagné » : maquette de l'app fixée pendant le défilement, avec trois étapes"
       caption: Présentation fixée au défilement
       frame: desktop
+    - image: ../../../assets/case-studies/ateliya/testimonials.jpg
+      alt: "Section « Ateliya au quotidien » : trois témoignages de couturières sur des cartes en couleur pleine"
+      caption: Témoignages
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/faq.jpg
+      alt: "Questions fréquentes en accordéon : fonctionnement, essai gratuit, paiement, Android et iPhone, sécurité, prix"
+      caption: Questions fréquentes
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/download.jpg
+      alt: "Appel final « Rejoignez Ateliya maintenant » sur une photo de couturiers, avec bouton de téléchargement et QR code"
+      caption: Appel au téléchargement
+      frame: desktop
 technical:
   intro: La décision la plus importante a été de revenir à Astro. Les autres choix protègent la performance et la sécurité des deux parcours sensibles.
   decisions:

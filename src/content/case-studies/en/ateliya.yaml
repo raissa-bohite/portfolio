@@ -35,6 +35,18 @@ approach:
       alt: "\"Every client, well looked after\" section: app mockup pinned while scrolling, with three steps"
       caption: Showcase pinned on scroll
       frame: desktop
+    - image: ../../../assets/case-studies/ateliya/testimonials.jpg
+      alt: "\"Ateliya every day\" section: three testimonials from dressmakers on solid-colour cards"
+      caption: Testimonials
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/faq.jpg
+      alt: "Frequently asked questions in an accordion: how it works, free trial, payment, Android and iPhone, security, pricing"
+      caption: FAQ
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/download.jpg
+      alt: "Final call to action \"Join Ateliya now\" over a photo of tailors, with a download button and QR code"
+      caption: Download call to action
+      frame: desktop
 technical:
   intro: The most important decision was going back to Astro. The other choices protect performance and the security of the two sensitive journeys.
   decisions:

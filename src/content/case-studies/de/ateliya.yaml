@@ -35,6 +35,18 @@ approach:
       alt: "Abschnitt „Jeder Kunde gut betreut“: App-Mockup, das beim Scrollen fixiert bleibt, mit drei Schritten"
       caption: Beim Scrollen fixierte Präsentation
       frame: desktop
+    - image: ../../../assets/case-studies/ateliya/testimonials.jpg
+      alt: "Abschnitt „Ateliya im Alltag“: drei Erfahrungsberichte von Schneiderinnen auf Karten in Vollfarbe"
+      caption: Erfahrungsberichte
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/faq.jpg
+      alt: "Häufige Fragen als Akkordeon: Funktionsweise, kostenloser Test, Zahlung, Android und iPhone, Sicherheit, Preise"
+      caption: Häufige Fragen
+      frame: desktop
+    - image: ../../../assets/case-studies/ateliya/download.jpg
+      alt: "Abschließender Aufruf „Jetzt Ateliya beitreten“ über einem Foto von Schneidern, mit Download-Button und QR-Code"
+      caption: Aufruf zum Download
+      frame: desktop
 technical:
   intro: Die wichtigste Entscheidung war die Rückkehr zu Astro. Die übrigen Entscheidungen schützen die Performance und die Sicherheit der beiden sensiblen Abläufe.
   decisions:

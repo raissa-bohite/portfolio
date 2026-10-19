@@ -6,13 +6,18 @@ import type { ProjectSummary } from '@/lib/projects';
 
 type Props = {
   project: ProjectSummary;
-  actionLabel: string;
+  // Sans libellé, pas de pastille au survol (vignette de présentation, non cliquable)
+  actionLabel?: string;
   featured?: boolean;
+  // Vignette visible dès le chargement : images chargées en priorité
+  priority?: boolean;
+  // Description de la composition pour les lecteurs d'écran ; sans elle, la vignette reste décorative
+  label?: string;
   // Proportions de la vignette, réglables selon la mise en page qui l'accueille
   aspectClass?: string;
 };
 
-const { project, actionLabel, featured = false, aspectClass } = Astro.props;
+const { project, actionLabel, featured = false, priority = false, label, aspectClass } = Astro.props;
 const phoneShots = project.shotFrame === 'phone' ? project.shots : [];
 const desktopShots = project.shotFrame === 'desktop' ? project.shots : [];
 // Téléphones en escalier à droite de la capture principale, le dernier coupé par le bord comme sur un « shot »
@@ -34,6 +39,8 @@ const accentClasses = {
 
 <!-- Vignette façon « shot » : les captures flottent sur la couleur du projet, coupées par le bord, et se soulèvent au survol -->
 <div
+  role={label ? 'img' : undefined}
+  aria-label={label}
   class:list={[
     'relative overflow-hidden rounded-surface',
     accentClasses[project.accent],
@@ -44,31 +51,31 @@ const accentClasses = {
   {
     phoneShots.length > 0 ? (
       <>
-        <MiniBrowser
+        <MiniBrowser priority={priority}
           image={project.cover}
           sizes="(min-width: 768px) 740px, 90vw"
           class="absolute top-[14%] left-[6%] w-[92%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-2 md:left-[5%] md:w-[62%]"
         />
         {phoneShots.map((shot, index) => (
-          <MiniPhone image={shot} class={`absolute hidden w-[12%] transition-transform duration-500 ease-out-soft md:block ${phonePositions[index] ?? ''}`} />
+          <MiniPhone priority={priority} image={shot} class={`absolute hidden w-[12%] transition-transform duration-500 ease-out-soft md:block ${phonePositions[index] ?? ''}`} />
         ))}
       </>
     ) : desktopShots.length > 0 ? (
       <>
-        <MiniBrowser
+        <MiniBrowser priority={priority}
           image={project.cover}
           sizes="(min-width: 768px) 460px, 74vw"
           class="absolute top-[9%] left-[7%] w-[74%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-2"
         />
         {desktopShots[0] && (
-          <MiniBrowser
+          <MiniBrowser priority={priority}
             image={desktopShots[0]}
             sizes="(min-width: 768px) 360px, 58vw"
             class="absolute top-[36%] left-[39%] z-10 w-[58%] transition-transform duration-500 ease-out-soft group-hover:translate-x-2"
           />
         )}
         {desktopShots[1] && (
-          <MiniBrowser
+          <MiniBrowser priority={priority}
             image={desktopShots[1]}
             sizes="(min-width: 768px) 260px, 42vw"
             class="absolute top-[58%] left-[4%] z-20 w-[42%] transition-transform duration-500 ease-out-soft group-hover:translate-y-2"
@@ -76,19 +83,23 @@ const accentClasses = {
         )}
       </>
     ) : (
-      <MiniBrowser
+      <MiniBrowser priority={priority}
         image={project.cover}
         sizes={featured ? '(min-width: 1248px) 950px, 92vw' : '(min-width: 768px) 620px, 100vw'}
         class="absolute top-[16%] left-[10%] w-[110%] rounded-r-none rounded-b-none transition-transform duration-500 ease-out-soft group-hover:-translate-x-2 group-hover:-translate-y-2"
       />
     )
   }
+  {
+    actionLabel && (
   <span
-    aria-hidden="true"
-    class="absolute bottom-5 left-5 z-30 inline-flex translate-y-3 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#1e0f45] opacity-0 shadow-lg transition duration-300 ease-out-soft group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
-  >
-    {actionLabel}
-    <ArrowUpRight size={16} />
-  </span>
+        aria-hidden="true"
+        class="absolute bottom-5 left-5 z-30 inline-flex translate-y-3 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#1e0f45] opacity-0 shadow-lg transition duration-300 ease-out-soft group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+      >
+        {actionLabel}
+        <ArrowUpRight size={16} />
+      </span>
+    )
+  }
 </div>
 

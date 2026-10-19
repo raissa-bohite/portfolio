@@ -150,19 +150,21 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
   </section>
 
   <!-- Bandeau sombre dans les deux thèmes : les résultats ressortent dans le rythme de la page -->
-  <section id="results" data-theme="dark" aria-labelledby="results-title" class="scroll-mt-32 bg-bg py-20 text-text sm:py-24">
-    <div data-scroll-group class="container-page flex flex-col gap-10">
+  <!-- Résultats dans un bloc violet, comme le contact de l'accueil : couleurs fixes, contraste supérieur à 7:1 -->
+  <section id="results" aria-labelledby="results-title" class="container-page w-full scroll-mt-32">
+    <div data-scroll-group class="relative isolate flex flex-col gap-10 overflow-hidden rounded-[32px] bg-linear-to-br from-[#6d3fd6] to-[#36188a] p-8 md:p-12">
+      <div aria-hidden="true" class="absolute -right-32 -bottom-40 -z-10 size-[420px] rounded-t-full bg-white/[0.06]"></div>
       <div data-scroll-item class="flex max-w-3xl flex-col gap-3">
-        <p class={labelClasses}>{sectionNumber(5)}</p>
-        <h2 id="results-title" class={headingClasses}>{labels.sections.results}</h2>
-        <p class="m-0 text-lg">{caseStudy.results.intro}</p>
+        <p class="m-0 font-mono text-sm font-semibold text-[#ffd9c2]">{sectionNumber(5)}</p>
+        <h2 id="results-title" class="m-0 text-[clamp(28px,3.2vw,40px)] leading-[1.1] font-bold tracking-[-0.02em] text-white">{labels.sections.results}</h2>
+        <p class="m-0 text-lg text-white/85">{caseStudy.results.intro}</p>
       </div>
       <dl class="m-0 grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
         {
           caseStudy.results.metrics.map((metric) => (
-            <div data-scroll-item class="flex flex-col gap-2 border-t-2 border-sig pt-5">
-              <dt class="order-2 m-0 text-[15px] text-muted">{metric.label}</dt>
-              <dd class="order-1 m-0 text-[clamp(36px,3.8vw,56px)] leading-none font-bold tracking-[-0.03em] break-words text-ink">{metric.value}</dd>
+            <div data-scroll-item class="flex flex-col gap-2 border-t-2 border-[#ff9a5c] pt-5">
+              <dt class="order-2 m-0 text-[15px] text-white/85">{metric.label}</dt>
+              <dd class="order-1 m-0 text-[clamp(36px,3.8vw,56px)] leading-none font-bold tracking-[-0.03em] break-words text-white">{metric.value}</dd>
             </div>
           ))
         }

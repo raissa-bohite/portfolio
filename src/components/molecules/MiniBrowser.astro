@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-type Props = { image: ImageMetadata; sizes: string; class?: string };
-const { image, sizes, class: className } = Astro.props;
+type Props = { image: ImageMetadata; sizes: string; class?: string; priority?: boolean };
+const { image, sizes, class: className, priority = false } = Astro.props;
 ---
 
 <!-- Petite fenêtre de navigateur décorative pour les vignettes de la galerie -->
@@ -13,5 +13,5 @@ const { image, sizes, class: className } = Astro.props;
     <span class="size-1.5 rounded-full bg-[#febc2e]"></span>
     <span class="size-1.5 rounded-full bg-[#28c840]"></span>
   </div>
-  <Image src={image} alt="" widths={[480, 900, 1400]} sizes={sizes} loading="lazy" class="block h-auto w-full" />
+  <Image src={image} alt="" widths={[480, 900, 1400]} sizes={sizes} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} class="block h-auto w-full" />
 </div>

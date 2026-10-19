@@ -1,11 +1,12 @@
 ---
-import type { ImageMetadata } from 'astro';
-import BrowserFrame from '@/components/molecules/BrowserFrame.astro';
+import ProjectVisual from '@/components/molecules/ProjectVisual.astro';
+import type { ProjectSummary } from '@/lib/projects';
 
-type Props = { label: string; image: ImageMetadata; alt: string; host: string; enlargeLabel: string };
-const { label, image, alt, host, enlargeLabel } = Astro.props;
+type Props = { label: string; project: ProjectSummary };
+const { label, project } = Astro.props;
 ---
 
+<!-- Couverture de l'étude de cas : la même vignette aux couleurs du projet que dans la galerie, en grand format -->
 <section aria-label={label} class="container-page pb-24">
-  <BrowserFrame image={image} alt={alt} host={host} enlargeLabel={enlargeLabel} sizes="(min-width: 1248px) 1152px, 92vw" priority />
+  <ProjectVisual project={project} label={project.coverAlt} aspectClass="aspect-[4/3] md:aspect-[21/9]" priority />
 </section>

@@ -1,6 +1,6 @@
 ---
 import FactList from '@/components/molecules/FactList.astro';
-import NextProjectCard from '@/components/molecules/NextProjectCard.astro';
+import ProjectRow from '@/components/molecules/ProjectRow.astro';
 import CaseStudyBody from '@/components/organisms/CaseStudyBody.astro';
 import ProjectCover from '@/components/organisms/ProjectCover.astro';
 import ProjectHero from '@/components/organisms/ProjectHero.astro';
@@ -9,7 +9,7 @@ import ScreenshotLightbox from '@/components/organisms/ScreenshotLightbox.astro'
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getProjectPath } from '@/i18n/routes';
-import { formatMessage, getDictionary } from '@/i18n/translate';
+import { getDictionary } from '@/i18n/translate';
 import { findCaseStudy, getNextProject, getProjectSummaries } from '@/lib/projects';
 
 type Props = { locale: Locale; slug: string };
@@ -56,13 +56,7 @@ const facts = caseStudy
     <FactList label={labels.factsLabel} facts={facts} />
   </div>
   <div data-scroll-group>
-    <ProjectCover
-      label={labels.previewLabel}
-      image={project.cover}
-      alt={project.coverAlt}
-      host={host}
-      enlargeLabel={formatMessage(labels.enlarge, { caption: project.name })}
-    />
+    <ProjectCover label={labels.previewLabel} project={project} />
   </div>
   {
     caseStudy ? (
@@ -72,5 +66,17 @@ const facts = caseStudy
     )
   }
   <ScreenshotLightbox closeLabel={labels.closePreview} />
-  {nextProject && <NextProjectCard href={nextProject.href} label={labels.next} name={nextProject.name} kind={nextProject.kind} />}
+  {
+    nextProject && (
+      <section aria-label={labels.next} data-scroll-group class="container-page flex flex-col gap-8 pb-28">
+        <p class="m-0 border-t border-line pt-16 text-sm font-semibold text-action">{labels.next}</p>
+        <ProjectRow
+          project={nextProject}
+          position={(projectIndex + 1) % projects.length + 1}
+          actionLabel={nextProject.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
+          stackLabel={labels.stack}
+        />
+      </section>
+    )
+  }
 </BaseLayout>

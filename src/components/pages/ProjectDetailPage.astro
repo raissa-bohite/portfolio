@@ -5,10 +5,11 @@ import CaseStudyBody from '@/components/organisms/CaseStudyBody.astro';
 import ProjectCover from '@/components/organisms/ProjectCover.astro';
 import ProjectHero from '@/components/organisms/ProjectHero.astro';
 import ProjectSummaryBody from '@/components/organisms/ProjectSummaryBody.astro';
+import ScreenshotLightbox from '@/components/organisms/ScreenshotLightbox.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getProjectPath } from '@/i18n/routes';
-import { getDictionary } from '@/i18n/translate';
+import { formatMessage, getDictionary } from '@/i18n/translate';
 import { findCaseStudy, getNextProject, getProjectSummaries } from '@/lib/projects';
 
 type Props = { locale: Locale; slug: string };
@@ -22,6 +23,8 @@ const project = projects[projectIndex];
 if (!project) throw new Error(`Projet introuvable : ${slug}`);
 const caseStudy = await findCaseStudy(slug, locale);
 const nextProject = getNextProject(projects, projectIndex);
+// Adresse affichée dans la barre des fenêtres de navigateur qui encadrent les captures
+const host = project.liveUrl ? new URL(project.liveUrl).host : project.slug;
 const alternates = getAlternateLinks((alternateLocale) => getProjectPath(slug, alternateLocale));
 
 // Sans étude de cas rédigée, la page reste utile : la fiche du projet et ses captures
@@ -53,8 +56,21 @@ const facts = caseStudy
     <FactList label={labels.factsLabel} facts={facts} />
   </div>
   <div data-scroll-group>
-    <ProjectCover label={labels.previewLabel} image={project.cover} alt={project.coverAlt} />
+    <ProjectCover
+      label={labels.previewLabel}
+      image={project.cover}
+      alt={project.coverAlt}
+      host={host}
+      enlargeLabel={formatMessage(labels.enlarge, { caption: project.name })}
+    />
   </div>
-  {caseStudy ? <CaseStudyBody locale={locale} caseStudy={caseStudy} /> : <ProjectSummaryBody locale={locale} project={project} />}
+  {
+    caseStudy ? (
+      <CaseStudyBody locale={locale} caseStudy={caseStudy} host={host} />
+    ) : (
+      <ProjectSummaryBody locale={locale} project={project} host={host} />
+    )
+  }
+  <ScreenshotLightbox closeLabel={labels.closePreview} />
   {nextProject && <NextProjectCard href={nextProject.href} label={labels.next} name={nextProject.name} kind={nextProject.kind} />}
 </BaseLayout>

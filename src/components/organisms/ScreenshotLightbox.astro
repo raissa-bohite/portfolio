@@ -1,0 +1,32 @@
+---
+import X from '@lucide/astro/icons/x';
+
+type Props = { closeLabel: string };
+const { closeLabel } = Astro.props;
+---
+
+<dialog
+  data-lightbox
+  class="m-auto max-h-[94vh] max-w-[min(96vw,1600px)] overflow-visible border-0 bg-transparent p-0 backdrop:bg-[rgb(10_5_25/0.85)] backdrop:backdrop-blur-sm"
+>
+  <figure class="m-0 flex flex-col items-center gap-3">
+    <img data-lightbox-image alt="" class="block max-h-[84vh] w-auto max-w-full rounded-control bg-white shadow-2xl" />
+    <figcaption data-lightbox-caption-text class="text-sm font-semibold text-white"></figcaption>
+  </figure>
+  <form method="dialog" class="absolute -top-3 -right-3 sm:-top-5 sm:-right-5">
+    <button
+      type="submit"
+      aria-label={closeLabel}
+      class="flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-white text-[#1e0f45] shadow-lg hover:bg-[#e7deff]"
+    >
+      <X aria-hidden="true" size={20} />
+    </button>
+  </form>
+</dialog>
+
+<script>
+  import { setupLightbox } from '@/scripts/lightbox';
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  if (dialog) setupLightbox(dialog);
+</script>

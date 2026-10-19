@@ -188,6 +188,9 @@ const dictionary = {
     visit: "Voir le projet en ligne",
     previewLabel: "Aperçu principal",
     galleryLabel: "Autres captures",
+    enlarge: "Agrandir la capture : {caption}",
+    closePreview: "Fermer l'aperçu",
+    screenshotsLabel: "Captures du projet",
     caseStudyPending:
       "L’étude de cas détaillée de ce projet est en préparation.",
     next: "Projet suivant",

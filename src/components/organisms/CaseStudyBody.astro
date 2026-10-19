@@ -1,112 +1,191 @@
 ---
+import Plus from '@lucide/astro/icons/plus';
 import Tag from '@/components/atoms/Tag.astro';
-import DecisionCard from '@/components/molecules/DecisionCard.astro';
-import MetricCard from '@/components/molecules/MetricCard.astro';
+import BrowserFrame from '@/components/molecules/BrowserFrame.astro';
 import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
-import ScreenshotFrame from '@/components/molecules/ScreenshotFrame.astro';
-import TableOfContents from '@/components/molecules/TableOfContents.astro';
 import type { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/translate';
+import { formatMessage, getDictionary } from '@/i18n/translate';
 import type { CaseStudy } from '@/lib/projects';
 
-type Props = { locale: Locale; caseStudy: CaseStudy };
+type Props = { locale: Locale; caseStudy: CaseStudy; host: string };
 
-const { locale, caseStudy } = Astro.props;
+const { locale, caseStudy, host } = Astro.props;
 const labels = getDictionary(locale).projectPage;
-const sections = [
-  { id: 'context', title: labels.sections.context },
-  { id: 'role', title: labels.sections.role },
-  { id: 'approach', title: labels.sections.approach },
-  { id: 'technical', title: labels.sections.technical },
-  { id: 'results', title: labels.sections.results },
-  { id: 'learnings', title: labels.sections.learnings }
-] as const;
 const phoneShots = caseStudy.approach.gallery.filter((item) => item.frame === 'phone');
 const desktopShots = caseStudy.approach.gallery.filter((item) => item.frame === 'desktop');
-const paragraphClasses = 'm-0 max-w-[64ch]';
-const headingClasses = 'm-0 text-[clamp(28px,3vw,36px)] leading-[1.15] font-bold tracking-[-0.015em] text-ink';
+const [featuredShot, ...otherShots] = desktopShots;
+// Nombre impair de captures secondaires : la dernière prend toute la largeur pour ne pas laisser de trou
+const lastShotSpansRow = otherShots.length % 2 === 1;
+
+const sectionNumber = (position: number): string => String(position).padStart(2, '0');
+const labelClasses = 'm-0 font-mono text-sm font-semibold text-sig-text';
+const headingClasses = 'm-0 text-[clamp(28px,3.2vw,40px)] leading-[1.1] font-bold tracking-[-0.02em] text-ink';
+const splitClasses = 'container-page grid w-full scroll-mt-32 gap-6 lg:grid-cols-12 lg:gap-x-12';
+const asideClasses = 'flex flex-col gap-3 lg:sticky lg:top-32 lg:col-span-4 lg:self-start';
+const bodyClasses = 'flex flex-col gap-5 lg:col-span-8';
+const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
 ---
 
-<div class="container-page pb-24">
-  <div class="grid gap-6 lg:grid-cols-12">
-    <TableOfContents title={labels.tocTitle} label={labels.tocLabel} items={sections} />
+<article data-case-study class="flex flex-col gap-28 pb-28">
+  <section id="context" data-scroll-group aria-labelledby="context-title" class={splitClasses}>
+    <div data-scroll-item class={asideClasses}>
+      <p class={labelClasses}>{sectionNumber(1)}</p>
+      <h2 id="context-title" class={headingClasses}>{labels.sections.context}</h2>
+    </div>
+    <div data-scroll-item class={bodyClasses}>
+      {caseStudy.context.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
+    </div>
+  </section>
 
-    <article data-case-study class="flex flex-col gap-[72px] lg:col-span-9">
-      <section id="context" data-toc-section aria-labelledby="context-title" class="flex scroll-mt-32 flex-col gap-4">
-        <h2 id="context-title" class={headingClasses}>{labels.sections.context}</h2>
-        {caseStudy.context.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
-      </section>
+  <section id="role" data-scroll-group aria-labelledby="role-title" class={splitClasses}>
+    <div data-scroll-item class={asideClasses}>
+      <p class={labelClasses}>{sectionNumber(2)}</p>
+      <h2 id="role-title" class={headingClasses}>{labels.sections.role}</h2>
+    </div>
+    <div class={bodyClasses}>
+      {caseStudy.role.paragraphs.map((paragraph) => <p data-scroll-item class={paragraphClasses}>{paragraph}</p>)}
+      <ul class="m-0 mt-2 grid list-none gap-3 p-0 sm:grid-cols-2">
+        {
+          caseStudy.role.highlights.map((highlight, index) => (
+            <li data-scroll-item class="glass flex items-center gap-4 px-5 py-4 font-semibold text-ink">
+              <span class="font-mono text-sm text-sig-text">{sectionNumber(index + 1)}</span>
+              {highlight}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
-      <section id="role" data-toc-section data-scroll-group aria-labelledby="role-title" class="flex scroll-mt-32 flex-col gap-4">
-        <h2 id="role-title" class={headingClasses}>{labels.sections.role}</h2>
-        {caseStudy.role.paragraphs.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
-        <ul class="m-0 mt-2 grid list-none gap-3 p-0 sm:grid-cols-2">
-          {
-            caseStudy.role.highlights.map((highlight) => (
-              <li data-scroll-item class="glass flex items-center gap-3 px-5 py-4 font-semibold text-ink">
-                <span aria-hidden="true" class="size-2 flex-none rounded-full bg-sig" />
-                {highlight}
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
-      <section id="approach" data-toc-section data-scroll-group aria-labelledby="approach-title" class="flex scroll-mt-32 flex-col gap-4">
+  <section id="approach" aria-labelledby="approach-title" class="flex scroll-mt-32 flex-col gap-14">
+    <div data-scroll-group class={splitClasses}>
+      <div data-scroll-item class={asideClasses}>
+        <p class={labelClasses}>{sectionNumber(3)}</p>
         <h2 id="approach-title" class={headingClasses}>{labels.sections.approach}</h2>
+      </div>
+      <div data-scroll-item class={bodyClasses}>
         {caseStudy.approach.paragraphs.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
-        {
-          phoneShots.length > 0 && (
-            <div class="mt-2 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6">
-              {phoneShots.map((item) => (
-                <PhoneFrame image={item.image} alt={item.alt} caption={item.caption} screen={item.screen} />
-              ))}
-            </div>
-          )
-        }
-        {
-          desktopShots.length > 0 && (
-            <div class="mt-2 grid gap-6 sm:grid-cols-2">
-              {desktopShots.map((item) => (
-                <ScreenshotFrame image={item.image} alt={item.alt} caption={item.caption} />
-              ))}
-            </div>
-          )
-        }
-      </section>
+      </div>
+    </div>
 
-      <section id="technical" data-toc-section data-scroll-group aria-labelledby="technical-title" class="flex scroll-mt-32 flex-col gap-4">
-        <h2 id="technical-title" class={headingClasses}>{labels.sections.technical}</h2>
-        <p class={paragraphClasses}>{caseStudy.technical.intro}</p>
-        <div class="mt-2 grid gap-4 sm:grid-cols-2">
-          {caseStudy.technical.decisions.map((decision) => <DecisionCard title={decision.title} text={decision.text} />)}
+    {
+      caseStudy.approach.gallery.length > 0 && (
+        <div class="bg-tint/45 py-16 sm:py-20 dark:bg-white/[0.03]">
+          <div data-scroll-group role="group" aria-label={labels.screenshotsLabel} class="container-page flex w-full flex-col gap-8">
+            {featuredShot && (
+              <BrowserFrame
+                image={featuredShot.image}
+                alt={featuredShot.alt}
+                caption={featuredShot.caption}
+                host={host}
+                enlargeLabel={formatMessage(labels.enlarge, { caption: featuredShot.caption })}
+                sizes="(min-width: 1248px) 1152px, 92vw"
+              />
+            )}
+            {otherShots.length > 0 && (
+              <div class="grid gap-8 sm:grid-cols-2">
+                {otherShots.map((shot, index) => (
+                  <div class={lastShotSpansRow && index === otherShots.length - 1 ? 'sm:col-span-2' : ''}>
+                    <BrowserFrame
+                      image={shot.image}
+                      alt={shot.alt}
+                      caption={shot.caption}
+                      host={host}
+                      enlargeLabel={formatMessage(labels.enlarge, { caption: shot.caption })}
+                      sizes="(min-width: 1248px) 560px, (min-width: 640px) 46vw, 92vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+            {phoneShots.length > 0 && (
+              <div class="flex flex-wrap justify-center gap-10">
+                {phoneShots.map((shot) => (
+                  <div class="w-full max-w-[250px]">
+                    <PhoneFrame image={shot.image} alt={shot.alt} caption={shot.caption} screen={shot.screen} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-        <ul class="m-0 mt-2 flex list-none flex-wrap gap-2 p-0" aria-label={labels.stack}>
-          {
-            caseStudy.technical.stack.map((technology) => (
-              <li>
-                <Tag>{technology}</Tag>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
+      )
+    }
+  </section>
 
-      <section id="results" data-toc-section data-scroll-group aria-labelledby="results-title" class="flex scroll-mt-32 flex-col gap-4">
+  <section id="technical" aria-labelledby="technical-title" class={splitClasses}>
+    <div data-scroll-group class={asideClasses}>
+      <p data-scroll-item class={labelClasses}>{sectionNumber(4)}</p>
+      <h2 data-scroll-item id="technical-title" class={headingClasses}>{labels.sections.technical}</h2>
+      <p data-scroll-item class="m-0 text-lg">{caseStudy.technical.intro}</p>
+      <ul data-scroll-item class="m-0 mt-2 flex list-none flex-wrap gap-2 p-0" aria-label={labels.stack}>
+        {
+          caseStudy.technical.stack.map((technology) => (
+            <li>
+              <Tag>{technology}</Tag>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <!-- Les choix se lisent d'abord par leur titre : le détail s'ouvre à la demande, la page reste aérée -->
+    <ol data-scroll-group class="m-0 flex list-none flex-col p-0 lg:col-span-8">
+      {
+        caseStudy.technical.decisions.map((decision, index) => (
+          <li data-scroll-item class="border-b border-line first:border-t">
+            <details class="group" open={index === 0}>
+              <summary class="flex cursor-pointer list-none items-center gap-5 py-6 text-ink [&::-webkit-details-marker]:hidden">
+                <span class="font-mono text-sm font-semibold text-sig-text">{sectionNumber(index + 1)}</span>
+                <span class="flex-1 text-xl font-bold tracking-[-0.01em]">{decision.title}</span>
+                <span class="flex size-9 flex-none items-center justify-center rounded-full bg-tint text-tint-ink transition-transform duration-300 group-open:rotate-45">
+                  <Plus aria-hidden="true" size={18} />
+                </span>
+              </summary>
+              <p class="m-0 max-w-[62ch] pb-6 pl-10 text-[17px] leading-[1.7]">{decision.text}</p>
+            </details>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- Bandeau sombre dans les deux thèmes : les résultats ressortent dans le rythme de la page -->
+  <section id="results" data-theme="dark" aria-labelledby="results-title" class="scroll-mt-32 bg-bg py-20 text-text sm:py-24">
+    <div data-scroll-group class="container-page flex flex-col gap-10">
+      <div data-scroll-item class="flex max-w-3xl flex-col gap-3">
+        <p class={labelClasses}>{sectionNumber(5)}</p>
         <h2 id="results-title" class={headingClasses}>{labels.sections.results}</h2>
-        <p class={paragraphClasses}>{caseStudy.results.intro}</p>
-        <div class="mt-2 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {caseStudy.results.metrics.map((metric) => <MetricCard value={metric.value} label={metric.label} />)}
-        </div>
-      </section>
+        <p class="m-0 text-lg">{caseStudy.results.intro}</p>
+      </div>
+      <dl class="m-0 grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
+        {
+          caseStudy.results.metrics.map((metric) => (
+            <div data-scroll-item class="flex flex-col gap-2 border-t-2 border-sig pt-5">
+              <dt class="order-2 m-0 text-[15px] text-muted">{metric.label}</dt>
+              <dd class="order-1 m-0 text-[clamp(40px,4.6vw,60px)] leading-none font-bold tracking-[-0.03em] text-ink">{metric.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
 
-      <section id="learnings" data-toc-section aria-labelledby="learnings-title" class="flex scroll-mt-32 flex-col gap-4">
-        <h2 id="learnings-title" class={headingClasses}>{labels.sections.learnings}</h2>
-        {caseStudy.learnings.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
-      </section>
-    </article>
-  </div>
-</div>
+  <section id="learnings" data-scroll-group aria-labelledby="learnings-title" class={splitClasses}>
+    <div data-scroll-item class={asideClasses}>
+      <p class={labelClasses}>{sectionNumber(6)}</p>
+      <h2 id="learnings-title" class={headingClasses}>{labels.sections.learnings}</h2>
+    </div>
+    <div class="flex flex-col gap-8 lg:col-span-8">
+      {
+        caseStudy.learnings.map((learning) => (
+          <p data-scroll-item class="m-0 max-w-[58ch] border-l-4 border-sig pl-6 text-xl leading-[1.6] font-medium text-ink">
+            {learning}
+          </p>
+        ))
+      }
+    </div>
+  </section>
+</article>
 
 <div aria-hidden="true" class="fixed inset-x-0 top-0 z-30 h-[3px]">
   <div data-reading-progress class="h-full w-full origin-left scale-x-0 bg-sig"></div>

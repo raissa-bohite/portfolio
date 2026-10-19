@@ -1,13 +1,13 @@
 ---
-import { Image } from 'astro:assets';
 import Tag from '@/components/atoms/Tag.astro';
+import BrowserFrame from '@/components/molecules/BrowserFrame.astro';
 import type { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/translate';
+import { formatMessage, getDictionary } from '@/i18n/translate';
 import type { ProjectSummary } from '@/lib/projects';
 
-type Props = { locale: Locale; project: ProjectSummary };
+type Props = { locale: Locale; project: ProjectSummary; host: string };
 
-const { locale, project } = Astro.props;
+const { locale, project, host } = Astro.props;
 const labels = getDictionary(locale).projectPage;
 ---
 
@@ -32,18 +32,15 @@ const labels = getDictionary(locale).projectPage;
 
   {
     project.gallery.length > 0 && (
-      <section aria-label={labels.galleryLabel} data-scroll-group class="grid gap-6 md:grid-cols-2">
+      <section aria-label={labels.galleryLabel} data-scroll-group class="grid gap-8 md:grid-cols-2">
         {project.gallery.map((item) => (
-          <div data-scroll-item class="glass overflow-hidden p-3">
-            <Image
-              src={item.image}
-              alt={item.alt}
-              widths={[640, 1200]}
-              sizes="(min-width: 768px) 576px, 94vw"
-              loading="lazy"
-              class="block h-auto w-full rounded-control bg-white"
-            />
-          </div>
+          <BrowserFrame
+            image={item.image}
+            alt={item.alt}
+            host={host}
+            enlargeLabel={formatMessage(labels.enlarge, { caption: item.alt })}
+            sizes="(min-width: 1248px) 560px, (min-width: 768px) 46vw, 92vw"
+          />
         ))}
       </section>
     )

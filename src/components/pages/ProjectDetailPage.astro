@@ -10,7 +10,6 @@ import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getProjectPath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
-import { accentBackgroundClasses } from '@/lib/accents';
 import { findCaseStudy, getNextProject, getProjectSummaries } from '@/lib/projects';
 
 type Props = { locale: Locale; slug: string };
@@ -61,7 +60,7 @@ const facts = caseStudy
   </div>
   {
     caseStudy ? (
-      <CaseStudyBody locale={locale} caseStudy={caseStudy} accentClass={accentBackgroundClasses[project.accent]} />
+      <CaseStudyBody locale={locale} caseStudy={caseStudy} />
     ) : (
       <ProjectSummaryBody locale={locale} project={project} host={host} />
     )

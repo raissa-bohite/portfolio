@@ -1,0 +1,118 @@
+---
+import ChevronLeft from '@lucide/astro/icons/chevron-left';
+import ChevronRight from '@lucide/astro/icons/chevron-right';
+import { getImage, Image } from 'astro:assets';
+import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
+import type { Locale } from '@/i18n/config';
+import { formatMessage, getDictionary } from '@/i18n/translate';
+import type { CaseStudy } from '@/lib/projects';
+
+type Props = { locale: Locale; shots: CaseStudy['approach']['gallery'] };
+
+const { locale, shots } = Astro.props;
+const labels = getDictionary(locale).projectPage;
+const desktopShots = shots.filter((shot) => shot.frame === 'desktop');
+const phoneShots = shots.filter((shot) => shot.frame === 'phone');
+// Versions grand format servies seulement à l'ouverture de l'aperçu
+const largeSources = await Promise.all(desktopShots.map((shot) => getImage({ src: shot.image, width: 1920, format: 'webp' })));
+const surfaceClasses = 'rounded-[28px] bg-[#f5f4f8] dark:bg-white/[0.05]';
+---
+
+<!--
+  Galerie à la manière des pages produit d'Apple : une capture entière à la fois sur une surface neutre,
+  la suivante dépasse à droite pour inviter au défilement (défilement natif, avec son élan et son aimantation).
+-->
+{
+  desktopShots.length > 0 && (
+    <div data-shot-gallery role="region" aria-roledescription="carousel" aria-label={labels.screenshotsLabel} class="flex flex-col gap-6">
+      <ul
+        data-shot-track
+        tabindex="0"
+        class="m-0 flex list-none snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth p-0 px-[max(24px,calc((100vw-1200px)/2+24px))] pb-2 [scroll-padding-inline:max(24px,calc((100vw-1200px)/2+24px))] [scrollbar-width:none] motion-reduce:scroll-auto focus-visible:outline-offset-[-3px] [&::-webkit-scrollbar]:hidden"
+      >
+        {
+          desktopShots.map((shot, index) => (
+            <li
+              data-shot-slide
+              aria-roledescription="slide"
+              aria-label={formatMessage(labels.shotPosition, { current: index + 1, total: desktopShots.length })}
+              class="w-[86%] flex-none snap-start sm:w-[78%] lg:w-[min(1000px,80vw)]"
+            >
+              <figure class="m-0 flex flex-col gap-4">
+                <button
+                  type="button"
+                  data-lightbox-src={largeSources[index]?.src}
+                  data-lightbox-alt={shot.alt}
+                  data-lightbox-caption={shot.caption}
+                  aria-label={formatMessage(labels.enlarge, { caption: shot.caption })}
+                  class={`group block w-full cursor-zoom-in border-0 p-[clamp(16px,4%,48px)] transition-transform duration-100 ease-out active:scale-[0.985] ${surfaceClasses}`}
+                >
+                  <Image
+                    data-lightbox-thumb
+                    src={shot.image}
+                    alt={shot.alt}
+                    widths={[640, 1200, 1800]}
+                    sizes="(min-width: 1248px) 920px, 80vw"
+                    loading="lazy"
+                    class="block aspect-[16/9.4] h-auto w-full rounded-[12px] bg-white object-cover object-top shadow-[0_1px_2px_rgb(0_0_0/0.06),0_20px_40px_-24px_rgb(30_15_69/0.35)] transition-transform duration-500 ease-out-soft group-hover:scale-[1.012]"
+                  />
+                </button>
+                <figcaption class="flex items-baseline gap-3 px-1 text-[17px] leading-snug">
+                  <span class="font-mono text-sm text-muted">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="font-semibold text-ink">{shot.caption}</span>
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        desktopShots.length > 1 && (
+          <div class="container-page flex w-full items-center justify-end gap-3">
+            <p data-shot-counter aria-live="polite" class="m-0 mr-auto font-mono text-sm text-muted">
+              {formatMessage(labels.shotPosition, { current: 1, total: desktopShots.length })}
+            </p>
+            <button
+              type="button"
+              data-shot-previous
+              aria-label={labels.previousShot}
+              disabled
+              class="flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-tint text-tint-ink transition-[transform,opacity] duration-100 active:scale-95 disabled:cursor-default disabled:opacity-40"
+            >
+              <ChevronLeft aria-hidden="true" size={20} />
+            </button>
+            <button
+              type="button"
+              data-shot-next
+              aria-label={labels.nextShot}
+              class="flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-tint text-tint-ink transition-[transform,opacity] duration-100 active:scale-95 disabled:cursor-default disabled:opacity-40"
+            >
+              <ChevronRight aria-hidden="true" size={20} />
+            </button>
+          </div>
+        )
+      }
+    </div>
+  )
+}
+
+{
+  phoneShots.length > 0 && (
+    <div class="container-page w-full">
+      <div class={`flex flex-wrap justify-center gap-x-12 gap-y-10 px-6 py-14 ${surfaceClasses}`}>
+        {phoneShots.map((shot) => (
+          <div class="w-full max-w-[230px]">
+            <PhoneFrame image={shot.image} alt={shot.alt} caption={shot.caption} screen={shot.screen} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  import { setupShotGallery } from '@/scripts/shot-gallery';
+
+  for (const gallery of document.querySelectorAll<HTMLElement>('[data-shot-gallery]')) setupShotGallery(gallery);
+</script>

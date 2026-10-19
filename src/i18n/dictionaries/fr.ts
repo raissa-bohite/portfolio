@@ -174,6 +174,9 @@ const dictionary = {
     enlarge: "Agrandir la capture : {caption}",
     closePreview: "Fermer l'aperçu",
     screenshotsLabel: "Captures du projet",
+    previousShot: "Capture précédente",
+    nextShot: "Capture suivante",
+    shotPosition: "Capture {current} sur {total}",
     caseStudyPending:
       "L’étude de cas détaillée de ce projet est en préparation.",
     next: "Projet suivant",

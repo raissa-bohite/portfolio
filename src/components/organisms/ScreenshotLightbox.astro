@@ -11,18 +11,32 @@ const { closeLabel } = Astro.props;
 >
   <figure class="m-0 flex flex-col items-center gap-3">
     <img data-lightbox-image alt="" class="block max-h-[84vh] w-auto max-w-full rounded-control bg-white shadow-2xl" />
-    <figcaption data-lightbox-caption-text class="text-sm font-semibold text-white"></figcaption>
+    <figcaption data-lightbox-caption-text class="lightbox-chrome text-sm font-semibold text-white"></figcaption>
   </figure>
-  <form method="dialog" class="absolute -top-3 -right-3 sm:-top-5 sm:-right-5">
+  <div class="lightbox-chrome absolute -top-3 -right-3 sm:-top-5 sm:-right-5">
     <button
-      type="submit"
+      type="button"
+      data-lightbox-close
       aria-label={closeLabel}
       class="flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-white text-[#1e0f45] shadow-lg hover:bg-[#e7deff]"
     >
       <X aria-hidden="true" size={20} />
     </button>
-  </form>
+  </div>
 </dialog>
+
+<style>
+  /* Fond et commandes s'effacent pendant que l'image retourne à sa vignette */
+  dialog::backdrop {
+    transition: opacity 0.3s ease;
+  }
+
+  dialog.is-closing::backdrop,
+  dialog.is-closing .lightbox-chrome {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+</style>
 
 <script>
   import { setupLightbox } from '@/scripts/lightbox';

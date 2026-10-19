@@ -35,16 +35,7 @@ export const de: Dictionary = {
     intro:
       'Front-End-Entwicklerin mit Full-Stack-Fokus in Abidjan. Ich gestalte und entwickle klare, barrierefreie und sichere Oberflächen und Dashboards und baue das Back-End, wenn das Projekt es braucht.',
     ctaProjects: 'Projekte ansehen',
-    carousel: {
-      label: 'Projektvorschau',
-      roleDescription: 'Karussell',
-      previous: 'Vorheriges Projekt',
-      next: 'Nächstes Projekt',
-      pause: 'Projekt-Diashow anhalten',
-      play: 'Projekt-Diashow fortsetzen',
-      position: 'Projekt {current} von {total}',
-      cardLabel: '{name}, {kind}, {action}'
-    },
+    heroBadges: ["Frontend-Entwicklerin", "Dashboards", "Websicherheit"],
     stack: {
       label: 'Technologien, die ich nutze'
     },

@@ -35,16 +35,7 @@ export const en: Dictionary = {
     intro:
       'Front-end developer, full-stack leaning, based in Abidjan. I design and build clear, accessible and secure interfaces and dashboards, and I build the back end when the project needs it.',
     ctaProjects: 'View projects',
-    carousel: {
-      label: 'Project preview',
-      roleDescription: 'carousel',
-      previous: 'Previous project',
-      next: 'Next project',
-      pause: 'Pause the project slideshow',
-      play: 'Resume the project slideshow',
-      position: 'Project {current} of {total}',
-      cardLabel: '{name}, {kind}, {action}'
-    },
+    heroBadges: ["Front-end developer", "Dashboards", "Web security"],
     stack: {
       label: 'Technologies I use'
     },

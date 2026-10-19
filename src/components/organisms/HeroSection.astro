@@ -1,26 +1,35 @@
 ---
+import Code from '@lucide/astro/icons/code-xml';
 import Download from '@lucide/astro/icons/download';
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import { Image } from 'astro:assets';
 import Button from '@/components/atoms/Button.astro';
 import AvailabilityBadge from '@/components/molecules/AvailabilityBadge.astro';
-import ProjectCarousel from '@/components/organisms/ProjectCarousel.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
-import type { ProjectSummary } from '@/lib/projects';
+import portrait from '@/assets/portrait/portrait-cutout.png';
 
 type Props = {
   locale: Locale;
-  projects: ProjectSummary[];
 };
 
-const { locale, projects } = Astro.props;
+const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const home = dictionary.home;
+// Badges flottants autour du portrait : icône et position propres à chacun
+const badgeIcons = [Code, LayoutDashboard, ShieldCheck];
+const badgePositions = [
+  'top-[22%] left-0 sm:-left-6 [animation-delay:-1s]',
+  'top-[50%] right-0 sm:-right-8 [animation-delay:-2.5s]',
+  'bottom-[10%] left-0 sm:-left-4 [animation-delay:-4s]'
+];
 ---
 
 <section data-hero class="container-page pt-20 pb-12" aria-labelledby="hero-title">
   <div class="grid items-center gap-x-6 gap-y-12 lg:grid-cols-12">
-    <div class="flex flex-col gap-6 lg:col-span-5">
+    <div class="flex flex-col gap-6 lg:col-span-6">
       <AvailabilityBadge href={getRoutePath('contact', locale)} label={home.availability} />
       <p class="m-0 font-mono text-sm font-medium text-sig-text" lang="fr">
         <span class="inline-block w-0 animate-type overflow-hidden align-bottom whitespace-nowrap motion-reduce:w-auto">{home.signature}</span>
@@ -47,11 +56,58 @@ const home = dictionary.home;
         </Button>
       </div>
     </div>
-    <div class="lg:col-span-7">
-      <ProjectCarousel locale={locale} projects={projects} />
+    <!-- Portrait détouré sur une arche violette, entouré de badges : la personne d'abord, les projets juste en dessous -->
+    <div class="lg:col-span-6">
+      <div class="relative mx-auto aspect-square w-full max-w-[520px]">
+        <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[78%] rounded-t-full bg-linear-to-b from-[#6d3fd6] to-[#4a23a0]"></div>
+        <div aria-hidden="true" class="absolute top-[6%] right-[8%] size-16 rounded-full border-[3px] border-sig"></div>
+        <div aria-hidden="true" class="absolute top-[34%] left-[4%] size-3 rounded-full bg-sig"></div>
+        <Image
+          src={portrait}
+          alt={dictionary.meta.portraitAlt}
+          widths={[520, 800, 1040]}
+          sizes="(min-width: 1024px) 490px, 90vw"
+          loading="eager"
+          fetchpriority="high"
+          class="absolute bottom-0 left-[3%] w-[94%]"
+        />
+        <ul class="m-0 list-none p-0">
+          {
+            home.heroBadges.map((badge, index) => {
+              const Icon = badgeIcons[index] ?? Code;
+              return (
+                <li
+                  data-reveal
+                  class={`hero-badge absolute inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass ${badgePositions[index] ?? ''}`}
+                >
+                  <span class="flex size-8 items-center justify-center rounded-full bg-tint text-tint-ink">
+                    <Icon aria-hidden="true" size={16} />
+                  </span>
+                  {badge}
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Les badges flottent doucement, sauf si l'utilisateur a demandé moins de mouvement */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-badge {
+      animation: hero-float 6s ease-in-out infinite;
+    }
+  }
+
+  @keyframes hero-float {
+    50% {
+      translate: 0 -10px;
+    }
+  }
+</style>
 
 <script>
   import { playIntro } from '@/scripts/intro';

@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import avatar from '@/assets/portrait/avatar.jpg';
 
 type Props = {
   href: string;
@@ -13,9 +11,8 @@ const { href, label } = Astro.props;
 <a
   href={href}
   data-reveal
-  class="glass inline-flex min-h-11 items-center gap-2.5 self-start rounded-full! bg-glass-strong py-1.5 pr-4 pl-1.5 text-sm font-semibold text-ink no-underline hover:text-ink"
+  class="glass inline-flex min-h-11 items-center gap-2.5 self-start rounded-full! bg-glass-strong py-1.5 pr-4 pl-3.5 text-sm font-semibold text-ink no-underline hover:text-ink"
 >
-  <Image src={avatar} alt="" width={32} height={32} densities={[1, 2]} class="size-8 rounded-full object-cover" loading="eager" />
   <span aria-hidden="true" class="size-2 rounded-full bg-sig"></span>
   {label}
 </a>

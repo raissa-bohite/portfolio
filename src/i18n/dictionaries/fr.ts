@@ -220,7 +220,7 @@ const dictionary = {
       title: "Un parcours atypique, assumé",
       paragraphs: [
         "J'ai commencé par une licence d'allemand à l'Université Alassane Ouattara de Bouaké. Étudier une langue, c'est apprendre à comprendre une structure avant de produire quoi que ce soit.",
-        "Je me suis ensuite formée au développement full-stack chez DigiFemmes, par projets concrets, puis à la cybersécurité chez WeCode. Aujourd'hui, je développe le front-end de LEBEDOO, le produit fintech de Freewan, et je construis mes propres produits, comme Fassbar.",
+        "Je me suis ensuite formée au développement full-stack chez DigiFemmes, par projets concrets, puis à la cybersécurité chez WeCode. Aujourd'hui, je développe le front-end de LEBEDOO, le produit fintech de Freewan, et je construis mes propres produits.",
         "Ce chemin m'a donné une habitude que je garde : comprendre le besoin, le contexte et les utilisateurs avant de construire.",
       ],
     },
@@ -327,7 +327,7 @@ const dictionary = {
         {
           icon: "motion",
           title: "Le motion design",
-          text: "Des vidéos de présentation produites en code avec Remotion, comme pour Moomen Pro.",
+          text: "Des vidéos de présentation produites en code avec Remotion.",
         },
         {
           icon: "languages",

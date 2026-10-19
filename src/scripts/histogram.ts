@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from './motion';
 
-const MINIMUM_BAR_HEIGHT = 84;
+const MINIMUM_BAR_HEIGHT = 132;
 
 // Les barres montent l'une après l'autre ; la dernière atteinte reste en orange
 export function setupHistogram(list: HTMLElement): void {

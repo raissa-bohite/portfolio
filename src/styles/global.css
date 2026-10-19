@@ -11,11 +11,12 @@
 /* Jetons du design system : rôles, pas couleurs. Le violet signale ce qui se clique, l'orange l'état actif */
 :root {
   color-scheme: light;
-  --bg: #f4f0fc;
-  --glass: rgb(255 255 255 / 0.62);
-  --glass-strong: rgb(255 255 255 / 0.75);
-  --glass-border: rgb(255 255 255 / 0.9);
-  --shadow: 0 24px 48px -28px rgb(74 35 160 / 0.28);
+  /* Thème clair sur fond blanc : les surfaces se détachent par une bordure lavande et une ombre douce */
+  --bg: #ffffff;
+  --glass: #ffffff;
+  --glass-strong: #ffffff;
+  --glass-border: #e9e2f8;
+  --shadow: 0 18px 40px -24px rgb(74 35 160 / 0.22);
   --ink: #1e0f45;
   --text: #3e3266;
   --muted: #5f5385;

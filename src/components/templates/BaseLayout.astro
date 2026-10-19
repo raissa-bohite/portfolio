@@ -73,7 +73,8 @@ const personData = {
     <a href="#main" class="sr-only z-50 rounded-control bg-action px-4 py-3 font-semibold text-action-ink focus:not-sr-only focus:fixed focus:top-4 focus:left-4">
       {dictionary.nav.skip}
     </a>
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+    <!-- Halos colorés réservés au thème sombre : le thème clair reste sur un fond blanc uni -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 hidden overflow-hidden dark:block">
       <div class="absolute -top-[200px] -left-[240px] size-[760px] rounded-full bg-orb-1 opacity-85 blur-[120px]"></div>
       <div class="absolute top-[300px] -right-[200px] size-[600px] rounded-full bg-orb-2 opacity-70 blur-[130px]"></div>
       <div class="absolute top-[2000px] left-1/5 size-[700px] rounded-full bg-orb-1 opacity-60 blur-[140px]"></div>

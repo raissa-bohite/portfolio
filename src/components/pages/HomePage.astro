@@ -27,7 +27,7 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('home', a
   currentRoute="home"
   alternates={alternates}
 >
-  <HeroSection locale={locale} />
+  <HeroSection locale={locale} projects={projects} />
   <TechMarquee locale={locale} />
   <ProjectIndex locale={locale} projects={projects} />
   <DomainsSection locale={locale} />

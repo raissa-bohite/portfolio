@@ -1,4 +1,6 @@
 ---
+import Medal from '@lucide/astro/icons/medal';
+import Trophy from '@lucide/astro/icons/trophy';
 import SectionHeading from '@/components/molecules/SectionHeading.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
@@ -9,25 +11,38 @@ const { locale } = Astro.props;
 const awards = getDictionary(locale).aboutPage.awards;
 ---
 
+<!-- Même langage que la galerie : une vignette colorée qui porte le visuel, le texte en dessous -->
 <section aria-labelledby="awards-title" class="container-page flex flex-col gap-10 pb-24">
   <SectionHeading id="awards-title" eyebrow={awards.eyebrow} title={awards.title} />
-  <ul data-scroll-group class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4 p-0">
+  <ul data-scroll-group class="m-0 grid list-none gap-x-6 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-4">
     {
-      awards.items.map((award) => (
-        <li data-scroll-item class="glass flex flex-col gap-2.5 p-6">
-          <span
-            class:list={[
-              'self-start rounded-full border-[1.5px] px-3 py-1 text-sm font-bold whitespace-nowrap',
-              award.rank === 'first' ? 'border-sig bg-sig text-[#1E0F45]' : 'border-sig-text text-sig-text'
-            ]}
-          >
-            {award.badge}
-          </span>
-          <h3 class="m-0 text-xl leading-snug font-bold text-ink">{award.title}</h3>
-          <p class="m-0">{award.text}</p>
-          <p class="mt-auto mb-0 text-sm text-muted">{award.event}</p>
-        </li>
-      ))
+      awards.items.map((award) => {
+        const isFirst = award.rank === 'first';
+        const Icon = isFirst ? Trophy : Medal;
+        return (
+          <li data-scroll-item class="flex flex-col gap-4">
+            <div
+              class:list={[
+                'relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-surface p-5',
+                isFirst ? 'bg-linear-to-br from-[#f58a45] to-[#e0590c] text-[#1e0f45]' : 'bg-tint text-tint-ink'
+              ]}
+            >
+              <span aria-hidden="true" class="absolute -right-6 -bottom-8 opacity-25">
+                <Icon size={140} stroke-width={1.25} />
+              </span>
+              <span class="relative flex size-11 items-center justify-center rounded-full bg-white text-[#1e0f45]">
+                <Icon aria-hidden="true" size={20} />
+              </span>
+              <span class="relative text-[clamp(26px,2.4vw,32px)] leading-none font-bold tracking-[-0.02em]">{award.badge}</span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <h3 class="m-0 text-xl leading-snug font-bold text-ink">{award.title}</h3>
+              <p class="m-0">{award.text}</p>
+              <p class="m-0 text-sm text-muted">{award.event}</p>
+            </div>
+          </li>
+        );
+      })
     }
   </ul>
 </section>

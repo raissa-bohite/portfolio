@@ -10,13 +10,14 @@ const timeline = getDictionary(locale).aboutPage.timeline;
 const lastIndex = timeline.steps.length - 1;
 ---
 
-<section aria-labelledby="timeline-title" class="container-page pb-24">
-  <div class="glass grid gap-x-6 gap-y-10 p-8 md:p-12 lg:grid-cols-12">
+<!-- Bande lavande pleine largeur, comme « Ma démarche » sur l'accueil -->
+<section aria-labelledby="timeline-title" class="mb-24 bg-tint/45 py-24 dark:bg-white/[0.03]">
+  <div class="container-page grid w-full gap-x-6 gap-y-10 lg:grid-cols-12">
     <div class="lg:col-span-4">
       <SectionHeading id="timeline-title" eyebrow={timeline.eyebrow} title={timeline.title} />
       <!-- Le parcours écrit comme un tableau : chaque ligne s'allume quand la frise atteint l'étape correspondante -->
       <figure aria-label={timeline.codeLabel} class="sticky top-36 m-0 mt-6 hidden lg:block">
-        <div class="glass overflow-hidden bg-glass-strong!">
+        <div class="overflow-hidden rounded-surface border border-glass-border bg-bg shadow-glass">
           <div aria-hidden="true" class="flex items-center gap-2 border-b border-line px-4 py-3">
             <span class="size-2.5 rounded-full bg-sig"></span>
             <span class="size-2.5 rounded-full bg-line"></span>

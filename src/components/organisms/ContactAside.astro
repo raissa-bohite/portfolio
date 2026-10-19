@@ -19,43 +19,59 @@ const links = [
 ];
 ---
 
-<aside data-scroll-group class:list={['flex flex-col gap-4', className]}>
-  <div data-scroll-item class="glass flex flex-col gap-3 p-6" data-copy-email data-copied={page.copied} data-copy-failed={page.copyFailed}>
-    <h2 class="m-0 text-sm font-semibold text-sig-text">{page.directEmail}</h2>
-    <a href={`mailto:${profile.email}`} data-email class="text-[17px] font-semibold [overflow-wrap:anywhere] underline-offset-[5px]">{profile.email}</a>
+<!-- Coordonnées dans le bloc violet du contact de l'accueil. Couleurs fixes sur le violet : contraste supérieur à 7:1 -->
+<aside
+  data-scroll-group
+  class:list={['relative isolate flex flex-col gap-8 overflow-hidden rounded-[32px] bg-linear-to-br from-[#6d3fd6] to-[#36188a] p-8 text-white', className]}
+>
+  <div aria-hidden="true" class="absolute -right-24 -bottom-36 -z-10 size-[320px] rounded-t-full bg-white/[0.06]"></div>
+
+  <div data-scroll-item class="flex flex-col gap-3" data-copy-email data-copied={page.copied} data-copy-failed={page.copyFailed}>
+    <h2 class="m-0 text-sm font-semibold text-[#ffd9c2]">{page.directEmail}</h2>
+    <a
+      href={`mailto:${profile.email}`}
+      data-email
+      class="text-xl font-semibold text-white underline decoration-white/50 underline-offset-[5px] [overflow-wrap:anywhere] hover:text-white hover:decoration-white focus-visible:outline-white"
+    >
+      {profile.email}
+    </a>
     <button
       type="button"
       data-copy-button
       hidden
-      class="inline-flex min-h-11 cursor-pointer items-center gap-2 self-start rounded-control border border-line bg-glass-strong px-4 font-sans text-[15px] font-semibold text-ink transition-colors hover:bg-tint"
+      class="inline-flex min-h-11 cursor-pointer items-center gap-2 self-start rounded-control border-0 bg-white px-4 font-sans text-[15px] font-semibold text-[#36188a] transition-transform duration-100 focus-visible:outline-white active:scale-[0.97]"
     >
       <Copy aria-hidden="true" size={16} />
       {page.copy}
     </button>
-    <p data-copy-status role="status" class="m-0 min-h-px text-sm text-muted"></p>
+    <p data-copy-status role="status" class="m-0 min-h-px text-sm text-white/85"></p>
   </div>
 
-  <nav data-scroll-item aria-labelledby="elsewhere-title" class="glass flex flex-col gap-1 p-6">
-    <h2 id="elsewhere-title" class="mt-0 mb-2 text-sm font-semibold text-sig-text">{page.elsewhere}</h2>
+  <nav data-scroll-item aria-labelledby="elsewhere-title" class="flex flex-col">
+    <h2 id="elsewhere-title" class="mt-0 mb-2 text-sm font-semibold text-[#ffd9c2]">{page.elsewhere}</h2>
     {
-      links.map((link, index) => (
+      links.map((link) => (
         <a
           href={link.href}
           rel={link.external ? 'me noopener' : undefined}
           download={link.external ? undefined : true}
-          class:list={['flex min-h-11 items-center justify-between font-semibold no-underline', index > 0 && 'border-t border-line']}
+          class="group flex min-h-12 items-center justify-between border-t border-white/20 font-semibold text-white no-underline hover:text-white focus-visible:outline-white"
         >
           {link.label}
-          {link.external ? <ArrowUpRight aria-hidden="true" size={18} /> : <Download aria-hidden="true" size={18} />}
+          {link.external ? (
+            <ArrowUpRight aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          ) : (
+            <Download aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-y-0.5" />
+          )}
         </a>
       ))
     }
   </nav>
 
-  <div data-scroll-item class="glass flex flex-col gap-2 p-6">
-    <h2 class="m-0 text-sm font-semibold text-sig-text">{page.whereWhen}</h2>
-    <p class="m-0 font-semibold text-ink">{page.location}</p>
-    <p class="m-0 text-[15px] text-muted">{page.timezone}</p>
+  <div data-scroll-item class="flex flex-col gap-1 border-t border-white/20 pt-6">
+    <h2 class="m-0 text-sm font-semibold text-[#ffd9c2]">{page.whereWhen}</h2>
+    <p class="m-0 font-semibold">{page.location}</p>
+    <p class="m-0 text-[15px] text-white/85">{page.timezone}</p>
   </div>
 </aside>
 

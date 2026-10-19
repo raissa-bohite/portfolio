@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Download from '@lucide/astro/icons/download';
 import MapPin from '@lucide/astro/icons/map-pin';
-import portrait from '@/assets/portrait/portrait.jpg';
+import portrait from '@/assets/portrait/portrait-cutout.png';
 import Button from '@/components/atoms/Button.astro';
 import Eyebrow from '@/components/atoms/Eyebrow.astro';
 import type { Locale } from '@/i18n/config';
@@ -32,22 +32,24 @@ const page = dictionary.aboutPage;
         <Button href={getRoutePath('contact', locale)} variant="secondary">{page.contactCta}</Button>
       </div>
     </div>
-    <div class="flex justify-center lg:col-span-5">
-      <div class="relative w-full max-w-[380px]">
-        <div class="glass overflow-hidden p-3">
-          <Image
-            data-scroll-mask
-            src={portrait}
-            alt={dictionary.meta.portraitAlt}
-            widths={[380, 760]}
-            sizes="(min-width: 1024px) 380px, 90vw"
-            loading="eager"
-            fetchpriority="high"
-            class="block aspect-4/5 w-full rounded-control object-cover object-[50%_20%]"
-          />
-        </div>
-        <p data-scroll-pop class="glass absolute bottom-12 -left-3 m-0 flex items-center gap-2.5 bg-glass-strong! px-4 py-3 text-sm font-semibold text-ink sm:-left-7">
-          <MapPin aria-hidden="true" size={18} class="text-sig-text" />
+    <!-- Même mise en scène que l'accueil : portrait détouré sur l'arche violette, lieu en badge flottant -->
+    <div class="lg:col-span-5">
+      <div class="relative mx-auto aspect-square w-full max-w-[440px]">
+        <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[80%] rounded-t-full bg-linear-to-b from-[#6d3fd6] to-[#4a23a0]"></div>
+        <div aria-hidden="true" class="absolute top-[4%] right-[6%] size-14 rounded-full border-[3px] border-sig"></div>
+        <Image
+          src={portrait}
+          alt={dictionary.meta.portraitAlt}
+          widths={[440, 880]}
+          sizes="(min-width: 1024px) 440px, 90vw"
+          loading="eager"
+          fetchpriority="high"
+          class="absolute bottom-0 left-[3%] w-[94%]"
+        />
+        <p data-scroll-pop class="absolute bottom-[12%] left-0 m-0 inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass sm:-left-6">
+          <span class="flex size-8 items-center justify-center rounded-full bg-tint text-sig-text">
+            <MapPin aria-hidden="true" size={16} />
+          </span>
           {page.location}
         </p>
       </div>

@@ -1,6 +1,8 @@
 ---
 import ChevronLeft from '@lucide/astro/icons/chevron-left';
 import ChevronRight from '@lucide/astro/icons/chevron-right';
+import Pause from '@lucide/astro/icons/pause';
+import Play from '@lucide/astro/icons/play';
 import { getImage, Image } from 'astro:assets';
 import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
 import type { Locale } from '@/i18n/config';
@@ -70,6 +72,22 @@ const surfaceClasses = 'rounded-[28px] bg-[#f5f4f8] dark:bg-white/[0.05]';
       {
         desktopShots.length > 1 && (
           <div class="container-page flex w-full items-center justify-end gap-3">
+            <!-- Lecture automatique : le bouton porte une barre de progression vers la capture suivante -->
+            <button
+              type="button"
+              data-shot-toggle
+              data-label-pause={labels.pauseShots}
+              data-label-play={labels.playShots}
+              aria-label={labels.pauseShots}
+              hidden
+              class="group/toggle relative flex size-11 cursor-pointer items-center justify-center overflow-hidden rounded-full border-0 bg-tint text-tint-ink transition-transform duration-100 active:scale-95"
+            >
+              <Pause aria-hidden="true" size={18} class="group-data-[state=paused]/toggle:hidden" />
+              <Play aria-hidden="true" size={18} class="hidden group-data-[state=paused]/toggle:block" />
+              <span aria-hidden="true" class="absolute inset-x-2.5 bottom-1.5 h-0.5 overflow-hidden rounded-full bg-tint-ink/20">
+                <span data-shot-progress class="block h-full w-full origin-left scale-x-0 rounded-full bg-sig"></span>
+              </span>
+            </button>
             <p data-shot-counter aria-live="polite" class="m-0 mr-auto font-mono text-sm text-muted">
               {formatMessage(labels.shotPosition, { current: 1, total: desktopShots.length })}
             </p>

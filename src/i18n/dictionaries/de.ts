@@ -168,6 +168,8 @@ export const de: Dictionary = {
     previousShot: "Vorheriger Screenshot",
     nextShot: "Nächster Screenshot",
     shotPosition: "Screenshot {current} von {total}",
+    pauseShots: "Screenshot-Diashow anhalten",
+    playShots: "Screenshot-Diashow fortsetzen",
     caseStudyPending: 'Die ausführliche Fallstudie zu diesem Projekt ist in Vorbereitung.',
     next: 'Nächstes Projekt',
     tocTitle: 'Inhalt',

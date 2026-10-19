@@ -166,6 +166,8 @@ export const en: Dictionary = {
     previousShot: "Previous screenshot",
     nextShot: "Next screenshot",
     shotPosition: "Screenshot {current} of {total}",
+    pauseShots: "Pause the screenshot slideshow",
+    playShots: "Resume the screenshot slideshow",
     caseStudyPending: 'The full case study for this project is in progress.',
     next: 'Next project',
     tocTitle: 'Contents',

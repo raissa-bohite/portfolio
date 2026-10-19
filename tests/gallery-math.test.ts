@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getNearestSlideIndex, getOriginTransform, getTargetSlideIndex } from '../src/scripts/gallery-math';
+import { getNearestSlideIndex, getNextAutoplayIndex, getOriginTransform, getTargetSlideIndex } from '../src/scripts/gallery-math';
 
 const rect = (left: number, top: number, width: number, height: number): DOMRectReadOnly =>
   ({ left, top, width, height, right: left + width, bottom: top + height, x: left, y: top, toJSON: () => ({}) }) as DOMRectReadOnly;
@@ -62,5 +62,25 @@ describe('getOriginTransform', () => {
     const transform = getOriginTransform(thumbnail, preview);
     // Assert
     expect(transform).toBe('translate(-500px, -50px) scale(0.25)');
+  });
+});
+
+describe('getNextAutoplayIndex', () => {
+  it('passe à la capture suivante', () => {
+    // Arrange
+    const current = 2;
+    // Act
+    const next = getNextAutoplayIndex(current, 6);
+    // Assert
+    expect(next).toBe(3);
+  });
+
+  it('revient à la première après la dernière', () => {
+    // Arrange
+    const current = 5;
+    // Act
+    const next = getNextAutoplayIndex(current, 6);
+    // Assert
+    expect(next).toBe(0);
   });
 });

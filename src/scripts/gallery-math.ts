@@ -27,3 +27,9 @@ export function getOriginTransform(from: DOMRectReadOnly, to: DOMRectReadOnly): 
   const translateY = from.top + from.height / 2 - (to.top + to.height / 2);
   return `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 }
+
+// Capture suivante en lecture automatique : après la dernière, on revient à la première
+export function getNextAutoplayIndex(currentIndex: number, slideCount: number): number {
+  if (slideCount <= 0) return 0;
+  return (currentIndex + 1) % slideCount;
+}

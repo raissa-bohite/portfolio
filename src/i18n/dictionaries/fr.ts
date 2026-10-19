@@ -177,6 +177,8 @@ const dictionary = {
     previousShot: "Capture précédente",
     nextShot: "Capture suivante",
     shotPosition: "Capture {current} sur {total}",
+    pauseShots: "Mettre en pause le défilement des captures",
+    playShots: "Reprendre le défilement des captures",
     caseStudyPending:
       "L’étude de cas détaillée de ce projet est en préparation.",
     next: "Projet suivant",

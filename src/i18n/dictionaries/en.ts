@@ -72,14 +72,12 @@ export const en: Dictionary = {
       title: 'Every project follows the same order',
       listLabel: 'The four steps of my approach, in order',
       step: 'Step {n} of 4',
+      deliverableLabel: "Deliverable",
       steps: [
-        {
-          code: 'comprendre()',
-          text: 'The need, the users and the constraints, before the first line of code.'
-        },
-        { code: 'concevoir()', text: 'User flows and screens, approved before development.' },
-        { code: 'construire()', text: 'Typed, tested and well-structured code that is easy to evolve.' },
-        { code: 'vérifier()', text: 'Accessibility, performance and security checked before launch.' }
+        { code: "comprendre()", text: 'The need, the users and the constraints, before the first line of code.', deliverable: "Requirements document" },
+        { code: "concevoir()", text: 'User flows and screens, approved before development.', deliverable: "Approved mockups" },
+        { code: "construire()", text: 'Typed, tested and well-structured code that is easy to evolve.', deliverable: "Typed, tested code" },
+        { code: "vérifier()", text: 'Accessibility, performance and security checked before launch.', deliverable: "Audit report" }
       ]
     },
     about: {

@@ -1,14 +1,16 @@
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from './motion';
 
-const MINIMUM_BAR_HEIGHT = 72;
+const MINIMUM_BAR_HEIGHT = 84;
 
 // Les barres montent l'une après l'autre ; la dernière atteinte reste en orange
 export function setupHistogram(list: HTMLElement): void {
   const bars = Array.from(list.querySelectorAll<HTMLElement>('[data-bar]'));
   const texts = Array.from(list.querySelectorAll<HTMLElement>('[data-bar-text]'));
   const lastBar = bars.at(-1);
-  if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
+  // Une seule colonne : pas d'escalier à faire monter
+  const isStaircase = window.matchMedia('(min-width: 640px)').matches;
+  if (prefersReducedMotion() || !isStaircase || !('IntersectionObserver' in window)) {
     lastBar?.classList.add('is-current');
     return;
   }

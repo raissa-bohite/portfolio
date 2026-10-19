@@ -77,23 +77,12 @@ const dictionary = {
       title: "Chaque projet suit le même ordre",
       listLabel: "Les quatre étapes de ma démarche, dans l'ordre",
       step: "Étape {n} sur 4",
+      deliverableLabel: "Livrable",
       steps: [
-        {
-          code: "comprendre()",
-          text: "Le besoin, les utilisateurs et les contraintes, avant la première ligne de code.",
-        },
-        {
-          code: "concevoir()",
-          text: "Les parcours et les écrans, validés avant le développement.",
-        },
-        {
-          code: "construire()",
-          text: "Un code typé, testé et structuré, facile à faire évoluer.",
-        },
-        {
-          code: "vérifier()",
-          text: "Accessibilité, performance et sécurité contrôlées avant la mise en ligne.",
-        },
+        { code: "comprendre()", text: "Le besoin, les utilisateurs et les contraintes, avant la première ligne de code.", deliverable: "Cahier des charges" },
+        { code: "concevoir()", text: "Les parcours et les écrans, validés avant le développement.", deliverable: "Maquettes validées" },
+        { code: "construire()", text: "Un code typé, testé et structuré, facile à faire évoluer.", deliverable: "Code typé et testé" },
+        { code: "vérifier()", text: "Accessibilité, performance et sécurité contrôlées avant la mise en ligne.", deliverable: "Rapport d'audit" }
       ],
     },
     about: {

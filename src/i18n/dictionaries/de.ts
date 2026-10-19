@@ -72,14 +72,12 @@ export const de: Dictionary = {
       title: 'Jedes Projekt folgt derselben Reihenfolge',
       listLabel: 'Die vier Schritte meiner Arbeitsweise, in der Reihenfolge',
       step: 'Schritt {n} von 4',
+      deliverableLabel: "Ergebnis",
       steps: [
-        { code: 'comprendre()', text: 'Bedarf, Nutzer und Rahmenbedingungen – vor der ersten Codezeile.' },
-        { code: 'concevoir()', text: 'Abläufe und Screens, abgestimmt vor der Entwicklung.' },
-        {
-          code: 'construire()',
-          text: 'Typisierter, getesteter und gut strukturierter Code, der sich leicht weiterentwickeln lässt.'
-        },
-        { code: 'vérifier()', text: 'Barrierefreiheit, Performance und Sicherheit geprüft vor dem Livegang.' }
+        { code: "comprendre()", text: 'Bedarf, Nutzer und Rahmenbedingungen – vor der ersten Codezeile.', deliverable: "Lastenheft" },
+        { code: "concevoir()", text: 'Abläufe und Screens, abgestimmt vor der Entwicklung.', deliverable: "Freigegebene Mockups" },
+        { code: "construire()", text: 'Typisierter, getesteter und gut strukturierter Code, der sich leicht weiterentwickeln lässt.', deliverable: "Typisierter, getesteter Code" },
+        { code: "vérifier()", text: 'Barrierefreiheit, Performance und Sicherheit geprüft vor dem Livegang.', deliverable: "Audit-Bericht" }
       ]
     },
     about: {

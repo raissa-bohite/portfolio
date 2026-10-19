@@ -17,7 +17,7 @@ const desktopShots = shots.filter((shot) => shot.frame === 'desktop');
 const phoneShots = shots.filter((shot) => shot.frame === 'phone');
 // Versions grand format servies seulement à l'ouverture de l'aperçu
 const largeSources = await Promise.all(desktopShots.map((shot) => getImage({ src: shot.image, width: 1920, format: 'webp' })));
-const surfaceClasses = 'rounded-[28px] bg-[#f5f4f8] dark:bg-white/[0.05]';
+const surfaceClasses = 'rounded-block bg-[#f5f4f8] dark:bg-white/[0.05]';
 ---
 
 <!--
@@ -59,7 +59,7 @@ const surfaceClasses = 'rounded-[28px] bg-[#f5f4f8] dark:bg-white/[0.05]';
                     class="block aspect-[16/9.4] h-auto w-full rounded-[12px] bg-white object-cover object-top shadow-[0_1px_2px_rgb(0_0_0/0.06),0_20px_40px_-24px_rgb(30_15_69/0.35)] transition-transform duration-500 ease-out-soft group-hover:scale-[1.012]"
                   />
                 </button>
-                <figcaption class="flex items-baseline gap-3 px-1 text-[17px] leading-snug">
+                <figcaption class="flex items-baseline gap-3 px-1 text-base leading-snug">
                   <span class="font-mono text-sm text-muted">{String(index + 1).padStart(2, '0')}</span>
                   <span class="font-semibold text-ink">{shot.caption}</span>
                 </figcaption>

@@ -13,7 +13,7 @@ const { label, size = 'medium', class: className, ...attributes } = Astro.props;
   type="button"
   aria-label={label}
   class:list={[
-    'inline-flex cursor-pointer items-center justify-center rounded-control text-ink transition-colors duration-200',
+    'inline-flex cursor-pointer items-center justify-center rounded-control text-ink transition-[color,background-color,transform] duration-150 active:scale-[0.94] active:duration-75',
     size === 'medium' ? 'size-11 border border-line bg-glass-strong hover:bg-tint' : 'size-10 border-0 bg-transparent hover:bg-tint',
     className
   ]}

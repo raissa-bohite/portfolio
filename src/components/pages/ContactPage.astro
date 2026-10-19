@@ -20,11 +20,11 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('contact'
       <Eyebrow>{page.eyebrow}</Eyebrow>
       <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{page.title}</h1>
     </div>
-    <p data-scroll-item class="m-0 max-w-[52ch] text-xl leading-[1.55]">{page.intro}</p>
+    <p data-scroll-item class="m-0 max-w-[52ch] text-lead">{page.intro}</p>
   </section>
   <section class="container-page pb-24">
     <div class="grid items-stretch gap-x-6 gap-y-8 lg:grid-cols-12">
-      <div class="rounded-[32px] border border-glass-border bg-bg p-6 shadow-glass sm:p-10 lg:col-span-8">
+      <div class="rounded-block border border-glass-border bg-bg p-6 shadow-glass-lg sm:p-10 lg:col-span-8">
         <ContactForm locale={locale} variant="full" class="relative" />
       </div>
       <ContactAside locale={locale} class="lg:col-span-4" />

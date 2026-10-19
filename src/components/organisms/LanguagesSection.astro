@@ -9,7 +9,7 @@ const { locale } = Astro.props;
 const languages = getDictionary(locale).aboutPage.languages;
 ---
 
-<section aria-labelledby="languages-title" class="container-page flex flex-col gap-10 pb-24">
+<section aria-labelledby="languages-title" class="container-page flex flex-col gap-12 pb-24">
   <SectionHeading id="languages-title" eyebrow={languages.eyebrow} title={languages.title} />
   <ul data-scroll-group class="m-0 grid list-none gap-6 p-0 md:grid-cols-3">
     {
@@ -17,7 +17,7 @@ const languages = getDictionary(locale).aboutPage.languages;
         <li data-scroll-item class="flex items-start gap-5 rounded-surface border border-glass-border bg-bg p-6 shadow-glass">
           <span aria-hidden="true" class="flex size-14 flex-none items-center justify-center rounded-full bg-tint font-mono text-base font-semibold text-tint-ink uppercase">{language.code}</span>
           <div class="flex flex-col gap-1.5">
-          <h3 class="m-0 text-2xl leading-tight font-bold text-ink" lang={language.code}>{language.name}</h3>
+          <h3 class="m-0 text-title font-bold text-ink" lang={language.code}>{language.name}</h3>
           <p class="m-0 text-muted">{language.level}</p>
           </div>
         </li>

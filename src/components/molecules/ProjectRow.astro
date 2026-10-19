@@ -26,14 +26,14 @@ const number = String(position).padStart(2, '0');
       <span class="font-mono text-sig-text">{number}</span>
       <span class="text-action">{project.kind}</span>
     </p>
-    <h2 class="m-0 text-[clamp(32px,3.6vw,48px)] leading-[1.05] font-bold tracking-[-0.02em] text-ink">
+    <h2 class="m-0 text-h2 font-bold text-ink">
       <!-- Le lien couvre toute la ligne, mais son texte reste le nom du projet -->
       <a href={project.href} class="text-ink no-underline after:absolute after:inset-0 after:rounded-surface hover:text-action focus-visible:outline-none">
         {project.name}
       </a>
     </h2>
     <p class="m-0 text-lg leading-[1.6]">{project.description}</p>
-    <p class="m-0 text-[15px] font-medium text-muted">{project.role}</p>
+    <p class="m-0 text-small font-medium text-muted">{project.role}</p>
     <ul class="m-0 flex list-none flex-wrap gap-2 p-0" aria-label={stackLabel}>
       {
         project.stack.map((technology) => (
@@ -45,7 +45,7 @@ const number = String(position).padStart(2, '0');
     </ul>
     <span
       aria-hidden="true"
-      class="mt-2 inline-flex min-h-12 items-center gap-2 self-start rounded-control bg-action px-5 text-[15px] font-semibold text-action-ink transition-colors group-hover:bg-action-hover"
+      class="mt-2 inline-flex min-h-12 items-center gap-2 self-start rounded-control bg-action px-5 text-small font-semibold text-action-ink transition-colors group-hover:bg-action-hover"
     >
       {actionLabel}
       <ArrowUpRight size={18} class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

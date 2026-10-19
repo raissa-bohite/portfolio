@@ -22,7 +22,7 @@ const links = [
 <!-- Coordonnées dans le bloc violet du contact de l'accueil. Couleurs fixes sur le violet : contraste supérieur à 7:1 -->
 <aside
   data-scroll-group
-  class:list={['relative isolate flex flex-col gap-8 overflow-hidden rounded-[32px] bg-linear-to-br from-[#6d3fd6] to-[#36188a] p-8 text-white', className]}
+  class:list={['relative isolate flex flex-col gap-8 overflow-hidden rounded-block bg-linear-to-br from-[#6d3fd6] to-[#36188a] shadow-glass-lg p-8 text-white', className]}
 >
   <div aria-hidden="true" class="absolute -right-24 -bottom-36 -z-10 size-[320px] rounded-t-full bg-white/[0.06]"></div>
 
@@ -39,7 +39,7 @@ const links = [
       type="button"
       data-copy-button
       hidden
-      class="inline-flex min-h-11 cursor-pointer items-center gap-2 self-start rounded-control border-0 bg-white px-4 font-sans text-[15px] font-semibold text-[#36188a] transition-transform duration-100 focus-visible:outline-white active:scale-[0.97]"
+      class="inline-flex min-h-11 cursor-pointer items-center gap-2 self-start rounded-control border-0 bg-white px-4 font-sans text-small font-semibold text-[#36188a] transition-transform duration-100 focus-visible:outline-white active:scale-[0.97]"
     >
       <Copy aria-hidden="true" size={16} />
       {page.copy}
@@ -71,7 +71,7 @@ const links = [
   <div data-scroll-item class="flex flex-col gap-1 border-t border-white/20 pt-6">
     <h2 class="m-0 text-sm font-semibold text-[#ffd9c2]">{page.whereWhen}</h2>
     <p class="m-0 font-semibold">{page.location}</p>
-    <p class="m-0 text-[15px] text-white/85">{page.timezone}</p>
+    <p class="m-0 text-small text-white/85">{page.timezone}</p>
   </div>
 </aside>
 

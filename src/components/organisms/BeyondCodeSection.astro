@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 const beyond = getDictionary(locale).aboutPage.beyond;
 ---
 
-<section aria-labelledby="beyond-title" class="container-page flex flex-col gap-10 pb-24">
+<section aria-labelledby="beyond-title" class="container-page flex flex-col gap-12 pb-24">
   <SectionHeading id="beyond-title" eyebrow={beyond.eyebrow} title={beyond.title} />
   <div data-scroll-group class="grid gap-6 md:grid-cols-3">
     {beyond.items.map((item) => <DomainCard icon={item.icon} title={item.title} text={item.text} />)}

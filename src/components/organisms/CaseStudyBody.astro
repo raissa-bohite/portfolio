@@ -13,14 +13,14 @@ const labels = getDictionary(locale).projectPage;
 
 const sectionNumber = (position: number): string => String(position).padStart(2, '0');
 const labelClasses = 'm-0 font-mono text-sm font-semibold text-sig-text';
-const headingClasses = 'm-0 text-[clamp(28px,3.2vw,40px)] leading-[1.1] font-bold tracking-[-0.02em] text-ink';
+const headingClasses = 'm-0 text-h2 font-bold text-ink';
 const splitClasses = 'container-page grid w-full scroll-mt-32 gap-6 lg:grid-cols-12 lg:gap-x-12';
 const asideClasses = 'flex flex-col gap-3 lg:sticky lg:top-32 lg:col-span-4 lg:self-start';
 const bodyClasses = 'flex flex-col gap-5 lg:col-span-8';
-const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
+const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
 ---
 
-<article data-case-study class="flex flex-col gap-28 pb-28">
+<article data-case-study class="flex flex-col gap-24 pb-24">
   <section id="context" data-scroll-group aria-labelledby="context-title" class={splitClasses}>
     <div data-scroll-item class={asideClasses}>
       <p class={labelClasses}>{sectionNumber(1)}</p>
@@ -41,7 +41,7 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
       <ul class="m-0 mt-2 grid list-none gap-3 p-0 sm:grid-cols-2">
         {
           caseStudy.role.highlights.map((highlight, index) => (
-            <li data-scroll-item class="glass flex items-center gap-4 px-5 py-4 font-semibold text-ink">
+            <li data-scroll-item class="glass flex items-center gap-4 shadow-glass-sm! px-5 py-4 font-semibold text-ink">
               <span class="font-mono text-sm text-sig-text">{sectionNumber(index + 1)}</span>
               {highlight}
             </li>
@@ -93,7 +93,7 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
                   <Plus aria-hidden="true" size={18} />
                 </span>
               </summary>
-              <p class="m-0 max-w-[62ch] pb-6 pl-10 text-[17px] leading-[1.7]">{decision.text}</p>
+              <p class="m-0 max-w-[62ch] pb-6 pl-10 text-base leading-[1.7]">{decision.text}</p>
             </details>
           </li>
         ))
@@ -104,18 +104,18 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-lg leading-[1.7]';
   <!-- Bandeau sombre dans les deux thèmes : les résultats ressortent dans le rythme de la page -->
   <!-- Résultats dans un bloc violet, comme le contact de l'accueil : couleurs fixes, contraste supérieur à 7:1 -->
   <section id="results" aria-labelledby="results-title" class="container-page w-full scroll-mt-32">
-    <div data-scroll-group class="relative isolate flex flex-col gap-10 overflow-hidden rounded-[32px] bg-linear-to-br from-[#6d3fd6] to-[#36188a] p-8 md:p-12">
+    <div data-scroll-group class="relative isolate flex flex-col gap-10 overflow-hidden rounded-block bg-linear-to-br from-[#6d3fd6] to-[#36188a] shadow-glass-lg p-8 md:p-12">
       <div aria-hidden="true" class="absolute -right-32 -bottom-40 -z-10 size-[420px] rounded-t-full bg-white/[0.06]"></div>
       <div data-scroll-item class="flex max-w-3xl flex-col gap-3">
         <p class="m-0 font-mono text-sm font-semibold text-[#ffd9c2]">{sectionNumber(5)}</p>
-        <h2 id="results-title" class="m-0 text-[clamp(28px,3.2vw,40px)] leading-[1.1] font-bold tracking-[-0.02em] text-white">{labels.sections.results}</h2>
+        <h2 id="results-title" class="m-0 text-h2 font-bold text-white">{labels.sections.results}</h2>
         <p class="m-0 text-lg text-white/85">{caseStudy.results.intro}</p>
       </div>
       <dl class="m-0 grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
         {
           caseStudy.results.metrics.map((metric) => (
             <div data-scroll-item class="flex flex-col gap-2 border-t-2 border-[#ff9a5c] pt-5">
-              <dt class="order-2 m-0 text-[15px] text-white/85">{metric.label}</dt>
+              <dt class="order-2 m-0 text-small text-white/85">{metric.label}</dt>
               <dd class="order-1 m-0 text-[clamp(36px,3.8vw,56px)] leading-none font-bold tracking-[-0.03em] break-words text-white">{metric.value}</dd>
             </div>
           ))

@@ -40,7 +40,7 @@ const stepIcons = [Search, PenTool, Code, ShieldCheck];
                   ]}
                 >
                   <div class="flex items-start justify-between gap-3">
-                    <span class="font-mono text-[15px] font-semibold" lang="fr">
+                    <span class="font-mono text-small font-semibold" lang="fr">
                       {step.code}
                     </span>
                     <Icon aria-hidden="true" size={20} class="flex-none" />
@@ -50,7 +50,7 @@ const stepIcons = [Search, PenTool, Code, ShieldCheck];
                 {!isLast && (
                   <span
                     aria-hidden="true"
-                    class="absolute -right-[22px] bottom-3 z-10 hidden size-8 items-center justify-center rounded-full border border-line bg-bg text-action shadow-glass lg:flex"
+                    class="absolute -right-[22px] bottom-3 z-10 hidden size-8 items-center justify-center rounded-full border border-line bg-bg text-action shadow-glass-sm lg:flex"
                   >
                     <ArrowRight size={16} />
                   </span>

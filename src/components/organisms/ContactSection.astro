@@ -15,14 +15,14 @@ const linkClasses = 'text-white underline decoration-white/50 underline-offset-[
 
 <!-- Fin de page : un grand bloc violet qui reprend l'arche du haut de page, avec le formulaire dans une carte -->
 <section id="contact" aria-labelledby="contact-title" class="container-page py-24">
-  <div class="relative isolate grid gap-x-10 gap-y-10 overflow-hidden rounded-[32px] bg-linear-to-br from-[#6d3fd6] to-[#36188a] p-8 md:p-12 lg:grid-cols-12">
+  <div class="relative isolate grid gap-x-10 gap-y-10 overflow-hidden rounded-block bg-linear-to-br from-[#6d3fd6] to-[#36188a] shadow-glass-lg p-8 md:p-12 lg:grid-cols-12">
     <div aria-hidden="true" class="absolute -bottom-40 -left-32 -z-10 size-[420px] rounded-t-full bg-white/[0.06]"></div>
 
     <div class="flex flex-col gap-4 lg:col-span-5">
       <p class="m-0 text-sm font-semibold text-[#ffd9c2]">{contact.eyebrow}</p>
       <h2 id="contact-title" class="m-0 text-h2 font-bold text-white">{contact.title}</h2>
       <p class="m-0 text-lg text-white/85">{contact.text}</p>
-      <a href={`mailto:${profile.email}`} class={`mt-2 inline-flex min-h-12 items-center gap-2.5 self-start text-[17px] font-semibold ${linkClasses}`}>
+      <a href={`mailto:${profile.email}`} class={`mt-2 inline-flex min-h-12 items-center gap-2.5 self-start text-base font-semibold ${linkClasses}`}>
         <Mail aria-hidden="true" size={18} />
         {profile.email}
       </a>
@@ -32,7 +32,7 @@ const linkClasses = 'text-white underline decoration-white/50 underline-offset-[
       </ul>
     </div>
 
-    <div class="rounded-surface bg-bg p-6 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.5)] md:p-8 lg:col-span-7">
+    <div class="rounded-surface bg-bg p-6 shadow-glass-lg md:p-8 lg:col-span-7">
       <ContactForm locale={locale} variant="compact" class="relative" />
     </div>
   </div>

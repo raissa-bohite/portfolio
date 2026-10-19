@@ -27,12 +27,12 @@ const links: { id: RouteId; label: string }[] = [
 
 <header class="sticky top-4 z-20 pt-4">
   <div class="container-page">
-    <nav aria-label={dictionary.nav.label} class="glass relative flex items-center justify-between gap-4 bg-glass-strong! py-2.5 pr-2.5 pl-6">
+    <nav aria-label={dictionary.nav.label} class="material relative flex items-center justify-between gap-4 py-2.5 pr-2.5 pl-6">
       <a href={getRoutePath('home', locale)} class="text-xl font-extrabold tracking-[-0.02em] text-ink no-underline hover:text-ink">
         Raïssa Bohité<span aria-hidden="true" class="animate-blink font-mono text-sig">_</span>
       </a>
 
-      <ul id="primary-links" data-menu class="m-0 hidden list-none items-center gap-1 p-0 text-[15px] font-semibold lg:flex">
+      <ul id="primary-links" data-menu class="m-0 hidden list-none items-center gap-1 p-0 text-small font-semibold lg:flex">
         {
           links.map((link) => (
             <li>
@@ -58,7 +58,7 @@ const links: { id: RouteId; label: string }[] = [
         <ThemeToggle labelDark={dictionary.nav.themeDark} labelLight={dictionary.nav.themeLight} />
         <a
           href={getRoutePath('contact', locale)}
-          class="hidden min-h-11 items-center gap-2 rounded-control bg-action px-[18px] text-[15px] font-semibold text-action-ink no-underline hover:bg-action-hover hover:text-action-ink md:inline-flex"
+          class="hidden min-h-11 items-center gap-2 rounded-control bg-action px-[18px] transition-[background-color,transform] duration-150 active:scale-[0.97] text-small font-semibold text-action-ink no-underline hover:bg-action-hover hover:text-action-ink md:inline-flex"
         >
           {dictionary.nav.cta}
           <ArrowUpRight aria-hidden="true" size={16} />
@@ -77,7 +77,7 @@ const links: { id: RouteId; label: string }[] = [
         </IconButton>
       </div>
 
-      <div id="mobile-menu" hidden class="glass absolute top-full right-0 left-0 mt-2 bg-glass-strong! p-4 lg:hidden">
+      <div id="mobile-menu" hidden class="absolute top-full right-0 left-0 mt-2 rounded-surface border border-glass-border bg-bg p-4 shadow-glass lg:hidden">
         <ul class="m-0 flex list-none flex-col gap-1 p-0 text-base font-semibold">
           {
             links.map((link) => (

@@ -22,10 +22,10 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('projects
       <Eyebrow>{page.eyebrow}</Eyebrow>
       <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{page.title}</h1>
     </div>
-    <p data-scroll-item class="m-0 max-w-[60ch] text-xl leading-[1.55]">{page.intro}</p>
+    <p data-scroll-item class="m-0 max-w-[60ch] text-lead">{page.intro}</p>
   </section>
   <!-- Projets en lignes alternées : la vignette colorée change de côté à chaque projet -->
-  <section aria-label={page.eyebrow} data-scroll-group class="container-page flex flex-col gap-24 pt-8 pb-28">
+  <section aria-label={page.eyebrow} data-scroll-group class="container-page flex flex-col gap-24 pt-8 pb-24">
     {
       projects.map((project, index) => (
         <ProjectRow

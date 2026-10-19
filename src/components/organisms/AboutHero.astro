@@ -23,7 +23,7 @@ const page = dictionary.aboutPage;
         <Eyebrow>{page.eyebrow}</Eyebrow>
         <h1 class="m-0 text-display font-bold text-ink">{page.title}</h1>
       </div>
-      <p data-scroll-item class="m-0 max-w-[52ch] text-xl leading-[1.55]">{page.intro}</p>
+      <p data-scroll-item class="m-0 max-w-[52ch] text-lead">{page.intro}</p>
       <div data-scroll-item class="flex flex-wrap gap-3">
         <Button href={getCvPath(locale)} download>
           <Download aria-hidden="true" size={18} />
@@ -46,7 +46,7 @@ const page = dictionary.aboutPage;
           fetchpriority="high"
           class="absolute bottom-0 left-[3%] w-[94%]"
         />
-        <p data-scroll-pop class="absolute bottom-[12%] left-0 m-0 inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass sm:-left-6">
+        <p data-scroll-pop class="absolute bottom-[12%] left-0 m-0 inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass-sm sm:-left-6">
           <span class="flex size-8 items-center justify-center rounded-full bg-tint text-sig-text">
             <MapPin aria-hidden="true" size={16} />
           </span>

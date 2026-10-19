@@ -39,14 +39,14 @@ const labelSeparator = locale === 'fr' ? ' : ' : ': ';
         {
           legal.sections.map((section) => (
             <section id={section.id} data-toc-section aria-labelledby={`${section.id}-title`} class="flex scroll-mt-32 flex-col gap-4">
-              <h2 id={`${section.id}-title`} class="m-0 text-[clamp(24px,2.6vw,30px)] leading-[1.2] font-bold text-ink">
+              <h2 id={`${section.id}-title`} class="m-0 text-title font-bold text-ink">
                 {section.title}
               </h2>
               {section.facts.length > 0 && (
                 <dl class="m-0 grid gap-x-6 gap-y-3 sm:grid-cols-[minmax(0,14rem)_1fr]">
                   {section.facts.map((fact) => (
                     <>
-                      <dt class="text-[15px] font-medium text-muted">{fact.term}</dt>
+                      <dt class="text-small font-medium text-muted">{fact.term}</dt>
                       <dd class="m-0 font-semibold text-ink">{fact.href ? <a href={fact.href}>{fact.value}</a> : fact.value}</dd>
                     </>
                   ))}

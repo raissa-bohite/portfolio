@@ -47,7 +47,7 @@ const badgePositions = [
         }<span aria-hidden="true" class="animate-blink font-mono font-semibold text-sig">_</span>
       </h1>
       <!-- Pas d'animation sur ce paragraphe : c'est le plus grand élément visible au chargement (LCP) -->
-      <p class="m-0 max-w-[40ch] text-xl leading-[1.55]">{home.intro}</p>
+      <p class="m-0 max-w-[40ch] text-lead">{home.intro}</p>
       <div data-reveal class="mt-2 flex flex-wrap gap-3">
         <Button href={getRoutePath('projects', locale)}>{home.ctaProjects}</Button>
         <Button href={getCvPath(locale)} variant="secondary" download>
@@ -78,7 +78,7 @@ const badgePositions = [
               return (
                 <li
                   data-reveal
-                  class={`hero-badge absolute inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass ${badgePositions[index] ?? ''}`}
+                  class={`hero-badge absolute inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass-sm ${badgePositions[index] ?? ''}`}
                 >
                   <span class="flex size-8 items-center justify-center rounded-full bg-tint text-tint-ink">
                     <Icon aria-hidden="true" size={16} />

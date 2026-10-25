@@ -83,6 +83,13 @@ function coverThenNavigate(href: string, label: string): void {
   window.setTimeout(() => window.location.assign(href), CURTAIN_COVER_DURATION);
 }
 
+// Texte lu par un lecteur d'écran : on écarte la partie décorative (aria-hidden), sinon « EN » et « English » se collent
+function getAccessibleLinkText(link: HTMLAnchorElement): string {
+  const copy = link.cloneNode(true) as HTMLAnchorElement;
+  for (const hidden of copy.querySelectorAll('[aria-hidden="true"]')) hidden.remove();
+  return copy.textContent ?? '';
+}
+
 function handleLinkClick(event: MouseEvent): void {
   if (event.defaultPrevented || root.dataset.loader) return;
   const link = event.target instanceof Element ? event.target.closest('a') : null;
@@ -101,7 +108,7 @@ function handleLinkClick(event: MouseEvent): void {
   if (!shouldAnimateNavigation(intent)) return;
 
   event.preventDefault();
-  coverThenNavigate(link.href, getTransitionLabel(link.dataset.transitionLabel, link.textContent ?? ''));
+  coverThenNavigate(link.href, getTransitionLabel(link.dataset.transitionLabel, getAccessibleLinkText(link)));
 }
 
 function cleanUpUncover(): void {

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import portrait from '@/assets/portrait/portrait-cutout.png';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import { profile } from '@/lib/profile';
@@ -23,6 +25,18 @@ const lastName = otherNames.join(' ');
       <span class="page-loader-mask page-loader-mask-late"><span>{lastName}<span class="page-loader-dot">.</span></span></span>
     </p>
     <p class="page-loader-tagline">{dictionary.loader.tagline}</p>
+  </div>
+  <!-- Mêmes tailles que le portrait du haut de page : le navigateur réutilise l'image, aucun téléchargement en plus -->
+  <div class="page-loader-portrait" aria-hidden="true">
+    <div class="page-loader-arch"></div>
+    <Image
+      src={portrait}
+      alt=""
+      widths={[520, 800, 1040]}
+      sizes="(min-width: 1024px) 490px, 90vw"
+      loading="eager"
+      class="page-loader-photo"
+    />
   </div>
   <div class="page-loader-row page-loader-content page-loader-footer">
     <p class="page-loader-count" aria-hidden="true"><span data-page-loader-count>000</span><span class="page-loader-unit"> %</span></p>
@@ -142,6 +156,49 @@ const lastName = otherNames.join(' ');
     animation: page-loader-fade-in 600ms ease-out 520ms forwards;
   }
 
+  .page-loader-footer {
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 3rem;
+  }
+
+  .page-loader-portrait {
+    position: absolute;
+    right: clamp(1.5rem, 6vw, 6rem);
+    bottom: 0;
+    display: none;
+    width: min(44vw, 640px, 80vh);
+    aspect-ratio: 1;
+    opacity: 0;
+    transform: translateY(48px);
+    animation: page-loader-portrait-in 1000ms var(--loader-ease-out) 250ms forwards;
+  }
+
+  @media (min-width: 1024px) {
+    .page-loader-portrait {
+      display: block;
+    }
+  }
+
+  .page-loader-arch {
+    position: absolute;
+    right: 7%;
+    bottom: 0;
+    left: 7%;
+    height: 78%;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(to bottom, #6d3fd6, #4a23a0);
+  }
+
+  .page-loader-photo {
+    position: absolute;
+    bottom: 0;
+    left: 3%;
+    width: 94%;
+    height: auto;
+  }
+
   .page-loader-count {
     margin: 0;
     font-size: clamp(2.75rem, 7vw, 4rem);
@@ -220,6 +277,13 @@ const lastName = otherNames.join(' ');
   html[data-transition='uncover'] main,
   html[data-loader='leaving'] main {
     animation: page-content-enter 900ms var(--loader-ease-out) 180ms both;
+  }
+
+  @keyframes page-loader-portrait-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @keyframes page-loader-rise {

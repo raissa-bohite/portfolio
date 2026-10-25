@@ -1,7 +1,9 @@
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from './motion';
 
-const VISIBILITY_THRESHOLD = 0.25;
+// Le groupe se révèle dès que son haut dépasse le bas de l'écran de 15 % :
+// un seuil en pourcentage du groupe échouait pour les grilles plus hautes que l'écran (liste des projets)
+const REVEAL_ROOT_MARGIN = '0px 0px -15% 0px';
 
 // Construit l'entrée d'un groupe : chaque rôle (data-scroll-*) a son propre geste, joué dans l'ordre du document
 function buildTimeline(group: HTMLElement): gsap.core.Timeline {
@@ -45,7 +47,7 @@ export function setupScrollReveal(group: HTMLElement): void {
       observer.disconnect();
       timeline.play();
     },
-    { threshold: VISIBILITY_THRESHOLD }
+    { threshold: 0, rootMargin: REVEAL_ROOT_MARGIN }
   );
   observer.observe(group);
 }

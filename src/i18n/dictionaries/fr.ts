@@ -243,13 +243,6 @@ const dictionary = {
           code: "cybersécurité",
         },
         {
-          period: "En parallèle",
-          title: "Graphiste",
-          place:
-            "La Ruche Universelle, identité visuelle et supports graphiques",
-          code: "graphisme",
-        },
-        {
           period: "Aujourd'hui",
           title: "Développeuse front-end chez Freewan",
           place:
@@ -320,8 +313,8 @@ const dictionary = {
         },
         {
           icon: "motion",
-          title: "Le motion design",
-          text: "Des vidéos de présentation produites en code avec Remotion.",
+          title: "Le vibe motion design",
+          text: "Des vidéos de présentation que je génère avec des outils d'IA.",
         },
         {
           icon: "languages",

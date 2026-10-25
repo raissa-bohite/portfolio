@@ -214,7 +214,6 @@ export const en: Dictionary = {
         { period: '2020 – 2023', title: "Bachelor's degree in German language and literature", place: 'Alassane Ouattara University, Bouaké', code: 'allemand' },
         { period: 'Oct. 2023 – 2025', title: 'Full-stack development training', place: 'DigiFemmes, project-based learning', code: 'full-stack' },
         { period: '2025', title: 'Junior cybersecurity analyst', place: 'WeCode, with a Cisco cybersecurity certification', code: 'cybersécurité' },
-        { period: 'Alongside', title: 'Graphic designer', place: 'La Ruche Universelle, visual identity and print materials', code: 'graphisme' },
         { period: 'Today', title: 'Front-end developer at Freewan', place: "On LEBEDOO, Freewan's fintech product, and creator of Fassbar", code: 'front-end' }
       ]
     },
@@ -242,7 +241,7 @@ export const en: Dictionary = {
       title: 'What feeds my work',
       items: [
         { icon: 'design', title: 'Graphic design', text: 'My graphic design work sharpens my eye for hierarchy, colour and typography.' },
-        { icon: 'motion', title: 'Motion design', text: 'Promo videos produced in code with Remotion, as for Moomen Pro.' },
+        { icon: 'motion', title: 'Vibe motion design', text: 'Promo videos I generate with AI tools, as for Moomen Pro.' },
         { icon: 'languages', title: 'Languages', text: 'They taught me rigour, and they inspired Fassbar.' }
       ]
     },

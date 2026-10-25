@@ -216,7 +216,6 @@ export const de: Dictionary = {
         { period: '2020 – 2023', title: 'Bachelor in deutscher Sprache und Literatur', place: 'Universität Alassane Ouattara, Bouaké', code: 'allemand' },
         { period: 'Okt. 2023 – 2025', title: 'Weiterbildung Full-Stack-Entwicklung', place: 'DigiFemmes, projektbasiertes Lernen', code: 'full-stack' },
         { period: '2025', title: 'Junior-Analystin für Cybersicherheit', place: 'WeCode, mit einer Cisco-Zertifizierung in Cybersicherheit', code: 'cybersécurité' },
-        { period: 'Parallel dazu', title: 'Grafikdesignerin', place: 'La Ruche Universelle, visuelle Identität und Printmedien', code: 'graphisme' },
         { period: 'Heute', title: 'Front-End-Entwicklerin bei Freewan', place: 'An LEBEDOO, dem Fintech-Produkt von Freewan, und Gründerin von Fassbar', code: 'front-end' }
       ]
     },
@@ -244,7 +243,7 @@ export const de: Dictionary = {
       title: 'Was meine Arbeit prägt',
       items: [
         { icon: 'design', title: 'Grafikdesign', text: 'Meine Arbeit als Grafikdesignerin schärft meinen Blick für Hierarchie, Farbe und Typografie.' },
-        { icon: 'motion', title: 'Motion Design', text: 'Präsentationsvideos, mit Remotion in Code erstellt, zum Beispiel für Moomen Pro.' },
+        { icon: 'motion', title: 'Vibe Motion Design', text: 'Präsentationsvideos, die ich mit KI-Werkzeugen generiere, zum Beispiel für Moomen Pro.' },
         { icon: 'languages', title: 'Sprachen', text: 'Sie haben mich Sorgfalt gelehrt und mich zu Fassbar inspiriert.' }
       ]
     },

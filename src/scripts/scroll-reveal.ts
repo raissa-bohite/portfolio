@@ -33,12 +33,33 @@ function buildTimeline(group: HTMLElement): gsap.core.Timeline {
   return timeline;
 }
 
+// Groupe plus haut que l'écran (liste des projets) : chaque élément se dévoile à son tour, au fil du défilement
+function setupItemByItemReveal(items: HTMLElement[]): void {
+  gsap.set(items, { opacity: 0, y: 48 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      // Les éléments qui entrent ensemble à l'écran forment un lot, joué en cascade
+      const batch = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target);
+      if (batch.length === 0) return;
+      for (const target of batch) observer.unobserve(target);
+      void whenPageReady().then(() => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, stagger: 0.14, ease: 'power3.out' }));
+    },
+    { threshold: 0, rootMargin: REVEAL_ROOT_MARGIN }
+  );
+  for (const item of items) observer.observe(item);
+}
+
 // Révèle un groupe la première fois qu'il entre à l'écran ; sans animation si l'utilisateur la refuse
 export function setupScrollReveal(group: HTMLElement): void {
   // Plusieurs sections importent ce script : un groupe ne doit être préparé qu'une fois
   if (group.dataset['scrollReady'] === 'true') return;
   group.dataset['scrollReady'] = 'true';
   if (prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+  const items = Array.from(group.querySelectorAll<HTMLElement>('[data-scroll-item]'));
+  if (items.length > 1 && group.getBoundingClientRect().height > window.innerHeight) {
+    setupItemByItemReveal(items);
+    return;
+  }
   const timeline = buildTimeline(group);
   // La timeline en pause applique déjà les états de départ : rien n'apparaît avant d'être joué
   timeline.progress(0);

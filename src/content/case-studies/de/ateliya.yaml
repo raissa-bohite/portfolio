@@ -2,78 +2,73 @@ project: ateliya
 locale: de
 eyebrow: Fallstudie · Kundenprojekt
 title: Ateliya, die Website einer App für Schneiderateliers neu gestalten
-lead: "Ateliya hilft Schneidern in Westafrika, Kunden, Maße, Aufträge und Zahlungen zu verwalten. Ich habe das Design der Website neu gestaltet, die Lust auf Download und Abo machen soll, mit denselben Seiten, Abläufen und APIs."
+lead: Ateliya hilft Schneiderinnen und Schneidern in Westafrika, Kundschaft, Maße und Aufträge zu verwalten. Ich habe das Design der Website erneuert, die Lust machen soll, die App herunterzuladen und ein Abo abzuschließen.
 seoTitle: Ateliya, Neugestaltung der Website · Fallstudie
-seoDescription: Neugestaltung der Ateliya-Website mit Astro, React nur auf Anmeldung und Preisen, sicheren Formularen und Zahlung per Mobile Money.
+seoDescription: Neues Design für die Website von Ateliya mit Astro, mit Registrierung und Abo per Mobile Money.
 meta:
   role: Frontend-Entwicklerin
   team: Allein, mit Freigabe jeder Seite durch die Kundin
   period: Oktober 2026
   status: Online
 context:
-  - "Ateliya ist eine Verwaltungs-App für Schneider und Schneiderateliers auf dem westafrikanischen Markt, mit Zahlung per Mobile Money. Die Website hat eine klare Aufgabe: Lust machen, die App herunterzuladen und ein Abo abzuschließen."
-  - "Die alte Website, bereits mit Astro gebaut, funktionierte, aber ihr Design passte nicht mehr zur Kundin. Der Auftrag war daher nur eine Neugestaltung des Designs: dieselben Seiten, dieselben Abläufe, dieselben APIs."
+- Ateliya ist eine Verwaltungs-App für Schneidereien, bezahlt per Mobile Money. Die Website soll Lust machen, die App herunterzuladen und ein Abo abzuschließen.
+- Die alte Website funktionierte, aber ihr Design gefiel der Kundin nicht mehr. Die Aufgabe war ein neues Design mit denselben Seiten, Abläufen und APIs.
 role:
   paragraphs:
-    - "Ich habe das Projekt allein von Anfang bis Ende geführt: Konzeption, Design auf Basis der Markenrichtlinien der Kundin, Umsetzung, Formularsicherheit, SEO und Barrierefreiheit. Die Kundin hat jede Seite freigegeben, bevor ich zur nächsten überging."
-    - "Mehrere Vorgaben rahmten die Arbeit: ein Shared Hosting ohne Node, also eine vollständig statische Website; vorgegebene Markenrichtlinien, Grün, Gold, Elfenbein und die Schrift Cormorant Garamond; und zwei sensible Abläufe, eine Anmeldung, die ein echtes Konto anlegt, und ein Abo mit echter Zahlung über Wave, Orange Money, MTN oder Moov."
+  - 'Ich habe die Neugestaltung allein durchgeführt, vom Design bis zum Launch, nach den Markenvorgaben der Kundin: Grün, Gold, Elfenbein und die Schrift Cormorant Garamond. Die Kundin hat jede Seite freigegeben, bevor ich zur nächsten überging.'
   highlights:
-    - Konzeption und Design
-    - Umsetzung mit Astro und React
-    - Sicherheit von Formularen und Zahlung
-    - SEO und Barrierefreiheit
+  - Design nach Markenvorgaben
+  - Entwicklung mit Astro
+  - Registrierungsformulare
+  - Barrierefreiheit
 approach:
   paragraphs:
-    - "Inspiriert haben mich Paykko und Djamo: Abschnitte in Vollfarbe, ein energischer Ton, Animationen. Ich habe ihre Mechanik übernommen, nicht aber ihre Schrift: Cormorant Garamond bleibt, aus Respekt vor den Markenrichtlinien."
-    - "Ein Steppstich-Motiv trennt die Abschnitte und verankert die Website im Handwerk. Der Präsentationsabschnitt bleibt beim Scrollen fixiert, und das App-Mockup durchläuft drei Zustände: Kunden, Aufträge, Aktivität. Die Funktionen sind isometrisch illustriert, und ein echter Screenshot der App ist in das Foto der Startseite eingesetzt."
+  - 'Inspiriert haben mich Websites von Bezahl-Apps: vollfarbige Abschnitte, ein dynamischer Ton und leichte Animationen.'
+  - Ein Steppstich-Motiv trennt die Abschnitte und erinnert an das Handwerk. Ein echter Screenshot der App erscheint im Startfoto, und ein Mockup zeigt Kundschaft, Aufträge und Aktivität.
   gallery:
-    - image: ../../../assets/case-studies/ateliya/features.jpg
-      alt: "Abschnitt „Warum Ateliya“: vier Karten in Vollfarbe mit isometrischen Illustrationen"
-      caption: Funktionen in Vollfarbe
-      frame: desktop
-    - image: ../../../assets/case-studies/ateliya/showcase.jpg
-      alt: "Abschnitt „Jeder Kunde gut betreut“: App-Mockup, das beim Scrollen fixiert bleibt, mit drei Schritten"
-      caption: Beim Scrollen fixierte Präsentation
-      frame: desktop
-    - image: ../../../assets/case-studies/ateliya/testimonials.jpg
-      alt: "Abschnitt „Ateliya im Alltag“: drei Erfahrungsberichte von Schneiderinnen auf Karten in Vollfarbe"
-      caption: Erfahrungsberichte
-      frame: desktop
-    - image: ../../../assets/case-studies/ateliya/faq.jpg
-      alt: "Häufige Fragen als Akkordeon: Funktionsweise, kostenloser Test, Zahlung, Android und iPhone, Sicherheit, Preise"
-      caption: Häufige Fragen
-      frame: desktop
-    - image: ../../../assets/case-studies/ateliya/download.jpg
-      alt: "Abschließender Aufruf „Jetzt Ateliya beitreten“ über einem Foto von Schneidern, mit Download-Button und QR-Code"
-      caption: Aufruf zum Download
-      frame: desktop
+  - image: ../../../assets/case-studies/ateliya/features.jpg
+    alt: 'Abschnitt „Warum Ateliya“: vier Karten in Vollfarbe mit isometrischen Illustrationen'
+    caption: Funktionen in Vollfarbe
+    frame: desktop
+  - image: ../../../assets/case-studies/ateliya/showcase.jpg
+    alt: 'Abschnitt „Jeder Kunde gut betreut“: App-Mockup, das beim Scrollen fixiert bleibt, mit drei Schritten'
+    caption: Beim Scrollen fixierte Präsentation
+    frame: desktop
+  - image: ../../../assets/case-studies/ateliya/testimonials.jpg
+    alt: 'Abschnitt „Ateliya im Alltag“: drei Erfahrungsberichte von Schneiderinnen auf Karten in Vollfarbe'
+    caption: Erfahrungsberichte
+    frame: desktop
+  - image: ../../../assets/case-studies/ateliya/faq.jpg
+    alt: 'Häufige Fragen als Akkordeon: Funktionsweise, kostenloser Test, Zahlung, Android und iPhone, Sicherheit, Preise'
+    caption: Häufige Fragen
+    frame: desktop
+  - image: ../../../assets/case-studies/ateliya/download.jpg
+    alt: Abschließender Aufruf „Jetzt Ateliya beitreten“ über einem Foto von Schneidern, mit Download-Button und QR-Code
+    caption: Aufruf zum Download
+    frame: desktop
 technical:
-  intro: Die wichtigste Entscheidung war die Rückkehr zu Astro. Die übrigen Entscheidungen schützen die Performance und die Sicherheit der beiden sensiblen Abläufe.
+  intro: Mein Ziel war eine schnelle Website mit zuverlässigen Formularen.
   decisions:
-    - title: Von Next.js zurück zu Astro
-      text: "Wie anfangs gewünscht, habe ich die Website auf Next.js mit statischem Export migriert. Drei Tage später bin ich zu Astro zurückgekehrt und habe die Next.js-Version auf einem Branch behalten. Eine Website, bei der sich von Anfrage zu Anfrage nichts ändert, muss nicht auf jeder Seite ein JavaScript-Framework laden."
-    - title: React nur dort, wo es nützt
-      text: "React wird nur auf den Preisen und der Anmeldung geladen, den beiden Seiten mit echtem mehrstufigem Zustand und API-Aufrufen. Ich habe geprüft, dass im HTML der Startseite keine Spur von React vorkommt."
-    - title: Ein Startseitenvideo ohne Verlangsamung
-      text: "Das Foto ist der Standardhintergrund, das schützt die Ladezeit. Das Video wird nur auf großen Bildschirmen ergänzt, ohne reduzierte Bewegung und ohne Datensparmodus, und blendet erst ein, wenn die Wiedergabe wirklich läuft. Ein Button erlaubt das Pausieren."
-    - title: Animationen ohne Bibliothek
-      text: "Ein IntersectionObserver und CSS-Klassen genügen. Die Elemente sind standardmäßig sichtbar: Wenn JavaScript ausfällt, bleibt nichts verborgen."
-    - title: Formulare, die nichts voraussetzen
-      text: "Strenge Prüfung von E-Mail und Telefonnummer, ein Passwort mit mindestens 8 Zeichen und Stärkeanzeige, eine Zusammenfassung vor dem Absenden und ein Schutz vor doppeltem Absenden. Fehlermeldungen sind immer vorgesehene Texte, nie der rohe Fehler, und die Länge der von der API empfangenen Felder ist begrenzt."
-    - title: Die Zahlung auf Abstand
-      text: "Die Weiterleitungs-URL zur Zahlung wird nur mit https akzeptiert, das iframe ist mit sandbox isoliert, und auf der Website wird keine Kartennummer eingegeben."
-  stack: [Astro 7, React, Tailwind CSS, TypeScript, Mobile Money]
+  - title: Bei Astro bleiben
+    text: 'Zuerst sollte ich die Website auf Next.js umstellen. Nach drei Tagen bin ich zu Astro zurückgekehrt: Für eine Präsentationswebsite lädt es weniger JavaScript, die Seiten erscheinen also schneller.'
+  - title: React nur, wo es hilft
+    text: React wird nur auf der Preisseite und bei der Registrierung genutzt, den beiden Seiten mit einem mehrstufigen Formular.
+  - title: Klare Formulare
+    text: Prüfung von E-Mail, Telefon und Passwort, eine Zusammenfassung vor dem Absenden und verständliche Fehlermeldungen.
+  - title: Text, den alle lesen können
+    text: Nach einer Barrierefreiheitsprüfung habe ich eine Textfarbe mit zu wenig Kontrast dunkler gemacht.
+  stack:
+  - Astro
+  - React
+  - Tailwind CSS
+  - TypeScript
 results:
-  intro: "Die neue Website ist online, vollständig statisch, mit React auf zwei Seiten begrenzt. Die Suchmaschinenoptimierung stützt sich auf strukturierte Daten vom Typ Organization, SoftwareApplication und FAQPage, eine automatische Sitemap und ein Open-Graph-Bild in den Markenfarben. Bilder werden als AVIF und WebP ausgeliefert."
+  intro: Die neue Website ist online. Sie behält die Abläufe für Registrierung und Abo, mit einem Design, das den Markenvorgaben der Kundin treu bleibt.
   metrics:
-    - value: "2"
-      label: Seiten laden React
-    - value: "0"
-      label: Spuren von React im HTML der Startseite
-    - value: "5,17:1"
-      label: "Textkontrast nach der WCAG-Prüfung, vorher 4,17:1"
-    - value: "4"
-      label: unterstützte mobile Zahlungsmittel
+  - value: '2'
+    label: Seiten nutzen React
+  - value: '4'
+    label: mobile Zahlungsarten unterstützt
 learnings:
-  - "Das Werkzeug nach dem Bedarf wählen, nicht nach der Mode. Nach drei Tagen mit Next.js zurückzugehen war kein Scheitern, sondern die richtige Entscheidung für eine Website, bei der sich von Besuch zu Besuch nichts ändert."
-  - "Details brauchen Geduld. Es hat rund zehn Durchläufe gebraucht, Freistellen, Zuschneiden, Größen nach Bildschirmhöhe, bis die Mockups der Präsentation stimmig waren."
+- 'Das Werkzeug nach dem Bedarf wählen: Nach drei Tagen mit Next.js zu Astro zurückzukehren, war für diese Website die richtige Entscheidung.'
+- 'Details brauchen Zeit: Ich habe etwa zehn Versuche gebraucht, bis die App-Mockups auf allen Bildschirmen gut aussahen.'

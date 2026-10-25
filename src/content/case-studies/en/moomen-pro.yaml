@@ -2,69 +2,69 @@ project: moomen-pro
 locale: en
 eyebrow: Case study · Client project
 title: Moomen Pro, a website that makes people want to sign up
-lead: "Moomen Pro helps West African retailers manage their sales, stock, receipts and customers from their phone. I rebuilt its website: product presentation, pricing in the local currency and a supplies shop."
+lead: 'Moomen Pro helps West African shop owners manage their sales and stock from their phone. I redesigned its website: app presentation, pricing and a shop for supplies.'
 seoTitle: Moomen Pro, website redesign and shop · Case study
-seoDescription: An Astro redesign of the Moomen Pro website, a point-of-sale app for small businesses, with pricing by country and a supplies shop ordered via WhatsApp.
+seoDescription: Astro redesign of the Moomen Pro website, a point-of-sale app for small businesses, with local pricing and a shop ordered through WhatsApp.
 meta:
   role: Front-end developer, UI/UX and API integration
   team: For Moomen Pro (KORANEX)
-  period: "2026"
+  period: '2026'
   status: Live
 context:
-  - "Moomen Pro is a point-of-sale and management app for small businesses in West Africa: sales, stock, orders, customers, debts and PDF receipts."
-  - "Its old website did not showcase the product: the design was dated and the experience unengaging, so it did not make people want to sign up. The client wanted a modern site that presents the app, shows the plans clearly and also sells its supplies, such as thermal printers and paper rolls."
+- 'Moomen Pro is a point-of-sale and management app for small businesses: sales, stock, customers and receipts.'
+- The old website looked dated and did not make people want to sign up. The client wanted a modern website that presents the app, shows the plans and sells supplies such as printers and paper rolls.
 role:
   paragraphs:
-    - "I handled the front end from start to finish: the UI/UX design of every page, from the home page to the legal pages, then their development and the integration of two APIs, one for pricing and one for the shop."
+  - 'I designed and built the pages of the website, then connected them to two existing APIs: pricing and the shop. I also made the promo video through vibe motion design.'
   highlights:
-    - UI/UX design of about fifteen pages
-    - Pricing API integration
-    - Supplies shop
-    - Promo video made with Remotion
+  - Page design
+  - API integration
+  - Ordering on WhatsApp
+  - Promo video
 approach:
   paragraphs:
-    - "The audience browses mostly on mobile, sometimes on a slow connection. The site is therefore generated as static HTML pages, which load fast and rank well."
-    - "In this market, buying often happens through a conversation. Instead of a cart, each product has a button that opens WhatsApp with the product already filled in: one step fewer, and a habit customers already have. Prices are shown in the user's local currency, so nobody has to convert when choosing a plan. The same backgrounds, typography and components are used on every page, legal pages included."
+  - Visitors are mostly on mobile, sometimes with a slow connection. So I built a light website with static pages that load fast.
+  - 'In the shop, each product has a button that opens WhatsApp with the product already filled in: this is how customers are used to ordering. Prices are shown in the local currency.'
   gallery:
-    - image: ../../../assets/case-studies/moomen/pricing.jpg
-      alt: "Pricing: country selector, three monthly or yearly plans in CFA francs and a free plan"
-      caption: Pricing in the local currency
-      frame: desktop
-    - image: ../../../assets/case-studies/moomen/sectors.jpg
-      alt: "\"Who is Moomen Pro for?\" section: shops, artisans, supermarkets, food resellers, caterers, hair salons"
-      caption: Target trades
-      frame: desktop
-    - image: ../../../assets/case-studies/moomen/shop.jpg
-      alt: Supplies shop with search, category filters and product cards
-      caption: Supplies shop
-      frame: desktop
-    - image: ../../../assets/case-studies/moomen/product.jpg
-      alt: "Product page: price in CFA francs, quantity, Order on WhatsApp button and stock details"
-      caption: Direct ordering on WhatsApp
-      frame: desktop
+  - image: ../../../assets/case-studies/moomen/pricing.jpg
+    alt: 'Pricing: country selector, three monthly or yearly plans in CFA francs and a free plan'
+    caption: Pricing in the local currency
+    frame: desktop
+  - image: ../../../assets/case-studies/moomen/sectors.jpg
+    alt: '"Who is Moomen Pro for?" section: shops, artisans, supermarkets, food resellers, caterers, hair salons'
+    caption: Target trades
+    frame: desktop
+  - image: ../../../assets/case-studies/moomen/shop.jpg
+    alt: Supplies shop with search, category filters and product cards
+    caption: Supplies shop
+    frame: desktop
+  - image: ../../../assets/case-studies/moomen/product.jpg
+    alt: 'Product page: price in CFA francs, quantity, Order on WhatsApp button and stock details'
+    caption: Direct ordering on WhatsApp
+    frame: desktop
 technical:
-  intro: Three concrete problems shaped the project, and four safeguards protect its quality.
+  intro: My choices were mostly driven by concrete problems.
   decisions:
-    - title: A layout broken only in production
-      text: "Everything worked locally; once live, the desktop version looked like the mobile one. I traced it to the build's CSS compressor, which stripped Tailwind's media queries. I disabled it, since Vite already minifies the CSS, and forced a media query syntax that older browsers support."
-    - title: The whole catalogue, not just page one
-      text: "The shop API returned results page by page, but the site only showed the first page. I first added a \"Load more\" button, then numbered pagination, which is easier to read for a large catalogue."
-    - title: Currency combined from two endpoints
-      text: "Each country's currency came from a public endpoint, and the payment data from an older one. I combined both sources to show the right price in the right currency."
-    - title: SEO, accessibility and performance
-      text: "Canonical URLs, a generated sitemap, metadata and JSON-LD structured data. A skip link, landmarks and support for the reduced motion setting. Self-hosted fonts and compressed HTML, JavaScript and SVG."
-    - title: Configuration that fails loudly
-      text: "The API URL comes from an environment variable. If it is missing, the build stops with a clear message instead of producing an empty site."
-  stack: [Astro, Tailwind CSS, TypeScript, REST API, Remotion]
+  - title: A layout broken only once published
+    text: 'The website looked right on my computer but not once published: the desktop version looked like the mobile one. I found that the tool compressing the CSS removed part of the styles, and I turned it off.'
+  - title: Showing the whole catalogue
+    text: The API sent products page by page, but the website only showed the first page. I added pagination.
+  - title: The right price in the right currency
+    text: I combined two API responses to show each plan in the local currency.
+  - title: SEO and accessibility basics
+    text: A title and description per page, a sitemap, a skip link to the content and support for the reduced motion setting.
+  stack:
+  - Astro
+  - Tailwind CSS
+  - TypeScript
+  - REST API
 results:
-  intro: "The new website is live. It presents the app, shows the plans in each country's currency and sells supplies with direct ordering on WhatsApp."
+  intro: The new website is live. It presents the app, shows the plans in each country's currency and lets customers order supplies on WhatsApp.
   metrics:
-    - value: "15"
-      label: pages with a unified design
-    - value: "2"
-      label: APIs integrated, pricing and shop
-    - value: "2"
-      label: endpoints combined to show the right currency
+  - value: '15'
+    label: pages with a unified design
+  - value: '2'
+    label: APIs integrated, pricing and shop
 learnings:
-  - "Always test the production build, not just the development server: the layout bug only existed once the site was compiled."
-  - "Looking back, I would add automated tests for the currency and pagination logic, and measure conversion, sign-ups and WhatsApp clicks, to validate the UX choices with data."
+- 'Always test the published version, not just the development one: the layout bug only existed once the site was live.'
+- Next time, I will track sign-ups and clicks to WhatsApp to know whether the design choices work.

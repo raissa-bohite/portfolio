@@ -28,6 +28,12 @@ export const de: Dictionary = {
     allProjects: 'Alle Projekte',
     viewProject: 'Projekt ansehen'
   },
+  loader: {
+    label: 'Portfolio wird geladen',
+    progress: 'Ladefortschritt',
+    kicker: 'Portfolio',
+    tagline: 'Front-End-Entwicklerin mit Full-Stack-Fokus'
+  },
   home: {
     availability: 'Verfügbar für eine Stelle oder ein Projekt',
     signature: 'comprendre().then(construire);',

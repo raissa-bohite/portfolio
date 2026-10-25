@@ -111,7 +111,9 @@ const badgePositions = [
 
 <script>
   import { playIntro } from '@/scripts/intro';
+  import { whenPageReady } from '@/scripts/page-transition';
 
   const hero = document.querySelector<HTMLElement>('[data-hero]');
-  if (hero) playIntro(hero);
+  // À la première visite, l'entrée du haut de page démarre quand le chargeur se lève
+  if (hero) void whenPageReady().then(() => playIntro(hero));
 </script>

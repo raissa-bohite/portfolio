@@ -28,6 +28,12 @@ export const en: Dictionary = {
     allProjects: 'All projects',
     viewProject: 'View the project'
   },
+  loader: {
+    label: 'Loading the portfolio',
+    progress: 'Loading progress',
+    kicker: 'Portfolio',
+    tagline: 'Front-end developer, full-stack leaning'
+  },
   home: {
     availability: 'Available for a job or a project',
     signature: 'comprendre().then(construire);',

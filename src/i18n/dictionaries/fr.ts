@@ -33,6 +33,12 @@ const dictionary = {
     allProjects: "Tous les projets",
     viewProject: "Voir le projet",
   },
+  loader: {
+    label: "Chargement du portfolio",
+    progress: "Progression du chargement",
+    kicker: "Portfolio",
+    tagline: "Développeuse front-end, orientée full-stack",
+  },
   home: {
     availability: "Disponible pour un poste ou une mission",
     signature: "comprendre().then(construire);",

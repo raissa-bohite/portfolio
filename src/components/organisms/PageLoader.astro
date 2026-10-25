@@ -1,0 +1,302 @@
+---
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+import { profile } from '@/lib/profile';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const dictionary = getDictionary(locale);
+const [firstName, ...otherNames] = profile.name.split(' ');
+const lastName = otherNames.join(' ');
+---
+
+<!-- Invisible par défaut : seul le script d'initialisation l'affiche, sans JavaScript la page reste accessible -->
+<div class="page-loader" role="status" aria-label={dictionary.loader.label}>
+  <div class="page-loader-row page-loader-content page-loader-meta">
+    <span>{dictionary.loader.kicker}</span>
+    <span>{profile.city}</span>
+  </div>
+  <div class="page-loader-content">
+    <p class="page-loader-name" aria-hidden="true">
+      <span class="page-loader-mask"><span>{firstName}</span></span>
+      <span class="page-loader-mask page-loader-mask-late"><span>{lastName}<span class="page-loader-dot">.</span></span></span>
+    </p>
+    <p class="page-loader-tagline">{dictionary.loader.tagline}</p>
+  </div>
+  <div class="page-loader-row page-loader-content page-loader-footer">
+    <p class="page-loader-count" aria-hidden="true"><span data-page-loader-count>000</span><span class="page-loader-unit"> %</span></p>
+    <div
+      class="page-loader-track"
+      role="progressbar"
+      aria-label={dictionary.loader.progress}
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+      data-page-loader-bar
+    >
+      <div class="page-loader-fill" data-page-loader-fill></div>
+    </div>
+  </div>
+</div>
+
+<div class="page-curtain" aria-hidden="true">
+  <p class="page-curtain-title" data-page-curtain-title></p>
+</div>
+
+<style is:global>
+  /* Même violet profond en thème clair et sombre : le chargeur est une signature, pas une surface du thème */
+  :root {
+    --loader-surface: #36188a;
+    --loader-ink: #ffffff;
+    --loader-muted: #d9cdfb;
+    --loader-accent: #f26a1b;
+    --loader-ease: cubic-bezier(0.76, 0, 0.24, 1);
+    --loader-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .page-loader,
+  .page-curtain {
+    display: none;
+  }
+
+  html[data-loader] .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    background: var(--loader-surface);
+    color: var(--loader-ink);
+    /* Filet de sécurité : si le script ne s'exécute pas, le chargeur disparaît seul */
+    animation: page-loader-failsafe 0s linear 6s forwards;
+  }
+
+  html[data-loader='leaving'] .page-loader {
+    animation: page-loader-lift 1000ms var(--loader-ease) 120ms forwards;
+  }
+
+  html[data-loader='leaving'] .page-loader-content {
+    animation: page-loader-fade-out 260ms ease-out forwards;
+  }
+
+  /* Les animations de la page attendent que le chargeur se lève */
+  html[data-loader='active'] main *,
+  html[data-loader='active'] main *::before,
+  html[data-loader='active'] main *::after {
+    animation-play-state: paused !important;
+  }
+
+  .page-loader-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .page-loader-meta {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--loader-muted);
+  }
+
+  .page-loader-name {
+    margin: 0;
+    font-size: clamp(3.5rem, 13vw, 8.5rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+  }
+
+  .page-loader-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+  }
+
+  .page-loader-mask > span {
+    display: block;
+    transform: translateY(105%);
+    animation: page-loader-rise 900ms var(--loader-ease-out) forwards;
+  }
+
+  .page-loader-mask-late > span {
+    animation-delay: 120ms;
+  }
+
+  .page-loader-dot {
+    color: var(--loader-accent);
+  }
+
+  .page-loader-tagline {
+    margin: 1.25rem 0 0;
+    font-size: clamp(1.0625rem, 2vw, 1.375rem);
+    font-weight: 500;
+    color: var(--loader-muted);
+    opacity: 0;
+    animation: page-loader-fade-in 600ms ease-out 520ms forwards;
+  }
+
+  .page-loader-count {
+    margin: 0;
+    font-size: clamp(2.75rem, 7vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .page-loader-unit {
+    font-size: 0.45em;
+    color: var(--loader-muted);
+  }
+
+  .page-loader-track {
+    width: min(20rem, 40vw);
+    height: 4px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.18);
+  }
+
+  .page-loader-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--loader-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  html[data-transition] .page-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: var(--loader-surface);
+    color: var(--loader-ink);
+  }
+
+  html[data-transition='cover'] .page-curtain {
+    animation: page-curtain-in 620ms var(--loader-ease) forwards;
+  }
+
+  html[data-transition='uncover'] .page-curtain {
+    animation: page-curtain-out 680ms var(--loader-ease) 80ms both;
+  }
+
+  .page-curtain-title {
+    margin: 0;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-align: center;
+  }
+
+  /* Sur la nouvelle page, le titre vient de la page précédente, transmis par une variable CSS */
+  .page-curtain-title:empty::before {
+    content: var(--curtain-label, '');
+  }
+
+  html[data-transition='cover'] .page-curtain-title {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: page-curtain-title-in 420ms var(--loader-ease-out) 260ms forwards;
+  }
+
+  html[data-transition='uncover'] .page-curtain-title {
+    animation: page-loader-fade-out 240ms ease-out 140ms forwards;
+  }
+
+  /* Le contenu de la nouvelle page monte doucement pendant que le rideau se lève */
+  html[data-transition='uncover'] main,
+  html[data-loader='leaving'] main {
+    animation: page-content-enter 900ms var(--loader-ease-out) 180ms both;
+  }
+
+  @keyframes page-loader-rise {
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes page-loader-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes page-loader-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes page-loader-failsafe {
+    to {
+      visibility: hidden;
+    }
+  }
+
+  @keyframes page-loader-lift {
+    0% {
+      transform: translateY(0);
+      border-radius: 0;
+    }
+    35% {
+      border-radius: 0 0 50% 50% / 0 0 18% 18%;
+    }
+    100% {
+      transform: translateY(-112%);
+      border-radius: 0 0 50% 50% / 0 0 18% 18%;
+    }
+  }
+
+  @keyframes page-curtain-in {
+    from {
+      transform: translateY(112%);
+      border-radius: 50% 50% 0 0 / 18% 18% 0 0;
+    }
+    to {
+      transform: translateY(0);
+      border-radius: 0;
+    }
+  }
+
+  @keyframes page-curtain-out {
+    from {
+      transform: translateY(0);
+      border-radius: 0;
+    }
+    to {
+      transform: translateY(-112%);
+      border-radius: 0 0 50% 50% / 0 0 18% 18%;
+    }
+  }
+
+  @keyframes page-curtain-title-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes page-content-enter {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

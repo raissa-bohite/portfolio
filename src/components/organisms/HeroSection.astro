@@ -48,9 +48,10 @@ const badgePositions = [
       </h1>
       <!-- Pas d'animation sur ce paragraphe : c'est le plus grand élément visible au chargement (LCP) -->
       <p class="m-0 max-w-[40ch] text-lead">{home.intro}</p>
-      <div data-reveal class="mt-2 flex flex-wrap gap-3">
-        <Button href={getRoutePath('projects', locale)}>{home.ctaProjects}</Button>
-        <Button href={getCvPath(locale)} variant="secondary" download>
+      <!-- Sur mobile, chaque bouton occupe toute la largeur : côte à côte, les libellés passaient sur deux lignes -->
+      <div data-reveal class="mt-2 grid gap-3 sm:flex sm:flex-wrap">
+        <Button href={getRoutePath('projects', locale)} class="cta-pair">{home.ctaProjects}</Button>
+        <Button href={getCvPath(locale)} variant="secondary" download class="cta-pair">
           <Download aria-hidden="true" size={18} />
           {dictionary.common.cv}
         </Button>

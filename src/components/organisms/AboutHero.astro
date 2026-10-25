@@ -24,12 +24,13 @@ const page = dictionary.aboutPage;
         <h1 class="m-0 text-display font-bold text-ink">{page.title}</h1>
       </div>
       <p data-scroll-item class="m-0 max-w-[52ch] text-lead">{page.intro}</p>
-      <div data-scroll-item class="flex flex-wrap gap-3">
-        <Button href={getCvPath(locale)} download>
+      <!-- Sur mobile, chaque bouton occupe toute la largeur : côte à côte, les libellés passaient sur deux lignes -->
+      <div data-scroll-item class="grid gap-3 sm:flex sm:flex-wrap">
+        <Button href={getCvPath(locale)} download class="cta-pair">
           <Download aria-hidden="true" size={18} />
           {dictionary.common.cv}
         </Button>
-        <Button href={getRoutePath('contact', locale)} variant="secondary">{page.contactCta}</Button>
+        <Button href={getRoutePath('contact', locale)} variant="secondary" class="cta-pair">{page.contactCta}</Button>
       </div>
     </div>
     <!-- Même mise en scène que l'accueil : portrait détouré sur l'arche violette, lieu en badge flottant -->

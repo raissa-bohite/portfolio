@@ -11,6 +11,8 @@ const LOADER_MAXIMUM_WAIT = 4000;
 const LOADER_LEAVE_DURATION = 1150;
 const CURTAIN_COVER_DURATION = 640;
 const CURTAIN_UNCOVER_DURATION = 800;
+// Moment où le rideau a assez monté pour que l'on voie le contenu apparaître
+const CURTAIN_REVEAL_DELAY = 420;
 
 const TRANSITION_STORAGE_KEY = 'page-transition';
 const LOADER_SEEN_STORAGE_KEY = 'page-loader-seen';
@@ -18,10 +20,15 @@ const PAGE_READY_EVENT = 'page:ready';
 
 const root = document.documentElement;
 
-// Les animations d'entrée des pages attendent que le chargeur commence à se lever
+// Les animations d'entrée attendent que le chargeur ou le rideau commence à se lever, sinon elles se jouent cachées
 export function whenPageReady(): Promise<void> {
-  if (root.dataset.loader !== 'active') return Promise.resolve();
-  return new Promise((resolve) => document.addEventListener(PAGE_READY_EVENT, () => resolve(), { once: true }));
+  if (root.dataset.loader === 'active') {
+    return new Promise((resolve) => document.addEventListener(PAGE_READY_EVENT, () => resolve(), { once: true }));
+  }
+  if (root.dataset.transition === 'uncover') {
+    return new Promise((resolve) => window.setTimeout(resolve, CURTAIN_REVEAL_DELAY));
+  }
+  return Promise.resolve();
 }
 
 function rememberInSession(key: string, value: string): void {

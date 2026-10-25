@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from './motion';
+import { whenPageReady } from './page-transition';
 
 // Le groupe se révèle dès que son haut dépasse le bas de l'écran de 15 % :
 // un seuil en pourcentage du groupe échouait pour les grilles plus hautes que l'écran (liste des projets)
@@ -45,7 +46,7 @@ export function setupScrollReveal(group: HTMLElement): void {
     (entries) => {
       if (!entries[0]?.isIntersecting) return;
       observer.disconnect();
-      timeline.play();
+      void whenPageReady().then(() => timeline.play());
     },
     { threshold: 0, rootMargin: REVEAL_ROOT_MARGIN }
   );

@@ -2,81 +2,80 @@ project: yofeii-delices
 locale: fr
 eyebrow: Étude de cas · Mission client
 title: Yofeii Délices, une boutique d'épices et son back-office
-lead: "Une marque d'assaisonnements et de marinades avait besoin de vendre en ligne et de gérer sa boutique sans dépendre d'un développeur. J'ai construit tout le front : le site où les clients achètent, et le back-office où l'équipe fait tourner la boutique."
+lead: 'Une marque d''assaisonnements avait besoin de vendre en ligne et de gérer sa boutique elle-même. J''ai développé le front : le site où les clients achètent, et le back-office où l''équipe gère la boutique.'
 seoTitle: Yofeii Délices, e-commerce et back-office · Étude de cas
-seoDescription: Boutique en ligne Astro et React avec paiement Stripe, et back-office React de plus de trente écrans pour gérer catalogue, commandes et clients.
+seoDescription: Boutique en ligne en Astro et React avec paiement Stripe, et back-office pour gérer le catalogue, les commandes et les clients.
 meta:
   role: Développeuse front-end principale
   team: Avec un développeur backend (API Laravel)
-  period: "2026"
+  period: '2026'
   status: En ligne
 context:
-  - "Yofeii Délices vend des assaisonnements et des marinades : pour le thieb, le poisson, la viande, les gratins. La marque avait besoin d'un site où ses clients découvrent les produits, remplissent un panier, créent un compte et paient en ligne en toute sécurité."
-  - "Il lui fallait aussi un outil interne. L'objectif était simple : rendre l'équipe autonome. Ajouter un produit, suivre une commande, rembourser un client ou changer une bannière du site ne devait plus demander l'intervention d'un développeur."
+- Yofeii Délices vend des assaisonnements et des marinades. La marque voulait un site où ses clients découvrent les produits, remplissent un panier et paient en ligne.
+- Elle avait aussi besoin d'un outil interne, pour ajouter un produit, suivre une commande ou changer une bannière sans passer par un développeur.
 role:
   paragraphs:
-    - "J'ai développé tout le front du projet : le site e-commerce et le back-office. Le backend, une API Laravel, était développé en parallèle par un autre développeur, avec qui j'ai travaillé tout au long du projet."
+  - J'ai développé le front du site et du back-office. L'API, en Laravel, était développée en parallèle par un développeur backend, avec qui je me coordonnais au fil des livraisons.
   highlights:
-    - Site e-commerce en Astro et React
-    - Back-office de plus de 30 écrans
-    - Paiement Stripe et sécurité
-    - Design system et refonte visuelle
+  - Site e-commerce
+  - Back-office
+  - Intégration de l'API
+  - Composants réutilisables
 approach:
   paragraphs:
-    - "Sur le site, le visiteur parcourt le catalogue, consulte chaque produit avec ses photos, ses ingrédients et les avis des clients, et peut acheter des coffrets qui regroupent plusieurs produits. Le panier est conservé quand on ferme la page, et enregistré sur le serveur quand le client est connecté. La connexion se fait avec un code reçu par email, les frais de livraison sont calculés selon le pays et le poids du panier, et le paiement passe par Stripe : carte bancaire, Apple Pay ou Google Pay."
-    - "Le back-office compte plus de trente écrans, répartis sur une quinzaine de domaines métier. Le cœur, c'est le catalogue : produits, catégories, ingrédients et coffrets avec leur propre stock. L'administrateur suit chaque commande, change son statut, fixe une date de livraison et peut rembourser un paiement Stripe en partie ou en totalité. Il gère aussi les pays de livraison, les clients, les newsletters, la modération des avis et des témoignages, et les bannières de la page d'accueil. Un tableau de bord résume l'activité : chiffre d'affaires, produits tendance et dernières commandes."
+  - Sur le site, le client parcourt le catalogue, consulte une fiche produit, remplit son panier et paie avec Stripe. Son panier reste enregistré s'il ferme la page.
+  - Dans le back-office, l'équipe gère les produits, les stocks, les commandes et les clients, et change les bannières de la page d'accueil. Un tableau de bord résume les ventes.
   gallery:
-    - image: ../../../assets/case-studies/yofeii/product.jpg
-      alt: "Fiche produit : photos, prix barré, format, quantité, avis clients et bouton Ajouter au panier"
-      caption: Site · fiche produit
-      frame: desktop
-    - image: ../../../assets/case-studies/yofeii/collection.jpg
-      alt: Collection avec filtres par catégorie et tri par pertinence, prix ou note
-      caption: Site · collection et filtres
-      frame: desktop
-    - image: ../../../assets/case-studies/yofeii/cart.jpg
-      alt: Panier avec modification des quantités, suppression et récapitulatif
-      caption: Site · panier
-      frame: desktop
-    - image: ../../../assets/case-studies/yofeii/checkout.jpg
-      alt: "Commande : connexion ou achat en invité, informations personnelles et de livraison, récapitulatif"
-      caption: Site · commande
-      frame: desktop
-    - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
-      alt: "Back-office, catalogue : produits avec catégorie, prix, état du stock et filtres"
-      caption: Back-office · catalogue et stock
-      frame: desktop
-    - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
-      alt: "Back-office, bannières : visuels de la page d'accueil avec leurs titres, à modifier ou supprimer"
-      caption: Back-office · bannières du site
-      frame: desktop
+  - image: ../../../assets/case-studies/yofeii/product.jpg
+    alt: 'Fiche produit : photos, prix barré, format, quantité, avis clients et bouton Ajouter au panier'
+    caption: Site · fiche produit
+    frame: desktop
+  - image: ../../../assets/case-studies/yofeii/collection.jpg
+    alt: Collection avec filtres par catégorie et tri par pertinence, prix ou note
+    caption: Site · collection et filtres
+    frame: desktop
+  - image: ../../../assets/case-studies/yofeii/cart.jpg
+    alt: Panier avec modification des quantités, suppression et récapitulatif
+    caption: Site · panier
+    frame: desktop
+  - image: ../../../assets/case-studies/yofeii/checkout.jpg
+    alt: 'Commande : connexion ou achat en invité, informations personnelles et de livraison, récapitulatif'
+    caption: Site · commande
+    frame: desktop
+  - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
+    alt: 'Back-office, catalogue : produits avec catégorie, prix, état du stock et filtres'
+    caption: Back-office · catalogue et stock
+    frame: desktop
+  - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
+    alt: 'Back-office, bannières : visuels de la page d''accueil avec leurs titres, à modifier ou supprimer'
+    caption: Back-office · bannières du site
+    frame: desktop
 technical:
-  intro: L'API évoluait en même temps que mon front, et le site encaisse de l'argent. Chaque choix répond à l'une de ces deux contraintes.
+  intro: Quelques choix m'ont aidée à travailler avec une API qui évoluait en même temps que le front.
   decisions:
-    - title: Un catalogue toujours à jour
-      text: "Le site était d'abord généré une seule fois, à la mise en ligne : un produit ajouté dans le back-office n'apparaissait pas. J'ai repéré le problème, expliqué la solution à l'équipe backend dans un document, puis passé le site en rendu serveur. Produits, prix et stocks sont désormais toujours à jour."
-    - title: Le paiement confirmé par Stripe
-      text: "En relisant le code, j'ai découvert que c'était le navigateur qui annonçait au serveur qu'une commande était payée. J'ai supprimé ce fonctionnement : c'est maintenant Stripe qui prévient directement le serveur, et le site attend cette confirmation."
-    - title: Des prix recalculés par le serveur
-      text: "Les prix étaient envoyés par le navigateur, donc modifiables. La correction devait se faire côté serveur : j'ai rédigé pour l'équipe backend un document avec un exemple d'attaque et la liste des corrections à faire."
-    - title: Une seule porte vers l'API
-      text: "Dans le back-office, toutes les requêtes passent par une fonction apiFetch, sous des services en TypeScript pur et des hooks TanStack Query. Quand l'API changeait un champ, je ne modifiais qu'un fichier, sans toucher aux pages."
-    - title: Un mode démo hors production
-      text: "Quand l'API était indisponible, une variable d'environnement simulait une quarantaine d'endpoints en mémoire. Ce code est chargé dynamiquement, donc absent de la production, et un badge rappelle qu'il s'agit de données fictives."
-    - title: Un design system pour trente écrans
-      text: "Tokens, thème clair et sombre, composants de base rangés selon l'Atomic Design. C'est ce socle qui m'a permis de refaire tout le visuel en juin sans réécrire la logique des pages."
-  stack: [Astro, React 19, TypeScript, Vite, TanStack Query, Tailwind CSS 4, React Router 7, Framer Motion, Stripe, API Laravel]
+  - title: Un catalogue toujours à jour
+    text: Au départ, un produit ajouté dans le back-office n'apparaissait pas sur le site. J'ai fait générer les pages à chaque visite, pour que les produits et les prix soient toujours à jour.
+  - title: Les appels à l'API au même endroit
+    text: Toutes les requêtes passent par une même fonction. Quand l'API changeait, je n'avais qu'un fichier à modifier.
+  - title: Des composants réutilisables
+    text: Couleurs, thème clair et sombre, boutons et champs partagés par tous les écrans. Ça m'a permis de refaire le visuel sans réécrire les pages.
+  - title: Signaler ce que je remarquais
+    text: En testant le paiement, j'ai remarqué deux points à sécuriser côté serveur. Je les ai expliqués par écrit au développeur backend.
+  stack:
+  - Astro
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - TanStack Query
+  - Stripe
+  - API Laravel
 results:
-  intro: "Le site et le back-office sont en ligne. La marque gère seule son catalogue, ses commandes et son contenu."
+  intro: Le site et le back-office sont en ligne. L'équipe gère elle-même son catalogue, ses commandes et ses bannières.
   metrics:
-    - value: 30+
-      label: écrans dans le back-office
-    - value: "7"
-      label: semaines pour développer le back-office
-    - value: "40"
-      label: endpoints simulés en mode démo
-    - value: "2"
-      label: failles de paiement repérées et documentées
+  - value: 30+
+    label: écrans dans le back-office
+  - value: '7'
+    label: semaines pour développer le back-office
 learnings:
-  - "Avec le recul, j'écrirais des tests pour le back-office. La couche de services s'y prête très bien, puisqu'elle ne dépend pas de React, et c'est un vrai manque pour un outil qui touche aux paiements."
-  - "Je stockerais aussi le jeton de connexion dans un cookie httpOnly plutôt que dans le localStorage du navigateur, pour mieux protéger l'accès à un outil qui permet de rembourser des clients."
+- 'Travailler avec une API qui change demande de l''organisation : regrouper les appels au même endroit m''a évité beaucoup de corrections.'
+- J'aurais dû écrire des tests dès le début, surtout pour un outil lié aux paiements. Je le ferai sur mon prochain projet.

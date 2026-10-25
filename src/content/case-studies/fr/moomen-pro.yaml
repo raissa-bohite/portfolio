@@ -2,69 +2,69 @@ project: moomen-pro
 locale: fr
 eyebrow: Étude de cas · Mission client
 title: Moomen Pro, un site qui donne envie de s'inscrire
-lead: "Moomen Pro aide les commerçants d'Afrique de l'Ouest à gérer leurs ventes, leurs stocks, leurs reçus et leurs clients depuis leur téléphone. J'ai refait son site : présentation du produit, tarifs dans la devise du pays et boutique de consommables."
+lead: 'Moomen Pro aide les commerçants d''Afrique de l''Ouest à gérer leurs ventes et leurs stocks depuis leur téléphone. J''ai refait son site : présentation de l''application, tarifs et boutique de consommables.'
 seoTitle: Moomen Pro, refonte du site et boutique · Étude de cas
-seoDescription: Refonte en Astro du site de Moomen Pro, application de caisse pour PME, avec tarifs par pays et boutique de consommables commandée sur WhatsApp.
+seoDescription: Refonte en Astro du site de Moomen Pro, application de caisse pour PME, avec tarifs par pays et boutique commandée sur WhatsApp.
 meta:
   role: Développeuse front-end, UI/UX et intégration API
   team: Pour Moomen Pro (KORANEX)
-  period: "2026"
+  period: '2026'
   status: En ligne
 context:
-  - "Moomen Pro est une application de caisse et de gestion pour les PME d'Afrique de l'Ouest : ventes, stocks, commandes, clients, dettes et reçus PDF."
-  - "Son ancien site ne mettait pas le produit en valeur : le design était daté et l'expérience peu engageante, si bien qu'il ne donnait pas envie de s'inscrire. Le client voulait un site moderne qui présente l'application, affiche clairement les offres et vende aussi ses consommables, comme les imprimantes thermiques et les rouleaux."
+- 'Moomen Pro est une application de caisse et de gestion pour les PME : ventes, stocks, clients et reçus.'
+- L'ancien site était daté et ne donnait pas envie de s'inscrire. Le client voulait un site moderne qui présente l'application, affiche les offres et vende ses consommables, comme les imprimantes et les rouleaux de papier.
 role:
   paragraphs:
-    - "J'ai pris en charge le front-end de bout en bout : la conception UI/UX de toutes les pages, de l'accueil aux pages légales, puis leur développement et l'intégration de deux API, celle des tarifs et celle de la boutique."
+  - 'J''ai conçu et développé les pages du site, puis je les ai reliées à deux API existantes : celle des tarifs et celle de la boutique. J''ai aussi réalisé la vidéo de présentation en vibe motion design.'
   highlights:
-    - Conception UI/UX d'une quinzaine de pages
-    - Intégration de l'API des tarifs
-    - Boutique de consommables
-    - Vidéo de présentation avec Remotion
+  - Design des pages
+  - Intégration des API
+  - Commande sur WhatsApp
+  - Vidéo de présentation
 approach:
   paragraphs:
-    - "La cible navigue surtout sur mobile, parfois avec une connexion lente. Le site est donc généré en pages HTML statiques, qui s'affichent vite et sont bien référencées."
-    - "Sur ce marché, l'achat passe souvent par une conversation. Plutôt qu'un panier, chaque produit a un bouton qui ouvre WhatsApp avec le produit déjà indiqué : une étape de moins, et un geste que les clients connaissent. Les tarifs s'affichent dans la devise du pays de l'utilisateur, pour qu'il n'ait pas à faire la conversion au moment de choisir son abonnement. Enfin, les mêmes fonds, la même typographie et les mêmes composants sont repris sur toutes les pages, pages légales comprises."
+  - Les visiteurs sont surtout sur mobile, parfois avec une connexion lente. J'ai donc fait un site léger, en pages statiques, qui s'affichent vite.
+  - 'Dans la boutique, chaque produit a un bouton qui ouvre WhatsApp avec le produit déjà indiqué : c''est ainsi que les clients ont l''habitude de commander. Les tarifs s''affichent dans la devise du pays.'
   gallery:
-    - image: ../../../assets/case-studies/moomen/pricing.jpg
-      alt: "Tarifs : choix du pays, trois formules mensuelles ou annuelles en FCFA et plan gratuit"
-      caption: Tarifs dans la devise du pays
-      frame: desktop
-    - image: ../../../assets/case-studies/moomen/sectors.jpg
-      alt: "Section « À qui est destiné Moomen Pro ? » : boutiques, artisans, supermarchés, revendeurs, restaurateurs, coiffeurs"
-      caption: Les métiers ciblés
-      frame: desktop
-    - image: ../../../assets/case-studies/moomen/shop.jpg
-      alt: Boutique des consommables avec recherche, filtres par catégorie et cartes produits
-      caption: Boutique des consommables
-      frame: desktop
-    - image: ../../../assets/case-studies/moomen/product.jpg
-      alt: "Fiche produit : prix en FCFA, quantité, bouton Commander sur WhatsApp et informations de stock"
-      caption: Commande directe sur WhatsApp
-      frame: desktop
+  - image: ../../../assets/case-studies/moomen/pricing.jpg
+    alt: 'Tarifs : choix du pays, trois formules mensuelles ou annuelles en FCFA et plan gratuit'
+    caption: Tarifs dans la devise du pays
+    frame: desktop
+  - image: ../../../assets/case-studies/moomen/sectors.jpg
+    alt: 'Section « À qui est destiné Moomen Pro ? » : boutiques, artisans, supermarchés, revendeurs, restaurateurs, coiffeurs'
+    caption: Les métiers ciblés
+    frame: desktop
+  - image: ../../../assets/case-studies/moomen/shop.jpg
+    alt: Boutique des consommables avec recherche, filtres par catégorie et cartes produits
+    caption: Boutique des consommables
+    frame: desktop
+  - image: ../../../assets/case-studies/moomen/product.jpg
+    alt: 'Fiche produit : prix en FCFA, quantité, bouton Commander sur WhatsApp et informations de stock'
+    caption: Commande directe sur WhatsApp
+    frame: desktop
 technical:
-  intro: Trois problèmes concrets ont marqué le projet, et quatre garde-fous protègent sa qualité.
+  intro: Ce sont surtout des problèmes concrets qui ont guidé mes choix.
   decisions:
-    - title: Un responsive cassé seulement en production
-      text: "En local, tout fonctionnait ; en ligne, la version ordinateur s'affichait comme sur mobile. J'ai remonté la piste jusqu'au compresseur CSS du build, qui supprimait les media queries de Tailwind. Je l'ai désactivé, puisque Vite minifie déjà le CSS, et j'ai forcé une syntaxe de media queries compatible avec les navigateurs plus anciens."
-    - title: Tout le catalogue, pas seulement la première page
-      text: "L'API de la boutique renvoyait ses résultats page par page, mais le site n'affichait que la première. J'ai d'abord ajouté un bouton « Charger plus », puis une pagination numérotée, plus lisible pour un grand catalogue."
-    - title: Une devise réunie depuis deux endpoints
-      text: "La devise de chaque pays venait d'un endpoint public, les données de paiement d'un endpoint plus ancien. J'ai combiné les deux sources pour afficher le bon prix dans la bonne monnaie."
-    - title: SEO, accessibilité et performance
-      text: "URL canoniques, sitemap généré, métadonnées et données structurées JSON-LD. Lien d'évitement, landmarks et respect du réglage « réduire les animations ». Polices auto-hébergées et compression du HTML, du JavaScript et des SVG."
-    - title: Une configuration qui échoue clairement
-      text: "L'URL de l'API passe par une variable d'environnement. Si elle manque, le build s'arrête avec un message explicite au lieu de produire un site vide."
-  stack: [Astro, Tailwind CSS, TypeScript, API REST, Remotion]
+  - title: Un affichage cassé seulement en ligne
+    text: 'Le site s''affichait bien sur mon ordinateur, mais pas une fois publié : la version ordinateur ressemblait à la version mobile. J''ai trouvé que l''outil qui compresse le CSS supprimait une partie des styles, et je l''ai désactivé.'
+  - title: Afficher tout le catalogue
+    text: L'API envoyait les produits page par page, mais le site n'affichait que la première. J'ai ajouté une pagination.
+  - title: Le bon prix dans la bonne devise
+    text: J'ai combiné deux réponses de l'API pour afficher chaque offre dans la monnaie du pays.
+  - title: Les bases du référencement et de l'accessibilité
+    text: Un titre et une description par page, un plan du site, un lien pour aller directement au contenu, et le respect du réglage qui réduit les animations.
+  stack:
+  - Astro
+  - Tailwind CSS
+  - TypeScript
+  - API REST
 results:
-  intro: "Le nouveau site est en ligne. Il présente l'application, affiche les offres dans la devise de chaque pays et vend les consommables avec une commande directe sur WhatsApp."
+  intro: Le nouveau site est en ligne. Il présente l'application, affiche les offres dans la devise de chaque pays et permet de commander les consommables sur WhatsApp.
   metrics:
-    - value: "15"
-      label: pages au design unifié
-    - value: "2"
-      label: API intégrées, tarifs et boutique
-    - value: "2"
-      label: endpoints réunis pour afficher la bonne devise
+  - value: '15'
+    label: pages au design unifié
+  - value: '2'
+    label: API intégrées, tarifs et boutique
 learnings:
-  - "Toujours tester le build de production, pas seulement le serveur de développement : le bug de responsive n'existait qu'une fois le site compilé."
-  - "Avec le recul, j'ajouterais des tests automatisés sur la logique de devise et de pagination, et je mesurerais la conversion, inscriptions et clics WhatsApp, pour valider les choix UX avec des données."
+- 'Toujours tester la version publiée, pas seulement celle de développement : le bug d''affichage n''existait qu''une fois le site en ligne.'
+- La prochaine fois, je suivrai les inscriptions et les clics vers WhatsApp, pour savoir si les choix de design fonctionnent.

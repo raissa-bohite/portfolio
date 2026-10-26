@@ -48,6 +48,8 @@ const personData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
+    <!-- Preuve de propriété pour Google Search Console : jeton public, sans valeur secrète -->
+    <meta name="google-site-verification" content="FqCqeY-ciIdBt6zx50m7P2d-uKdiA68I2iOeFPioA5M" />
     <link rel="canonical" href={canonicalUrl} />
     {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.locale} href={new URL(alternate.path, Astro.site)} />)}
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}

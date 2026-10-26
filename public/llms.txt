@@ -1,0 +1,30 @@
+# Raïssa Bohité
+
+> Portfolio de Raïssa Bohité, développeuse front-end orientée full-stack, junior, basée à Abidjan (Côte d'Ivoire). Le site présente ses projets, son parcours et un formulaire de contact, en français, anglais et allemand.
+
+Langues : français (langue maternelle), allemand (niveau intermédiaire), anglais (notions). Technologies principales : Astro, SvelteKit, React, TypeScript, Tailwind CSS, Cloudflare.
+
+## Pages principales
+
+- [Accueil](https://raissa-bohite.pages.dev/): présentation, domaines de travail et projets mis en avant
+- [Projets](https://raissa-bohite.pages.dev/projets): la liste des projets avec leur rôle et leurs technologies
+- [À propos](https://raissa-bohite.pages.dev/a-propos): parcours, de la germanistique au développement web, distinctions et langues
+- [Contact](https://raissa-bohite.pages.dev/contact): formulaire pour proposer un poste ou une mission
+
+## Études de cas
+
+- [Fassbar](https://raissa-bohite.pages.dev/projets/fassbar): tuteur IA qui transforme les cours des étudiants en résumés et exercices, produit personnel
+- [Yofeii Délices](https://raissa-bohite.pages.dev/projets/yofeii-delices): boutique en ligne d'épices et son back-office, développement du front
+- [Moomen Pro](https://raissa-bohite.pages.dev/projets/moomen-pro): refonte du site d'une application de caisse pour PME
+- [Ateliya](https://raissa-bohite.pages.dev/projets/ateliya): refonte du design du site d'une application pour ateliers de couture
+- [ERP scolaire](https://raissa-bohite.pages.dev/projets/erp-scolaire): front-end d'un logiciel de gestion scolaire
+
+## Autres langues
+
+- [English version](https://raissa-bohite.pages.dev/en/)
+- [Deutsche Version](https://raissa-bohite.pages.dev/de/)
+
+## Optional
+
+- [CV en PDF (français)](https://raissa-bohite.pages.dev/cv/raissa-bohite-cv-fr.pdf)
+- [Mentions légales](https://raissa-bohite.pages.dev/mentions-legales)

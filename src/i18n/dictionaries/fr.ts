@@ -39,6 +39,13 @@ const dictionary = {
     kicker: "Portfolio",
     tagline: "Développeuse front-end, orientée full-stack",
   },
+  notFound: {
+    seoTitle: "Page introuvable · Raïssa Bohité",
+    seoDescription: "Cette page n'existe pas ou a été déplacée.",
+    title: "Cette page est introuvable",
+    text: "Le lien est peut-être ancien, ou l'adresse contient une faute de frappe.",
+    cta: "Revenir à l'accueil",
+  },
   home: {
     availability: "Disponible pour un poste ou une mission",
     signature: "comprendre().then(construire);",

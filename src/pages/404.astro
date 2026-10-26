@@ -1,0 +1,43 @@
+---
+import Button from '@/components/atoms/Button.astro';
+import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import BaseLayout from '@/components/templates/BaseLayout.astro';
+import { defaultLocale, locales } from '@/i18n/config';
+import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
+import { getDictionary } from '@/i18n/translate';
+
+// Une seule page 404 pour tout le site : sans elle, Cloudflare Pages renvoie l'accueil pour toute adresse inconnue
+const dictionary = getDictionary(defaultLocale);
+const otherLocales = locales.filter((locale) => locale !== defaultLocale);
+const alternates = getAlternateLinks((locale) => getRoutePath('home', locale));
+---
+
+<BaseLayout
+  locale={defaultLocale}
+  title={dictionary.notFound.seoTitle}
+  description={dictionary.notFound.seoDescription}
+  alternates={alternates}
+  noindex
+>
+  <section class="container-page flex flex-col gap-6 pt-16 pb-24">
+    <Eyebrow>404</Eyebrow>
+    <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{dictionary.notFound.title}</h1>
+    <p class="m-0 max-w-[52ch] text-lead">{dictionary.notFound.text}</p>
+    <div>
+      <Button href={getRoutePath('home', defaultLocale)}>{dictionary.notFound.cta}</Button>
+    </div>
+    <!-- Le même message dans les autres langues, pour qui arrive depuis la version anglaise ou allemande -->
+    <ul class="m-0 mt-8 flex list-none flex-col gap-3 border-t border-line p-0 pt-8">
+      {
+        otherLocales.map((locale) => {
+          const translation = getDictionary(locale).notFound;
+          return (
+            <li lang={locale} class="text-base">
+              {translation.text} <a href={getRoutePath('home', locale)}>{translation.cta}</a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+</BaseLayout>

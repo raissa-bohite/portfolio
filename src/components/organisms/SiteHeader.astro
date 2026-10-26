@@ -11,7 +11,7 @@ import { getDictionary } from '@/i18n/translate';
 
 type Props = {
   locale: Locale;
-  currentRoute: RouteId;
+  currentRoute?: RouteId | undefined;
   alternates: AlternateLink[];
 };
 

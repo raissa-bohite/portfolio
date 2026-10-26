@@ -34,6 +34,13 @@ export const en: Dictionary = {
     kicker: 'Portfolio',
     tagline: 'Front-end developer, full-stack leaning'
   },
+  notFound: {
+    seoTitle: 'Page not found · Raïssa Bohité',
+    seoDescription: 'This page does not exist or has moved.',
+    title: 'This page cannot be found',
+    text: 'The link may be outdated, or the address may contain a typo.',
+    cta: 'Back to the home page'
+  },
   home: {
     availability: 'Available for a job or a project',
     signature: 'comprendre().then(construire);',

@@ -15,11 +15,12 @@ type Props = {
   locale: Locale;
   title: string;
   description: string;
-  currentRoute: RouteId;
+  currentRoute?: RouteId;
   alternates: AlternateLink[];
+  noindex?: boolean;
 };
 
-const { locale, title, description, currentRoute, alternates } = Astro.props;
+const { locale, title, description, currentRoute, alternates, noindex = false } = Astro.props;
 const dictionary = getDictionary(locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const defaultAlternate = alternates.find((alternate) => alternate.locale === defaultLocale);
@@ -46,6 +47,7 @@ const personData = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonicalUrl} />
     {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.locale} href={new URL(alternate.path, Astro.site)} />)}
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={new URL(defaultAlternate.path, Astro.site)} />}

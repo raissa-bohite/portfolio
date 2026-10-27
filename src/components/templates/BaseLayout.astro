@@ -24,7 +24,8 @@ const { locale, title, description, currentRoute, alternates, noindex = false } 
 const dictionary = getDictionary(locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const defaultAlternate = alternates.find((alternate) => alternate.locale === defaultLocale);
-const socialImageUrl = new URL('/og-image.jpg', Astro.site);
+// Nom versionné : les réseaux sociaux gardent l'image en cache par adresse, changer le nom force la mise à jour
+const socialImageUrl = new URL('/og-image-v2.jpg', Astro.site);
 
 // Données structurées : aident les moteurs de recherche à relier le site à la personne
 const personData = {

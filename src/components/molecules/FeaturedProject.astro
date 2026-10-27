@@ -2,6 +2,7 @@
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import FileText from '@lucide/astro/icons/file-text';
+import Undo2 from '@lucide/astro/icons/undo-2';
 import Tag from '@/components/atoms/Tag.astro';
 import MiniBrowser from '@/components/molecules/MiniBrowser.astro';
 import MiniPhone from '@/components/molecules/MiniPhone.astro';
@@ -11,9 +12,11 @@ import type { ProjectSummary } from '@/lib/projects';
 type Props = {
   project: ProjectSummary;
   labels: { viewProject: string; caseStudy: string; newTab: string };
+  // Petite annotation manuscrite qui pointe vers le téléphone
+  note: string;
 };
 
-const { project, labels } = Astro.props;
+const { project, labels, note } = Astro.props;
 const Icon = getProjectIcon(project.slug);
 const phoneShot = project.shotFrame === 'phone' ? project.shots[0] : undefined;
 // Projet en ligne : le bouton principal ouvre le site, l'étude de cas passe en lien secondaire
@@ -72,9 +75,15 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
     <div aria-hidden="true" class="relative h-[280px] sm:h-[380px] lg:col-span-7 lg:h-[460px]">
       <div class="absolute -top-16 right-[-12%] size-[120%] rounded-full bg-linear-to-br from-[#b9a4f5]/50 to-transparent"></div>
       <div class="absolute -right-[18%] -bottom-[38%] size-[95%] rounded-full bg-linear-to-br from-[#6d3fd6] to-[#36188a]"></div>
-      <div class="absolute top-[14%] left-[4%] size-12 rounded-full border-2 border-sig/80"></div>
-      <div class="absolute bottom-[16%] left-[1%] size-9 rounded-full border-2 border-sig/70"></div>
-      <div class="absolute top-[12%] right-[6%] size-3 rounded-full bg-action"></div>
+      <div class="absolute top-[9%] left-[5%] h-16 w-11 -rotate-12 rounded-[50%] border-2 border-sig/80"></div>
+      <div class="absolute bottom-[14%] left-[2%] size-10 rounded-full border-2 border-sig/70"></div>
+      <div class="absolute top-[24%] right-[2%] size-3 rounded-full bg-action"></div>
+      <div class="absolute right-[5%] bottom-[12%] hidden gap-1.5 sm:flex">
+        {[0, 1, 2, 3].map(() => <span class="size-1.5 rounded-full bg-sig" />)}
+      </div>
+      <!-- Annotation manuscrite et sa flèche courbe, comme une note griffonnée sur une maquette -->
+      <p class="absolute top-[3%] right-[7%] m-0 hidden max-w-[11ch] -rotate-[10deg] text-center font-hand text-xl leading-tight font-semibold text-action sm:block">{note}</p>
+      <Undo2 size={28} class="absolute top-[23%] right-[13%] hidden -rotate-[100deg] text-action sm:block" />
       <MiniBrowser
         image={project.cover}
         sizes="(min-width: 1024px) 560px, 80vw"

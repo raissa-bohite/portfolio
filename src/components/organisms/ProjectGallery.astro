@@ -18,7 +18,10 @@ const [featuredProject, ...otherProjects] = projects;
 
 <!-- Galerie de l'accueil : le premier projet en grand, les suivants en cartes -->
 <section aria-labelledby="projects-title" class="container-page relative flex flex-col gap-10 pt-16 pb-20">
-  <div aria-hidden="true" class="absolute top-6 right-6 hidden size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[20px_20px] md:block"></div>
+  <!-- Décor du haut de section : forme lavande coupée par le bord, pastille orange et grille de points -->
+  <div aria-hidden="true" class="absolute -top-20 left-[58%] hidden size-44 rounded-full bg-linear-to-b from-[#b9a4f5]/55 to-[#b9a4f5]/15 md:block"></div>
+  <div aria-hidden="true" class="absolute top-24 left-[64%] hidden size-4 rounded-full bg-sig md:block"></div>
+  <div aria-hidden="true" class="absolute top-6 right-6 hidden size-20 bg-[radial-gradient(circle,#b9a4f5_1.8px,transparent_2px)] bg-size-[20px_20px] md:block"></div>
 
   <div class="flex flex-wrap items-end justify-between gap-6">
     <div class="flex max-w-[56ch] flex-col gap-3">
@@ -43,6 +46,7 @@ const [featuredProject, ...otherProjects] = projects;
         <FeaturedProject
           project={featuredProject}
           labels={{ viewProject: dictionary.common.viewProject, caseStudy: dictionary.common.caseStudy, newTab: dictionary.common.newTab }}
+          note={section.featuredNote}
         />
       )
     }
@@ -51,10 +55,22 @@ const [featuredProject, ...otherProjects] = projects;
     </div>
   </div>
 
-  <div class="flex items-center gap-4 border-t border-line pt-8">
+  <!-- Bas de section : la promesse en une ligne, encadrée de points et d'une vague orange -->
+  <div class="relative flex items-center gap-4 border-t border-line pt-8">
+    <span aria-hidden="true" class="hidden gap-2 sm:flex">
+      {[0, 1, 2].map(() => <span class="size-1.5 rounded-full bg-[#b9a4f5]" />)}
+    </span>
     <span aria-hidden="true" class="flex size-10 flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
       <CodeXml size={18} />
     </span>
-    <p class="m-0 text-small text-muted">{section.closing}</p>
+    <p class="m-0 text-small text-muted"><strong class="font-semibold text-action">{section.closingLead}</strong>{section.closingText}</p>
+    <span aria-hidden="true" class="ml-auto hidden items-center gap-6 lg:flex">
+      <span class="size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[16px_16px]"></span>
+      <!-- Vague : un demi-cercle vers le haut suivi d'un demi-cercle vers le bas, reliés par leurs extrémités -->
+      <span class="flex -rotate-12">
+        <span class="h-4 w-8 rounded-t-full border-2 border-b-0 border-sig"></span>
+        <span class="mt-4 -ml-0.5 h-4 w-8 rounded-b-full border-2 border-t-0 border-sig"></span>
+      </span>
+    </span>
   </div>
 </section>

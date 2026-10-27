@@ -15,34 +15,35 @@ const Icon = getProjectIcon(project.slug);
 const accentClass = accentBackgroundClasses[project.accent];
 ---
 
-<!-- Carte de projet : la vignette colorée en tête, la fiche en dessous ; toute la carte est cliquable -->
+<!-- Carte de projet compacte : la vignette colorée en tête, la fiche serrée en dessous ; toute la carte est cliquable -->
 <article data-scroll-item class="group relative flex flex-col overflow-hidden rounded-surface border border-glass-border bg-bg shadow-glass-sm transition-[transform,box-shadow] duration-300 ease-out-soft hover:-translate-y-1 hover:shadow-glass">
   <ProjectVisual project={project} aspectClass="aspect-[16/11]" roundedClass="rounded-none" />
-  <div class="flex flex-1 flex-col gap-3 p-5">
+  <div class="flex flex-col gap-2.5 p-5">
     <div class="flex items-center gap-2.5">
-      <span aria-hidden="true" class:list={['flex size-8 flex-none items-center justify-center rounded-[10px] text-white', accentClass]}>
-        <Icon size={16} />
+      <span aria-hidden="true" class:list={['flex size-7 flex-none items-center justify-center rounded-[9px] text-white', accentClass]}>
+        <Icon size={15} />
       </span>
-      <span class="rounded-full border border-glass-border px-2.5 py-1 text-xs font-semibold text-tint-ink">{project.category}</span>
+      <span class="rounded-full border border-glass-border px-2.5 py-0.5 text-xs font-semibold text-tint-ink">{project.category}</span>
       <!-- Quatre points à la couleur du projet, simple ornement -->
       <span aria-hidden="true" class="ml-auto grid grid-cols-2 gap-1.5">
         {[0, 1, 2, 3].map(() => <span class:list={['size-1 rounded-full opacity-70', accentClass]} />)}
       </span>
     </div>
-    <h3 class="m-0 text-xl font-bold text-ink">{project.name}</h3>
-    <p class="m-0 text-small text-muted">{project.kind}</p>
+    <h3 class="m-0 mt-1 text-lg font-bold text-ink">{project.name}</h3>
+    <!-- Une seule ligne : la pastille donne déjà la catégorie, et les cartes gardent la même hauteur -->
+    <p class="m-0 -mt-1.5 line-clamp-1 text-sm text-muted" title={project.kind}>{project.kind}</p>
     <!-- Étiquettes plus compactes que sur la page Projets : trois tiennent sur une ligne de carte -->
     <ul class="m-0 flex list-none flex-wrap gap-1.5 p-0">
       {
         project.stack.slice(0, 3).map((technology) => (
-          <li class="rounded-full bg-tint px-2.5 py-1 font-mono text-[12px] font-medium text-tint-ink">{technology}</li>
+          <li class="rounded-full bg-tint px-2 py-0.5 font-mono text-[11.5px] font-medium text-tint-ink">{technology}</li>
         ))
       }
     </ul>
     <!-- Le lien couvre toute la carte ; son texte est complété par le nom du projet pour les lecteurs d'écran -->
     <a
       href={project.href}
-      class="mt-auto inline-flex min-h-11 items-center gap-2 self-start pt-2 text-sm font-semibold text-action no-underline after:absolute after:inset-0 focus-visible:outline-none"
+      class="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-action no-underline after:absolute after:inset-0 focus-visible:outline-none"
     >
       <span class="underline decoration-[1.5px] underline-offset-[6px]">{actionLabel}</span>
       <span class="sr-only">: {project.name}</span>

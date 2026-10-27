@@ -60,7 +60,9 @@ export const de: Dictionary = {
       eyebrow: 'Projekte',
       title: 'Meine Projekte',
       intro: 'Moderne, nützliche und maßgeschneiderte Weblösungen. Hier ist eine Auswahl von Projekten, an denen ich gearbeitet habe.',
-      closing: 'Von der Idee zur Oberfläche: Ich gestalte, entwickle und optimiere moderne Weblösungen.'
+      closingLead: 'Von der Idee zur Oberfläche',
+      closingText: ': Ich gestalte, entwickle und optimiere moderne Weblösungen.',
+      featuredNote: 'Ein flüssiges Erlebnis auf jedem Bildschirm'
     },
     domains: {
       eyebrow: 'Was ich mache',

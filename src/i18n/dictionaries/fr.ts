@@ -66,7 +66,9 @@ const dictionary = {
       eyebrow: "Projets",
       title: "Mes projets",
       intro: "Des solutions web modernes, utiles et sur mesure. Voici une sélection de projets sur lesquels j'ai travaillé.",
-      closing: "Des idées aux interfaces : je conçois, développe et optimise des solutions web modernes.",
+      closingLead: "Des idées aux interfaces",
+      closingText: " : je conçois, développe et optimise des solutions web modernes.",
+      featuredNote: "Une expérience fluide sur tous les écrans",
     },
     domains: {
       eyebrow: "Ce que je fais",

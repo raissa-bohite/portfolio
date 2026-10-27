@@ -2,6 +2,8 @@
 @import '@fontsource-variable/bricolage-grotesque/opsz.css';
 @import '@fontsource/jetbrains-mono/latin-500.css';
 @import '@fontsource/jetbrains-mono/latin-600.css';
+/* Écriture manuscrite, réservée aux petites annotations décoratives */
+@import '@fontsource/caveat/latin-600.css';
 
 /* Le thème suit le système par défaut ; data-theme sur <html> force un choix explicite */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
@@ -66,6 +68,7 @@
 @theme inline {
   --font-sans: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
 
   --color-bg: var(--bg);
   --color-glass: var(--glass);

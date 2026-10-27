@@ -86,7 +86,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
         type="submit"
         data-label-idle={form.submit}
         data-label-sending={form.sending}
-        class="inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-control border-0 bg-action px-6 active:scale-[0.97] font-sans text-base font-semibold text-action-ink transition-colors hover:bg-action-hover disabled:cursor-wait disabled:opacity-70"
+        class="inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-control border-0 bg-action px-6 active:scale-[0.97] sm:w-auto font-sans text-base font-semibold text-action-ink transition-colors hover:bg-action-hover disabled:cursor-wait disabled:opacity-70"
       >
         <span data-submit-label>{form.submit}</span>
         <Send aria-hidden="true" size={18} />

@@ -3,6 +3,7 @@ import ArrowRight from '@lucide/astro/icons/arrow-right';
 import CodeXml from '@lucide/astro/icons/code-xml';
 import FeaturedProject from '@/components/molecules/FeaturedProject.astro';
 import ProjectCard from '@/components/molecules/ProjectCard.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
@@ -24,14 +25,7 @@ const [featuredProject, ...otherProjects] = projects;
   <div aria-hidden="true" class="absolute top-6 right-6 hidden size-20 bg-[radial-gradient(circle,#b9a4f5_1.8px,transparent_2px)] bg-size-[20px_20px] md:block"></div>
 
   <div class="flex flex-wrap items-end justify-between gap-6">
-    <div class="flex max-w-[56ch] flex-col gap-3">
-      <p class="m-0 flex items-center gap-3 text-sm font-semibold tracking-[0.12em] text-action uppercase">
-        {section.eyebrow}
-        <span aria-hidden="true" class="h-px w-14 bg-action"></span>
-      </p>
-      <h2 id="projects-title" class="m-0 text-h2 font-bold text-ink">{section.title}</h2>
-      <p class="m-0 text-lead">{section.intro}</p>
-    </div>
+    <SectionIntro id="projects-title" eyebrow={section.eyebrow} title={section.title} intro={section.intro} highlight={false} />
     <a href={getRoutePath('projects', locale)} class="group inline-flex min-h-12 items-center gap-3 text-base font-semibold text-action no-underline">
       <span class="underline decoration-[1.5px] underline-offset-[6px]">{dictionary.common.allProjects}</span>
       <span aria-hidden="true" class="flex size-10 items-center justify-center rounded-full bg-tint text-tint-ink transition-transform duration-200 group-hover:translate-x-1">

@@ -1,7 +1,10 @@
 ---
+import logoMark from '@/assets/brand/rb-mark.svg';
+import logoMarkDark from '@/assets/brand/rb-mark-dark.svg';
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
+import { profile } from '@/lib/profile';
 
 type Props = { locale: Locale };
 
@@ -9,14 +12,21 @@ const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 ---
 
+<!-- Pied de page : le logo et le nom comme dans l'en-tête, puis les liens secondaires et le copyright -->
 <footer class="container-page relative pt-6 pb-10">
-  <div class="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-sm text-muted">
-    <p class="m-0">{dictionary.footer.copyright}</p>
+  <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-line pt-8 text-sm text-muted">
+    <a href={getRoutePath('home', locale)} class="flex items-center gap-2.5 text-base font-extrabold tracking-[-0.02em] text-ink no-underline hover:text-ink">
+      <!-- Logo décoratif : le nom qui suit nomme le lien -->
+      <img src={logoMark.src} alt="" width="30" height="30" loading="lazy" class="size-[30px] dark:hidden" />
+      <img src={logoMarkDark.src} alt="" width="30" height="30" loading="lazy" class="hidden size-[30px] dark:block" />
+      <span>{profile.name}<span aria-hidden="true" class="font-mono text-sig">_</span></span>
+    </a>
     <nav aria-label={dictionary.footer.secondaryLabel}>
       <ul class="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
-        <li><a href={getCvPath(locale)} class="inline-flex min-h-11 items-center" download>{dictionary.footer.cv}</a></li>
-        <li><a href={getRoutePath('legal', locale)} class="inline-flex min-h-11 items-center">{dictionary.footer.legal}</a></li>
+        <li><a href={getCvPath(locale)} class="inline-flex min-h-11 items-center hover:text-action" download>{dictionary.footer.cv}</a></li>
+        <li><a href={getRoutePath('legal', locale)} class="inline-flex min-h-11 items-center hover:text-action">{dictionary.footer.legal}</a></li>
       </ul>
     </nav>
+    <p class="m-0 w-full sm:w-auto">{dictionary.footer.copyright}</p>
   </div>
 </footer>

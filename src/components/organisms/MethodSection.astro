@@ -1,10 +1,9 @@
 ---
-import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Code from '@lucide/astro/icons/code-xml';
 import PenTool from '@lucide/astro/icons/pen-tool';
 import Search from '@lucide/astro/icons/search';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { formatMessage, getDictionary } from '@/i18n/translate';
 
@@ -12,71 +11,58 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const method = getDictionary(locale).home.method;
-const heights = ['40%', '60%', '80%', '100%'];
-// Sur mobile, une étape par ligne : les barres prennent leur hauteur naturelle, l'escalier n'existe qu'à partir de deux colonnes
-const heightClasses = ['sm:h-[40%]', 'sm:h-[60%]', 'sm:h-[80%]', 'sm:h-full'];
-// Une icône par étape : la barre se comprend sans lire le code
+// Une icône par étape : la carte se comprend sans lire le code
 const stepIcons = [Search, PenTool, Code, ShieldCheck];
 ---
 
-<!-- Bande lavande pleine largeur : elle rythme l'accueil comme la bande des captures sur les pages projet -->
-<section aria-labelledby="method-title" class="bg-tint/45 py-24 dark:bg-white/[0.03]">
-  <div class="container-page flex flex-col gap-12">
-    <SectionHeading id="method-title" eyebrow={method.eyebrow} title={method.title} />
-    <ol data-histogram aria-label={method.listLabel} class="m-0 grid list-none items-start gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        method.steps.map((step, index) => {
-          const Icon = stepIcons[index] ?? Code;
-          const isLast = index === method.steps.length - 1;
-          return (
-            <li class="flex flex-col gap-5">
-              <!-- Même vignette que les distinctions de la page À propos : dégradé, icône dans une pastille blanche, grand pictogramme en filigrane -->
-              <div class="relative flex items-end sm:h-56 lg:h-72">
-                <div
-                  data-bar
-                  data-height={heights[index]}
-                  class:list={[
-                    'relative flex min-h-[132px] w-full flex-col justify-between overflow-hidden rounded-surface bg-linear-to-br from-[#6d3fd6] to-[#4a23a0] p-5 text-white shadow-glass transition-colors duration-300 [&.is-current]:from-[#f58a45] [&.is-current]:to-[#e0590c] [&.is-current]:text-[#1e0f45]',
-                    heightClasses[index]
-                  ]}
-                >
-                  <span aria-hidden="true" class="absolute -right-6 -bottom-8 opacity-20">
-                    <Icon size={130} stroke-width={1.25} />
-                  </span>
-                  <span aria-hidden="true" class="relative flex size-10 items-center justify-center rounded-full bg-white text-[#1e0f45]">
-                    <Icon size={18} />
-                  </span>
-                  <span class="relative flex flex-col gap-0.5">
-                    <span class="font-mono text-base font-semibold" lang="fr">{step.code}</span>
-                    <span class="text-sm font-semibold opacity-90">{formatMessage(method.step, { n: index + 1 })}</span>
-                  </span>
-                </div>
-                {!isLast && (
-                  <span
-                    aria-hidden="true"
-                    class="absolute -right-[22px] bottom-5 z-10 hidden size-8 items-center justify-center rounded-full border border-line bg-bg text-action shadow-glass-sm lg:flex"
-                  >
-                    <ArrowRight size={16} />
-                  </span>
-                )}
-              </div>
-              <div data-bar-text class="flex flex-col gap-3">
-                <p class="m-0 text-base">{step.text}</p>
-                <p class="m-0 flex flex-wrap items-center gap-2 text-sm">
-                  <span class="font-semibold text-muted">{method.deliverableLabel}</span>
-                  <span class="rounded-full border border-glass-border bg-bg px-3 py-1 font-semibold text-ink">{step.deliverable}</span>
-                </p>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ol>
-  </div>
+<!-- Quatre cartes de même hauteur : numéro, illustration à anneaux, étape en code, explication et livrable -->
+<section aria-labelledby="method-title" class="container-page flex flex-col gap-12 py-24">
+  <SectionIntro id="method-title" eyebrow={method.eyebrow} title={method.title} />
+  <ol data-scroll-group aria-label={method.listLabel} class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      method.steps.map((step, index) => {
+        const Icon = stepIcons[index] ?? Code;
+        // La dernière étape, la vérification, passe en orange : c'est elle qui ferme la boucle
+        const isLast = index === method.steps.length - 1;
+        return (
+          <li data-scroll-item class="flex flex-col gap-4 rounded-surface border border-line bg-bg p-5 shadow-glass-sm transition-[transform,box-shadow] duration-300 ease-out-soft hover:-translate-y-1 hover:shadow-glass">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-sm text-muted" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span class="sr-only">{formatMessage(method.step, { n: index + 1 })}</span>
+              <span
+                aria-hidden="true"
+                class:list={['flex size-10 items-center justify-center rounded-[12px]', isLast ? 'bg-sig text-white' : 'bg-tint text-tint-ink']}
+              >
+                <Icon size={18} />
+              </span>
+            </div>
+            <div
+              aria-hidden="true"
+              class:list={['relative grid h-28 place-items-center overflow-hidden rounded-[14px]', isLast ? 'bg-[#fff4eb] dark:bg-white/[0.04]' : 'bg-tint/45']}
+            >
+              <span class="size-16 rounded-full border border-lilac shadow-[0_0_0_12px_rgb(109_63_214/0.06),0_0_0_24px_rgb(109_63_214/0.04)]"></span>
+              <span
+                class:list={[
+                  'absolute flex size-11 items-center justify-center rounded-[14px] text-white shadow-[0_8px_15px_rgb(74_35_160/0.2)]',
+                  isLast ? 'bg-sig' : 'bg-linear-to-br from-brand to-brand-deep'
+                ]}
+              >
+                <Icon size={20} />
+              </span>
+              <span class="absolute top-5 right-[28%] size-2 rounded-full bg-sig"></span>
+            </div>
+            <p class="m-0 font-mono text-lg font-semibold text-ink" lang="fr">{step.code}</p>
+            <p class="m-0 flex-1 text-base">{step.text}</p>
+            <p class="m-0 flex flex-wrap items-center gap-2 border-t border-line pt-3 text-sm">
+              <span aria-hidden="true" class="size-1.5 rounded-full bg-sig"></span>
+              <span class="font-semibold text-muted">{method.deliverableLabel}</span>
+              <span class="font-semibold text-ink">{step.deliverable}</span>
+            </p>
+          </li>
+        );
+      })
+    }
+  </ol>
 </section>
-
-<script>
-  import { setupHistogram } from '@/scripts/histogram';
-
-  for (const list of document.querySelectorAll<HTMLElement>('[data-histogram]')) setupHistogram(list);
-</script>

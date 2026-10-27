@@ -70,6 +70,12 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-hand: 'Caveat', 'Segoe Print', cursive;
 
+  /* Palette de la marque, fixe dans les deux thèmes : arches, pastilles et dégradés décoratifs */
+  --color-brand: #6d3fd6;
+  --color-brand-deep: #4a23a0;
+  --color-brand-deeper: #36188a;
+  --color-lilac: #b9a4f5;
+
   --color-bg: var(--bg);
   --color-glass: var(--glass);
   --color-glass-strong: var(--glass-strong);

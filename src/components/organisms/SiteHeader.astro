@@ -1,4 +1,6 @@
 ---
+import logoMark from '@/assets/brand/rb-mark.svg';
+import logoMarkDark from '@/assets/brand/rb-mark-dark.svg';
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import Menu from '@lucide/astro/icons/menu';
 import X from '@lucide/astro/icons/x';
@@ -28,8 +30,11 @@ const links: { id: RouteId; label: string }[] = [
 <header class="sticky top-4 z-20 pt-4">
   <div class="container-page">
     <nav aria-label={dictionary.nav.label} class="material relative flex items-center justify-between gap-4 py-2.5 pr-2.5 pl-6">
-      <a href={getRoutePath('home', locale)} class="text-xl font-extrabold tracking-[-0.02em] text-ink no-underline hover:text-ink">
-        Raïssa Bohité<span aria-hidden="true" class="animate-blink font-mono text-sig">_</span>
+      <a href={getRoutePath('home', locale)} class="flex items-center gap-2.5 text-xl font-extrabold tracking-[-0.02em] text-ink no-underline hover:text-ink">
+        <!-- Logo décoratif : le nom qui suit suffit à nommer le lien ; une version éclaircie pour le thème sombre -->
+        <img src={logoMark.src} alt="" width="36" height="36" class="size-9 dark:hidden" />
+        <img src={logoMarkDark.src} alt="" width="36" height="36" class="hidden size-9 dark:block" />
+        <span>Raïssa Bohité<span aria-hidden="true" class="animate-blink font-mono text-sig">_</span></span>
       </a>
 
       <ul id="primary-links" data-menu class="m-0 hidden list-none items-center gap-1 p-0 text-small font-semibold lg:flex">

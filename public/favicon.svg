@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="298 294 700 700"><style>@media (prefers-color-scheme: dark){.l{fill:#c4b2ff}.m{fill:#9b7cf4}.d{fill:#7a52e6}}</style><defs>
+    <clipPath id="above-facet"><polygon points="300,300 800,300 800,330 300,774"/></clipPath>
+    <clipPath id="leg-top"><rect x="400" y="540" width="300" height="96"/></clipPath>
+  </defs>
+  <path class="m" fill="#4a23a0" d="M318 426H416V783L318 860Z"/>
+  <path id="bowl" class="d" fill="#36188a" d="M318 328H548A155 155 0 0 1 548 638H493L430 554H532A64 64 0 0 0 532 426H318Z"/>
+  <path class="l" fill="#6d3fd6" clip-path="url(#above-facet)" d="M318 328H548A155 155 0 0 1 548 638H493L430 554H532A64 64 0 0 0 532 426H318Z"/>
+  <path class="m" fill="#4a23a0" d="M430 554H561L822 885L737 960Z"/>
+  <path class="l" fill="#6d3fd6" clip-path="url(#leg-top)" d="M430 554H561L822 885L737 960Z"/>
+  <path class="m" fill="#4a23a0" d="M650 328H797A116 116 0 0 1 836.7 553L829 556C805 550 795 535 795 515V455C795 438 785 430 768 430H735Z"/>
+  <path class="d" fill="#36188a" fill-rule="evenodd" d="M830 552A149 149 0 0 1 830 850L738 740H770C788 740 795 730 795 712V600C795 575 808 558 830 552Z M829 625C852 625 866 636 866 655V680C866 692 872 698 882 700C872 702 866 708 866 720V748C866 772 852 790 829 790Z"/>
+  <rect x="823" y="905" width="50" height="50" fill="#f26a1b"/>
+  <rect x="883" y="862" width="33" height="33" fill="#f26a1b"/></svg>

@@ -5,7 +5,8 @@ export const en: Dictionary = {
     homeTitle: 'Raïssa Bohité · Front-end developer, full-stack leaning',
     homeDescription:
       'Clear, accessible and secure interfaces and dashboards. Explore my projects: Fassbar, Yofeii Délices, Ateliya, Moomen Pro.',
-    portraitAlt: 'Portrait of Raïssa Bohité'
+    portraitAlt: 'Portrait of Raïssa Bohité',
+    socialImageAlt: 'RB logo of Raïssa Bohité and her motto: understand before you build'
   },
   nav: {
     label: 'Main navigation',

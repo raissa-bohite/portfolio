@@ -11,6 +11,7 @@ const dictionary = {
     homeDescription:
       "Interfaces et tableaux de bord clairs, accessibles et sécurisés. Découvrez mes projets : Fassbar, Yofeii Délices, Ateliya, Moomen Pro.",
     portraitAlt: "Portrait de Raïssa Bohité",
+    socialImageAlt: "Logo RB de Raïssa Bohité et sa devise : comprendre avant de construire",
   },
   nav: {
     label: "Navigation principale",

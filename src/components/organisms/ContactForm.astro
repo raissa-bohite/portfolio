@@ -75,7 +75,8 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
       minLength={contactLimits.messageMin}
       maxLength={contactLimits.messageMax}
     />
-    {turnstileSiteKey && <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-language={locale} />}
+    <!-- Rendu par turnstile.ts : version compacte quand la carte est plus étroite que le widget standard (300 px) -->
+    {turnstileSiteKey && <div data-turnstile data-sitekey={turnstileSiteKey} data-language={locale} />}
     <p role="alert" class="m-0 hidden rounded-control border border-danger/40 bg-glass-strong p-4 text-sm font-medium text-ink group-data-[state=failure]/form:block">
       {form.failure}
     </p>
@@ -109,10 +110,12 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
   </div>
 </div>
 
-{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
+{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" data-turnstile-api async defer />}
 
 <script>
   import { setupContactForm } from '@/scripts/contact-form';
+  import { renderTurnstileWidgets } from '@/scripts/turnstile';
 
   for (const container of document.querySelectorAll<HTMLElement>('[data-contact-form]')) setupContactForm(container);
+  renderTurnstileWidgets();
 </script>

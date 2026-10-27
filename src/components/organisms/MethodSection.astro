@@ -1,14 +1,10 @@
 ---
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Code from '@lucide/astro/icons/code-xml';
-import Lightbulb from '@lucide/astro/icons/lightbulb';
 import PenTool from '@lucide/astro/icons/pen-tool';
 import Search from '@lucide/astro/icons/search';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
-import Target from '@lucide/astro/icons/target';
-import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
-import Check from '@lucide/astro/icons/check';
-import SectionIntro from '@/components/molecules/SectionIntro.astro';
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
 import type { Locale } from '@/i18n/config';
 import { formatMessage, getDictionary } from '@/i18n/translate';
 
@@ -16,94 +12,71 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const method = getDictionary(locale).home.method;
+const heights = ['40%', '60%', '80%', '100%'];
+// Sur mobile, une étape par ligne : les barres prennent leur hauteur naturelle, l'escalier n'existe qu'à partir de deux colonnes
+const heightClasses = ['sm:h-[40%]', 'sm:h-[60%]', 'sm:h-[80%]', 'sm:h-full'];
+// Une icône par étape : la barre se comprend sans lire le code
 const stepIcons = [Search, PenTool, Code, ShieldCheck];
-const stepLabel = (code: string) => code.replace(/\(\)$/, '').replace(/^./, (char) => char.toUpperCase());
 ---
 
-<section aria-labelledby="method-title" class="container-page flex flex-col gap-9 py-16 sm:gap-11 sm:py-20">
-  <SectionIntro id="method-title" eyebrow={method.eyebrow} title={method.title} />
-  <ol data-scroll-group aria-label={method.listLabel} class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 xl:grid-cols-4">
-    {method.steps.map((step, index) => {
-      const Icon = stepIcons[index] ?? Code;
-      const isLast = index === method.steps.length - 1;
-      return (
-        <li data-scroll-item class="group flex min-w-0 flex-col overflow-hidden rounded-surface border border-line bg-bg shadow-glass-sm transition-[transform,box-shadow] duration-300 ease-out-soft hover:-translate-y-1 hover:shadow-glass">
-          <div class="flex items-center justify-between px-5 pt-5">
-            <span class="font-mono text-sm font-semibold text-muted">{String(index + 1).padStart(2, '0')}</span>
-            <span class="sr-only">{formatMessage(method.step, { n: index + 1 })}</span>
-            <span aria-hidden="true" class:list={['flex size-10 items-center justify-center rounded-[12px]', isLast ? 'bg-sig text-white' : 'bg-tint text-tint-ink']}>
-              <Icon size={18} />
-            </span>
-          </div>
-
-          <div aria-hidden="true" class:list={['relative mx-5 mt-4 grid h-32 place-items-center overflow-hidden rounded-[14px]', isLast ? 'bg-sig/10' : 'bg-tint/60']}>
-            {index === 0 && (
-              <>
-                <span class="absolute left-[12%] top-[18%] flex size-14 items-center justify-center rounded-xl border border-line bg-bg text-action shadow-glass-sm"><Target size={25} /></span>
-                <span class="absolute right-[12%] bottom-[18%] flex size-12 items-center justify-center rounded-xl bg-bg text-tint-ink shadow-glass-sm"><LayoutDashboard size={22} /></span>
-                <span class="absolute left-[38%] top-[42%] h-px w-[27%] rotate-12 bg-lilac"></span>
-                <span class="absolute left-[40%] top-[44%] size-2 rounded-full bg-sig"></span>
-              </>
-            )}
-            {index === 1 && (
-              <div class="relative w-[76%] rounded-lg border border-line bg-bg p-3 shadow-glass-sm">
-                <div class="mb-3 flex gap-1.5"><span class="size-2 rounded-full bg-sig"></span><span class="size-2 rounded-full bg-lilac"></span><span class="size-2 rounded-full bg-line"></span></div>
-                <div class="flex gap-2"><span class="h-12 w-1/3 rounded-md bg-tint"></span><span class="flex flex-1 flex-col gap-2 pt-1"><span class="h-2 w-full rounded-full bg-muted/30"></span><span class="h-2 w-4/5 rounded-full bg-muted/20"></span><span class="h-2 w-3/5 rounded-full bg-brand/35"></span></span></div>
-                <PenTool size={18} class="absolute -right-3 -bottom-3 rounded-md bg-bg p-0.5 text-action" />
+<!-- Bande lavande pleine largeur : elle rythme l'accueil comme la bande des captures sur les pages projet -->
+<section aria-labelledby="method-title" class="bg-tint/45 py-24 dark:bg-white/[0.03]">
+  <div class="container-page flex flex-col gap-12">
+    <SectionHeading id="method-title" eyebrow={method.eyebrow} title={method.title} />
+    <ol data-histogram aria-label={method.listLabel} class="m-0 grid list-none items-start gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        method.steps.map((step, index) => {
+          const Icon = stepIcons[index] ?? Code;
+          const isLast = index === method.steps.length - 1;
+          return (
+            <li class="flex flex-col gap-5">
+              <!-- Même vignette que les distinctions de la page À propos : dégradé, icône dans une pastille blanche, grand pictogramme en filigrane -->
+              <div class="relative flex items-end sm:h-56 lg:h-72">
+                <div
+                  data-bar
+                  data-height={heights[index]}
+                  class:list={[
+                    'relative flex min-h-[132px] w-full flex-col justify-between overflow-hidden rounded-surface bg-linear-to-br from-[#6d3fd6] to-[#4a23a0] p-5 text-white shadow-glass transition-colors duration-300 [&.is-current]:from-[#f58a45] [&.is-current]:to-[#e0590c] [&.is-current]:text-[#1e0f45]',
+                    heightClasses[index]
+                  ]}
+                >
+                  <span aria-hidden="true" class="absolute -right-6 -bottom-8 opacity-20">
+                    <Icon size={130} stroke-width={1.25} />
+                  </span>
+                  <span aria-hidden="true" class="relative flex size-10 items-center justify-center rounded-full bg-white text-[#1e0f45]">
+                    <Icon size={18} />
+                  </span>
+                  <span class="relative flex flex-col gap-0.5">
+                    <span class="font-mono text-base font-semibold" lang="fr">{step.code}</span>
+                    <span class="text-sm font-semibold opacity-90">{formatMessage(method.step, { n: index + 1 })}</span>
+                  </span>
+                </div>
+                {!isLast && (
+                  <span
+                    aria-hidden="true"
+                    class="absolute -right-[22px] bottom-5 z-10 hidden size-8 items-center justify-center rounded-full border border-line bg-bg text-action shadow-glass-sm lg:flex"
+                  >
+                    <ArrowRight size={16} />
+                  </span>
+                )}
               </div>
-            )}
-            {index === 2 && (
-              <div class="w-[84%] rounded-lg bg-brand-deeper p-4 font-mono text-xs leading-[1.9] text-white shadow-glass-lg">
-                <p class="m-0 text-lilac">const interface = {'{'}</p>
-                <p class="m-0 pl-3"><span class="text-sig">accessible</span>: true,</p>
-                <p class="m-0 pl-3"><span class="text-lilac">tested</span>: true,</p>
-                <p class="m-0 text-lilac">{'}'}</p>
+              <div data-bar-text class="flex flex-col gap-3">
+                <p class="m-0 text-base">{step.text}</p>
+                <p class="m-0 flex flex-wrap items-center gap-2 text-sm">
+                  <span class="font-semibold text-muted">{method.deliverableLabel}</span>
+                  <span class="rounded-full border border-glass-border bg-bg px-3 py-1 font-semibold text-ink">{step.deliverable}</span>
+                </p>
               </div>
-            )}
-            {index === 3 && (
-              <div class="flex w-[76%] flex-col gap-2 rounded-xl border border-line bg-bg p-3 shadow-glass-sm">
-                <div class="flex items-center gap-2 rounded-lg bg-tint/60 p-2"><ShieldCheck size={17} class="text-action" /><span class="h-2 flex-1 rounded-full bg-muted/30"></span><Check size={15} class="text-sig" /></div>
-                <div class="flex items-center gap-2 rounded-lg bg-tint/60 p-2"><Check size={15} class="text-sig" /><span class="h-2 flex-1 rounded-full bg-muted/30"></span><Check size={15} class="text-sig" /></div>
-                <div class="flex items-center gap-2 rounded-lg bg-tint/60 p-2"><Check size={15} class="text-sig" /><span class="h-2 flex-1 rounded-full bg-muted/30"></span><Check size={15} class="text-sig" /></div>
-              </div>
-            )}
-          </div>
-
-          <div class="flex flex-1 flex-col gap-3 p-5">
-            <h3 class="m-0 font-mono text-lg font-bold text-ink">{stepLabel(step.code)}<span class="text-action">()</span></h3>
-            <p class="m-0 flex-1 text-sm leading-relaxed">{step.text}</p>
-            <div class="rounded-xl border border-line bg-tint/35 p-3">
-              <p class="m-0 text-xs font-semibold uppercase tracking-wide text-muted">{method.deliverableLabel}</p>
-              <p class="mb-0 mt-1 text-sm font-semibold text-ink">{step.deliverable}</p>
-            </div>
-          </div>
-        </li>
-      );
-    })}
-  </ol>
-
-  <div class="flex flex-col gap-6 rounded-block border border-line bg-tint/45 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-    <div class="flex items-start gap-4">
-      <span aria-hidden="true" class="flex size-11 flex-none items-center justify-center rounded-[14px] bg-bg text-action shadow-glass-sm"><Lightbulb size={20} /></span>
-      <div class="flex flex-col gap-1">
-        <p class="m-0 text-lg font-bold text-ink">{method.closing.title}</p>
-        <p class="m-0 max-w-[52ch] text-sm text-muted">{method.closing.text}</p>
-      </div>
-    </div>
-    <ol class="m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-3 p-0" aria-hidden="true">
-      {method.steps.map((step, index) => {
-        const Icon = stepIcons[index] ?? Code;
-        const isLast = index === method.steps.length - 1;
-        return (
-          <>
-            <li class="flex flex-col items-center gap-2">
-              <span class:list={['flex size-10 items-center justify-center rounded-full', isLast ? 'bg-sig text-white' : 'bg-bg text-action shadow-glass-sm']}><Icon size={17} /></span>
-              <span class="text-xs font-semibold text-muted">{stepLabel(step.code)}</span>
             </li>
-            {!isLast && <ArrowRight size={16} class="mb-5 flex-none text-muted/60" />}
-          </>
-        );
-      })}
+          );
+        })
+      }
     </ol>
   </div>
 </section>
+
+<script>
+  import { setupHistogram } from '@/scripts/histogram';
+
+  for (const list of document.querySelectorAll<HTMLElement>('[data-histogram]')) setupHistogram(list);
+</script>

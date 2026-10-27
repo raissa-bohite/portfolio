@@ -1,100 +1,60 @@
 ---
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import BookOpen from '@lucide/astro/icons/book-open';
-import Code from '@lucide/astro/icons/code-xml';
-import Rocket from '@lucide/astro/icons/rocket';
-import { Image } from 'astro:assets';
-import SectionIntro from '@/components/molecules/SectionIntro.astro';
+import SectionHeading from '@/components/molecules/SectionHeading.astro';
 import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
-import portrait from '@/assets/portrait/portrait-cutout.png';
 
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const about = dictionary.home.about;
-// Une icône par étape du parcours : les études, la formation, le poste actuel
-const milestoneIcons = [BookOpen, Code, Rocket];
 ---
 
-<!-- Parcours : texte et portrait sur arche en tête, puis frise verticale qui alterne gauche et droite -->
-<section aria-labelledby="about-title" class="border-y border-line bg-linear-to-b from-tint/35 to-bg py-24">
-  <div class="container-page flex flex-col gap-14">
-    <div data-scroll-group class="grid items-center gap-10 lg:grid-cols-12">
-      <div data-scroll-item class="flex flex-col gap-5 lg:col-span-7">
-        <SectionIntro id="about-title" eyebrow={about.eyebrow} title={about.title} />
-        <p class="m-0 max-w-[52ch] text-lg">{about.text}</p>
-        <a
-          href={getRoutePath('about', locale)}
-          class="group inline-flex min-h-12 items-center gap-2 self-start text-base font-semibold text-action no-underline"
-        >
-          <span class="underline decoration-[1.5px] underline-offset-[6px]">{about.link}</span>
-          <ArrowRight aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-x-1" />
-        </a>
-      </div>
-      <!-- Portrait décoratif : il est déjà présenté avec son texte alternatif en haut de page -->
-      <div data-scroll-item aria-hidden="true" class="relative mx-auto hidden h-72 w-full max-w-[360px] lg:col-span-5 lg:block">
-        <div class="absolute bottom-0 left-1/2 h-[82%] w-[78%] -translate-x-1/2 rounded-t-full bg-linear-to-br from-tint to-lilac"></div>
-        <div class="absolute top-4 right-2 size-12 rounded-full border-2 border-sig/80"></div>
-        <Image
-          src={portrait}
-          alt=""
-          widths={[360, 720]}
-          sizes="320px"
-          loading="lazy"
-          class="absolute bottom-0 left-1/2 h-full w-auto -translate-x-1/2 object-contain object-bottom"
-        />
-      </div>
+<!-- Parcours en frise horizontale : le portrait est déjà en haut de page, la section raconte le chemin -->
+<section aria-labelledby="about-title" class="container-page flex flex-col gap-12 py-24">
+  <div data-scroll-group class="grid gap-6 lg:grid-cols-12 lg:items-end">
+    <div data-scroll-item class="lg:col-span-7">
+      <SectionHeading id="about-title" eyebrow={about.eyebrow} title={about.title} />
     </div>
-
-    <ol data-scroll-group class="relative m-0 grid list-none gap-5 p-0 pl-10 md:grid-cols-2 md:gap-x-20 md:pl-0">
-      <!-- Ligne de la frise : à gauche sur mobile, au centre à partir de la tablette -->
-      <span
-        aria-hidden="true"
-        class="absolute top-2 bottom-2 left-[15px] w-0.5 rounded-full bg-linear-to-b from-brand via-lilac to-sig md:left-1/2 md:-translate-x-1/2"
-      ></span>
-      {
-        about.timeline.map((milestone, index) => {
-          const Icon = milestoneIcons[index] ?? Rocket;
-          const isRight = index % 2 === 1;
-          return (
-            <li
-              data-scroll-item
-              class:list={['relative md:row-span-1', isRight ? 'md:col-start-2 md:mt-16' : 'md:col-start-1']}
-            >
-              <span
-                aria-hidden="true"
-                class:list={[
-                  'absolute top-5 z-10 flex size-9 items-center justify-center rounded-full border-[3px] border-bg text-white shadow-[0_4px_14px_rgb(74_35_160/0.2)] md:size-11',
-                  '-left-[41px]',
-                  isRight ? 'md:-left-[62px]' : 'md:right-[-62px] md:left-auto',
-                  milestone.current ? 'bg-sig' : 'bg-linear-to-br from-brand to-brand-deep'
-                ]}
-              >
-                <Icon size={16} />
-              </span>
-              <div
-                class:list={[
-                  'flex flex-col gap-3 rounded-surface border bg-bg p-5 shadow-glass-sm sm:p-6',
-                  milestone.current ? 'border-sig' : 'border-line'
-                ]}
-              >
-                <span
-                  class:list={[
-                    'self-start rounded-full px-3 py-1 font-mono text-sm font-semibold',
-                    milestone.current ? 'bg-[#fff0e5] text-[#9e3409] dark:bg-white/10 dark:text-sig-text' : 'bg-tint text-tint-ink'
-                  ]}
-                >
-                  {milestone.period}
-                </span>
-                <span class="text-lg leading-snug font-semibold text-ink">{milestone.text}</span>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ol>
+    <div data-scroll-item class="flex flex-col gap-4 lg:col-span-5">
+      <p class="m-0 text-lg">{about.text}</p>
+      <a
+        href={getRoutePath('about', locale)}
+        class="group inline-flex min-h-12 items-center gap-2 self-start text-base font-semibold underline decoration-[1.5px] underline-offset-[5px]"
+      >
+        {about.link}
+        <ArrowRight aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-x-1" />
+      </a>
+    </div>
   </div>
+
+  <ol data-scroll-group class="relative m-0 grid list-none gap-5 p-0 md:grid-cols-3">
+    <!-- Ligne de la frise, derrière les pastilles -->
+    <span aria-hidden="true" class="absolute top-[11px] right-[16%] left-[16%] hidden h-0.5 rounded-full bg-line md:block"></span>
+    {
+      about.timeline.map((milestone) => (
+        <li data-scroll-item class="relative flex flex-col items-start gap-5 md:items-center">
+          <span
+            data-scroll-pop
+            aria-hidden="true"
+            class:list={[
+              'relative z-10 hidden size-6 rounded-full border-[3px] md:block',
+              milestone.current ? 'border-sig bg-sig shadow-[0_0_0_7px_rgb(242_106_27/0.18)]' : 'border-action bg-bg'
+            ]}
+          />
+          <div
+            class:list={[
+              'flex w-full flex-1 flex-col gap-2 rounded-surface border p-6 shadow-glass',
+              milestone.current ? 'border-sig bg-bg' : 'border-glass-border bg-glass-strong'
+            ]}
+          >
+            <span class:list={['font-mono text-sm font-semibold', milestone.current ? 'text-sig-text' : 'text-action']}>{milestone.period}</span>
+            <span class="text-base leading-snug font-semibold text-ink">{milestone.text}</span>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
 </section>

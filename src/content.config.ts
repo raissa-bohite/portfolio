@@ -17,6 +17,10 @@ const projects = defineCollection({
       order: z.number().int().positive(),
       name: z.string().min(1),
       kind: localizedText,
+      // Catégorie courte affichée en pastille sur les cartes ; à défaut, le type complet est utilisé
+      category: localizedText.optional(),
+      // Accroche d'une ligne, affichée quand le projet est mis en avant sur l'accueil
+      tagline: localizedText.optional(),
       role: localizedText,
       description: localizedText,
       stack: z.array(z.string().min(1)).min(1),

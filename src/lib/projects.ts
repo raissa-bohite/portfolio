@@ -7,6 +7,8 @@ export type ProjectSummary = {
   slug: string;
   name: string;
   kind: string;
+  category: string;
+  tagline: string | undefined;
   role: string;
   description: string;
   stack: readonly string[];
@@ -29,6 +31,8 @@ export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Loc
     slug: entry.id,
     name: data.name,
     kind: data.kind[locale],
+    category: (data.category ?? data.kind)[locale],
+    tagline: data.tagline?.[locale],
     role: data.role[locale],
     description: data.description[locale],
     stack: data.stack,

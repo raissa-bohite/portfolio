@@ -6,6 +6,16 @@
     "en": "AI product",
     "de": "KI-Produkt"
   },
+  "category": {
+    "fr": "Produit IA",
+    "en": "AI product",
+    "de": "KI-Produkt"
+  },
+  "tagline": {
+    "fr": "Le tuteur IA qui rend les cours compréhensibles.",
+    "en": "The AI tutor that makes course material clear.",
+    "de": "Der KI-Tutor, der Kursunterlagen verständlich macht."
+  },
   "role": {
     "fr": "Produit personnel · conception, design et développement",
     "en": "Personal product · product, design and development",

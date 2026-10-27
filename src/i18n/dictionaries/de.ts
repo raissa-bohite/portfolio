@@ -26,8 +26,9 @@ export const de: Dictionary = {
   common: {
     cv: 'Lebenslauf herunterladen',
     caseStudy: 'Fallstudie lesen',
-    allProjects: 'Alle Projekte',
-    viewProject: 'Projekt ansehen'
+    allProjects: 'Alle Projekte ansehen',
+    viewProject: 'Projekt ansehen',
+    newTab: '(öffnet in einem neuen Tab)'
   },
   loader: {
     label: 'Portfolio wird geladen',
@@ -57,7 +58,9 @@ export const de: Dictionary = {
     },
     projects: {
       eyebrow: 'Projekte',
-      title: 'Eine Auswahl an Projekten'
+      title: 'Meine Projekte',
+      intro: 'Moderne, nützliche und maßgeschneiderte Weblösungen. Hier ist eine Auswahl von Projekten, an denen ich gearbeitet habe.',
+      closing: 'Von der Idee zur Oberfläche: Ich gestalte, entwickle und optimiere moderne Weblösungen.'
     },
     domains: {
       eyebrow: 'Was ich mache',

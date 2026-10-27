@@ -1,0 +1,86 @@
+---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import FileText from '@lucide/astro/icons/file-text';
+import Tag from '@/components/atoms/Tag.astro';
+import MiniBrowser from '@/components/molecules/MiniBrowser.astro';
+import MiniPhone from '@/components/molecules/MiniPhone.astro';
+import { getProjectIcon } from '@/lib/project-icons';
+import type { ProjectSummary } from '@/lib/projects';
+
+type Props = {
+  project: ProjectSummary;
+  labels: { viewProject: string; caseStudy: string; newTab: string };
+};
+
+const { project, labels } = Astro.props;
+const Icon = getProjectIcon(project.slug);
+const phoneShot = project.shotFrame === 'phone' ? project.shots[0] : undefined;
+// Projet en ligne : le bouton principal ouvre le site, l'étude de cas passe en lien secondaire
+const primaryHref = project.liveUrl ?? project.href;
+const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
+---
+
+<!-- Projet mis en avant : la fiche à gauche, l'ordinateur et le téléphone sur des formes violettes à droite -->
+<article data-scroll-item class="group relative isolate overflow-hidden rounded-block border border-glass-border bg-linear-to-br from-tint/70 via-bg to-bg shadow-glass">
+  <div class="grid items-center gap-8 lg:grid-cols-12">
+    <div class="relative z-10 flex flex-col gap-5 p-7 sm:p-10 lg:col-span-5 lg:pr-0">
+      <span class="inline-flex items-center gap-2 self-start rounded-full bg-tint px-3 py-1.5 text-sm font-semibold text-tint-ink">
+        <Icon aria-hidden="true" size={16} />
+        {project.category}
+      </span>
+      <h3 class="m-0 text-h2 font-bold text-ink">{project.name}</h3>
+      {project.tagline && <p class="m-0 text-xl leading-snug font-semibold text-action">{project.tagline}</p>}
+      <p class="m-0 text-base text-text">{project.description}</p>
+      <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+        {
+          project.stack.slice(0, 3).map((technology) => (
+            <li>
+              <Tag>{technology}</Tag>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-2 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a
+          href={primaryHref}
+          {...(project.liveUrl ? { target: '_blank', rel: 'noopener' } : {})}
+          class="group/primary inline-flex min-h-12 items-center gap-2 rounded-control bg-action px-6 text-base font-semibold text-action-ink no-underline transition-colors hover:bg-action-hover hover:text-action-ink"
+        >
+          {project.liveUrl ? labels.viewProject : labels.caseStudy}
+          {project.liveUrl && <span class="sr-only">{labels.newTab}</span>}
+          {
+            project.liveUrl ? (
+              <ArrowUpRight aria-hidden="true" size={18} class="transition-transform duration-200 group-hover/primary:translate-x-0.5 group-hover/primary:-translate-y-0.5" />
+            ) : (
+              <ArrowRight aria-hidden="true" size={18} class="transition-transform duration-200 group-hover/primary:translate-x-0.5" />
+            )
+          }
+        </a>
+        {
+          showCaseStudyLink && (
+            <a href={project.href} class="inline-flex min-h-11 items-center gap-2 text-base font-semibold text-action no-underline">
+              <FileText aria-hidden="true" size={18} />
+              <span class="underline decoration-[1.5px] underline-offset-[6px]">{labels.caseStudy}</span>
+            </a>
+          )
+        }
+      </div>
+    </div>
+
+    <!-- Décor : formes violettes, anneaux orange et appareils ; masqué aux lecteurs d'écran -->
+    <div aria-hidden="true" class="relative h-[280px] sm:h-[380px] lg:col-span-7 lg:h-[460px]">
+      <div class="absolute -top-16 right-[-12%] size-[120%] rounded-full bg-linear-to-br from-[#b9a4f5]/50 to-transparent"></div>
+      <div class="absolute -right-[18%] -bottom-[38%] size-[95%] rounded-full bg-linear-to-br from-[#6d3fd6] to-[#36188a]"></div>
+      <div class="absolute top-[14%] left-[4%] size-12 rounded-full border-2 border-sig/80"></div>
+      <div class="absolute bottom-[16%] left-[1%] size-9 rounded-full border-2 border-sig/70"></div>
+      <div class="absolute top-[12%] right-[6%] size-3 rounded-full bg-action"></div>
+      <MiniBrowser
+        image={project.cover}
+        sizes="(min-width: 1024px) 560px, 80vw"
+        class="absolute top-[16%] left-[10%] w-[76%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-2 sm:left-[12%] sm:w-[68%]"
+      />
+      {phoneShot && <MiniPhone image={phoneShot} class="absolute top-[28%] right-[6%] w-[20%] sm:w-[17%]" />}
+    </div>
+  </div>
+</article>

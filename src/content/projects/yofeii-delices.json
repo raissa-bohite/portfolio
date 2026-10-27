@@ -6,6 +6,11 @@
     "en": "E-commerce and dashboard",
     "de": "E-Commerce und Dashboard"
   },
+  "category": {
+    "fr": "E-commerce",
+    "en": "E-commerce",
+    "de": "E-Commerce"
+  },
   "role": {
     "fr": "Développeuse front-end principale · site et tableau de bord",
     "en": "Lead front-end developer · storefront and dashboard",

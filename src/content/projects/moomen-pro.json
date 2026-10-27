@@ -6,6 +6,11 @@
     "en": "Website, shop and vibe motion design",
     "de": "Website, Shop und Vibe Motion Design"
   },
+  "category": {
+    "fr": "Site vitrine",
+    "en": "Showcase website",
+    "de": "Präsentationsseite"
+  },
   "role": {
     "fr": "Développeuse front-end · UI/UX et intégration API",
     "en": "Front-end developer · UI/UX and API integration",

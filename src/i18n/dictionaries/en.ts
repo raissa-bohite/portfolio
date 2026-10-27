@@ -26,8 +26,9 @@ export const en: Dictionary = {
   common: {
     cv: 'Download my CV',
     caseStudy: 'Read the case study',
-    allProjects: 'All projects',
-    viewProject: 'View the project'
+    allProjects: 'See all projects',
+    viewProject: 'View the project',
+    newTab: '(opens in a new tab)'
   },
   loader: {
     label: 'Loading the portfolio',
@@ -57,7 +58,9 @@ export const en: Dictionary = {
     },
     projects: {
       eyebrow: 'Projects',
-      title: 'A selection of projects'
+      title: 'My projects',
+      intro: "Modern, useful and tailor-made web solutions. Here is a selection of projects I've worked on.",
+      closing: 'From ideas to interfaces: I design, build and refine modern web solutions.'
     },
     domains: {
       eyebrow: 'What I do',

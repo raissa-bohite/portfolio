@@ -6,6 +6,11 @@
     "en": "Business application",
     "de": "Fachanwendung"
   },
+  "category": {
+    "fr": "Application métier",
+    "en": "Business app",
+    "de": "Fachanwendung"
+  },
   "role": {
     "fr": "Client · développement front-end",
     "en": "Client · front-end development",

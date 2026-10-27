@@ -6,6 +6,11 @@
     "en": "Website redesign",
     "de": "Website-Neugestaltung"
   },
+  "category": {
+    "fr": "Site vitrine",
+    "en": "Showcase website",
+    "de": "Präsentationsseite"
+  },
   "role": {
     "fr": "Développeuse front-end · design, intégration et sécurité",
     "en": "Front-end developer · design, build and security",

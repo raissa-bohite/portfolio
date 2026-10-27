@@ -1,6 +1,8 @@
 ---
-import ProjectShot from '@/components/molecules/ProjectShot.astro';
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import CodeXml from '@lucide/astro/icons/code-xml';
+import FeaturedProject from '@/components/molecules/FeaturedProject.astro';
+import ProjectCard from '@/components/molecules/ProjectCard.astro';
 import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
@@ -10,20 +12,49 @@ type Props = { locale: Locale; projects: ProjectSummary[] };
 
 const { locale, projects } = Astro.props;
 const dictionary = getDictionary(locale);
+const section = dictionary.home.projects;
 const [featuredProject, ...otherProjects] = projects;
-const actionLabel = (project: ProjectSummary): string => (project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject);
 ---
 
-<!-- Galerie de l'accueil : le premier projet en grand, les autres en mosaïque de deux colonnes -->
-<section aria-labelledby="projects-title" class="container-page flex flex-col gap-12 pt-16 pb-24">
-  <div class="flex flex-wrap items-end justify-between gap-4">
-    <SectionHeading id="projects-title" eyebrow={dictionary.home.projects.eyebrow} title={dictionary.home.projects.title} />
-    <a href={getRoutePath('projects', locale)} class="inline-flex min-h-12 items-center text-base font-semibold underline decoration-[1.5px] underline-offset-[5px]">
-      {dictionary.common.allProjects}
+<!-- Galerie de l'accueil : le premier projet en grand, les suivants en cartes -->
+<section aria-labelledby="projects-title" class="container-page relative flex flex-col gap-10 pt-16 pb-20">
+  <div aria-hidden="true" class="absolute top-6 right-6 hidden size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[20px_20px] md:block"></div>
+
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <div class="flex max-w-[56ch] flex-col gap-3">
+      <p class="m-0 flex items-center gap-3 text-sm font-semibold tracking-[0.12em] text-action uppercase">
+        {section.eyebrow}
+        <span aria-hidden="true" class="h-px w-14 bg-action"></span>
+      </p>
+      <h2 id="projects-title" class="m-0 text-h2 font-bold text-ink">{section.title}</h2>
+      <p class="m-0 text-lead">{section.intro}</p>
+    </div>
+    <a href={getRoutePath('projects', locale)} class="group inline-flex min-h-12 items-center gap-3 text-base font-semibold text-action no-underline">
+      <span class="underline decoration-[1.5px] underline-offset-[6px]">{dictionary.common.allProjects}</span>
+      <span aria-hidden="true" class="flex size-10 items-center justify-center rounded-full bg-tint text-tint-ink transition-transform duration-200 group-hover:translate-x-1">
+        <ArrowRight size={18} />
+      </span>
     </a>
   </div>
-  <div data-scroll-group class="grid gap-x-8 gap-y-14 md:grid-cols-2">
-    {featuredProject && <ProjectShot project={featuredProject} actionLabel={actionLabel(featuredProject)} featured />}
-    {otherProjects.map((project) => <ProjectShot project={project} actionLabel={actionLabel(project)} />)}
+
+  <div data-scroll-group class="flex flex-col gap-6">
+    {
+      featuredProject && (
+        <FeaturedProject
+          project={featuredProject}
+          labels={{ viewProject: dictionary.common.viewProject, caseStudy: dictionary.common.caseStudy, newTab: dictionary.common.newTab }}
+        />
+      )
+    }
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {otherProjects.map((project) => <ProjectCard project={project} actionLabel={dictionary.common.viewProject} />)}
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 border-t border-line pt-8">
+    <span aria-hidden="true" class="flex size-10 flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
+      <CodeXml size={18} />
+    </span>
+    <p class="m-0 text-small text-muted">{section.closing}</p>
   </div>
 </section>

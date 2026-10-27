@@ -31,8 +31,9 @@ const dictionary = {
   common: {
     cv: "Télécharger le CV",
     caseStudy: "Lire l'étude de cas",
-    allProjects: "Tous les projets",
+    allProjects: "Voir tous les projets",
     viewProject: "Voir le projet",
+    newTab: "(s'ouvre dans un nouvel onglet)",
   },
   loader: {
     label: "Chargement du portfolio",
@@ -63,7 +64,9 @@ const dictionary = {
     },
     projects: {
       eyebrow: "Projets",
-      title: "Une sélection de projets",
+      title: "Mes projets",
+      intro: "Des solutions web modernes, utiles et sur mesure. Voici une sélection de projets sur lesquels j'ai travaillé.",
+      closing: "Des idées aux interfaces : je conçois, développe et optimise des solutions web modernes.",
     },
     domains: {
       eyebrow: "Ce que je fais",

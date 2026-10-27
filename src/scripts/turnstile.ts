@@ -4,7 +4,10 @@ const STANDARD_WIDGET_WIDTH = 300;
 type TurnstileSize = 'normal' | 'compact';
 
 type TurnstileApi = {
-  render: (container: HTMLElement, options: { sitekey: string; language?: string; size: TurnstileSize }) => string | undefined;
+  render: (
+    container: HTMLElement,
+    options: { sitekey: string; language?: string; size: TurnstileSize; appearance: 'interaction-only' }
+  ) => string | undefined;
 };
 
 declare global {
@@ -23,7 +26,13 @@ function renderWidget(api: TurnstileApi, container: HTMLElement): void {
   if (!sitekey) return;
   container.dataset['turnstileRendered'] = 'true';
   const language = container.dataset['language'];
-  api.render(container, { sitekey, size: getTurnstileSize(container.clientWidth), ...(language ? { language } : {}) });
+  // Invisible tant que Cloudflare n'a pas besoin d'une action du visiteur : la plupart ne verront jamais la case
+  api.render(container, {
+    sitekey,
+    size: getTurnstileSize(container.clientWidth),
+    appearance: 'interaction-only',
+    ...(language ? { language } : {})
+  });
 }
 
 // Le script de Cloudflare se charge en asynchrone : on rend les widgets dès qu'il est prêt

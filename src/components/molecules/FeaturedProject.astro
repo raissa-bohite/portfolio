@@ -81,15 +81,18 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
       <div class="absolute right-[5%] bottom-[12%] hidden gap-1.5 sm:flex">
         {[0, 1, 2, 3].map(() => <span class="size-1.5 rounded-full bg-sig" />)}
       </div>
-      <!-- Annotation manuscrite et sa flèche courbe, comme une note griffonnée sur une maquette -->
-      <p class="absolute top-[3%] right-[7%] m-0 hidden max-w-[11ch] -rotate-[10deg] text-center font-hand text-xl leading-tight font-semibold text-action sm:block">{note}</p>
-      <Undo2 size={28} class="absolute top-[23%] right-[13%] hidden -rotate-[100deg] text-action sm:block" />
       <MiniBrowser
         image={project.cover}
-        sizes="(min-width: 1024px) 560px, 80vw"
-        class="absolute top-[16%] left-[10%] w-[76%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-2 sm:left-[12%] sm:w-[68%]"
+        sizes="(min-width: 1024px) 520px, 80vw"
+        class="absolute top-[18%] left-[8%] w-[76%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-2 sm:top-[25%] sm:left-[6%] sm:w-[64%]"
       />
-      {phoneShot && <MiniPhone image={phoneShot} class="absolute top-[28%] right-[6%] w-[20%] sm:w-[17%]" />}
+      {phoneShot && <MiniPhone image={phoneShot} class="absolute top-[30%] right-[5%] w-[20%] sm:top-[36%] sm:w-[17%]" />}
+      <!--
+        Annotation manuscrite et sa flèche courbe, placées après les appareils pour passer au premier plan :
+        le coin haut droit leur est réservé, la flèche descend jusqu'au téléphone.
+      -->
+      <p class="absolute top-[3%] right-[3%] z-10 m-0 hidden max-w-[14ch] -rotate-[8deg] text-center font-hand text-[1.375rem] leading-[1.05] font-semibold text-action sm:block">{note}</p>
+      <Undo2 size={30} class="absolute top-[22%] right-[12%] z-10 hidden -rotate-[100deg] text-action sm:block" />
     </div>
   </div>
 </article>

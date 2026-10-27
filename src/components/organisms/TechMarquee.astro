@@ -1,54 +1,85 @@
 ---
+import Atom from '@lucide/astro/icons/atom';
+import Braces from '@lucide/astro/icons/braces';
+import ChevronLeft from '@lucide/astro/icons/chevron-left';
+import ChevronRight from '@lucide/astro/icons/chevron-right';
+import Clapperboard from '@lucide/astro/icons/clapperboard';
+import Cloud from '@lucide/astro/icons/cloud';
+import Database from '@lucide/astro/icons/database';
+import FileCheck from '@lucide/astro/icons/file-check';
+import FlaskConical from '@lucide/astro/icons/flask-conical';
+import Flame from '@lucide/astro/icons/flame';
+import GitBranch from '@lucide/astro/icons/git-branch';
+import Layers from '@lucide/astro/icons/layers';
+import Rocket from '@lucide/astro/icons/rocket';
+import Shield from '@lucide/astro/icons/shield';
+import Sparkles from '@lucide/astro/icons/sparkles';
+import Wind from '@lucide/astro/icons/wind';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
-const label = getDictionary(locale).home.stack.label;
+const stack = getDictionary(locale).home.stack;
+// Icônes génériques (Lucide) plutôt que les logos des marques : même style partout, aucun logo redessiné
 const technologies = [
-  'TypeScript',
-  'Next.js',
-  'SvelteKit',
-  'Astro',
-  'React',
-  'Tailwind CSS',
-  'Zod',
-  'Cloudflare',
-  'Drizzle ORM',
-  'Claude API',
-  'Vitest',
-  'Remotion',
-  'OWASP Top 10',
-  'Git'
+  { name: 'TypeScript', Icon: Braces },
+  { name: 'Next.js', Icon: Layers },
+  { name: 'SvelteKit', Icon: Flame },
+  { name: 'Astro', Icon: Rocket },
+  { name: 'React', Icon: Atom },
+  { name: 'Tailwind CSS', Icon: Wind },
+  { name: 'Zod', Icon: FileCheck },
+  { name: 'Cloudflare', Icon: Cloud },
+  { name: 'Drizzle ORM', Icon: Database },
+  { name: 'Claude API', Icon: Sparkles },
+  { name: 'Vitest', Icon: FlaskConical },
+  { name: 'Remotion', Icon: Clapperboard },
+  { name: 'OWASP Top 10', Icon: Shield },
+  { name: 'Git', Icon: GitBranch }
 ];
 // Deux copies identiques pour une boucle continue ; seule la liste accessible est lue
 const loop = [...technologies, ...technologies];
+const arrowClasses =
+  'flex size-11 flex-none cursor-pointer items-center justify-center rounded-full border-0 bg-transparent text-muted transition-colors hover:bg-tint hover:text-ink';
 ---
 
-<section aria-label={label} class="relative pt-2 pb-14">
+<section data-tech-marquee aria-label={stack.label} class="relative mt-2 mb-14 bg-tint/45">
   <ul class="sr-only">
-    {technologies.map((technology) => <li>{technology}</li>)}
+    {technologies.map(({ name }) => <li>{name}</li>)}
   </ul>
-  <div
-    aria-hidden="true"
-    class="overflow-hidden border-y border-line py-5 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]"
-  >
-    <div data-marquee class="flex w-max items-center gap-7 pr-7">
-      {
-        loop.map((technology) => (
-          <>
-            <span class="text-lg font-semibold whitespace-nowrap text-muted">{technology}</span>
-            <span class="size-[5px] flex-none rounded-full bg-sig" />
-          </>
-        ))
-      }
+  <div class="mx-auto flex max-w-[1440px] items-center gap-2 px-2 py-4 sm:px-4">
+    <button type="button" data-marquee-previous aria-label={stack.previous} class={arrowClasses}>
+      <ChevronLeft aria-hidden="true" size={20} />
+    </button>
+    <div
+      data-marquee-viewport
+      aria-hidden="true"
+      class="min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_6%,#000_94%,transparent)]"
+    >
+      <div data-marquee class="flex w-max items-center gap-7 pr-7">
+        {
+          loop.map(({ name, Icon }) => (
+            <>
+              <span class="inline-flex items-center gap-2.5 text-base font-semibold whitespace-nowrap text-text">
+                <Icon size={20} class="text-action" />
+                {name}
+              </span>
+              <span class="size-[5px] flex-none rounded-full bg-sig" />
+            </>
+          ))
+        }
+      </div>
     </div>
+    <button type="button" data-marquee-next aria-label={stack.next} class={arrowClasses}>
+      <ChevronRight aria-hidden="true" size={20} />
+    </button>
   </div>
 </section>
 
 <script>
   import { setupMarquee } from '@/scripts/marquee';
 
-  for (const track of document.querySelectorAll<HTMLElement>('[data-marquee]')) setupMarquee(track);
+  for (const section of document.querySelectorAll<HTMLElement>('[data-tech-marquee]')) setupMarquee(section);
 </script>

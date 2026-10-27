@@ -44,14 +44,16 @@ export const de: Dictionary = {
   },
   home: {
     availability: 'Verfügbar für eine Stelle oder ein Projekt',
-    signature: 'comprendre().then(construire);',
+    codeConsole: { variable: 'ansatz', value: 'erst verstehen, dann bauen' },
     titleWords: ['Erst', 'verstehen,', 'dann', 'bauen.'],
     intro:
-      'Front-End-Entwicklerin mit Full-Stack-Fokus in Abidjan. Ich gestalte und entwickle klare, barrierefreie und sichere Oberflächen und Dashboards und baue das Back-End, wenn das Projekt es braucht.',
-    ctaProjects: 'Projekte ansehen',
+      'Ich gestalte moderne, barrierefreie und sichere Weboberflächen sowie klare und intuitive Dashboards. Vom Front-End bis zum Back-End setze ich Anforderungen in konkrete Lösungen um.',
+    ctaProjects: 'Meine Projekte ansehen',
     heroBadges: ["Frontend-Entwicklerin", "Dashboards", "Websicherheit"],
     stack: {
-      label: 'Technologien, die ich nutze'
+      label: 'Technologien, die ich nutze',
+      previous: 'Technologien nach links scrollen',
+      next: 'Technologien nach rechts scrollen'
     },
     projects: {
       eyebrow: 'Projekte',

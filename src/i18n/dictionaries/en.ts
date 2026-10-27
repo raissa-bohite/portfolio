@@ -44,14 +44,16 @@ export const en: Dictionary = {
   },
   home: {
     availability: 'Available for a job or a project',
-    signature: 'comprendre().then(construire);',
+    codeConsole: { variable: 'approach', value: 'understand before you build' },
     titleWords: ['Understand', 'before', 'you', 'build.'],
     intro:
-      'Front-end developer, full-stack leaning, based in Abidjan. I design and build clear, accessible and secure interfaces and dashboards, and I build the back end when the project needs it.',
-    ctaProjects: 'View projects',
+      'I design modern, accessible and secure web interfaces, as well as clear and intuitive dashboards. From front end to back end, I turn needs into concrete solutions.',
+    ctaProjects: 'See my projects',
     heroBadges: ["Front-end developer", "Dashboards", "Web security"],
     stack: {
-      label: 'Technologies I use'
+      label: 'Technologies I use',
+      previous: 'Scroll the technologies to the left',
+      next: 'Scroll the technologies to the right'
     },
     projects: {
       eyebrow: 'Projects',

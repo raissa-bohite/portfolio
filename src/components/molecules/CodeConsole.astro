@@ -1,0 +1,71 @@
+---
+type Props = {
+  variable: string;
+  value: string;
+};
+
+const { variable, value } = Astro.props;
+---
+
+<!--
+  Décoratif : le titre qui suit dit la même chose en clair, les lecteurs d'écran l'ignorent.
+  Chaque ligne tient sur une seule ligne de source : un retour à la ligne entre deux balises ajouterait un espace au texte tapé.
+-->
+<div data-code-console aria-hidden="true" class="code-console m-0 flex flex-col gap-1 font-mono text-[0.8125rem] leading-relaxed font-medium tracking-normal sm:text-sm">
+  <p class="m-0"><span data-console-line="code" class="console-line"><span class="text-action">const</span> <span class="text-ink">{variable}</span> <span class="text-muted">=</span> <span class="text-sig-text">"{value}"</span><span class="text-muted">;</span></span></p>
+  <p class="m-0"><span data-console-line="code" class="console-line"><span class="text-ink">console</span><span class="text-muted">.</span><span class="text-action">log</span><span class="text-muted">(</span><span class="text-ink">{variable}</span><span class="text-muted">);</span></span></p>
+  <p class="m-0"><span data-console-line="output" class="console-line console-output text-muted"><span class="text-sig">›</span> {value}</span></p>
+</div>
+
+<style>
+  .console-line {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  /* Effet machine à écrire : la largeur s'ouvre caractère par caractère (police à chasse fixe, 1ch par caractère) */
+  @media (min-width: 40rem) {
+    .is-playing .console-line[data-console-line='code'] {
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: bottom;
+      width: 0;
+      animation: console-type var(--console-duration) steps(var(--console-characters), end) var(--console-delay) forwards;
+    }
+  }
+
+  /* Sur mobile, les lignes peuvent passer à la ligne : elles apparaissent l'une après l'autre en fondu */
+  @media (max-width: 39.99rem) {
+    .is-playing .console-line[data-console-line='code'] {
+      opacity: 0;
+      animation: console-fade 0.4s ease-out var(--console-delay) forwards;
+    }
+  }
+
+  /* La sortie de console.log monte doucement, comme un résultat qui s'affiche */
+  .is-playing .console-output {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: console-output var(--console-duration) cubic-bezier(0.22, 1, 0.36, 1) var(--console-delay) forwards;
+  }
+
+  @keyframes console-type {
+    to {
+      /* Demi-caractère de marge : le dernier signe n'est jamais rogné, même si le rendu arrondit la chasse */
+      width: calc(var(--console-characters) * 1ch + 0.5ch);
+    }
+  }
+
+  @keyframes console-fade {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes console-output {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

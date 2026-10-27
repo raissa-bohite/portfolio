@@ -1,4 +1,5 @@
 ---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Code from '@lucide/astro/icons/code-xml';
 import Download from '@lucide/astro/icons/download';
 import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
@@ -6,6 +7,7 @@ import ShieldCheck from '@lucide/astro/icons/shield-check';
 import { Image } from 'astro:assets';
 import Button from '@/components/atoms/Button.astro';
 import AvailabilityBadge from '@/components/molecules/AvailabilityBadge.astro';
+import CodeConsole from '@/components/molecules/CodeConsole.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
@@ -22,9 +24,20 @@ const home = dictionary.home;
 const badgeIcons = [Code, LayoutDashboard, ShieldCheck];
 // Sur mobile, les badges s'écartent du visage : en haut à gauche, puis sur la veste
 const badgePositions = [
-  'top-[8%] left-0 sm:top-[22%] sm:-left-6 [animation-delay:-1s]',
-  'top-[64%] right-0 sm:top-[50%] sm:-right-8 [animation-delay:-2.5s]',
-  'bottom-[5%] left-0 sm:bottom-[10%] sm:-left-4 [animation-delay:-4s]'
+  'top-[8%] left-0 sm:top-[12%] sm:-left-10 [animation-delay:-1s]',
+  'top-[64%] right-0 sm:top-[48%] sm:-right-12 [animation-delay:-2.5s]',
+  'bottom-[5%] left-0 sm:bottom-[16%] sm:-left-8 [animation-delay:-4s]'
+];
+// Trait fin qui relie chaque badge à l'arche, terminé par un point (masqué sur mobile)
+const badgeConnectors = [
+  'top-full right-[22%] h-12 w-px origin-top -rotate-[38deg]',
+  'top-full left-[24%] h-9 w-px origin-top rotate-[38deg]',
+  'top-1/2 left-full h-px w-9'
+];
+const connectorDots = [
+  'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2',
+  'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2',
+  'right-0 top-1/2 translate-x-1/2 -translate-y-1/2'
 ];
 ---
 
@@ -32,9 +45,7 @@ const badgePositions = [
   <div class="grid items-center gap-x-6 gap-y-12 lg:grid-cols-12">
     <div class="flex flex-col gap-6 lg:col-span-6">
       <AvailabilityBadge href={getRoutePath('contact', locale)} label={home.availability} />
-      <p class="m-0 font-mono text-sm font-medium text-sig-text" lang="fr">
-        <span class="inline-block w-0 animate-type overflow-hidden align-bottom whitespace-nowrap motion-reduce:w-auto">{home.signature}</span>
-      </p>
+      <CodeConsole variable={home.codeConsole.variable} value={home.codeConsole.value} />
       <h1 id="hero-title" class="m-0 text-display font-bold text-ink">
         {
           home.titleWords.map((word, index) => (
@@ -51,7 +62,10 @@ const badgePositions = [
       <p class="m-0 max-w-[40ch] text-lead">{home.intro}</p>
       <!-- Sur mobile, chaque bouton occupe toute la largeur : côte à côte, les libellés passaient sur deux lignes -->
       <div data-reveal class="mt-2 grid gap-3 sm:flex sm:flex-wrap">
-        <Button href={getRoutePath('projects', locale)} class="cta-pair">{home.ctaProjects}</Button>
+        <Button href={getRoutePath('projects', locale)} class="cta-pair group">
+          {home.ctaProjects}
+          <ArrowRight aria-hidden="true" size={18} class="transition-transform duration-200 group-hover:translate-x-0.5" />
+        </Button>
         <Button href={getCvPath(locale)} variant="secondary" download class="cta-pair">
           <Download aria-hidden="true" size={18} />
           {dictionary.common.cv}
@@ -60,10 +74,14 @@ const badgePositions = [
     </div>
     <!-- Portrait détouré sur une arche violette, entouré de badges : la personne d'abord, les projets juste en dessous -->
     <div class="lg:col-span-6">
-      <div class="relative mx-auto aspect-square w-full max-w-[520px]">
+      <div class="relative mx-auto aspect-square w-full max-w-[540px]">
+        <!-- Décor : orbite orange autour de l'arche, grille de points, anneau et pastilles -->
+        <div aria-hidden="true" class="absolute top-[58%] left-1/2 hidden size-[108%] -translate-x-1/2 -translate-y-1/2 -rotate-[28deg] rounded-full border-[1.5px] border-transparent border-r-sig/60 border-l-sig/60 sm:block"></div>
+        <div aria-hidden="true" class="absolute top-[3%] -right-[4%] hidden size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[22px_22px] sm:block"></div>
         <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[78%] rounded-t-full bg-linear-to-b from-[#6d3fd6] to-[#4a23a0]"></div>
-        <div aria-hidden="true" class="absolute top-[6%] right-[8%] size-16 rounded-full border-[3px] border-sig"></div>
+        <div aria-hidden="true" class="absolute top-[6%] right-[14%] size-16 rounded-full border-[3px] border-sig"></div>
         <div aria-hidden="true" class="absolute top-[34%] left-[4%] size-3 rounded-full bg-sig"></div>
+        <div aria-hidden="true" class="absolute top-[70%] -right-[3%] hidden size-3.5 rounded-full bg-action sm:block"></div>
         <Image
           src={portrait}
           alt={dictionary.meta.portraitAlt}
@@ -86,6 +104,9 @@ const badgePositions = [
                     <Icon aria-hidden="true" size={16} />
                   </span>
                   {badge}
+                  <span aria-hidden="true" class={`absolute hidden bg-tint-ink/25 sm:block ${badgeConnectors[index] ?? ''}`}>
+                    <span class={`absolute size-2.5 rounded-full bg-[#b9a4f5] ring-4 ring-bg ${connectorDots[index] ?? ''}`}></span>
+                  </span>
                 </li>
               );
             })
@@ -112,10 +133,16 @@ const badgePositions = [
 </style>
 
 <script>
+  import { playCodeConsole } from '@/scripts/code-console';
   import { playIntro } from '@/scripts/intro';
   import { whenPageReady } from '@/scripts/page-transition';
 
   const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const codeConsole = hero?.querySelector<HTMLElement>('[data-code-console]');
   // À la première visite, l'entrée du haut de page démarre quand le chargeur se lève
-  if (hero) void whenPageReady().then(() => playIntro(hero));
+  if (hero)
+    void whenPageReady().then(() => {
+      if (codeConsole) playCodeConsole(codeConsole);
+      playIntro(hero);
+    });
 </script>

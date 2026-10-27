@@ -55,7 +55,7 @@ export const de: Dictionary = {
     },
     projects: {
       eyebrow: 'Projekte',
-      title: 'Fünf Produkte online'
+      title: 'Fünf Projekte'
     },
     domains: {
       eyebrow: 'Was ich mache',
@@ -158,11 +158,11 @@ export const de: Dictionary = {
   },
   projectsPage: {
     eyebrow: 'Projekte',
-    title: 'Fünf Produkte online, mit Sorgfalt gebaut',
+    title: 'Fünf Projekte, mit Sorgfalt gebaut',
     intro:
       'Ein KI-Tutor, ein Onlineshop, eine Schulverwaltungssoftware und zwei Produktwebsites. Öffnen Sie ein Projekt, um seine Fallstudie zu lesen.',
     seoTitle: 'Projekte · Raïssa Bohité',
-    seoDescription: 'Fünf Produkte online, vom KI-Tutor bis zum E-Commerce, mit Sorgfalt gestaltet und entwickelt.'
+    seoDescription: 'Fünf Projekte, vom KI-Tutor bis zum E-Commerce, mit Sorgfalt gestaltet und entwickelt.'
   },
   projectPage: {
     breadcrumb: 'Brotkrumennavigation',

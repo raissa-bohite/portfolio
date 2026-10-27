@@ -17,7 +17,7 @@ Langues : français (langue maternelle), allemand (niveau intermédiaire), angla
 - [Yofeii Délices](https://raissa-bohite.pages.dev/projets/yofeii-delices): boutique en ligne d'épices et son back-office, développement du front
 - [Moomen Pro](https://raissa-bohite.pages.dev/projets/moomen-pro): refonte du site d'une application de caisse pour PME
 - [Ateliya](https://raissa-bohite.pages.dev/projets/ateliya): refonte du design du site d'une application pour ateliers de couture
-- [ERP scolaire](https://raissa-bohite.pages.dev/projets/erp-scolaire): front-end d'un logiciel de gestion scolaire
+- [ERP scolaire](https://raissa-bohite.pages.dev/projets/erp-scolaire): front-end d'un logiciel de gestion scolaire, en cours de développement
 
 ## Autres langues
 

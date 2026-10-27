@@ -60,7 +60,7 @@ const dictionary = {
     },
     projects: {
       eyebrow: "Projets",
-      title: "Cinq produits en ligne",
+      title: "Cinq projets",
     },
     domains: {
       eyebrow: "Ce que je fais",
@@ -166,12 +166,12 @@ const dictionary = {
   },
   projectsPage: {
     eyebrow: "Projets",
-    title: "Cinq produits en ligne, conçus avec soin",
+    title: "Cinq projets, conçus avec soin",
     intro:
       "Un tuteur IA, une boutique en ligne, un logiciel de gestion scolaire, deux sites produits. Ouvrez un projet pour lire son étude de cas.",
     seoTitle: "Projets · Raïssa Bohité",
     seoDescription:
-      "Cinq produits en ligne, du tuteur IA à l’e-commerce, conçus et développés avec soin.",
+      "Cinq projets, du tuteur IA à l’e-commerce, conçus et développés avec soin.",
   },
   projectPage: {
     breadcrumb: "Fil d'Ariane",

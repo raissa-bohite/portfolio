@@ -12,9 +12,9 @@
     "de": "Kunde · Front-End-Entwicklung"
   },
   "description": {
-    "fr": "Un logiciel de gestion pour plusieurs établissements : effectifs, inscriptions, paiements et arriérés, en service chez un client pilote.",
-    "en": "Management software for multiple schools: enrolment, registrations, payments and arrears, in use at a pilot client.",
-    "de": "Verwaltungssoftware für mehrere Schulen: Schülerzahlen, Anmeldungen, Zahlungen und Rückstände, im Einsatz bei einem Pilotkunden."
+    "fr": "Un logiciel de gestion pour plusieurs établissements : effectifs, inscriptions, paiements et arriérés, actuellement en cours de développement.",
+    "en": "Management software for multiple schools: enrolment, registrations, payments and arrears, currently in development.",
+    "de": "Verwaltungssoftware für mehrere Schulen: Schülerzahlen, Anmeldungen, Zahlungen und Rückstände, derzeit in Entwicklung."
   },
   "stack": [
     "Next.js",

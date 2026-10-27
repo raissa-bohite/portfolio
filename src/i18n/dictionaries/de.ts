@@ -4,7 +4,7 @@ export const de: Dictionary = {
   meta: {
     homeTitle: 'Raïssa Bohité · Front-End-Entwicklerin mit Full-Stack-Fokus',
     homeDescription:
-      'Klare, barrierefreie und sichere Oberflächen und Dashboards. Entdecken Sie meine Projekte: Fassbar, Yofeii Délices, Ateliya, Moomen Pro.',
+      'Klare, barrierefreie und sichere Oberflächen und Dashboards. Projekte: Fassbar, Yofeii Délices, Ateliya, Moomen Pro.',
     portraitAlt: 'Porträt von Raïssa Bohité',
     socialImageAlt: 'RB-Logo von Raïssa Bohité und ihr Motto: verstehen, bevor man baut'
   },

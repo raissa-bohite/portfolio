@@ -9,7 +9,7 @@ const dictionary = {
   meta: {
     homeTitle: "Raïssa Bohité · Développeuse front-end, orientée full-stack",
     homeDescription:
-      "Interfaces et tableaux de bord clairs, accessibles et sécurisés. Découvrez mes projets : Fassbar, Yofeii Délices, Ateliya, Moomen Pro.",
+      "Interfaces et tableaux de bord clairs, accessibles et sécurisés. Projets : Fassbar, Yofeii Délices, Ateliya, Moomen Pro.",
     portraitAlt: "Portrait de Raïssa Bohité",
     socialImageAlt: "Logo RB de Raïssa Bohité et sa devise : comprendre avant de construire",
   },

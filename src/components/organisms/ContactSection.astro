@@ -1,6 +1,12 @@
 ---
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import Heart from '@lucide/astro/icons/heart';
 import Mail from '@lucide/astro/icons/mail';
+import MapPin from '@lucide/astro/icons/map-pin';
+import MessageCircle from '@lucide/astro/icons/message-circle';
+import Send from '@lucide/astro/icons/send';
+import Undo2 from '@lucide/astro/icons/undo-2';
+import Zap from '@lucide/astro/icons/zap';
 import { Image } from 'astro:assets';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import ContactForm from '@/components/organisms/ContactForm.astro';
@@ -12,58 +18,93 @@ import portrait from '@/assets/portrait/portrait-cutout.png';
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
-const contact = getDictionary(locale).home.contact;
+const dictionary = getDictionary(locale);
+const contact = dictionary.home.contact;
+// La localisation existe déjà pour la page Contact : on la réutilise plutôt que d'en écrire une nouvelle
+const location = dictionary.contactPage.location;
 const channels = [
   { label: 'LinkedIn', href: profile.linkedinUrl },
   { label: 'GitHub', href: profile.githubUrl }
 ];
+const highlightIcons = { zap: Zap, message: MessageCircle, heart: Heart } as const;
 ---
 
-<!-- Contact : la présentation et les coordonnées à gauche, le formulaire existant dans une carte à droite -->
-<section id="contact" aria-labelledby="contact-title" class="container-page py-24">
+<!-- Contact : la présentation, les points forts et le portrait à gauche, le formulaire à droite, les coordonnées en bas -->
+<section id="contact" aria-labelledby="contact-title" class="container-page flex flex-col gap-10 py-24">
   <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
-    <div class="relative flex flex-col gap-6 lg:col-span-5 lg:min-h-[560px]">
+    <div class="flex flex-col gap-8 lg:col-span-5">
       <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} />
 
-      <ul class="m-0 flex list-none flex-col gap-3 p-0">
-        <li>
-          <a
-            href={`mailto:${profile.email}`}
-            class="group flex min-h-12 items-center gap-3 rounded-surface border border-line bg-bg p-3 pr-4 text-ink no-underline shadow-glass-sm transition-colors hover:border-action"
-          >
-            <span aria-hidden="true" class="flex size-10 flex-none items-center justify-center rounded-full bg-linear-to-br from-brand to-brand-deep text-white">
-              <Mail size={18} />
-            </span>
-            <span class="min-w-0 font-semibold break-all">{profile.email}</span>
-          </a>
-        </li>
-        <li class="flex flex-wrap gap-3">
-          {
-            channels.map((channel) => (
-              <a
-                href={channel.href}
-                rel="me noopener"
-                class="group inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-bg px-4 font-semibold text-ink no-underline shadow-glass-sm transition-colors hover:border-action hover:text-action"
-              >
-                {channel.label}
-                <ArrowUpRight aria-hidden="true" size={16} class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            ))
-          }
-        </li>
+      <ul class="m-0 flex list-none flex-col gap-5 p-0">
+        {
+          contact.highlights.map((item) => {
+            const Icon = highlightIcons[item.icon as keyof typeof highlightIcons] ?? Zap;
+            return (
+              <li class="flex items-start gap-4">
+                <span aria-hidden="true" class="flex size-11 flex-none items-center justify-center rounded-[14px] bg-tint text-tint-ink">
+                  <Icon size={20} />
+                </span>
+                <div class="flex flex-col gap-0.5">
+                  <p class="m-0 font-semibold text-ink">{item.title}</p>
+                  <p class="m-0 text-sm text-muted">{item.text}</p>
+                </div>
+              </li>
+            );
+          })
+        }
       </ul>
 
-      <!-- Petit portrait décoratif en bas de colonne, sur arche lavande, comme dans la maquette -->
-      <div aria-hidden="true" class="pointer-events-none absolute right-0 bottom-0 hidden h-44 w-40 lg:block">
-        <div class="absolute bottom-0 h-[86%] w-full rounded-t-full bg-tint"></div>
-        <Image src={portrait} alt="" widths={[200, 400]} sizes="160px" loading="lazy" class="absolute bottom-0 h-full w-full object-contain object-bottom" />
+      <!-- Portrait décoratif sur arche lavande, comme dans la maquette, annoté d'une note manuscrite -->
+      <div aria-hidden="true" class="relative mt-2 hidden h-56 max-w-[260px] lg:block">
+        <div class="absolute bottom-0 h-[88%] w-full rounded-t-full bg-tint"></div>
+        <Image src={portrait} alt="" widths={[260, 400]} sizes="260px" loading="lazy" class="absolute bottom-0 h-full w-full object-contain object-bottom" />
+        <p class="absolute -top-2 -right-8 m-0 max-w-[13ch] -rotate-[6deg] text-center font-hand text-xl leading-[1.05] font-semibold text-action">{contact.note}</p>
+        <Undo2 size={26} class="absolute top-11 right-1 -rotate-[95deg] text-action" />
       </div>
     </div>
 
     <!-- Le formulaire n'est pas modifié : même composant, même envoi, même protection -->
     <div class="relative rounded-block border border-line bg-bg p-5 shadow-glass sm:p-8 lg:col-span-7">
       <div aria-hidden="true" class="absolute -top-3 -right-3 hidden size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[16px_16px] sm:block"></div>
+      <div class="relative mb-6 flex items-center gap-3">
+        <span aria-hidden="true" class="flex size-10 flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
+          <Send size={17} />
+        </span>
+        <h3 class="m-0 text-lg font-bold text-ink">{dictionary.contactForm.label}</h3>
+      </div>
       <ContactForm locale={locale} variant="compact" class="relative" />
+    </div>
+  </div>
+
+  <!-- Bande de coordonnées : email et localisation à gauche, réseaux à droite -->
+  <div class="flex flex-col flex-wrap items-start gap-6 rounded-surface border border-line bg-tint/35 p-6 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-wrap items-center gap-x-10 gap-y-4">
+      <a href={`mailto:${profile.email}`} class="group flex items-center gap-3 text-ink no-underline">
+        <span aria-hidden="true" class="flex size-9 flex-none items-center justify-center rounded-full bg-linear-to-br from-brand to-brand-deep text-white">
+          <Mail size={16} />
+        </span>
+        <span class="min-w-0 font-semibold break-all group-hover:text-action">{profile.email}</span>
+      </a>
+      <p class="m-0 flex items-center gap-3 text-ink">
+        <span aria-hidden="true" class="flex size-9 flex-none items-center justify-center rounded-full bg-linear-to-br from-brand to-brand-deep text-white">
+          <MapPin size={16} />
+        </span>
+        <span class="font-semibold">{location}</span>
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      {
+        channels.map((channel) => (
+          <a
+            href={channel.href}
+            rel="me noopener"
+            class="group inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-bg px-4 font-semibold text-ink no-underline shadow-glass-sm transition-colors hover:border-action hover:text-action"
+          >
+            {channel.label}
+            <ArrowUpRight aria-hidden="true" size={16} class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

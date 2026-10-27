@@ -11,7 +11,8 @@ const dictionary = {
     homeDescription:
       "Interfaces et tableaux de bord clairs, accessibles et sécurisés. Projets : Fassbar, Yofeii Délices, Ateliya, Moomen Pro.",
     portraitAlt: "Portrait de Raïssa Bohité",
-    socialImageAlt: "Logo RB de Raïssa Bohité et sa devise : comprendre avant de construire",
+    socialImageAlt:
+      "Logo RB de Raïssa Bohité et sa devise : comprendre avant de construire",
   },
   nav: {
     label: "Navigation principale",
@@ -51,7 +52,10 @@ const dictionary = {
   home: {
     availability: "Disponible pour un poste ou une mission",
     // Bloc de code animé du haut de page : nom de la variable et texte affiché par console.log
-    codeConsole: { variable: "approche", value: "comprendre avant de construire" },
+    codeConsole: {
+      variable: "approche",
+      value: "comprendre avant de construire",
+    },
     titleWords: ["Comprendre", "avant", "de", "construire."],
     intro:
       "Je conçois des interfaces web modernes, accessibles et sécurisées, ainsi que des tableaux de bord clairs et intuitifs. Du front-end au back-end, je transforme les besoins en solutions concrètes.",
@@ -65,9 +69,11 @@ const dictionary = {
     projects: {
       eyebrow: "Projets",
       title: "Mes projets",
-      intro: "Des solutions web modernes, utiles et sur mesure. Voici une sélection de projets sur lesquels j'ai travaillé.",
+      intro:
+        "Des solutions web modernes, utiles et sur mesure. Voici une sélection de projets sur lesquels j'ai travaillé.",
       closingLead: "Des idées aux interfaces",
-      closingText: " : je conçois, développe et optimise des solutions web modernes.",
+      closingText:
+        " : je conçois, développe et optimise des solutions web modernes.",
       featuredNote: "Une expérience fluide sur tous les écrans",
     },
     domains: {
@@ -78,21 +84,25 @@ const dictionary = {
           icon: "dashboard",
           title: "Interfaces et tableaux de bord",
           text: "Des écrans lisibles qui rendent les données utiles, du site vitrine au back-office.",
-          skills: ["React", "Next.js", "Astro", "SvelteKit", "Tailwind CSS"]
+          skills: ["React", "Next.js", "Astro", "SvelteKit", "Tailwind CSS"],
         },
         {
           icon: "security",
           title: "Sécurité web",
           text: "Les bonnes pratiques OWASP appliquées dès la conception, pas ajoutées à la fin.",
-          skills: ["OWASP", "CSP", "Validation Zod", "Certification Cisco"]
+          skills: ["OWASP", "CSP", "Validation Zod", "Certification Cisco"],
         },
         {
           icon: "ai",
           title: "IA et développement agentique",
           text: "J'intègre les API d'IA dans mes produits et je développe avec des agents de code. Je sais où ils aident, où ils échouent, et je vérifie ce qu'ils produisent.",
-          skills: ["Claude API", "Agents de code"]
+          skills: ["Claude API", "Agents de code"],
         },
       ],
+      closing: {
+        title: "Une approche globale, pour des solutions durables.",
+        text: "Ces trois domaines se complètent pour créer des applications robustes, accessibles et évolutives, adaptées aux besoins réels des utilisateurs et des entreprises.",
+      },
     },
     method: {
       eyebrow: "Ma démarche",
@@ -101,11 +111,31 @@ const dictionary = {
       step: "Étape {n} sur 4",
       deliverableLabel: "Livrable",
       steps: [
-        { code: "comprendre()", text: "Le besoin, les utilisateurs et les contraintes, avant la première ligne de code.", deliverable: "Cahier des charges" },
-        { code: "concevoir()", text: "Les parcours et les écrans, validés avant le développement.", deliverable: "Maquettes validées" },
-        { code: "construire()", text: "Un code typé, testé et structuré, facile à faire évoluer.", deliverable: "Code typé et testé" },
-        { code: "vérifier()", text: "Accessibilité, performance et sécurité contrôlées avant la mise en ligne.", deliverable: "Rapport d'audit" }
+        {
+          code: "comprendre()",
+          text: "Le besoin, les utilisateurs et les contraintes, avant la première ligne de code.",
+          deliverable: "Cahier des charges",
+        },
+        {
+          code: "concevoir()",
+          text: "Les parcours et les écrans, validés avant le développement.",
+          deliverable: "Maquettes validées",
+        },
+        {
+          code: "construire()",
+          text: "Un code typé, testé et structuré, facile à faire évoluer.",
+          deliverable: "Code typé et testé",
+        },
+        {
+          code: "vérifier()",
+          text: "Accessibilité, performance et sécurité contrôlées avant la mise en ligne.",
+          deliverable: "Rapport d'audit",
+        },
       ],
+      closing: {
+        title: "Une approche itérative, pour un résultat optimal.",
+        text: "Chaque projet est une nouvelle occasion d'apprendre, d'ajuster et de construire des solutions qui ont du sens.",
+      },
     },
     about: {
       eyebrow: "Parcours",
@@ -134,6 +164,24 @@ const dictionary = {
       eyebrow: "Contact",
       title: "Un poste, une mission, une question ?",
       text: "Vous pouvez m’écrire en français, en allemand ou en anglais.",
+      highlights: [
+        {
+          icon: "zap",
+          title: "Réponse rapide",
+          text: "Je réponds sous 24 à 48h.",
+        },
+        {
+          icon: "message",
+          title: "Échange personnalisé",
+          text: "Un premier échange pour bien cerner vos besoins.",
+        },
+        {
+          icon: "heart",
+          title: "Ouverte aux opportunités",
+          text: "Freelance, poste ou projet long terme : toutes les pistes m'intéressent.",
+        },
+      ],
+      note: "Parlons de vos idées, de vos projets, et de la meilleure façon de les concrétiser !",
     },
   },
   contactForm: {

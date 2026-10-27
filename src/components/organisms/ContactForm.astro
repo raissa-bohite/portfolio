@@ -29,7 +29,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
     </div>
 
     {
-      variant === 'full' ? (
+      variant === 'full' && (
         <fieldset class="m-0 flex flex-col gap-3 border-0 p-0">
           <legend class="mb-3 text-sm font-semibold text-ink">{form.typeLegend}</legend>
           <div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-3">
@@ -38,16 +38,6 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
             ))}
           </div>
         </fieldset>
-      ) : (
-        <FormField
-          id={`${variant}-type`}
-          name="type"
-          kind="select"
-          label={form.type}
-          error=""
-          maxLength={20}
-          options={typeOptions.map(({ value, label }) => ({ value, label }))}
-        />
       )
     }
 
@@ -64,6 +54,20 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
         maxLength={contactLimits.emailMax}
       />
     </div>
+
+    {
+      variant === 'compact' && (
+        <FormField
+          id={`${variant}-type`}
+          name="type"
+          kind="select"
+          label={form.type}
+          error=""
+          maxLength={20}
+          options={typeOptions.map(({ value, label }) => ({ value, label }))}
+        />
+      )
+    }
     <FormField
       id={`${variant}-message`}
       name="message"

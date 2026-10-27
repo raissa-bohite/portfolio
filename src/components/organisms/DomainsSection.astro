@@ -4,6 +4,7 @@ import LayoutDashboard from '@lucide/astro/icons/layout-dashboard';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
 import Sparkles from '@lucide/astro/icons/sparkles';
 import Sparkle from '@lucide/astro/icons/sparkle';
+import Target from '@lucide/astro/icons/target';
 import Tag from '@/components/atoms/Tag.astro';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
@@ -112,6 +113,18 @@ const parsed = contactSchema
         );
       })
     }
+  </div>
+
+  <!-- Bannière de clôture : les trois domaines se rejoignent dans une approche globale -->
+  <div class="relative flex flex-col items-start gap-5 overflow-hidden rounded-block bg-linear-to-br from-brand-deep to-brand-deeper p-6 text-white sm:flex-row sm:items-center sm:gap-8 sm:p-8">
+    <div aria-hidden="true" class="absolute top-5 right-10 size-3 rounded-full bg-sig"></div>
+    <div aria-hidden="true" class="absolute -right-10 -bottom-16 size-40 rounded-full bg-white/10"></div>
+    <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-[14px] bg-white/15">
+      <Target size={22} />
+    </span>
+    <p class="relative m-0 max-w-[22ch] text-xl leading-snug font-bold">{domains.closing.title}</p>
+    <span aria-hidden="true" class="hidden h-16 w-px flex-none bg-white/20 sm:block"></span>
+    <p class="relative m-0 max-w-[62ch] text-white/80">{domains.closing.text}</p>
   </div>
  </div>
 </section>

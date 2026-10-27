@@ -27,7 +27,8 @@ const links: { id: RouteId; label: string }[] = [
 ];
 ---
 
-<header class="sticky top-4 z-20 pt-4">
+<!-- z-40 : au-dessus des vignettes de projets (z-20, z-30) qui défilent dessous -->
+<header class="sticky top-4 z-40 pt-4">
   <div class="container-page">
     <nav aria-label={dictionary.nav.label} class="material relative flex items-center justify-between gap-4 py-2.5 pr-2.5 pl-6">
       <a href={getRoutePath('home', locale)} class="flex items-center gap-2.5 text-xl font-extrabold tracking-[-0.02em] text-ink no-underline hover:text-ink">

@@ -8,13 +8,12 @@ const { variable, value } = Astro.props;
 ---
 
 <!--
-  Décoratif : le titre qui suit dit la même chose en clair, les lecteurs d'écran l'ignorent.
+  Décoratif : le grand titre qui suit est la « sortie » de console.log, les lecteurs d'écran ignorent ce bloc.
   Chaque ligne tient sur une seule ligne de source : un retour à la ligne entre deux balises ajouterait un espace au texte tapé.
 -->
 <div data-code-console aria-hidden="true" class="code-console m-0 flex flex-col gap-1 font-mono text-[0.8125rem] leading-relaxed font-medium tracking-normal sm:text-sm">
   <p class="m-0"><span data-console-line="code" class="console-line"><span class="text-action">const</span> <span class="text-ink">{variable}</span> <span class="text-muted">=</span> <span class="text-sig-text">"{value}"</span><span class="text-muted">;</span></span></p>
   <p class="m-0"><span data-console-line="code" class="console-line"><span class="text-ink">console</span><span class="text-muted">.</span><span class="text-action">log</span><span class="text-muted">(</span><span class="text-ink">{variable}</span><span class="text-muted">);</span></span></p>
-  <p class="m-0"><span data-console-line="output" class="console-line console-output text-muted"><span class="text-sig">›</span> {value}</span></p>
 </div>
 
 <style>
@@ -42,13 +41,6 @@ const { variable, value } = Astro.props;
     }
   }
 
-  /* La sortie de console.log monte doucement, comme un résultat qui s'affiche */
-  .is-playing .console-output {
-    opacity: 0;
-    transform: translateY(6px);
-    animation: console-output var(--console-duration) cubic-bezier(0.22, 1, 0.36, 1) var(--console-delay) forwards;
-  }
-
   @keyframes console-type {
     to {
       /* Demi-caractère de marge : le dernier signe n'est jamais rogné, même si le rendu arrondit la chasse */
@@ -59,13 +51,6 @@ const { variable, value } = Astro.props;
   @keyframes console-fade {
     to {
       opacity: 1;
-    }
-  }
-
-  @keyframes console-output {
-    to {
-      opacity: 1;
-      transform: none;
     }
   }
 </style>

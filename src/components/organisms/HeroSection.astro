@@ -56,7 +56,7 @@ const connectorDots = [
               {index < home.titleWords.length - 1 && ' '}
             </>
           ))
-        }<span aria-hidden="true" class="animate-blink font-mono font-semibold text-sig">_</span>
+        }<span data-title-cursor aria-hidden="true" class="animate-blink font-mono font-semibold text-sig">_</span>
       </h1>
       <!-- Pas d'animation sur ce paragraphe : c'est le plus grand élément visible au chargement (LCP) -->
       <p class="m-0 max-w-[40ch] text-lead">{home.intro}</p>
@@ -76,7 +76,7 @@ const connectorDots = [
     <div class="lg:col-span-6">
       <div class="relative mx-auto aspect-square w-full max-w-[540px]">
         <!-- Décor : orbite orange autour de l'arche, grille de points, anneau et pastilles -->
-        <div aria-hidden="true" class="absolute top-[58%] left-1/2 hidden size-[108%] -translate-x-1/2 -translate-y-1/2 -rotate-[28deg] rounded-full border-[1.5px] border-transparent border-r-sig/60 border-l-sig/60 sm:block"></div>
+        <div aria-hidden="true" class="hero-orbit hidden sm:block"></div>
         <div aria-hidden="true" class="absolute top-[3%] -right-[4%] hidden size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[22px_22px] sm:block"></div>
         <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[78%] rounded-t-full bg-linear-to-b from-[#6d3fd6] to-[#4a23a0]"></div>
         <div aria-hidden="true" class="absolute top-[6%] right-[14%] size-16 rounded-full border-[3px] border-sig"></div>
@@ -118,6 +118,29 @@ const connectorDots = [
 </section>
 
 <style>
+  /*
+    Orbite orange : un cercle centré sur celui de l'arche (centre à 65 % de hauteur, rayon 43 % de largeur),
+    dont on ne garde que deux arcs grâce à un masque conique : en haut à droite et en bas à gauche, extrémités fondues.
+  */
+  .hero-orbit {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    width: 106%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border: 2px solid color-mix(in srgb, var(--sig) 85%, transparent);
+    border-radius: 9999px;
+    mask-image: conic-gradient(
+      from 0deg,
+      transparent 0deg 36deg,
+      #000 50deg 86deg,
+      transparent 102deg 222deg,
+      #000 234deg 256deg,
+      transparent 270deg 360deg
+    );
+  }
+
   /* Les badges flottent doucement, sauf si l'utilisateur a demandé moins de mouvement */
   @media (prefers-reduced-motion: no-preference) {
     .hero-badge {
@@ -142,7 +165,8 @@ const connectorDots = [
   // À la première visite, l'entrée du haut de page démarre quand le chargeur se lève
   if (hero)
     void whenPageReady().then(() => {
-      if (codeConsole) playCodeConsole(codeConsole);
-      playIntro(hero);
+      // Le grand titre arrive comme la sortie de console.log, une fois les deux lignes tapées
+      const consoleEnd = codeConsole ? playCodeConsole(codeConsole) : 0;
+      playIntro(hero, consoleEnd > 0 ? consoleEnd + 0.15 : 0.25);
     });
 </script>

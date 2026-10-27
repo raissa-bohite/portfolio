@@ -9,10 +9,10 @@ export type ConsoleLineTiming = {
 };
 
 // Secondes par caractère : assez lent pour être lu, assez rapide pour ne pas faire attendre
-export const CHARACTER_DURATION = 0.032;
+export const CHARACTER_DURATION = 0.024;
 export const OUTPUT_DURATION = 0.5;
 // Pause entre deux lignes, comme quand on valide une instruction
-export const LINE_PAUSE = 0.28;
+export const LINE_PAUSE = 0.22;
 export const START_DELAY = 0.2;
 
 export function getConsoleTimeline(lines: ReadonlyArray<{ kind: ConsoleLineKind; characters: number }>): ConsoleLineTiming[] {

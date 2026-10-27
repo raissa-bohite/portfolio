@@ -17,114 +17,119 @@ const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const domains = dictionary.home.domains;
 const skillsLabel = dictionary.projectPage.stack;
-// Carte d'expertise : numéro et pictogramme en tête, illustration encadrée, puis le texte et les compétences
 const tileClasses = 'relative aspect-[16/10] overflow-hidden rounded-[18px]';
 const floatClasses = 'absolute transition-transform duration-500 ease-out-soft group-hover:-translate-x-1.5 group-hover:-translate-y-1.5';
 const domainIcons = { dashboard: LayoutDashboard, security: ShieldCheck, ai: Sparkles } as const;
-// La troisième carte reprend l'orange de la marque, comme sur la maquette
-const iconTileClasses = { dashboard: 'bg-tint text-tint-ink', security: 'bg-tint text-tint-ink', ai: 'bg-[#fff0e5] text-[#9e3409]' } as const;
+const iconTileClasses = {
+  dashboard: 'bg-tint text-tint-ink',
+  security: 'bg-tint text-tint-ink',
+  ai: 'bg-sig/10 text-sig-text',
+} as const;
 ---
 
-<!-- Fond lavande très clair en dégradé : il sépare les expertises des projets sans couper la page -->
-<section aria-labelledby="domains-title" class="border-y border-line bg-linear-to-b from-tint/35 to-bg py-24">
- <div class="container-page flex flex-col gap-12">
-  <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} />
-  <div data-scroll-group class="grid gap-5 md:grid-cols-3">
-    {
-      domains.items.map((domain, index) => {
+<section aria-labelledby="domains-title" class="border-y border-line bg-linear-to-b from-tint/35 to-bg py-16 sm:py-20">
+  <div class="container-page flex flex-col gap-9 sm:gap-11">
+    <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} />
+    <div data-scroll-group class="grid items-stretch gap-5 lg:grid-cols-3">
+      {domains.items.map((domain, index) => {
         const Icon = domainIcons[domain.icon as keyof typeof domainIcons] ?? Sparkles;
         const iconTile = iconTileClasses[domain.icon as keyof typeof iconTileClasses] ?? iconTileClasses.dashboard;
         return (
-        <article data-scroll-item class="group flex flex-col gap-5 rounded-surface border border-line bg-bg p-5 shadow-glass-sm transition-[transform,box-shadow] duration-300 ease-out-soft hover:-translate-y-1 hover:shadow-glass sm:p-6">
-          <div class="flex items-center justify-between">
-            <span class="font-mono text-sm text-muted">{String(index + 1).padStart(2, '0')}</span>
-            <span aria-hidden="true" class:list={['flex size-10 items-center justify-center rounded-[12px]', iconTile]}>
-              <Icon size={20} />
-            </span>
-          </div>
-          {domain.icon === 'dashboard' && (
-            <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-[#6d3fd6] to-[#4a23a0]`}>
-              <div class={`${floatClasses} top-[16%] left-[12%] w-[112%] overflow-hidden rounded-tl-[14px] bg-white shadow-[0_24px_50px_-18px_rgb(0_0_0/0.5)]`}>
-                <div class="flex gap-1 border-b border-[#ece6f6] px-2.5 py-1.5">
-                  <span class="size-1.5 rounded-full bg-[#ff5f57]" />
-                  <span class="size-1.5 rounded-full bg-[#febc2e]" />
-                  <span class="size-1.5 rounded-full bg-[#28c840]" />
-                </div>
-                <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
-              </div>
+          <article data-scroll-item class="group flex min-w-0 flex-col overflow-hidden rounded-surface border border-line bg-bg shadow-glass-sm transition-[transform,box-shadow] duration-300 ease-out-soft hover:-translate-y-1 hover:shadow-glass">
+            <div class="flex items-center justify-between px-5 pt-5 sm:px-6 sm:pt-6">
+              <span class="rounded-full bg-tint px-3 py-1 font-mono text-xs font-semibold text-tint-ink">{String(index + 1).padStart(2, '0')}</span>
+              <span aria-hidden="true" class:list={['flex size-10 items-center justify-center rounded-[12px]', iconTile]}>
+                <Icon size={20} />
+              </span>
             </div>
-          )}
 
-          {domain.icon === 'security' && (
-            <div aria-hidden="true" class={`${tileClasses} bg-tint dark:bg-[#2a1a5c]`}>
-              <pre
-                class={`${floatClasses} top-[14%] left-[10%] m-0 w-[104%] rounded-tl-[14px] bg-[#1e0f45] p-5 font-mono text-[12px] leading-[1.75] text-[#d6ccf2] shadow-[0_24px_50px_-18px_rgb(30_15_69/0.6)]`}
-              ><span class="text-[#9c90c4]">// contact-handler.ts</span>
-if (!isSameOrigin(request))
-  return jsonResponse(403, …);
-const parsed = contactSchema
-  .safeParse(payload);
-
-<span class="text-[#9c90c4]">// headers</span>
-<span class="text-[#ff9a5c]">Content-Security-Policy</span>:
-  default-src 'self'</pre>
-            </div>
-          )}
-
-          {domain.icon === 'ai' && (
-            <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-[#f58a45] to-[#e0590c]`}>
-              <div class={`${floatClasses} top-[14%] left-[12%] flex w-full flex-col gap-3 rounded-tl-[14px] bg-white p-5 shadow-[0_24px_50px_-18px_rgb(80_20_0/0.45)]`}>
-                <div class="flex items-center gap-2 self-end rounded-full bg-[#e7deff] px-4 py-2.5">
-                  <span class="h-2 w-24 rounded-full bg-[#4a23a0]/70" />
-                  <span class="h-2 w-10 rounded-full bg-[#4a23a0]/40" />
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="flex size-8 flex-none items-center justify-center rounded-full bg-[#f26a1b] text-white">
-                    <Sparkle size={16} />
-                  </span>
-                  <div class="flex flex-1 flex-col gap-2 rounded-2xl rounded-tl-sm bg-[#faf8ff] p-3.5">
-                    <span class="h-2 w-[85%] rounded-full bg-[#1e0f45]/70" />
-                    <span class="h-2 w-[65%] rounded-full bg-[#1e0f45]/35" />
-                    <span class="h-2 w-[75%] rounded-full bg-[#1e0f45]/35" />
+            <div class="px-5 pt-4 sm:px-6">
+              {domain.icon === 'dashboard' && (
+                <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-brand to-brand-deep`}>
+                  <div class={`${floatClasses} top-[14%] left-[10%] w-[112%] overflow-hidden rounded-tl-[14px] bg-bg shadow-glass-lg`}>
+                    <div class="flex gap-1 border-b border-line px-2.5 py-1.5">
+                      <span class="size-1.5 rounded-full bg-sig" />
+                      <span class="size-1.5 rounded-full bg-lilac" />
+                      <span class="size-1.5 rounded-full bg-brand-deep" />
+                    </div>
+                    <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
                   </div>
                 </div>
-                <div class="flex items-center gap-2 pl-11">
-                  <span class="flex size-5 items-center justify-center rounded-full bg-[#28c840] text-white">
-                    <Check size={12} />
-                  </span>
-                  <span class="h-2 w-20 rounded-full bg-[#28c840]/50" />
+              )}
+              {domain.icon === 'security' && (
+                <div aria-hidden="true" class={`${tileClasses} bg-tint`}>
+                  <div class={`${floatClasses} top-[12%] left-[8%] w-[104%] rounded-tl-[14px] bg-brand-deeper p-4 font-mono text-[11px] leading-[1.8] text-white shadow-glass-lg sm:p-5 sm:text-xs`}>
+                    <p class="m-0 text-lilac">// contact-handler.ts</p>
+                    <p class="m-0">if (!isSameOrigin(request))</p>
+                    <p class="m-0 pl-3 text-sig">return jsonResponse(403)</p>
+                    <p class="m-0 mt-2">const parsed = contactSchema</p>
+                    <p class="m-0 pl-3">.safeParse(payload)</p>
+                    <div class="mt-3 rounded-lg border border-white/15 bg-white/5 px-3 py-2">
+                      <span class="text-sig">Content-Security-Policy</span>
+                      <p class="m-0 text-white/75">default-src 'self'</p>
+                    </div>
+                  </div>
                 </div>
+              )}
+              {domain.icon === 'ai' && (
+                <div aria-hidden="true" class={`${tileClasses} bg-sig/10`}>
+                  <div class={`${floatClasses} top-[12%] left-[10%] flex w-full flex-col gap-3 rounded-tl-[14px] border border-line bg-bg p-4 shadow-glass-lg sm:p-5`}>
+                    <div class="flex items-center gap-2 self-end rounded-full bg-tint px-3 py-2">
+                      <span class="h-2 w-20 rounded-full bg-brand-deep/70" />
+                      <span class="h-2 w-8 rounded-full bg-brand/40" />
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="flex size-8 flex-none items-center justify-center rounded-full bg-sig text-white">
+                        <Sparkle size={16} />
+                      </span>
+                      <div class="flex flex-1 flex-col gap-2 rounded-2xl rounded-tl-sm bg-tint/50 p-3">
+                        <span class="h-2 w-[85%] rounded-full bg-ink/70" />
+                        <span class="h-2 w-[65%] rounded-full bg-muted/50" />
+                        <span class="h-2 w-[75%] rounded-full bg-muted/50" />
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 pl-11">
+                      <span class="flex size-5 items-center justify-center rounded-full bg-brand-deep text-white">
+                        <Check size={12} />
+                      </span>
+                      <span class="h-2 w-20 rounded-full bg-brand/40" />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div class="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6">
+              <h3 class="m-0 text-xl font-bold leading-snug text-ink">{domain.title}</h3>
+              <p class="mb-0 mt-2 text-base">{domain.text}</p>
+              <ul class="mt-4 flex list-none flex-col gap-2 border-t border-line pt-4" aria-label={skillsLabel}>
+                {domain.skills.map((skill) => (
+                  <li class="flex items-start gap-2 text-sm text-text">
+                    <span aria-hidden="true" class="mt-0.5 flex size-5 flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
+                      <Check size={12} />
+                    </span>
+                    <span>{skill}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-auto flex flex-wrap gap-2 border-t border-line pt-4" aria-label={skillsLabel}>
+                {domain.skills.slice(0, 3).map((skill) => <Tag>{skill}</Tag>)}
               </div>
             </div>
-          )}
-
-          <div class="flex flex-col gap-3">
-            <h3 class="m-0 text-xl font-bold text-ink">{domain.title}</h3>
-            <p class="m-0">{domain.text}</p>
-            <ul class="m-0 mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
-              {domain.skills.map((skill) => (
-                <li>
-                  <Tag>{skill}</Tag>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </article>
+          </article>
         );
-      })
-    }
-  </div>
+      })}
+    </div>
 
-  <!-- Bannière de clôture : les trois domaines se rejoignent dans une approche globale -->
-  <div class="relative flex flex-col items-start gap-5 overflow-hidden rounded-block bg-linear-to-br from-brand-deep to-brand-deeper p-6 text-white sm:flex-row sm:items-center sm:gap-8 sm:p-8">
-    <div aria-hidden="true" class="absolute top-5 right-10 size-3 rounded-full bg-sig"></div>
-    <div aria-hidden="true" class="absolute -right-10 -bottom-16 size-40 rounded-full bg-white/10"></div>
-    <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-[14px] bg-white/15">
-      <Target size={22} />
-    </span>
-    <p class="relative m-0 max-w-[22ch] text-xl leading-snug font-bold">{domains.closing.title}</p>
-    <span aria-hidden="true" class="hidden h-16 w-px flex-none bg-white/20 sm:block"></span>
-    <p class="relative m-0 max-w-[62ch] text-white/80">{domains.closing.text}</p>
+    <div class="relative flex flex-col items-start gap-4 overflow-hidden rounded-block bg-linear-to-br from-brand-deep to-brand-deeper p-6 text-white sm:flex-row sm:items-center sm:gap-7 sm:p-8">
+      <div aria-hidden="true" class="absolute right-8 top-5 size-3 rounded-full bg-sig"></div>
+      <div aria-hidden="true" class="absolute -bottom-16 -right-10 size-40 rounded-full bg-white/10"></div>
+      <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-[14px] bg-white/15">
+        <Target size={22} />
+      </span>
+      <p class="relative m-0 max-w-[22ch] text-xl font-bold leading-snug">{domains.closing.title}</p>
+      <span aria-hidden="true" class="hidden h-16 w-px flex-none bg-white/20 sm:block"></span>
+      <p class="relative m-0 max-w-[62ch] text-sm leading-relaxed text-white/80 sm:text-base">{domains.closing.text}</p>
+    </div>
   </div>
- </div>
 </section>

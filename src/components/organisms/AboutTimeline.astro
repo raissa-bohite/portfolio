@@ -1,5 +1,9 @@
 ---
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import Code from '@lucide/astro/icons/code-xml';
+import GraduationCap from '@lucide/astro/icons/graduation-cap';
+import Rocket from '@lucide/astro/icons/rocket';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
@@ -8,69 +12,71 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const timeline = getDictionary(locale).aboutPage.timeline;
 const lastIndex = timeline.steps.length - 1;
+const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
 ---
 
-<!-- Bande lavande pleine largeur, comme « Ma démarche » sur l'accueil -->
-<section aria-labelledby="timeline-title" class="mb-24 bg-tint/45 py-24 dark:bg-white/[0.03]">
-  <div class="container-page grid w-full gap-x-6 gap-y-10 lg:grid-cols-12">
-    <div class="lg:col-span-4">
-      <SectionHeading id="timeline-title" eyebrow={timeline.eyebrow} title={timeline.title} />
-      <!-- Le parcours écrit comme un tableau : chaque ligne s'allume quand la frise atteint l'étape correspondante -->
-      <figure aria-label={timeline.codeLabel} class="sticky top-36 m-0 mt-6 hidden lg:block">
-        <div class="overflow-hidden rounded-surface border border-glass-border bg-bg shadow-glass">
-          <div aria-hidden="true" class="flex items-center gap-2 border-b border-line px-4 py-3">
-            <span class="size-2.5 rounded-full bg-sig"></span>
-            <span class="size-2.5 rounded-full bg-line"></span>
-            <span class="size-2.5 rounded-full bg-line"></span>
-            <span class="ml-2 font-mono text-[13px] text-muted">parcours.ts</span>
-          </div>
-          <div lang="fr" class="overflow-x-auto px-5 pt-5 pb-6 font-mono text-sm leading-[1.9] text-ink [&>span]:whitespace-pre">
-            <span class="block"><span class="text-action">const</span> parcours = [</span>
-            {
-              timeline.steps.map((step, index) => (
-                <span data-code-step={index} class="-mx-2 block rounded-md px-2 transition-colors duration-300 data-[lit=true]:bg-sig/16">{`  `}<span class="text-sig-text">{`'${step.code}'`}</span>,</span>
-              ))
-            }
-            <span class="block">];</span>
-            <span class="block" aria-hidden="true">&nbsp;</span>
-            <span class="block">parcours.<span class="text-action">forEach</span>(comprendre);</span>
-          </div>
-        </div>
-        <figcaption class="mt-3 text-sm text-muted">{timeline.codeCaption}</figcaption>
+<!--
+  Bande violet foncé, comme les expertises de l'accueil. Le rail se remplit au défilement (scroll-progress.ts) ;
+  les lignes du parcours écrit en code s'allument avec l'étape de même rang (data-progress-mirror)
+-->
+<section aria-labelledby="timeline-title" data-progress-scope class="relative overflow-clip bg-linear-to-br from-[#2a1466] via-[#1e0f45] to-[#170b38] text-white">
+  <span aria-hidden="true" class="absolute -top-40 -right-36 size-[420px] rounded-full bg-brand/35"></span>
+  <div class="container-page relative flex flex-col gap-12 py-22">
+    <div class="flex flex-wrap items-end justify-between gap-8">
+      <SectionIntro id="timeline-title" eyebrow={timeline.eyebrow} title={timeline.title} highlight={false} onDark cursor />
+      <figure class="m-0 max-w-full rounded-2xl border border-white/12 bg-[#120a2b] px-5 py-4">
+        <figcaption class="mb-1.5 text-[13px] font-semibold text-white/70">{timeline.codeLabel}</figcaption>
+        <p lang="fr" class="m-0 overflow-x-auto font-mono text-sm leading-[1.9] whitespace-nowrap">
+          <span class="text-[#c4b2ff]">const</span> parcours = [{
+            timeline.steps.map((step, index) => (
+              <>
+                <span
+                  data-progress-mirror
+                  class:list={[
+                    'rounded px-0.5 transition-colors duration-300 data-[reached]:bg-white/12',
+                    index === lastIndex ? 'text-[#f5a25d]' : 'text-[#ffd9c2]'
+                  ]}
+                >{`"${step.code}"`}</span>{index < lastIndex && ', '}
+              </>
+            ))
+          }];
+        </p>
       </figure>
     </div>
 
-    <div data-timeline class="relative pl-10 lg:col-span-8">
-      <div aria-hidden="true" class="absolute top-2 bottom-2 left-[11px] w-0.5 bg-line">
-        <div data-timeline-fill class="h-full w-0.5 origin-top scale-y-0 bg-sig motion-reduce:scale-y-100"></div>
-      </div>
-      <ol class="m-0 list-none p-0">
-        {
-          timeline.steps.map((step, index) => (
-            <li class="relative pb-8 last:pb-0">
+    <ol data-scroll-group data-progress="x" data-progress-min-width="1024px" aria-label={timeline.title} class="relative m-0 grid list-none gap-x-6 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      <li data-progress-track aria-hidden="true" class="absolute top-[29px] right-[calc(25%-54px)] left-[30px] hidden h-[3px] rounded-full bg-white/15 lg:block"></li>
+      <li data-progress-fill aria-hidden="true" class="absolute top-[29px] right-[calc(25%-54px)] left-[30px] hidden h-[3px] rounded-full bg-linear-to-r from-[#8b63ea] via-[#c4b2ff] via-60% to-sig lg:block"></li>
+      {
+        timeline.steps.map((step, index) => {
+          const Icon = stepIcons[index] ?? Code;
+          const isCurrent = index === lastIndex;
+          return (
+            <li data-scroll-item class="relative flex flex-col gap-3.5">
               <span
+                data-progress-step
                 aria-hidden="true"
                 class:list={[
-                  'absolute top-1 -left-9 size-4 rounded-full border-2',
-                  index === lastIndex ? 'border-sig bg-sig shadow-[0_0_0_6px_rgb(242_106_27/0.18)]' : 'border-muted bg-bg'
+                  'flex size-[60px] items-center justify-center rounded-full text-white ring-[7px] ring-[#22104f]',
+                  isCurrent ? 'bg-sig' : 'bg-linear-to-br from-[#8b63ea] to-brand-deep'
                 ]}
-              />
-              <p class:list={['m-0 text-sm', index === lastIndex ? 'font-semibold text-sig-text' : 'font-medium text-muted']}>{step.period}</p>
-              <h3 class="my-1 text-subtitle font-bold text-ink">{step.title}</h3>
-              <p class="m-0">{step.place}</p>
+              >
+                <Icon size={26} />
+              </span>
+              <span
+                class:list={[
+                  'mt-2.5 self-start rounded-full px-3 py-1 text-sm font-bold',
+                  isCurrent ? 'bg-sig text-[#1e0f45]' : 'bg-white/10 text-[#ffd9c2]'
+                ]}
+              >
+                {step.period}
+              </span>
+              <h3 class="m-0 text-subtitle font-extrabold text-white">{step.title}</h3>
+              <p class="m-0 text-small text-white/75">{step.place}</p>
             </li>
-          ))
-        }
-      </ol>
-    </div>
+          );
+        })
+      }
+    </ol>
   </div>
 </section>
-
-<script>
-  import { setupTimelineProgress } from '@/scripts/timeline-progress';
-
-  const timeline = document.querySelector<HTMLElement>('[data-timeline]');
-  const fill = document.querySelector<HTMLElement>('[data-timeline-fill]');
-  const codeLines = Array.from(document.querySelectorAll<HTMLElement>('[data-code-step]'));
-  if (timeline && fill) setupTimelineProgress(timeline, fill, codeLines);
-</script>

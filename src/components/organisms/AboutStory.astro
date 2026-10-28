@@ -1,5 +1,5 @@
 ---
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
@@ -7,15 +7,27 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const story = getDictionary(locale).aboutPage.story;
+// Mise en page éditoriale : le premier paragraphe en chapeau, le dernier (la leçon du parcours) en citation manuscrite
+const [leadParagraph, ...rest] = story.paragraphs;
+const closingParagraph = rest.at(-1);
+const middleParagraphs = rest.slice(0, -1);
 ---
 
-<section data-scroll-group aria-labelledby="story-title" class="container-page pb-24">
-  <div class="grid gap-x-6 gap-y-6 lg:grid-cols-12">
+<section aria-labelledby="story-title" class="border-y border-line bg-bg dark:bg-white/[0.02]">
+  <div data-scroll-group class="container-page grid gap-x-16 gap-y-8 py-22 lg:grid-cols-12">
     <div data-scroll-item class="lg:col-span-4">
-      <SectionHeading id="story-title" eyebrow={story.eyebrow} title={story.title} />
+      <SectionIntro id="story-title" eyebrow={story.eyebrow} title={story.title} highlight={false} cursor />
     </div>
-    <div class="flex flex-col gap-4 lg:col-span-8">
-      {story.paragraphs.map((paragraph) => <p data-scroll-item class="m-0 max-w-[62ch] text-lg">{paragraph}</p>)}
+    <div class="flex flex-col gap-6 lg:col-span-8">
+      {leadParagraph && <p data-scroll-item class="m-0 text-[1.5rem] leading-[1.5] font-semibold text-ink">{leadParagraph}</p>}
+      {middleParagraphs.map((paragraph) => <p data-scroll-item class="m-0 text-body-lg text-text">{paragraph}</p>)}
+      {
+        closingParagraph && (
+          <blockquote data-scroll-item class="m-0 mt-2 rounded-[20px] border-l-4 border-brand bg-tint/45 px-7 py-5 dark:bg-tint/60">
+            <p class="m-0 font-hand text-[1.875rem] leading-[1.2] font-semibold text-action">{closingParagraph}</p>
+          </blockquote>
+        )
+      }
     </div>
   </div>
 </section>

@@ -1,7 +1,7 @@
 ---
 import Medal from '@lucide/astro/icons/medal';
 import Trophy from '@lucide/astro/icons/trophy';
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
@@ -11,35 +11,29 @@ const { locale } = Astro.props;
 const awards = getDictionary(locale).aboutPage.awards;
 ---
 
-<!-- Même langage que la galerie : une vignette colorée qui porte le visuel, le texte en dessous -->
-<section aria-labelledby="awards-title" class="container-page flex flex-col gap-12 pb-24">
-  <SectionHeading id="awards-title" eyebrow={awards.eyebrow} title={awards.title} />
-  <ul data-scroll-group class="m-0 grid list-none gap-x-6 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-4">
+<section aria-labelledby="awards-title" class="container-page flex flex-col gap-10 py-22">
+  <SectionIntro id="awards-title" eyebrow={awards.eyebrow} title={awards.title} highlight={false} cursor />
+  <ul data-scroll-group class="m-0 grid list-none gap-5 p-0 sm:grid-cols-2 lg:grid-cols-4">
     {
       awards.items.map((award) => {
         const isFirst = award.rank === 'first';
         const Icon = isFirst ? Trophy : Medal;
         return (
-          <li data-scroll-item class="flex flex-col gap-4">
-            <div
+          <li data-scroll-item class="flex flex-col gap-3 rounded-surface border border-glass-border bg-glass-strong p-6 shadow-glass">
+            <span
               class:list={[
-                'relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-surface p-5',
-                isFirst ? 'bg-linear-to-br from-[#f58a45] to-[#e0590c] text-[#1e0f45]' : 'bg-tint text-tint-ink'
+                'inline-flex items-center gap-2.5 self-start rounded-full py-1.5 pr-3.5 pl-1.5 text-sm font-extrabold',
+                isFirst ? 'bg-[#fde8dc] text-[#9e3409] dark:bg-[#4a2318] dark:text-[#ffc7a6]' : 'bg-tint text-tint-ink'
               ]}
             >
-              <span aria-hidden="true" class="absolute -right-6 -bottom-8 opacity-25">
-                <Icon size={140} stroke-width={1.25} />
+              <span aria-hidden="true" class:list={['flex size-[30px] items-center justify-center rounded-full text-white', isFirst ? 'bg-sig' : 'bg-brand']}>
+                <Icon size={16} />
               </span>
-              <span class="relative flex size-11 items-center justify-center rounded-full bg-white text-[#1e0f45]">
-                <Icon aria-hidden="true" size={20} />
-              </span>
-              <span class="relative text-title leading-none font-bold">{award.badge}</span>
-            </div>
-            <div class="flex flex-col gap-1.5">
-              <h3 class="m-0 text-subtitle font-bold text-ink">{award.title}</h3>
-              <p class="m-0">{award.text}</p>
-              <p class="m-0 text-sm text-muted">{award.event}</p>
-            </div>
+              {award.badge}
+            </span>
+            <h3 class="m-0 mt-1.5 text-title font-extrabold text-ink">{award.title}</h3>
+            <p class="m-0 text-base text-text">{award.text}</p>
+            <p class="m-0 mt-auto border-t border-dashed border-[#cdbff3] pt-3.5 text-sm font-semibold text-action dark:border-white/20">{award.event}</p>
           </li>
         );
       })

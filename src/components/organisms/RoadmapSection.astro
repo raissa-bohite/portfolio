@@ -1,5 +1,8 @@
 ---
-import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import Brain from '@lucide/astro/icons/brain';
+import Cloud from '@lucide/astro/icons/cloud';
+import Flag from '@lucide/astro/icons/flag';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
@@ -7,38 +10,58 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const roadmap = getDictionary(locale).aboutPage.roadmap;
+const lastIndex = roadmap.steps.length - 1;
+// Une icône par étape à venir ; « aujourd'hui » n'en a pas, sa couleur orange suffit à le distinguer
+const stageIcons = [undefined, Cloud, Brain, Flag];
+// Escalier sur grand écran : chaque carte monte d'un cran, sans être allongée (pas de vide dans les cartes)
+const stairOffsets = ['lg:mt-30', 'lg:mt-20', 'lg:mt-10', 'lg:mt-0'];
 ---
 
-<section aria-labelledby="roadmap-title" class="container-page pb-24">
-  <div class="flex flex-col gap-10">
-    <div class="flex flex-col gap-1">
-      <Eyebrow>{roadmap.eyebrow}</Eyebrow>
-      <h2 id="roadmap-title" class="m-0 text-h2 font-bold text-ink">{roadmap.title}</h2>
-      <p class="mt-2 mb-0 max-w-[60ch]">{roadmap.intro}</p>
-    </div>
-    <ol data-roadmap class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 p-0">
-      {
-        roadmap.steps.map((step, index) => (
-          <li class="flex flex-col gap-3 rounded-surface border border-glass-border bg-bg p-6 shadow-glass">
+<section aria-labelledby="roadmap-title" class="container-page flex flex-col gap-11 pt-22 pb-10">
+  <div class="flex flex-wrap items-end justify-between gap-8">
+    <SectionIntro id="roadmap-title" eyebrow={roadmap.eyebrow} title={roadmap.title} highlight={false} cursor />
+    <p class="m-0 max-w-[29rem] border-l-[3px] border-brand pl-6 text-base text-text">{roadmap.intro}</p>
+  </div>
+  <ol data-scroll-group class="relative m-0 grid list-none items-start gap-5 p-0 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      roadmap.steps.map((step, index) => {
+        const Icon = stageIcons[index];
+        const isToday = index === 0;
+        const isGoal = index === lastIndex;
+        return (
+          <li
+            data-scroll-item
+            class:list={[
+              'relative flex flex-col gap-2.5 rounded-surface p-6',
+              stairOffsets[index],
+              isToday && 'border-2 border-[#f5a25d] bg-[#fff4ec] dark:bg-[#2a1530]',
+              isGoal && 'bg-linear-to-br from-brand to-brand-deeper text-white',
+              !isToday && !isGoal && 'border border-glass-border bg-glass-strong shadow-glass'
+            ]}
+          >
             <span
-              data-roadmap-step={index}
-              data-reached={String(index === 0)}
-              class="self-start rounded-full border-[1.5px] border-line px-3 py-1.5 text-sm font-semibold whitespace-nowrap text-text transition-colors duration-300 data-[reached=true]:border-sig data-[reached=true]:bg-sig data-[reached=true]:text-[#1E0F45]"
+              class:list={[
+                'inline-flex items-center gap-2 self-start rounded-full py-1 text-[13px] font-extrabold',
+                Icon ? 'pr-3 pl-1' : 'px-3',
+                isToday && 'bg-sig text-[#1e0f45]',
+                isGoal && 'bg-white/16 text-white',
+                !isToday && !isGoal && 'bg-tint text-tint-ink'
+              ]}
             >
+              {
+                Icon && (
+                  <span aria-hidden="true" class:list={['flex size-[22px] items-center justify-center rounded-full', isGoal ? 'bg-white/20' : 'bg-bg']}>
+                    <Icon size={13} />
+                  </span>
+                )
+              }
               {step.stage}
             </span>
-            <h3 class="m-0 text-subtitle font-bold text-ink">{step.title}</h3>
-            <p class="m-0">{step.text}</p>
+            <h3 class:list={['m-0 mt-1 text-subtitle font-extrabold', isGoal ? 'text-white' : 'text-ink']}>{step.title}</h3>
+            <p class:list={['m-0 text-small', isGoal ? 'text-white/85' : 'text-text']}>{step.text}</p>
           </li>
-        ))
-      }
-    </ol>
-  </div>
+        );
+      })
+    }
+  </ol>
 </section>
-
-<script>
-  import { setupRoadmap } from '@/scripts/roadmap';
-
-  const roadmap = document.querySelector<HTMLElement>('[data-roadmap]');
-  if (roadmap) setupRoadmap(roadmap);
-</script>

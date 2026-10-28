@@ -19,9 +19,11 @@ function measureStepFractions(track: HTMLElement, steps: HTMLElement[], axis: Ax
   });
 }
 
-function markReachedSteps(steps: HTMLElement[], reachedCount: number): void {
-  steps.forEach((step, index) => {
-    step.toggleAttribute('data-reached', index < reachedCount);
+// Les « miroirs » (data-progress-mirror) s'allument en même temps que l'étape de même rang :
+// par exemple les lignes du parcours écrit en code, à côté de la frise
+function markReachedSteps(elements: HTMLElement[], reachedCount: number): void {
+  elements.forEach((element, index) => {
+    element.toggleAttribute('data-reached', index < reachedCount);
   });
 }
 
@@ -32,6 +34,8 @@ function animateProgress(container: HTMLElement): () => void {
   const track = container.querySelector<HTMLElement>('[data-progress-track]');
   const fill = container.querySelector<HTMLElement>('[data-progress-fill]');
   const steps = Array.from(container.querySelectorAll<HTMLElement>('[data-progress-step]'));
+  const scope = container.closest<HTMLElement>('[data-progress-scope]') ?? container;
+  const mirrors = Array.from(scope.querySelectorAll<HTMLElement>('[data-progress-mirror]'));
   if (!track || !fill || steps.length === 0) return () => {};
 
   let stepFractions = measureStepFractions(track, steps, axis);
@@ -39,7 +43,11 @@ function animateProgress(container: HTMLElement): () => void {
   // Découpe plutôt qu'étirement : le dégradé garde sa place et se dévoile, l'orange n'apparaît qu'en fin de rail
   const hiddenClip = axis === 'x' ? 'inset(0% 100% 0% 0%)' : 'inset(0% 0% 100% 0%)';
   gsap.set(fill, { clipPath: hiddenClip });
-  markReachedSteps(steps, countReachedSteps(0, stepFractions));
+  const markAll = (reachedCount: number): void => {
+    markReachedSteps(steps, reachedCount);
+    markReachedSteps(mirrors, reachedCount);
+  };
+  markAll(countReachedSteps(0, stepFractions));
 
   const trigger = ScrollTrigger.create({
     trigger: container,
@@ -50,13 +58,13 @@ function animateProgress(container: HTMLElement): () => void {
     onRefresh: () => {
       stepFractions = measureStepFractions(track, steps, axis);
     },
-    onUpdate: (self) => markReachedSteps(steps, countReachedSteps(self.progress, stepFractions))
+    onUpdate: (self) => markAll(countReachedSteps(self.progress, stepFractions))
   });
 
   return () => {
     trigger.kill();
     container.removeAttribute('data-progress-ready');
-    for (const step of steps) step.removeAttribute('data-reached');
+    for (const element of [...steps, ...mirrors]) element.removeAttribute('data-reached');
   };
 }
 

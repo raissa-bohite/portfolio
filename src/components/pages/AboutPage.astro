@@ -1,5 +1,7 @@
 ---
-import ContactBand from '@/components/molecules/ContactBand.astro';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Handshake from '@lucide/astro/icons/handshake';
+import ClosingBand from '@/components/molecules/ClosingBand.astro';
 import AboutHero from '@/components/organisms/AboutHero.astro';
 import AboutStory from '@/components/organisms/AboutStory.astro';
 import AboutTimeline from '@/components/organisms/AboutTimeline.astro';
@@ -24,13 +26,25 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('about', 
   <AboutStory locale={locale} />
   <AboutTimeline locale={locale} />
   <AwardsSection locale={locale} />
-  <LanguagesSection locale={locale} />
-  <BeyondCodeSection locale={locale} />
+  <!-- Langues et centres d'intérêt côte à côte, sur une bande lavande -->
+  <section class="bg-[#f4f0fd] dark:bg-[#1e1344]">
+    <div class="container-page grid gap-14 py-22 lg:grid-cols-2">
+      <LanguagesSection locale={locale} />
+      <BeyondCodeSection locale={locale} />
+    </div>
+  </section>
   <RoadmapSection locale={locale} />
-  <ContactBand
-    eyebrow={page.contactBand.eyebrow}
-    title={page.contactBand.title}
-    cta={page.contactBand.cta}
-    href={getRoutePath('contact', locale)}
-  />
+  <div class="container-page pb-24">
+    <ClosingBand tone="brand" title={page.contactBand.title} class="mt-6">
+      <Handshake slot="icon" size={40} />
+      <a
+        slot="aside"
+        href={getRoutePath('contact', locale)}
+        class="relative inline-flex min-h-14 items-center gap-3 rounded-full bg-white px-7 text-base font-bold text-brand-deeper no-underline transition-transform duration-200 hover:-translate-y-0.5 hover:text-brand-deeper focus-visible:outline-white"
+      >
+        {page.contactBand.cta}
+        <ArrowRight aria-hidden="true" size={18} />
+      </a>
+    </ClosingBand>
+  </div>
 </BaseLayout>

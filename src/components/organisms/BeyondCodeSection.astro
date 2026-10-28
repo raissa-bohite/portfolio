@@ -1,6 +1,8 @@
 ---
-import DomainCard from '@/components/molecules/DomainCard.astro';
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import Clapperboard from '@lucide/astro/icons/clapperboard';
+import Languages from '@lucide/astro/icons/languages';
+import Palette from '@lucide/astro/icons/palette';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
@@ -8,11 +10,27 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const beyond = getDictionary(locale).aboutPage.beyond;
+const itemIcons = { design: Palette, motion: Clapperboard, languages: Languages } as const;
 ---
 
-<section aria-labelledby="beyond-title" class="container-page flex flex-col gap-12 pb-24">
-  <SectionHeading id="beyond-title" eyebrow={beyond.eyebrow} title={beyond.title} />
-  <div data-scroll-group class="grid gap-6 md:grid-cols-3">
-    {beyond.items.map((item) => <DomainCard icon={item.icon} title={item.title} text={item.text} />)}
-  </div>
-</section>
+<div class="flex flex-col gap-7">
+  <SectionIntro id="beyond-title" eyebrow={beyond.eyebrow} title={beyond.title} highlight={false} cursor />
+  <ul aria-labelledby="beyond-title" data-scroll-group class="m-0 flex list-none flex-col border-t border-[#ddd2f8] p-0 dark:border-white/15">
+    {
+      beyond.items.map((item) => {
+        const Icon = itemIcons[item.icon as keyof typeof itemIcons] ?? Palette;
+        return (
+          <li data-scroll-item class="flex gap-4.5 border-b border-[#ddd2f8] py-5 dark:border-white/15">
+            <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-[14px] bg-glass-strong text-action shadow-glass-sm">
+              <Icon size={22} />
+            </span>
+            <div class="flex flex-col gap-1">
+              <h3 class="m-0 text-subtitle font-bold text-ink">{item.title}</h3>
+              <p class="m-0 text-small text-text">{item.text}</p>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>

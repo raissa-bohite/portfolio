@@ -1,10 +1,11 @@
 ---
 import { Image } from 'astro:assets';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Download from '@lucide/astro/icons/download';
 import MapPin from '@lucide/astro/icons/map-pin';
 import portrait from '@/assets/portrait/portrait-cutout.png';
 import Button from '@/components/atoms/Button.astro';
-import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
@@ -14,44 +15,52 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const page = dictionary.aboutPage;
+const languageCodes = page.languages.items.map((language) => language.code);
 ---
 
-<section data-scroll-group class="container-page pt-16 pb-24">
-  <div class="grid items-center gap-x-6 gap-y-12 lg:grid-cols-12">
-    <div class="flex flex-col gap-6 lg:col-span-7">
-      <div data-scroll-item class="flex flex-col gap-3">
-        <Eyebrow>{page.eyebrow}</Eyebrow>
-        <h1 class="m-0 text-display font-bold text-ink">{page.title}</h1>
-      </div>
-      <p data-scroll-item class="m-0 max-w-[52ch] text-lead">{page.intro}</p>
+<section aria-labelledby="about-page-title" class="container-page overflow-x-clip pt-14 pb-18">
+  <div class="grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">
+    <div class="flex flex-col items-start gap-7 lg:col-span-7">
+      <SectionIntro id="about-page-title" eyebrow={page.eyebrow} title={page.title} intro={page.intro} highlight={false} cursor level="page" />
       <!-- Sur mobile, chaque bouton occupe toute la largeur : côte à côte, les libellés passaient sur deux lignes -->
-      <div data-scroll-item class="grid gap-3 sm:flex sm:flex-wrap">
-        <Button href={getCvPath(locale)} download class="cta-pair">
+      <div class="grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap">
+        <Button href={getCvPath(locale)} download shape="pill" class="cta-pair">
           <Download aria-hidden="true" size={18} />
           {dictionary.common.cv}
         </Button>
-        <Button href={getRoutePath('contact', locale)} variant="secondary" class="cta-pair">{page.contactCta}</Button>
+        <Button href={getRoutePath('contact', locale)} variant="secondary" shape="pill" class="cta-pair">
+          {page.contactCta}
+          <ArrowRight aria-hidden="true" size={18} />
+        </Button>
       </div>
     </div>
-    <!-- Même mise en scène que l'accueil : portrait détouré sur l'arche violette, lieu en badge flottant -->
+
+    <!-- Portrait sur une arche violette aux coins bas arrondis, lieu et langues en badges flottants -->
     <div class="lg:col-span-5">
-      <div class="relative mx-auto aspect-square w-full max-w-[440px]">
-        <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[80%] rounded-t-full bg-linear-to-b from-[#6d3fd6] to-[#4a23a0]"></div>
-        <div aria-hidden="true" class="absolute top-[4%] right-[6%] size-14 rounded-full border-[3px] border-sig"></div>
+      <div class="relative mx-auto aspect-[46/54] w-full max-w-[460px]">
+        <div aria-hidden="true" class="absolute right-[6%] bottom-0 left-[6%] h-[85%] rounded-t-full rounded-b-[32px] bg-linear-to-br from-[#7b4fe0] to-brand-deep"></div>
+        <div aria-hidden="true" class="absolute top-[6%] left-[-1%] aspect-square w-[102%] -rotate-[15deg] rounded-full border-2 border-[#f5a25d] border-b-transparent border-l-transparent"></div>
         <Image
           src={portrait}
           alt={dictionary.meta.portraitAlt}
-          widths={[440, 880]}
-          sizes="(min-width: 1024px) 440px, 90vw"
+          widths={[460, 920]}
+          sizes="(min-width: 1024px) 460px, 90vw"
           loading="eager"
           fetchpriority="high"
-          class="absolute bottom-0 left-[3%] w-[94%]"
+          class="absolute bottom-0 left-[-6%] w-[112%] max-w-none"
         />
-        <p data-scroll-pop class="absolute bottom-[12%] left-0 m-0 inline-flex items-center gap-2.5 rounded-full border border-glass-border bg-bg py-2 pr-4 pl-2 text-sm font-semibold text-ink shadow-glass-sm sm:-left-6">
-          <span class="flex size-8 items-center justify-center rounded-full bg-tint text-sig-text">
-            <MapPin aria-hidden="true" size={16} />
+        <p class="absolute bottom-[18%] left-0 m-0 inline-flex items-center gap-3 rounded-full border border-glass-border bg-bg py-2 pr-5 pl-2 text-base font-bold text-ink shadow-glass sm:-left-6">
+          <span aria-hidden="true" class="flex size-10 items-center justify-center rounded-full bg-sig text-white">
+            <MapPin size={18} />
           </span>
           {page.location}
+        </p>
+        <p aria-label={page.languages.title} class="absolute top-[22%] right-0 m-0 flex gap-1.5 rounded-full border border-glass-border bg-bg p-2.5 font-mono text-sm font-semibold uppercase shadow-glass sm:-right-4">
+          {
+            languageCodes.map((code, index) => (
+              <span lang={code} class:list={['rounded-full px-2.5 py-1', index === 0 ? 'bg-action text-action-ink' : 'bg-tint text-tint-ink']}>{code}</span>
+            ))
+          }
         </p>
       </div>
     </div>

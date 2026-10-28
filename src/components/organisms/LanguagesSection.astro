@@ -1,5 +1,5 @@
 ---
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 
@@ -7,21 +7,32 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const languages = getDictionary(locale).aboutPage.languages;
+// Jauge à trois crans, purement visuelle : le niveau exact reste écrit en toutes lettres à côté
+const levelSteps: Record<string, number> = { fr: 3, de: 2, en: 1 };
+const badgeClasses: Record<string, string> = { fr: 'bg-brand-deep text-white', de: 'bg-brand text-white', en: 'bg-lilac text-[#1e0f45]' };
 ---
 
-<section aria-labelledby="languages-title" class="container-page flex flex-col gap-12 pb-24">
-  <SectionHeading id="languages-title" eyebrow={languages.eyebrow} title={languages.title} />
-  <ul data-scroll-group class="m-0 grid list-none gap-6 p-0 md:grid-cols-3">
+<div class="flex flex-col gap-7">
+  <SectionIntro id="languages-title" eyebrow={languages.eyebrow} title={languages.title} highlight={false} cursor />
+  <ul aria-labelledby="languages-title" data-scroll-group class="m-0 flex list-none flex-col gap-3.5 p-0">
     {
-      languages.items.map((language) => (
-        <li data-scroll-item class="flex items-start gap-5 rounded-surface border border-glass-border bg-bg p-6 shadow-glass">
-          <span aria-hidden="true" class="flex size-14 flex-none items-center justify-center rounded-full bg-tint font-mono text-base font-semibold text-tint-ink uppercase">{language.code}</span>
-          <div class="flex flex-col gap-1.5">
-          <h3 class="m-0 text-title font-bold text-ink" lang={language.code}>{language.name}</h3>
-          <p class="m-0 text-muted">{language.level}</p>
-          </div>
-        </li>
-      ))
+      languages.items.map((language) => {
+        const level = levelSteps[language.code] ?? 1;
+        return (
+          <li data-scroll-item class="flex items-center gap-5 rounded-[20px] bg-glass-strong px-5 py-4 shadow-glass-sm">
+            <span aria-hidden="true" class:list={['flex size-14 flex-none items-center justify-center rounded-2xl font-mono text-lg font-semibold uppercase', badgeClasses[language.code] ?? 'bg-tint text-tint-ink']}>
+              {language.code}
+            </span>
+            <div class="flex min-w-0 flex-1 flex-col gap-1">
+              <h3 class="m-0 text-subtitle font-bold text-ink" lang={language.code}>{language.name}</h3>
+              <p class="m-0 text-small text-text">{language.level}</p>
+            </div>
+            <span aria-hidden="true" class="hidden gap-1.5 sm:flex">
+              {[1, 2, 3].map((step) => <span class:list={['h-2 w-[22px] rounded-full', step <= level ? 'bg-brand' : 'bg-[#ddd2f8] dark:bg-white/15']} />)}
+            </span>
+          </li>
+        );
+      })
     }
   </ul>
-</section>
+</div>

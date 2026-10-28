@@ -2,11 +2,16 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-type Props = { image: ImageMetadata; class?: string; priority?: boolean };
-const { image, class: className, priority = false } = Astro.props;
+// « thick » : bord plus épais pour le téléphone du projet mis en avant
+type Props = { image: ImageMetadata; class?: string; priority?: boolean; bezel?: 'thin' | 'thick' };
+const { image, class: className, priority = false, bezel = 'thin' } = Astro.props;
+const isThick = bezel === 'thick';
 ---
 
 <!-- Petit téléphone décoratif pour les vignettes de la galerie -->
-<div aria-hidden="true" class:list={['rounded-[22px] bg-[#1a1a1f] p-[4px] shadow-[0_24px_50px_-18px_rgb(0_0_0/0.55)]', className]}>
-  <Image src={image} alt="" widths={[240, 400]} sizes="160px" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} class="block aspect-[9/19.5] h-auto w-full rounded-[18px] object-cover object-top" />
+<div
+  aria-hidden="true"
+  class:list={['bg-[#1a1a1f] shadow-[0_24px_50px_-18px_rgb(0_0_0/0.55)]', isThick ? 'rounded-[26px] p-[6px]' : 'rounded-[22px] p-[4px]', className]}
+>
+  <Image src={image} alt="" widths={[240, 400]} sizes="160px" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} class:list={['block aspect-[9/19.5] h-auto w-full object-cover object-top', isThick ? 'rounded-[20px]' : 'rounded-[18px]']} />
 </div>

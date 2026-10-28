@@ -11,7 +11,7 @@ type Props = {
 const { labelDark, labelLight } = Astro.props;
 ---
 
-<IconButton label={labelDark} data-theme-toggle data-label-dark={labelDark} data-label-light={labelLight} aria-pressed="false">
+<IconButton label={labelDark} shape="pill" data-theme-toggle data-label-dark={labelDark} data-label-light={labelLight} aria-pressed="false">
   <Moon aria-hidden="true" size={18} class="dark:hidden" />
   <Sun aria-hidden="true" size={18} class="hidden dark:block" />
 </IconButton>

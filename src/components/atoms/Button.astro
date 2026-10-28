@@ -4,9 +4,11 @@ import type { HTMLAttributes } from 'astro/types';
 type Props = HTMLAttributes<'a'> & {
   href: string;
   variant?: 'primary' | 'secondary';
+  // « pill » : bords entièrement arrondis, pour l'en-tête, le haut de page et les projets
+  shape?: 'rounded' | 'pill';
 };
 
-const { href, variant = 'primary', class: className, ...attributes } = Astro.props;
+const { href, variant = 'primary', shape = 'rounded', class: className, ...attributes } = Astro.props;
 
 const variantClasses = {
   primary: 'bg-action text-action-ink hover:bg-action-hover hover:text-action-ink',
@@ -17,7 +19,8 @@ const variantClasses = {
 <a
   href={href}
   class:list={[
-    'inline-flex min-h-12 items-center gap-2 rounded-control px-6 text-base font-semibold no-underline transition-[color,background-color,transform] duration-150 ease-out-soft active:scale-[0.97] active:duration-75',
+    'inline-flex min-h-12 items-center gap-2 px-6 text-base font-semibold no-underline transition-[color,background-color,transform] duration-150 ease-out-soft active:scale-[0.97] active:duration-75',
+    shape === 'pill' ? 'rounded-full' : 'rounded-control',
     variantClasses[variant],
     className
   ]}

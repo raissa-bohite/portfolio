@@ -4,16 +4,18 @@ import type { HTMLAttributes } from 'astro/types';
 type Props = HTMLAttributes<'button'> & {
   label: string;
   size?: 'medium' | 'small';
+  shape?: 'rounded' | 'pill';
 };
 
-const { label, size = 'medium', class: className, ...attributes } = Astro.props;
+const { label, size = 'medium', shape = 'rounded', class: className, ...attributes } = Astro.props;
 ---
 
 <button
   type="button"
   aria-label={label}
   class:list={[
-    'inline-flex cursor-pointer items-center justify-center rounded-control text-ink transition-[color,background-color,transform] duration-150 active:scale-[0.94] active:duration-75',
+    'inline-flex cursor-pointer items-center justify-center text-ink transition-[color,background-color,transform] duration-150 active:scale-[0.94] active:duration-75',
+    shape === 'pill' ? 'rounded-full' : 'rounded-control',
     size === 'medium' ? 'size-11 border border-line bg-glass-strong hover:bg-tint' : 'size-10 border-0 bg-transparent hover:bg-tint',
     className
   ]}

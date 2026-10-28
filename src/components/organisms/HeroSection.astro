@@ -62,11 +62,11 @@ const connectorDots = [
       <p class="m-0 max-w-[40ch] text-lead">{home.intro}</p>
       <!-- Sur mobile, chaque bouton occupe toute la largeur : côte à côte, les libellés passaient sur deux lignes -->
       <div data-reveal class="mt-2 grid gap-3 sm:flex sm:flex-wrap">
-        <Button href={getRoutePath('projects', locale)} class="cta-pair group">
+        <Button href={getRoutePath('projects', locale)} shape="pill" class="cta-pair group">
           {home.ctaProjects}
           <ArrowRight aria-hidden="true" size={18} class="transition-transform duration-200 group-hover:translate-x-0.5" />
         </Button>
-        <Button href={getCvPath(locale)} variant="secondary" download class="cta-pair">
+        <Button href={getCvPath(locale)} variant="secondary" shape="pill" download class="cta-pair">
           <Download aria-hidden="true" size={18} />
           {dictionary.common.cv}
         </Button>

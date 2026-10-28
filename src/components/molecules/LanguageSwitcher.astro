@@ -22,7 +22,7 @@ const { currentLocale, alternates, label } = Astro.props;
             lang={locale}
             aria-current={locale === currentLocale ? 'true' : undefined}
             class:list={[
-              'inline-flex min-h-11 min-w-10 items-center justify-center rounded-control px-2 text-small font-semibold uppercase no-underline',
+              'inline-flex min-h-11 min-w-10 items-center justify-center rounded-full px-2 text-small font-semibold uppercase no-underline',
               locale === currentLocale ? 'text-ink' : 'text-muted hover:bg-tint hover:text-ink'
             ]}
           >

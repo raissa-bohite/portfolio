@@ -48,7 +48,7 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
         <a
           href={primaryHref}
           {...(project.liveUrl ? { target: '_blank', rel: 'noopener' } : {})}
-          class="group/primary inline-flex min-h-12 items-center gap-2 rounded-control bg-action px-6 text-base font-semibold text-action-ink no-underline transition-colors hover:bg-action-hover hover:text-action-ink"
+          class="group/primary inline-flex min-h-12 items-center gap-2 rounded-full bg-action px-6 text-base font-semibold text-action-ink no-underline transition-colors hover:bg-action-hover hover:text-action-ink"
         >
           {project.liveUrl ? labels.viewProject : labels.caseStudy}
           {project.liveUrl && <span class="sr-only">{labels.newTab}</span>}

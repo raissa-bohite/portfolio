@@ -162,7 +162,7 @@ const dictionary = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Un poste, une mission, une question ?",
+      title: "Échangeons sur votre projet",
       text: "Vous pouvez m’écrire en français, en allemand ou en anglais.",
       highlights: [
         {

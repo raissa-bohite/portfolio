@@ -35,7 +35,7 @@ const socialLinks = [
   <div class="container-page relative flex flex-col gap-10 pt-20 pb-10">
     <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,17rem)_minmax(0,1fr)_minmax(0,24rem)]">
       <div class="flex flex-col gap-5">
-        <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} />
+        <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} cursor="dot" />
         <ul class="m-0 mt-2 flex list-none flex-col gap-5 p-0">
           {
             contact.highlights.map((highlight) => {
@@ -64,9 +64,10 @@ const socialLinks = [
       <!--
         Photo au bureau, grande, entre le texte et le formulaire : le disque violet passe derrière le buste et s'arrête
         net à la ligne du bureau, un halo lavande sous la plante, la bulle de discussion près du visage.
-        Décorative et affichée seulement en grand format ; la scène mord un peu sur les gouttières sans toucher les colonnes voisines.
+        Décorative et affichée seulement en grand format : comme sur la maquette, l'ordinateur passe sous la carte du formulaire,
+        ce qui permet d'agrandir la photo sans toucher le texte.
       -->
-      <div aria-hidden="true" class="relative -mx-7 hidden self-end lg:block">
+      <div aria-hidden="true" class="relative -mr-32 -ml-7 hidden self-end lg:block">
         <div class="relative aspect-[1217/1090] w-full">
           <span class="absolute -bottom-[4%] left-[2%] aspect-square w-[38%] rounded-full bg-tint/70 dark:bg-tint/50"></span>
           <span class="absolute inset-0 overflow-hidden">
@@ -76,11 +77,11 @@ const socialLinks = [
             src={portraitDesk}
             alt=""
             widths={[480, 960]}
-            sizes="(min-width: 1024px) 520px, 1px"
+            sizes="(min-width: 1024px) 600px, 1px"
             loading="lazy"
             class="absolute bottom-0 left-0 h-auto w-full"
           />
-          <span class="absolute top-[4%] right-[16%] flex h-[58px] w-[82px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
+          <span class="absolute top-[4%] right-[30%] flex h-[58px] w-[82px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
             <span class="size-[9px] rounded-full bg-white"></span>
             <span class="size-[9px] rounded-full bg-white"></span>
             <span class="size-[9px] rounded-full bg-white"></span>
@@ -89,7 +90,7 @@ const socialLinks = [
         </div>
       </div>
 
-      <div class="self-center rounded-surface border border-glass-border bg-glass-strong p-5 shadow-glass-lg sm:p-7">
+      <div class="relative z-10 self-center rounded-surface border border-glass-border bg-[var(--material)] p-5 shadow-glass-lg sm:p-7">
         <ContactForm locale={locale} variant="card" class="relative" />
       </div>
     </div>

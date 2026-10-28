@@ -153,7 +153,7 @@ export const de: Dictionary = {
     },
     contact: {
       eyebrow: "Kontakt",
-      title: "Eine Stelle, ein Projekt, eine Frage?",
+      title: "Sprechen wir über Ihr Projekt",
       text: "Sie können mir auf Deutsch, Französisch oder Englisch schreiben.",
       highlights: [
         {

@@ -37,7 +37,7 @@ const socialLinks = [
       <div class="flex flex-col gap-5">
         <!-- Le titre déborde sur le haut de la colonne photo, vide à cet endroit : il tient ainsi sur deux lignes -->
         <div class="relative z-10 lg:w-[25rem]">
-          <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} cursor="dot" />
+          <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} cursor />
         </div>
         <ul class="m-0 mt-2 flex list-none flex-col gap-5 p-0">
           {
@@ -82,12 +82,13 @@ const socialLinks = [
             widths={[480, 960]}
             sizes="(min-width: 1024px) 600px, 1px"
             loading="lazy"
-            class="absolute bottom-0 left-0 h-auto w-full"
+            data-in-view="zoom"
+            class="absolute bottom-0 left-0 h-auto w-full origin-bottom"
           />
           <span class="absolute top-[4%] right-[30%] flex h-[58px] w-[82px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
-            <span class="size-[9px] rounded-full bg-white"></span>
-            <span class="size-[9px] rounded-full bg-white"></span>
-            <span class="size-[9px] rounded-full bg-white"></span>
+            <span class="typing-dot size-[9px] rounded-full bg-white"></span>
+            <span class="typing-dot size-[9px] rounded-full bg-white"></span>
+            <span class="typing-dot size-[9px] rounded-full bg-white"></span>
             <span class="absolute -bottom-2 left-6 size-4 rotate-45 rounded-[3px] bg-brand"></span>
           </span>
         </div>

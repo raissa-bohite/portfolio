@@ -137,7 +137,10 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
     <button
       type="button"
       data-action="again"
-      class="min-h-12 cursor-pointer rounded-control border-[1.5px] border-action bg-glass-strong px-6 transition-transform duration-150 active:scale-[0.97] font-sans text-base font-semibold text-action"
+      class:list={[
+        'min-h-12 cursor-pointer border-[1.5px] border-action bg-glass-strong px-6 transition-transform duration-150 active:scale-[0.97] font-sans text-base font-semibold text-action',
+        isCard ? 'rounded-full' : 'rounded-control'
+      ]}
     >
       {form.again}
     </button>

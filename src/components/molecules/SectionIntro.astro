@@ -10,9 +10,11 @@ type Props = {
   onDark?: boolean;
   // Sans mise en couleur : utile pour un titre très court comme « Mes projets »
   highlight?: boolean;
+  // Curseur orange après le titre, comme en haut de page
+  cursor?: boolean;
 };
 
-const { id, eyebrow, title, intro, onDark = false, highlight = true } = Astro.props;
+const { id, eyebrow, title, intro, onDark = false, highlight = true, cursor = false } = Astro.props;
 const { lead, accent } = highlight ? splitTitleAccent(title) : { lead: title, accent: '' };
 ---
 
@@ -22,8 +24,9 @@ const { lead, accent } = highlight ? splitTitleAccent(title) : { lead: title, ac
     {eyebrow}
     <span aria-hidden="true" class:list={['h-0.5 w-12 rounded-full', onDark ? 'bg-[#ffd9c2]' : 'bg-linear-to-r from-brand to-lilac']}></span>
   </p>
-  <h2 id={id} class:list={['m-0 text-h2 font-bold', onDark ? 'text-white' : 'text-ink']}>
+  <h2 id={id} class:list={['m-0 text-h2 font-bold text-balance', onDark ? 'text-white' : 'text-ink']}>
     {lead}{lead && accent && ' '}{accent && <span class={onDark ? 'text-[#ffd9c2]' : 'text-action'}>{accent}</span>}
+    {cursor && <span aria-hidden="true" class="ml-1 inline-block h-[0.08em] w-[0.45em] bg-sig align-baseline" />}
   </h2>
   {intro && <p class="m-0 text-lead">{intro}</p>}
 </div>

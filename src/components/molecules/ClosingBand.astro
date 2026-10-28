@@ -1,0 +1,61 @@
+---
+type Props = {
+  title: string;
+  text?: string;
+  // « brand » : bandeau violet foncé, titre et texte de part et d'autre d'un trait ; « tint » : bandeau lavande, texte sous le titre
+  tone?: 'brand' | 'tint';
+  class?: string;
+};
+
+const { title, text, tone = 'tint', class: className } = Astro.props;
+const isBrand = tone === 'brand';
+---
+
+<!-- Bandeau de fin de section : pastille d'icône, trait vertical, titre et texte, décor de cercles dans l'angle -->
+<div
+  class:list={[
+    'relative isolate flex flex-wrap items-center gap-x-8 gap-y-5 overflow-hidden rounded-surface px-6 py-8 sm:px-11',
+    isBrand ? 'bg-linear-to-r from-brand-deep to-brand-deeper text-white' : 'bg-tint/70 dark:bg-tint',
+    className
+  ]}
+>
+  {
+    isBrand ? (
+      <>
+        <span aria-hidden="true" class="absolute -bottom-24 -left-16 -z-10 h-40 w-52 rounded-full bg-white/[0.06]" />
+        <span aria-hidden="true" class="absolute -right-10 -bottom-28 -z-10 hidden h-44 w-80 rounded-full bg-brand/50 md:block" />
+        <span aria-hidden="true" class="absolute top-5 right-6 -z-10 hidden size-4 rounded-full bg-sig md:block" />
+      </>
+    ) : (
+      <>
+        <span aria-hidden="true" class="absolute -right-10 -bottom-16 -z-10 size-36 rounded-full bg-brand" />
+        <span aria-hidden="true" class="absolute right-16 -bottom-14 -z-10 size-24 rounded-full bg-sig" />
+      </>
+    )
+  }
+  <span
+    aria-hidden="true"
+    class:list={['flex size-16 flex-none items-center justify-center rounded-full', isBrand ? 'text-white' : 'bg-white/70 text-action dark:bg-white/10']}
+  >
+    <slot name="icon" />
+  </span>
+  {
+    isBrand ? (
+      <>
+        <p class="m-0 min-w-0 flex-[1_1_280px] text-title font-bold text-balance text-white sm:text-[1.875rem] sm:leading-[1.15]">{title}</p>
+        <span aria-hidden="true" class="hidden h-16 w-px bg-white/35 lg:block" />
+        {text && <p class="m-0 min-w-0 flex-[1_1_360px] text-base text-white/90">{text}</p>}
+      </>
+    ) : (
+      <>
+        <span aria-hidden="true" class="hidden h-16 w-0.5 bg-brand sm:block" />
+        <div class="flex min-w-0 flex-[1_1_320px] flex-col gap-2">
+          <p class="m-0 text-subtitle font-bold text-balance text-ink sm:text-title">{title}</p>
+          {text && <p class="m-0 text-base text-text">{text}</p>}
+          <slot />
+        </div>
+      </>
+    )
+  }
+  <slot name="aside" />
+</div>

@@ -38,6 +38,8 @@ const {
 const helpId = help ? `${id}-help` : undefined;
 const errorId = `${id}-error`;
 const describedBy = [helpId].filter(Boolean).join(' ') || undefined;
+// Icône facultative posée dans le champ : le texte se décale pour lui laisser la place
+const hasIcon = Astro.slots.has('icon');
 const controlClasses =
   'w-full rounded-control border-[1.5px] border-line bg-glass-strong px-4 font-sans text-base text-ink placeholder:text-muted hover:border-muted aria-invalid:border-danger';
 ---
@@ -64,19 +66,26 @@ const controlClasses =
         ))}
       </select>
     ) : (
-      <input
-        id={id}
-        name={name}
-        type={type}
-        autocomplete={autocomplete}
-        placeholder={placeholder}
-        required={required}
-        minlength={minLength}
-        maxlength={maxLength}
-        aria-describedby={describedBy}
-        data-error-id={errorId}
-        class:list={[controlClasses, 'min-h-12']}
-      />
+      <div class="relative">
+        {hasIcon && (
+          <span aria-hidden="true" class="pointer-events-none absolute top-1/2 left-4 flex -translate-y-1/2 text-muted">
+            <slot name="icon" />
+          </span>
+        )}
+        <input
+          id={id}
+          name={name}
+          type={type}
+          autocomplete={autocomplete}
+          placeholder={placeholder}
+          required={required}
+          minlength={minLength}
+          maxlength={maxLength}
+          aria-describedby={describedBy}
+          data-error-id={errorId}
+          class:list={[controlClasses, 'min-h-12', hasIcon && 'pl-12']}
+        />
+      </div>
     )
   }
   {help && <p id={helpId} class="m-0 text-sm text-muted">{help}</p>}

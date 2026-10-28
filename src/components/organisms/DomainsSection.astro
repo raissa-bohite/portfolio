@@ -1,8 +1,11 @@
 ---
-import Check from '@lucide/astro/icons/check';
-import Sparkle from '@lucide/astro/icons/sparkle';
-import Tag from '@/components/atoms/Tag.astro';
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import Bot from '@lucide/astro/icons/bot';
+import Brain from '@lucide/astro/icons/brain';
+import Monitor from '@lucide/astro/icons/monitor';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Target from '@lucide/astro/icons/target';
+import ClosingBand from '@/components/molecules/ClosingBand.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import dashboardIllustration from '@/assets/illustrations/dashboard.svg';
@@ -13,86 +16,126 @@ const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const domains = dictionary.home.domains;
 const skillsLabel = dictionary.projectPage.stack;
-// Même langage que la galerie des projets : une vignette colorée qui porte le visuel, le texte en dessous
-const tileClasses = 'relative aspect-[4/3] overflow-hidden rounded-surface';
-const floatClasses = 'absolute transition-transform duration-500 ease-out-soft group-hover:-translate-x-1.5 group-hover:-translate-y-1.5';
+const domainIcons = { dashboard: Monitor, security: ShieldCheck, ai: Brain } as const;
 ---
 
-<section aria-labelledby="domains-title" class="container-page flex flex-col gap-12 py-24">
-  <SectionHeading id="domains-title" eyebrow={domains.eyebrow} title={domains.title} />
-  <div data-scroll-group class="grid gap-x-8 gap-y-14 md:grid-cols-3">
-    {
-      domains.items.map((domain) => (
-        <article data-scroll-item class="group flex flex-col gap-5">
-          {domain.icon === 'dashboard' && (
-            <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-[#6d3fd6] to-[#4a23a0]`}>
-              <div class={`${floatClasses} top-[16%] left-[12%] w-[112%] overflow-hidden rounded-tl-[14px] bg-white shadow-[0_24px_50px_-18px_rgb(0_0_0/0.5)]`}>
-                <div class="flex gap-1 border-b border-[#ece6f6] px-2.5 py-1.5">
-                  <span class="size-1.5 rounded-full bg-[#ff5f57]" />
-                  <span class="size-1.5 rounded-full bg-[#febc2e]" />
-                  <span class="size-1.5 rounded-full bg-[#28c840]" />
+<section aria-labelledby="domains-title" class="relative overflow-hidden">
+  <span aria-hidden="true" class="absolute -top-32 -right-24 size-64 rounded-full bg-tint/80 dark:bg-tint/50"></span>
+  <span aria-hidden="true" class="absolute top-20 right-48 hidden size-4 rounded-full bg-sig md:block"></span>
+
+  <div class="container-page relative flex flex-col gap-10 py-20">
+    <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} highlight={false} cursor />
+
+    <div data-scroll-group class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        domains.items.map((domain) => {
+          const Icon = domainIcons[domain.icon as keyof typeof domainIcons] ?? Monitor;
+          const isAi = domain.icon === 'ai';
+          return (
+            <article
+              data-scroll-item
+              class:list={[
+                'relative flex flex-col gap-4 overflow-hidden rounded-surface border p-7 shadow-glass',
+                isAi
+                  ? 'border-[#fbe3d3] bg-linear-to-b from-bg from-40% to-[#fff4ec] dark:border-glass-border dark:from-glass-strong dark:to-[#2a1530]'
+                  : 'border-glass-border bg-glass-strong'
+              ]}
+            >
+              <div class="flex min-h-36 items-start justify-between gap-3">
+                <span
+                  aria-hidden="true"
+                  class:list={[
+                    'flex size-14 flex-none items-center justify-center rounded-[14px]',
+                    isAi ? 'bg-[#fde3d2] text-[#e0590c]' : 'bg-linear-to-br from-brand to-brand-deep text-white'
+                  ]}
+                >
+                  <Icon size={26} />
+                </span>
+
+                <!-- Illustration propre à chaque domaine, décorative -->
+                <div aria-hidden="true" class="relative h-32 w-48 flex-none">
+                  {domain.icon === 'dashboard' && (
+                    <>
+                      <span class="absolute inset-y-0 right-0 left-5 rounded-full bg-tint/70 dark:bg-tint" />
+                      <span class="absolute top-2 left-0 w-40 overflow-hidden rounded-lg bg-white shadow-[0_10px_24px_rgb(30_15_69/0.18)]">
+                        <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
+                      </span>
+                      <span class="absolute right-0 bottom-1.5 flex items-end gap-1 rounded-[10px] bg-white px-3 py-2.5 shadow-[0_8px_20px_rgb(30_15_69/0.14)]">
+                        <span class="h-3.5 w-[7px] rounded-[2px] bg-sig" />
+                        <span class="h-6 w-[7px] rounded-[2px] bg-[#f5a25d]" />
+                        <span class="h-8 w-[7px] rounded-[2px] bg-brand" />
+                      </span>
+                    </>
+                  )}
+                  {domain.icon === 'security' && (
+                    <>
+                      <span class="absolute top-0 left-0 flex h-28 w-44 flex-col gap-[7px] rounded-[10px] bg-[#1b1530] p-2.5 shadow-[0_12px_26px_rgb(30_15_69/0.25)]">
+                        <span class="flex gap-1">
+                          <span class="size-1.5 rounded-full bg-sig" />
+                          <span class="size-1.5 rounded-full bg-[#f5a25d]" />
+                          <span class="size-1.5 rounded-full bg-[#6ccf8e]" />
+                        </span>
+                        <span class="h-[5px] w-[70%] rounded-full bg-[#8b63ea]" />
+                        <span class="ml-3 h-[5px] w-[50%] rounded-full bg-[#4c4570]" />
+                        <span class="ml-3 h-[5px] w-[62%] rounded-full bg-lilac" />
+                        <span class="h-[5px] w-[40%] rounded-full bg-[#4c4570]" />
+                        <span class="h-[5px] w-[58%] rounded-full bg-[#8b63ea]" />
+                      </span>
+                      <span class="absolute right-0 bottom-0 flex size-16 items-center justify-center rounded-[14px] bg-white shadow-[0_10px_22px_rgb(30_15_69/0.16)]">
+                        <span class="flex size-10 items-center justify-center rounded-xl bg-[#1f9d55] text-white">
+                          <ShieldCheck size={22} />
+                        </span>
+                      </span>
+                    </>
+                  )}
+                  {isAi && (
+                    <>
+                      <span class="absolute top-9 left-0 flex h-[88px] w-[150px] flex-col gap-2.5 rounded-[14px] bg-white p-3.5 shadow-[0_12px_26px_rgb(30_15_69/0.14)]">
+                        <span class="h-1.5 w-[75%] rounded-full bg-brand" />
+                        <span class="h-1.5 w-[55%] rounded-full bg-lilac" />
+                        <span class="h-1.5 w-[65%] rounded-full bg-brand" />
+                      </span>
+                      <span class="absolute top-0 right-1 flex size-16 items-center justify-center rounded-full bg-tint text-action">
+                        <Bot size={30} />
+                      </span>
+                    </>
+                  )}
                 </div>
-                <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
               </div>
-            </div>
-          )}
 
-          {domain.icon === 'security' && (
-            <div aria-hidden="true" class={`${tileClasses} bg-tint dark:bg-[#2a1a5c]`}>
-              <pre
-                class={`${floatClasses} top-[14%] left-[10%] m-0 w-[104%] rounded-tl-[14px] bg-[#1e0f45] p-5 font-mono text-[12px] leading-[1.75] text-[#d6ccf2] shadow-[0_24px_50px_-18px_rgb(30_15_69/0.6)]`}
-              ><span class="text-[#9c90c4]">// contact-handler.ts</span>
-if (!isSameOrigin(request))
-  return jsonResponse(403, …);
-const parsed = contactSchema
-  .safeParse(payload);
+              <h3 class="m-0 text-title font-extrabold text-ink">{domain.title}</h3>
+              <p class="m-0 text-base text-text">{domain.text}</p>
+              <ul class="m-0 mt-auto flex list-none flex-wrap gap-2 p-0 pt-1.5" aria-label={skillsLabel}>
+                {domain.skills.map((skill) => (
+                  <li>
+                    <span
+                      class:list={[
+                        'inline-block rounded-full px-3 py-1.5 text-[13px] font-medium',
+                        isAi ? 'bg-[#fde8dc] text-[#a33f08] dark:bg-[#4a2318] dark:text-[#ffc7a6]' : 'bg-tint text-tint-ink'
+                      ]}
+                    >
+                      {skill}
+                    </span>
+                  </li>
+                ))}
+              </ul>
 
-<span class="text-[#9c90c4]">// headers</span>
-<span class="text-[#ff9a5c]">Content-Security-Policy</span>:
-  default-src 'self'</pre>
-            </div>
-          )}
+              <span
+                aria-hidden="true"
+                class:list={[
+                  'absolute -right-10 -bottom-10 size-28 rotate-0 rounded-full border-2 border-r-transparent border-b-transparent',
+                  isAi ? 'border-sig' : 'border-brand',
+                  domain.icon === 'security' && 'hidden'
+                ]}
+              />
+            </article>
+          );
+        })
+      }
+    </div>
 
-          {domain.icon === 'ai' && (
-            <div aria-hidden="true" class={`${tileClasses} bg-linear-to-br from-[#f58a45] to-[#e0590c]`}>
-              <div class={`${floatClasses} top-[14%] left-[12%] flex w-full flex-col gap-3 rounded-tl-[14px] bg-white p-5 shadow-[0_24px_50px_-18px_rgb(80_20_0/0.45)]`}>
-                <div class="flex items-center gap-2 self-end rounded-full bg-[#e7deff] px-4 py-2.5">
-                  <span class="h-2 w-24 rounded-full bg-[#4a23a0]/70" />
-                  <span class="h-2 w-10 rounded-full bg-[#4a23a0]/40" />
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="flex size-8 flex-none items-center justify-center rounded-full bg-[#f26a1b] text-white">
-                    <Sparkle size={16} />
-                  </span>
-                  <div class="flex flex-1 flex-col gap-2 rounded-2xl rounded-tl-sm bg-[#faf8ff] p-3.5">
-                    <span class="h-2 w-[85%] rounded-full bg-[#1e0f45]/70" />
-                    <span class="h-2 w-[65%] rounded-full bg-[#1e0f45]/35" />
-                    <span class="h-2 w-[75%] rounded-full bg-[#1e0f45]/35" />
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 pl-11">
-                  <span class="flex size-5 items-center justify-center rounded-full bg-[#28c840] text-white">
-                    <Check size={12} />
-                  </span>
-                  <span class="h-2 w-20 rounded-full bg-[#28c840]/50" />
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div class="flex flex-col gap-3">
-            <h3 class="m-0 text-title font-bold text-ink">{domain.title}</h3>
-            <p class="m-0">{domain.text}</p>
-            <ul class="m-0 mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={skillsLabel}>
-              {domain.skills.map((skill) => (
-                <li>
-                  <Tag>{skill}</Tag>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </article>
-      ))
-    }
+    <ClosingBand tone="brand" title={domains.closing.title} text={domains.closing.text}>
+      <Target slot="icon" size={44} />
+    </ClosingBand>
   </div>
 </section>

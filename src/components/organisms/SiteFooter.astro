@@ -2,6 +2,8 @@
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
+import logoMark from '@/assets/brand/rb-mark.svg';
+import logoMarkDark from '@/assets/brand/rb-mark-dark.svg';
 
 type Props = { locale: Locale };
 
@@ -11,7 +13,11 @@ const dictionary = getDictionary(locale);
 
 <footer class="container-page relative pt-6 pb-10">
   <div class="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-sm text-muted">
-    <p class="m-0">{dictionary.footer.copyright}</p>
+    <p class="m-0 flex items-center gap-3">
+      <img src={logoMark.src} alt="" width="28" height="28" class="size-7 dark:hidden" />
+      <img src={logoMarkDark.src} alt="" width="28" height="28" class="hidden size-7 dark:block" />
+      {dictionary.footer.copyright}
+    </p>
     <nav aria-label={dictionary.footer.secondaryLabel}>
       <ul class="m-0 flex list-none flex-wrap gap-x-6 gap-y-1 p-0">
         <li><a href={getCvPath(locale)} class="inline-flex min-h-11 items-center" download>{dictionary.footer.cv}</a></li>

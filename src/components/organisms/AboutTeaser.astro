@@ -1,60 +1,142 @@
 ---
+import { Image } from 'astro:assets';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import SectionHeading from '@/components/molecules/SectionHeading.astro';
+import Code from '@lucide/astro/icons/code-xml';
+import GraduationCap from '@lucide/astro/icons/graduation-cap';
+import Rocket from '@lucide/astro/icons/rocket';
+import ShieldCheck from '@lucide/astro/icons/shield-check';
+import Sprout from '@lucide/astro/icons/sprout';
+import ClosingBand from '@/components/molecules/ClosingBand.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
+import portrait from '@/assets/portrait/portrait-cutout.png';
+import fassbarCover from '@/assets/projects/fassbar.jpg';
 
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const about = dictionary.home.about;
+const aboutPage = dictionary.aboutPage;
+const steps = aboutPage.timeline.steps;
+// La dernière phrase de « Mon histoire » résume le fil conducteur du parcours
+const storyQuote = aboutPage.story.paragraphs.at(-1);
+const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
 ---
 
-<!-- Parcours en frise horizontale : le portrait est déjà en haut de page, la section raconte le chemin -->
-<section aria-labelledby="about-title" class="container-page flex flex-col gap-12 py-24">
-  <div data-scroll-group class="grid gap-6 lg:grid-cols-12 lg:items-end">
-    <div data-scroll-item class="lg:col-span-7">
-      <SectionHeading id="about-title" eyebrow={about.eyebrow} title={about.title} />
+<section aria-labelledby="about-title" class="relative overflow-hidden">
+  <span aria-hidden="true" class="absolute top-10 right-[6%] hidden h-16 w-20 bg-[radial-gradient(circle,#b9a4f5_2px,transparent_2.5px)] bg-size-[21px_21px] md:block"></span>
+
+  <div class="container-page relative flex flex-col gap-8 py-20">
+    <div class="flex flex-wrap items-end gap-6">
+      <div class="flex flex-[1_1_440px] flex-col gap-4 pb-6 md:pb-10">
+        <SectionIntro id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.text} highlight={false} cursor />
+      </div>
+      <div aria-hidden="true" class="relative hidden h-[330px] flex-[1_1_420px] sm:block">
+        <span class="absolute bottom-0 left-[70px] h-[300px] w-[330px] rounded-t-full bg-tint dark:bg-tint/80"></span>
+        <span class="absolute -bottom-5 left-10 size-[330px] -rotate-[30deg] rounded-full border-2 border-[#f5a25d] border-r-transparent border-b-transparent"></span>
+        <Image
+          src={portrait}
+          alt=""
+          widths={[400, 740]}
+          sizes="370px"
+          loading="lazy"
+          class="absolute bottom-0 left-[50px] h-[340px] w-[370px] object-contain object-bottom"
+        />
+      </div>
     </div>
-    <div data-scroll-item class="flex flex-col gap-4 lg:col-span-5">
-      <p class="m-0 text-lg">{about.text}</p>
+
+    <ol data-scroll-group aria-label={aboutPage.timeline.title} class="relative m-0 flex list-none flex-col gap-7 p-0">
+      <!-- Axe de la frise : à gauche sur mobile, au centre à partir du format tablette -->
+      <li aria-hidden="true" class="absolute top-0 bottom-0 left-[29px] w-0.5 bg-[#d9cef9] md:left-1/2 md:-ml-px dark:bg-white/15"></li>
+      {
+        steps.map((step, index) => {
+          const Icon = stepIcons[index] ?? Code;
+          const isCurrent = index === steps.length - 1;
+          const isLeft = index % 2 === 0;
+          return (
+            <li data-scroll-item class="relative grid grid-cols-[60px_minmax(0,1fr)] items-center gap-x-6 gap-y-4 md:grid-cols-[minmax(0,1fr)_60px_minmax(0,1fr)]">
+              <span
+                data-scroll-pop
+                aria-hidden="true"
+                class:list={[
+                  'relative col-start-1 row-start-1 flex size-[60px] items-center justify-center rounded-full text-white shadow-[0_0_0_8px_var(--bg)] md:col-start-2',
+                  isCurrent ? 'bg-sig' : 'bg-linear-to-br from-[#8b63ea] to-brand-deep'
+                ]}
+              >
+                <Icon size={26} />
+              </span>
+              <article
+                class:list={[
+                  'col-start-2 row-start-1 flex gap-5 rounded-[20px] bg-glass-strong p-6 shadow-glass',
+                  isLeft ? 'md:col-start-1' : 'md:col-start-3',
+                  isCurrent ? 'border-2 border-[#f5a25d]' : 'border border-glass-border'
+                ]}
+              >
+                <div class="flex min-w-0 flex-1 flex-col gap-2.5">
+                  <span
+                    class:list={[
+                      'self-start rounded-full px-3 py-1 text-sm font-bold',
+                      isCurrent ? 'bg-[#fde8dc] text-sig-text dark:bg-[#4a2318]' : 'bg-tint text-tint-ink'
+                    ]}
+                  >
+                    {step.period}
+                  </span>
+                  <h3 class="m-0 text-subtitle font-extrabold text-ink">{step.title}</h3>
+                  <p class="m-0 text-sm font-semibold text-action">{step.place}</p>
+                </div>
+                <div aria-hidden="true" class="hidden w-36 flex-none overflow-hidden rounded-2xl sm:block">
+                  {index === 0 && (
+                    <span class="flex h-full items-center justify-center bg-linear-to-br from-[#f3effd] to-[#ddd2fa] text-brand">
+                      <GraduationCap size={56} />
+                    </span>
+                  )}
+                  {index === 1 && (
+                    <span class="flex h-full items-center justify-center bg-[#1b1530] text-lilac">
+                      <Code size={56} />
+                    </span>
+                  )}
+                  {index === 2 && (
+                    <span class="flex h-full items-center justify-center bg-linear-to-br from-[#8b63ea] to-brand-deep text-white">
+                      <ShieldCheck size={56} />
+                    </span>
+                  )}
+                  {isCurrent && (
+                    <Image src={fassbarCover} alt="" widths={[300]} sizes="144px" loading="lazy" class="h-full w-full object-cover object-left-top" />
+                  )}
+                </div>
+              </article>
+              {index === 0 && storyQuote && (
+                <p class="col-start-2 m-0 text-body-lg text-action italic md:col-start-3 md:row-start-1 md:pl-5">« {storyQuote} »</p>
+              )}
+            </li>
+          );
+        })
+      }
+    </ol>
+
+    <ClosingBand title={aboutPage.awards.title} class="mt-5 lg:pr-40">
+      <Sprout slot="icon" size={32} />
+      <ul class="m-0 flex list-none flex-wrap gap-2 p-0 text-sm font-semibold text-tint-ink">
+        {
+          aboutPage.awards.items.map((award) => (
+            <li class="rounded-full bg-white px-3.5 py-1.5 dark:bg-white/10">
+              {award.title}
+              {award.rank !== 'first' && <span class="font-medium text-text"> · {award.badge}</span>}
+            </li>
+          ))
+        }
+      </ul>
       <a
+        slot="aside"
         href={getRoutePath('about', locale)}
-        class="group inline-flex min-h-12 items-center gap-2 self-start text-base font-semibold underline decoration-[1.5px] underline-offset-[5px]"
+        class="relative inline-flex min-h-12 items-center gap-3 rounded-full bg-action px-6 text-base font-bold text-action-ink no-underline transition-colors hover:bg-action-hover"
       >
         {about.link}
-        <ArrowRight aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-x-1" />
+        <ArrowRight aria-hidden="true" size={18} />
       </a>
-    </div>
+    </ClosingBand>
   </div>
-
-  <ol data-scroll-group class="relative m-0 grid list-none gap-5 p-0 md:grid-cols-3">
-    <!-- Ligne de la frise, derrière les pastilles -->
-    <span aria-hidden="true" class="absolute top-[11px] right-[16%] left-[16%] hidden h-0.5 rounded-full bg-line md:block"></span>
-    {
-      about.timeline.map((milestone) => (
-        <li data-scroll-item class="relative flex flex-col items-start gap-5 md:items-center">
-          <span
-            data-scroll-pop
-            aria-hidden="true"
-            class:list={[
-              'relative z-10 hidden size-6 rounded-full border-[3px] md:block',
-              milestone.current ? 'border-sig bg-sig shadow-[0_0_0_7px_rgb(242_106_27/0.18)]' : 'border-action bg-bg'
-            ]}
-          />
-          <div
-            class:list={[
-              'flex w-full flex-1 flex-col gap-2 rounded-surface border p-6 shadow-glass',
-              milestone.current ? 'border-sig bg-bg' : 'border-glass-border bg-glass-strong'
-            ]}
-          >
-            <span class:list={['font-mono text-sm font-semibold', milestone.current ? 'text-sig-text' : 'text-action']}>{milestone.period}</span>
-            <span class="text-base leading-snug font-semibold text-ink">{milestone.text}</span>
-          </div>
-        </li>
-      ))
-    }
-  </ol>
 </section>

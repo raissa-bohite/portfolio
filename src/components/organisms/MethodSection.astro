@@ -1,18 +1,20 @@
 ---
+import { Image } from 'astro:assets';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import CircleCheck from '@lucide/astro/icons/circle-check';
 import Code from '@lucide/astro/icons/code-xml';
 import Lightbulb from '@lucide/astro/icons/lightbulb';
 import PenTool from '@lucide/astro/icons/pen-tool';
 import Search from '@lucide/astro/icons/search';
-import Shield from '@lucide/astro/icons/shield';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
-import Target from '@lucide/astro/icons/target';
-import User from '@lucide/astro/icons/user';
 import ClosingBand from '@/components/molecules/ClosingBand.astro';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { formatMessage, getDictionary } from '@/i18n/translate';
+import buildIllustration from '@/assets/method/build.png';
+import designIllustration from '@/assets/method/design.png';
+import understandIllustration from '@/assets/method/understand.png';
+import verifyIllustration from '@/assets/method/verify.png';
 
 type Props = { locale: Locale };
 
@@ -21,6 +23,8 @@ const method = getDictionary(locale).home.method;
 // Une pastille par étape : violet foncé, lavande, violet foncé, orange pour la dernière
 const badgeClasses = ['bg-brand-deeper text-white', 'bg-brand text-white', 'bg-brand-deeper text-white', 'bg-sig text-[#1e0f45]'];
 const flowIcons = [Search, PenTool, Code, ShieldCheck];
+// Une illustration par étape, dans l'ordre comprendre, concevoir, construire, vérifier
+const stepIllustrations = [understandIllustration, designIllustration, buildIllustration, verifyIllustration];
 ---
 
 <section aria-labelledby="method-title" class="relative overflow-hidden bg-tint/45 dark:bg-white/[0.03]">
@@ -34,93 +38,17 @@ const flowIcons = [Search, PenTool, Code, ShieldCheck];
     <ol data-scroll-group aria-label={method.listLabel} class="m-0 grid list-none gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
       {
         method.steps.map((step, index) => (
-          <li data-scroll-item class="relative flex flex-col gap-3.5 rounded-surface border border-glass-border bg-glass-strong p-6 shadow-glass">
-            <!-- Illustration de l'étape, décorative -->
-            <div aria-hidden="true" class="relative h-[170px]">
-              {index === 0 && (
-                <>
-                  <span class="absolute inset-[10px_20px_0_10px] rounded-full bg-tint/70 dark:bg-tint" />
-                  <span class="absolute top-6 left-6 h-[120px] w-[190px] overflow-hidden rounded-xl bg-white shadow-[0_10px_24px_rgb(30_15_69/0.12)]">
-                    <span class="block h-5 bg-[#e6ddfb]" />
-                    <span class="flex flex-col gap-2 pt-4 pr-4 pl-[70px]">
-                      <span class="h-1.5 rounded-full bg-[#d9cef9]" />
-                      <span class="h-1.5 w-[70%] rounded-full bg-[#d9cef9]" />
-                    </span>
-                  </span>
-                  <span class="absolute top-[74px] left-2 flex size-[54px] items-center justify-center rounded-[14px] bg-white text-brand shadow-[0_8px_20px_rgb(30_15_69/0.14)]">
-                    <Target size={28} />
-                  </span>
-                  <span class="absolute top-[52px] left-24 flex size-[30px] items-center justify-center rounded-full bg-[#fde3d2] text-brand">
-                    <User size={16} />
-                  </span>
-                  <span class="absolute top-[100px] left-24 flex size-[30px] items-center justify-center rounded-full bg-tint text-brand">
-                    <User size={16} />
-                  </span>
-                </>
-              )}
-              {index === 1 && (
-                <>
-                  <span class="absolute inset-[10px_10px_0_20px] rounded-full bg-tint/70 dark:bg-tint" />
-                  <span class="absolute top-[22px] left-[30px] h-[126px] w-[200px] -rotate-[8deg] overflow-hidden rounded-xl bg-white shadow-[0_12px_26px_rgb(30_15_69/0.14)]">
-                    <span class="block h-4 bg-brand" />
-                    <span class="flex gap-2.5 p-3">
-                      <span class="flex flex-1 flex-col gap-[7px]">
-                        <span class="h-1.5 rounded-full bg-[#d9cef9]" />
-                        <span class="h-1.5 rounded-full bg-[#d9cef9]" />
-                        <span class="h-1.5 w-[60%] rounded-full bg-[#d9cef9]" />
-                      </span>
-                      <span class="h-[60px] w-[70px] rounded-md border-2 border-[#d9cef9]" />
-                    </span>
-                  </span>
-                  <span class="absolute bottom-1.5 left-3 h-9 w-[46px] -rotate-[10deg] rounded-lg bg-[#f5a25d]" />
-                  <span class="absolute top-[30px] right-2 flex size-[54px] items-center justify-center rounded-[14px] bg-white text-brand shadow-[0_8px_20px_rgb(30_15_69/0.14)]">
-                    <PenTool size={28} />
-                  </span>
-                </>
-              )}
-              {index === 2 && (
-                <>
-                  <span class="absolute top-3.5 left-3.5 flex h-[136px] w-[200px] flex-col gap-2 rounded-xl bg-[#1b1530] p-3 shadow-[0_14px_30px_rgb(30_15_69/0.28)]">
-                    <span class="flex gap-1">
-                      <span class="size-1.5 rounded-full bg-sig" />
-                      <span class="size-1.5 rounded-full bg-[#f5a25d]" />
-                      <span class="size-1.5 rounded-full bg-[#6ccf8e]" />
-                    </span>
-                    <span class="h-[5px] w-[64%] rounded-full bg-[#8b63ea]" />
-                    <span class="ml-3.5 h-[5px] w-[48%] rounded-full bg-[#6ccf8e]" />
-                    <span class="ml-3.5 h-[5px] w-[70%] rounded-full bg-lilac" />
-                    <span class="ml-7 h-[5px] w-[40%] rounded-full bg-[#f5a25d]" />
-                    <span class="h-[5px] w-[56%] rounded-full bg-[#8b63ea]" />
-                    <span class="h-[5px] w-[30%] rounded-full bg-[#4c4570]" />
-                  </span>
-                  <span class="absolute top-3.5 right-1.5 flex size-[50px] items-center justify-center rounded-[14px] bg-[#e6ddfb] text-brand">
-                    <Code size={26} />
-                  </span>
-                  <span class="absolute top-[84px] right-5 flex size-[50px] items-center justify-center rounded-[14px] bg-white text-brand shadow-[0_8px_20px_rgb(30_15_69/0.14)]">
-                    <Shield size={24} />
-                  </span>
-                </>
-              )}
-              {index === 3 && (
-                <>
-                  <span class="absolute inset-[10px_10px_0_10px] rounded-full bg-tint/70 dark:bg-tint" />
-                  <span class="absolute top-[34px] left-[18px] flex h-[116px] w-[92px] flex-col gap-3 rounded-xl bg-white p-3 shadow-[0_10px_24px_rgb(30_15_69/0.12)]">
-                    {[0, 1, 2].map(() => (
-                      <span class="flex items-center gap-1.5 text-brand">
-                        <CircleCheck size={14} />
-                        <span class="h-[5px] flex-1 rounded-full bg-[#d9cef9]" />
-                      </span>
-                    ))}
-                  </span>
-                  <span class="absolute top-[70px] left-[118px] flex h-14 w-[50px] items-center justify-center rounded-[12px_12px_22px_22px] bg-brand text-white">
-                    <ShieldCheck size={26} />
-                  </span>
-                  <span class="absolute top-[26px] right-[18px] h-28 w-[58px] rounded-[14px] border-[3px] border-brand-deeper bg-white" />
-                  <span class="absolute top-[108px] left-40 flex size-[30px] items-center justify-center rounded-full bg-[#1f9d55] text-white">
-                    <CircleCheck size={18} />
-                  </span>
-                </>
-              )}
+          <li data-scroll-item class="group relative flex flex-col gap-3.5 rounded-surface border border-glass-border bg-glass-strong p-6 shadow-glass">
+            <!-- Illustration de l'étape, décorative : images 3D générées, fond détouré pour suivre le thème clair ou sombre -->
+            <div aria-hidden="true" class="flex h-[170px] items-center justify-center">
+              <Image
+                src={stepIllustrations[index] ?? understandIllustration}
+                alt=""
+                widths={[320, 640]}
+                sizes="(min-width: 1024px) 260px, (min-width: 640px) 40vw, 80vw"
+                loading="lazy"
+                class="h-full w-auto max-w-full object-contain transition-transform duration-500 ease-out-soft group-hover:-translate-y-1"
+              />
             </div>
 
             <span aria-hidden="true" class:list={['flex size-[52px] items-center justify-center rounded-full text-lg font-bold', badgeClasses[index]]}>

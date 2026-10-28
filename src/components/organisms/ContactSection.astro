@@ -1,13 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import BriefcaseBusiness from '@lucide/astro/icons/briefcase-business';
-import FolderGit from '@lucide/astro/icons/folder-git-2';
 import Heart from '@lucide/astro/icons/heart';
 import Mail from '@lucide/astro/icons/mail';
 import MapPin from '@lucide/astro/icons/map-pin';
 import MessageSquare from '@lucide/astro/icons/message-square';
 import Undo2 from '@lucide/astro/icons/undo-2';
 import Zap from '@lucide/astro/icons/zap';
+import BrandIcon from '@/components/atoms/BrandIcon.astro';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import ContactForm from '@/components/organisms/ContactForm.astro';
 import type { Locale } from '@/i18n/config';
@@ -21,11 +20,10 @@ const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const contact = dictionary.home.contact;
 const highlightIcons = { zap: Zap, message: MessageSquare, heart: Heart } as const;
-// Lucide ne fournit plus de logos de marque : des pictogrammes neutres, le nom reste écrit en clair
 const socialLinks = [
-  { label: 'LinkedIn', href: profile.linkedinUrl, Icon: BriefcaseBusiness },
-  { label: 'GitHub', href: profile.githubUrl, Icon: FolderGit }
-];
+  { label: 'LinkedIn', href: profile.linkedinUrl, brand: 'linkedin' },
+  { label: 'GitHub', href: profile.githubUrl, brand: 'github' }
+] as const;
 ---
 
 <section id="contact" aria-labelledby="contact-title" class="relative overflow-hidden">
@@ -119,7 +117,7 @@ const socialLinks = [
       <span aria-hidden="true" class="hidden h-[52px] w-px bg-[#d9cef9] md:block dark:bg-white/15"></span>
       <ul class="m-0 flex list-none flex-wrap gap-2.5 p-0 sm:mr-10">
         {
-          socialLinks.map(({ label, href, Icon }) => (
+          socialLinks.map(({ label, href, brand }) => (
             <li>
               <a
                 href={href}
@@ -127,7 +125,7 @@ const socialLinks = [
                 class="flex min-h-[46px] items-center gap-2.5 rounded-full bg-white py-1.5 pr-5 pl-1.5 text-small font-semibold text-tint-ink no-underline dark:bg-white/10"
               >
                 <span aria-hidden="true" class="flex size-[34px] items-center justify-center rounded-full bg-tint">
-                  <Icon size={18} />
+                  <BrandIcon brand={brand} class="size-[18px]" />
                 </span>
                 {label}
               </a>

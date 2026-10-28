@@ -289,3 +289,18 @@
     translate: 0 -4px;
   }
 }
+
+/* Logos de marque utilisés en masque : la forme vient du fichier, la couleur du texte (voir BrandIcon.astro) */
+.brand-icon {
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.brand-icon-linkedin {
+  mask-image: url('../assets/brand/linkedin.svg');
+}
+
+.brand-icon-github {
+  mask-image: url('../assets/brand/github.svg');
+}

@@ -2,6 +2,7 @@
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import Copy from '@lucide/astro/icons/copy';
 import Download from '@lucide/astro/icons/download';
+import BrandIcon from '@/components/atoms/BrandIcon.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
@@ -13,9 +14,9 @@ const { locale, class: className } = Astro.props;
 const dictionary = getDictionary(locale);
 const page = dictionary.contactPage;
 const links = [
-  { href: profile.linkedinUrl, label: 'LinkedIn', external: true },
-  { href: profile.githubUrl, label: 'GitHub', external: true },
-  { href: getCvPath(locale), label: dictionary.common.cv, external: false }
+  { href: profile.linkedinUrl, label: 'LinkedIn', external: true, brand: 'linkedin' as const },
+  { href: profile.githubUrl, label: 'GitHub', external: true, brand: 'github' as const },
+  { href: getCvPath(locale), label: dictionary.common.cv, external: false, brand: undefined }
 ];
 ---
 
@@ -57,7 +58,10 @@ const links = [
           download={link.external ? undefined : true}
           class="group flex min-h-12 items-center justify-between border-t border-white/20 font-semibold text-white no-underline hover:text-white focus-visible:outline-white"
         >
-          {link.label}
+          <span class="flex items-center gap-3">
+            {link.brand && <BrandIcon brand={link.brand} class="size-[18px]" />}
+            {link.label}
+          </span>
           {link.external ? (
             <ArrowUpRight aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           ) : (

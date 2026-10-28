@@ -1,10 +1,15 @@
 ---
-import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import MessageSquare from '@lucide/astro/icons/message-square';
+import ClosingBand from '@/components/molecules/ClosingBand.astro';
+import FeaturedProject from '@/components/molecules/FeaturedProject.astro';
 import ProjectRow from '@/components/molecules/ProjectRow.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
+import { ALL_CATEGORIES, listCategoryOptions } from '@/lib/project-filter';
 import { getProjectSummaries } from '@/lib/projects';
 
 type Props = { locale: Locale };
@@ -12,30 +17,89 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const dictionary = getDictionary(locale);
 const page = dictionary.projectsPage;
+const contact = dictionary.home.contact;
 const projects = await getProjectSummaries(locale);
+const [featuredProject, ...otherProjects] = projects;
 const alternates = getAlternateLinks((alternateLocale) => getRoutePath('projects', alternateLocale));
+const categoryOptions = listCategoryOptions(projects.map((project) => project.category));
+const filterButtonClasses =
+  'min-h-11 cursor-pointer rounded-full border px-[18px] font-sans text-small font-semibold transition-colors aria-pressed:border-action aria-pressed:bg-action aria-pressed:font-bold aria-pressed:text-action-ink border-line bg-bg text-tint-ink hover:border-action';
 ---
 
 <BaseLayout locale={locale} title={page.seoTitle} description={page.seoDescription} currentRoute="projects" alternates={alternates}>
-  <section data-scroll-group class="container-page flex flex-col gap-4 pt-16 pb-12">
-    <div data-scroll-item class="flex flex-col gap-3">
-      <Eyebrow>{page.eyebrow}</Eyebrow>
-      <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{page.title}</h1>
+  <section aria-labelledby="projects-page-title" class="relative overflow-hidden">
+    <span aria-hidden="true" class="absolute top-2 -right-16 hidden size-64 rounded-full bg-tint/80 md:block dark:bg-tint/50"></span>
+    <span aria-hidden="true" class="absolute top-16 right-64 hidden size-4 rounded-full bg-sig md:block"></span>
+    <div class="container-page relative flex flex-wrap items-end justify-between gap-8 pt-16 pb-12">
+      <SectionIntro id="projects-page-title" eyebrow={page.eyebrow} title={page.title} intro={page.intro} highlight={false} cursor level="page" />
+
+      <!-- Filtre par type : boutons à bascule, le nombre de projets affichés est annoncé aux lecteurs d'écran -->
+      <div data-project-filter class="flex max-w-[30rem] flex-col items-end gap-2">
+        <div role="group" aria-label={page.filterLabel} class="flex flex-wrap justify-end gap-2">
+          <button type="button" data-filter-value={ALL_CATEGORIES} aria-pressed="true" class={filterButtonClasses}>
+            {page.filterAll} · {projects.length}
+          </button>
+          {
+            categoryOptions.map((option) => (
+              <button type="button" data-filter-value={option.value} aria-pressed="false" class={filterButtonClasses}>
+                {option.label}
+              </button>
+            ))
+          }
+        </div>
+        <p data-filter-status data-template={page.resultsCount} role="status" class="sr-only"></p>
+      </div>
     </div>
-    <p data-scroll-item class="m-0 max-w-[60ch] text-lead">{page.intro}</p>
   </section>
-  <!-- Projets en lignes alternées : la vignette colorée change de côté à chaque projet -->
-  <section aria-label={page.eyebrow} data-scroll-group class="container-page flex flex-col gap-24 pt-8 pb-24">
+
+  <div class="container-page flex flex-col gap-12 pb-24">
     {
-      projects.map((project, index) => (
-        <ProjectRow
-          project={project}
-          position={index + 1}
-          actionLabel={project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
-          stackLabel={dictionary.projectPage.stack}
-          reversed={index % 2 === 1}
-        />
-      ))
+      featuredProject && (
+        <div data-filter-item data-category={featuredProject.category} data-scroll-group>
+          <FeaturedProject
+            project={featuredProject}
+            labels={{ viewProject: dictionary.common.viewProject, caseStudy: dictionary.common.caseStudy, newTab: dictionary.common.newTab }}
+            note={dictionary.home.projects.featuredNote}
+            position={1}
+          />
+        </div>
+      )
     }
-  </section>
+
+    <div data-scroll-group class="flex flex-col gap-12">
+      {
+        otherProjects.map((project, index) => (
+          <div data-filter-item data-category={project.category}>
+            <ProjectRow
+              project={project}
+              position={index + 2}
+              actionLabel={project.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
+              stackLabel={dictionary.projectPage.stack}
+              pendingLabel={page.caseStudySoon}
+              reversed={index % 2 === 1}
+              highlightNumber={index === otherProjects.length - 1}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <ClosingBand tone="brand" title={contact.title} text={contact.text} class="mt-6">
+      <MessageSquare slot="icon" size={40} />
+      <a
+        slot="aside"
+        href={getRoutePath('contact', locale)}
+        class="relative inline-flex min-h-14 items-center gap-3 rounded-full bg-white px-7 text-base font-bold text-brand-deeper no-underline transition-transform duration-200 hover:-translate-y-0.5 hover:text-brand-deeper focus-visible:outline-white"
+      >
+        {dictionary.nav.cta}
+        <ArrowRight aria-hidden="true" size={18} />
+      </a>
+    </ClosingBand>
+  </div>
 </BaseLayout>
+
+<script>
+  import { setupProjectFilter } from '@/scripts/project-filter';
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-project-filter]')) setupProjectFilter(root);
+</script>

@@ -228,6 +228,10 @@ const dictionary = {
     title: "Des projets conçus avec soin",
     intro:
       "Produits personnels et missions client, du design au code. Ouvrez un projet pour découvrir mon rôle et mes choix.",
+    filterLabel: "Filtrer par type de projet",
+    filterAll: "Tous",
+    resultsCount: "{count} projets affichés",
+    caseStudySoon: "Étude de cas en préparation",
     seoTitle: "Projets · Raïssa Bohité",
     seoDescription:
       "Du tuteur IA à l’e-commerce, des projets conçus et développés avec soin.",

@@ -218,6 +218,10 @@ export const en: Dictionary = {
     title: "Projects built with care",
     intro:
       "Personal products and client work, from design to code. Open a project to see my role and my choices.",
+    filterLabel: "Filter by project type",
+    filterAll: "All",
+    resultsCount: "{count} projects shown",
+    caseStudySoon: "Case study in progress",
     seoTitle: "Projects · Raïssa Bohité",
     seoDescription:
       "From an AI tutor to e-commerce, projects designed and built with care.",

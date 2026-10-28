@@ -221,6 +221,10 @@ export const de: Dictionary = {
     title: "Mit Sorgfalt gebaute Projekte",
     intro:
       "Eigene Produkte und Kundenprojekte, vom Design bis zum Code. Öffnen Sie ein Projekt, um meine Rolle und meine Entscheidungen zu sehen.",
+    filterLabel: "Nach Projekttyp filtern",
+    filterAll: "Alle",
+    resultsCount: "{count} Projekte angezeigt",
+    caseStudySoon: "Fallstudie in Vorbereitung",
     seoTitle: "Projekte · Raïssa Bohité",
     seoDescription:
       "Vom KI-Tutor bis zum E-Commerce: Projekte, mit Sorgfalt gestaltet und entwickelt.",

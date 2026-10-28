@@ -1,7 +1,8 @@
 ---
-import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
-import Tag from '@/components/atoms/Tag.astro';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 import ProjectVisual from '@/components/molecules/ProjectVisual.astro';
+import { accentBackgroundClasses } from '@/lib/accents';
+import { getProjectIcon } from '@/lib/project-icons';
 import type { ProjectSummary } from '@/lib/projects';
 
 type Props = {
@@ -9,46 +10,70 @@ type Props = {
   position: number;
   actionLabel: string;
   stackLabel: string;
+  // Étiquette affichée quand l'étude de cas n'est pas encore publiée
+  pendingLabel: string;
   reversed?: boolean;
+  // Numéro en contour orange : réservé au dernier projet, comme le dernier domaine de l'accueil
+  highlightNumber?: boolean;
 };
 
-const { project, position, actionLabel, stackLabel, reversed = false } = Astro.props;
+const { project, position, actionLabel, stackLabel, pendingLabel, reversed = false, highlightNumber = false } = Astro.props;
 const number = String(position).padStart(2, '0');
+const Icon = getProjectIcon(project.slug);
+const accentClass = accentBackgroundClasses[project.accent];
 ---
 
-<!-- Ligne de la page Projets : la vignette colorée d'un côté, la fiche du projet de l'autre, en alternance -->
-<article data-scroll-item class="group relative grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+<!-- Ligne de la page Projets : la vignette du projet d'un côté, la fiche de l'autre, en alternance ; toute la ligne est cliquable -->
+<article data-scroll-item class="group relative grid items-center gap-8 border-t border-line pt-12 lg:grid-cols-12 lg:gap-14">
   <div class:list={['lg:col-span-7', reversed && 'lg:order-2']}>
     <ProjectVisual project={project} actionLabel={actionLabel} aspectClass="aspect-[4/3] lg:aspect-[16/11]" />
   </div>
-  <div class:list={['flex flex-col gap-4 lg:col-span-5', reversed && 'lg:order-1']}>
-    <p class="m-0 flex items-center gap-3 text-sm font-semibold">
-      <span class="font-mono text-sig-text">{number}</span>
-      <span class="text-action">{project.kind}</span>
+  <div class:list={['flex flex-col items-start gap-3.5 lg:col-span-5', reversed && 'lg:order-1']}>
+    <p class="m-0 flex flex-wrap items-center gap-3.5">
+      <span
+        aria-hidden="true"
+        class:list={[
+          'text-[3.5rem] leading-none font-extrabold tracking-[-0.04em] text-transparent',
+          highlightNumber ? '[-webkit-text-stroke:1.5px_#f5a25d]' : '[-webkit-text-stroke:1.5px_#b9a4f5]'
+        ]}
+      >
+        {number}
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-tint py-1.5 pr-3.5 pl-1.5 text-sm font-bold text-tint-ink">
+        <span aria-hidden="true" class:list={['flex size-5 items-center justify-center rounded-full text-white', accentClass]}>
+          <Icon size={12} />
+        </span>
+        {project.category}
+      </span>
+      {
+        !project.hasCaseStudy && (
+          <span class="rounded-full bg-[#fde8dc] px-3 py-1.5 text-[13px] font-bold text-[#9e3409] dark:bg-[#4a2318] dark:text-[#ffc7a6]">{pendingLabel}</span>
+        )
+      }
     </p>
-    <h2 class="m-0 text-h2 font-bold text-ink">
+    <h2 class="m-0 text-h2 font-extrabold text-ink">
       <!-- Le lien couvre toute la ligne, mais son texte reste le nom du projet -->
       <a href={project.href} class="text-ink no-underline after:absolute after:inset-0 after:rounded-surface hover:text-action focus-visible:outline-none">
         {project.name}
       </a>
     </h2>
-    <p class="m-0 text-lg leading-[1.6]">{project.description}</p>
-    <p class="m-0 text-small font-medium text-muted">{project.role}</p>
-    <ul class="m-0 flex list-none flex-wrap gap-2 p-0" aria-label={stackLabel}>
-      {
-        project.stack.map((technology) => (
-          <li>
-            <Tag>{technology}</Tag>
-          </li>
-        ))
-      }
-    </ul>
+    <p class="m-0 text-body-lg text-text">{project.description}</p>
+    <p class="m-0 text-small font-semibold text-muted">{project.role}</p>
+    <p class="m-0 font-mono text-sm text-tint-ink">
+      <span class="sr-only">{stackLabel} : </span>
+      {project.stack.join(' · ')}
+    </p>
     <span
       aria-hidden="true"
-      class="mt-2 inline-flex min-h-12 items-center gap-2 self-start rounded-control bg-action px-5 text-small font-semibold text-action-ink transition-colors group-hover:bg-action-hover"
+      class:list={[
+        'mt-1.5 inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 text-base font-bold transition-colors',
+        project.hasCaseStudy
+          ? 'bg-action text-action-ink group-hover:bg-action-hover'
+          : 'border-2 border-action bg-bg text-action group-hover:bg-tint'
+      ]}
     >
       {actionLabel}
-      <ArrowUpRight size={18} class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      <ArrowRight size={18} class="transition-transform duration-300 group-hover:translate-x-1" />
     </span>
   </div>
 </article>

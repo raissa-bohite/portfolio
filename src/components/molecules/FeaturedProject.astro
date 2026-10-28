@@ -15,9 +15,11 @@ type Props = {
   labels: { viewProject: string; caseStudy: string; newTab: string };
   // Petite annotation manuscrite qui pointe vers le téléphone
   note: string;
+  // Numéro en contour, sur la page Projets où les projets sont numérotés (absent sur l'accueil)
+  position?: number;
 };
 
-const { project, labels, note } = Astro.props;
+const { project, labels, note, position } = Astro.props;
 const Icon = getProjectIcon(project.slug);
 const showcase = project.showcase;
 const phoneShot = project.shotFrame === 'phone' ? project.shots[0] : undefined;
@@ -30,10 +32,19 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
 <article data-scroll-item class="group relative isolate overflow-hidden rounded-block border border-glass-border bg-linear-to-br from-tint/70 via-bg to-bg shadow-glass">
   <div class="grid items-center gap-8 lg:grid-cols-12">
     <div class="relative z-10 flex flex-col gap-5 p-7 sm:p-10 lg:col-span-5 lg:pr-0">
-      <span class="inline-flex items-center gap-2 self-start rounded-full bg-tint px-3 py-1.5 text-sm font-semibold text-tint-ink">
-        <Icon aria-hidden="true" size={16} />
-        {project.category}
-      </span>
+      <p class="m-0 flex items-center gap-3.5">
+        {
+          position !== undefined && (
+            <span aria-hidden="true" class="text-[3.5rem] leading-none font-extrabold tracking-[-0.04em] text-transparent [-webkit-text-stroke:1.5px_#6d3fd6]">
+              {String(position).padStart(2, '0')}
+            </span>
+          )
+        }
+        <span class="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1.5 text-sm font-semibold text-tint-ink">
+          <Icon aria-hidden="true" size={16} />
+          {project.category}
+        </span>
+      </p>
       <h3 class="m-0 text-h2 font-bold text-ink">{project.name}</h3>
       {project.tagline && <p class="m-0 text-xl leading-snug font-semibold text-action">{project.tagline}</p>}
       <p class="m-0 text-base text-text">{project.description}</p>

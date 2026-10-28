@@ -1,13 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import ArrowRight from '@lucide/astro/icons/arrow-right';
-import CircleCheck from '@lucide/astro/icons/circle-check';
-import Code from '@lucide/astro/icons/code-xml';
-import Lightbulb from '@lucide/astro/icons/lightbulb';
-import PenTool from '@lucide/astro/icons/pen-tool';
-import Search from '@lucide/astro/icons/search';
-import ShieldCheck from '@lucide/astro/icons/shield-check';
-import ClosingBand from '@/components/molecules/ClosingBand.astro';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { formatMessage, getDictionary } from '@/i18n/translate';
@@ -20,86 +12,77 @@ type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const method = getDictionary(locale).home.method;
-// Une pastille par étape : violet foncé, lavande, violet foncé, orange pour la dernière
-const badgeClasses = ['bg-brand-deeper text-white', 'bg-brand text-white', 'bg-brand-deeper text-white', 'bg-sig text-[#1e0f45]'];
-const flowIcons = [Search, PenTool, Code, ShieldCheck];
 // Une illustration par étape, dans l'ordre comprendre, concevoir, construire, vérifier
 const stepIllustrations = [understandIllustration, designIllustration, buildIllustration, verifyIllustration];
+// Les pastilles passent du violet foncé à l'orange, comme le rail qui les relie
+const badgeClasses = ['bg-brand-deeper text-white', 'bg-brand text-white', 'bg-[#7b4fe0] text-white', 'bg-sig text-[#1e0f45]'];
+const lastIndex = method.steps.length - 1;
 ---
 
-<section aria-labelledby="method-title" class="relative overflow-hidden bg-tint/45 dark:bg-white/[0.03]">
-  <span aria-hidden="true" class="absolute -top-36 -right-28 size-72 rounded-full bg-tint dark:bg-tint/60"></span>
-  <span aria-hidden="true" class="absolute top-16 right-[26%] hidden size-4 rounded-full bg-sig md:block"></span>
-  <span aria-hidden="true" class="absolute top-40 right-10 hidden h-14 w-20 bg-[radial-gradient(circle,#b9a4f5_2px,transparent_2.5px)] bg-size-[19px_19px] md:block"></span>
+<!-- Fond plein (et non translucide) : l'anneau autour des pastilles reprend exactement sa couleur pour « couper » le rail -->
+<section aria-labelledby="method-title" class="relative overflow-hidden bg-[#f4f0fd] dark:bg-[#170e33]">
+  <span aria-hidden="true" class="absolute -top-36 -right-28 size-80 rounded-full bg-[#e6ddfb] dark:bg-tint/60"></span>
+  <span aria-hidden="true" class="absolute top-16 left-[46%] hidden size-4 rounded-full bg-sig md:block"></span>
 
-  <div class="container-page relative flex flex-col gap-11 py-20">
-    <SectionIntro id="method-title" eyebrow={method.eyebrow} title={method.title} highlight={false} cursor="bar" />
+  <div class="container-page relative flex flex-col gap-14 py-22">
+    <div class="flex flex-wrap items-end justify-between gap-8">
+      <SectionIntro id="method-title" eyebrow={method.eyebrow} title={method.title} highlight={false} cursor="bar" />
+      <div class="flex max-w-[27rem] flex-col gap-2 border-l-[3px] border-brand pl-6">
+        <p class="m-0 text-subtitle font-bold text-ink">{method.closing.title}</p>
+        <p class="m-0 text-base text-text">{method.closing.text}</p>
+      </div>
+    </div>
 
-    <ol data-scroll-group aria-label={method.listLabel} class="m-0 grid list-none gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
+    <ol data-scroll-group aria-label={method.listLabel} class="relative m-0 grid list-none gap-x-7 gap-y-12 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Rail de progression : relie les quatre pastilles sur grand écran, du violet foncé à l'orange -->
+      <li aria-hidden="true" class="absolute top-[266px] right-[calc(25%-47px)] left-[26px] hidden h-[3px] rounded-full bg-linear-to-r from-brand-deeper via-brand via-45% to-sig lg:block"></li>
       {
         method.steps.map((step, index) => (
-          <li data-scroll-item class="group relative flex flex-col gap-3.5 rounded-surface border border-glass-border bg-glass-strong p-6 shadow-glass">
-            <!-- Illustration de l'étape, décorative : images 3D générées, fond détouré pour suivre le thème clair ou sombre -->
-            <div aria-hidden="true" class="flex h-[170px] items-center justify-center">
+          <li data-scroll-item class="group relative flex flex-col gap-[18px]">
+            <div
+              aria-hidden="true"
+              class:list={[
+                'flex h-[220px] items-center justify-center rounded-[28px] bg-linear-to-br from-white from-30% shadow-[0_18px_40px_rgb(74_35_160/0.10)] dark:from-white/[0.07]',
+                index === lastIndex ? 'to-[#fde9dc] dark:to-[#3a1d2a]' : 'to-[#ece4fd] dark:to-white/[0.03]'
+              ]}
+            >
               <Image
                 src={stepIllustrations[index] ?? understandIllustration}
                 alt=""
                 widths={[320, 640]}
-                sizes="(min-width: 1024px) 260px, (min-width: 640px) 40vw, 80vw"
+                sizes="(min-width: 1024px) 250px, (min-width: 640px) 40vw, 80vw"
                 loading="lazy"
-                class="h-full w-auto max-w-full object-contain transition-transform duration-500 ease-out-soft group-hover:-translate-y-1"
+                class="h-auto max-h-[82%] w-auto max-w-[86%] object-contain transition-transform duration-500 ease-out-soft group-hover:-translate-y-1.5"
               />
             </div>
-
-            <span aria-hidden="true" class:list={['flex size-[52px] items-center justify-center rounded-full text-lg font-bold', badgeClasses[index]]}>
+            <span
+              data-scroll-pop
+              aria-hidden="true"
+              class:list={[
+                'relative mt-1 flex size-[52px] items-center justify-center rounded-full text-lg font-bold ring-[7px] ring-[#f4f0fd] dark:ring-[#170e33]',
+                badgeClasses[index]
+              ]}
+            >
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 class="m-0 font-mono text-[1.5rem] font-semibold text-ink" lang="fr">
+            <h3 class="m-0 mt-1 font-mono text-[1.5rem] font-semibold text-ink" lang="fr">
               <span class="sr-only">{formatMessage(method.step, { n: index + 1 })} : </span>{step.code}
             </h3>
             <p class="m-0 text-base text-text">{step.text}</p>
-            <p class="m-0 mt-auto flex flex-col gap-1.5 rounded-[14px] bg-tint/45 px-4 py-3.5 text-sm dark:bg-tint">
-              <span class="flex items-center gap-2 font-bold text-action">
-                <CircleCheck aria-hidden="true" size={16} />
+            <p
+              class:list={[
+                'm-0 mt-auto flex flex-col gap-1 border-t border-dashed pt-3.5',
+                index === lastIndex ? 'border-[#f5b48a]' : 'border-[#cdbff3] dark:border-white/20'
+              ]}
+            >
+              <span class:list={['text-xs font-bold tracking-[0.1em] uppercase', index === lastIndex ? 'text-sig-text' : 'text-action']}>
                 {method.deliverableLabel}
               </span>
-              <span class="text-ink">{step.deliverable}</span>
+              <span class="text-base font-bold text-ink">{step.deliverable}</span>
             </p>
-
-            {index < method.steps.length - 1 && (
-              <span aria-hidden="true" class="absolute top-1/2 -right-[19px] z-10 hidden text-action lg:block">
-                <ArrowRight size={16} />
-              </span>
-            )}
           </li>
         ))
       }
     </ol>
-
-    <ClosingBand title={method.closing.title} text={method.closing.text}>
-      <Lightbulb slot="icon" size={32} />
-      <ol slot="aside" aria-hidden="true" class="m-0 hidden list-none items-start gap-2 p-0 text-center xl:mr-24 xl:flex">
-        {
-          method.steps.map((step, index) => (
-            <>
-              <li class="flex w-[5.5rem] flex-col items-center gap-2">
-                <span class:list={['flex size-14 items-center justify-center rounded-full text-action', index === 3 ? 'bg-[#fde8dc]' : 'bg-white dark:bg-white/10']}>
-                  {(() => {
-                    const FlowIcon = flowIcons[index] ?? Code;
-                    return <FlowIcon size={24} />;
-                  })()}
-                </span>
-                <span class="font-mono text-[13px] font-semibold text-ink">{step.code}</span>
-              </li>
-              {index < method.steps.length - 1 && (
-                <li class="pt-4 text-action">
-                  <ArrowRight size={16} />
-                </li>
-              )}
-            </>
-          ))
-        }
-      </ol>
-    </ClosingBand>
   </div>
 </section>

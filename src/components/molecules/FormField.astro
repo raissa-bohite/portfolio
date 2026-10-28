@@ -45,33 +45,48 @@ const controlClasses =
 ---
 
 <div class:list={['flex flex-col gap-2', className]} data-field>
-  <label for={id} class="text-sm font-semibold text-ink">{label}</label>
-  {
-    kind === 'textarea' ? (
-      <textarea
-        id={id}
-        name={name}
-        rows={rows}
-        required={required}
-        minlength={minLength}
-        maxlength={maxLength}
-        aria-describedby={describedBy}
-        data-error-id={errorId}
-        class:list={[controlClasses, 'resize-y py-3']}
-      />
-    ) : kind === 'select' ? (
-      <select id={id} name={name} required={required} aria-describedby={describedBy} data-error-id={errorId} class:list={[controlClasses, 'min-h-12']}>
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
-        ))}
-      </select>
-    ) : (
-      <div class="relative">
-        {hasIcon && (
-          <span aria-hidden="true" class="pointer-events-none absolute top-1/2 left-4 flex -translate-y-1/2 text-muted">
-            <slot name="icon" />
-          </span>
-        )}
+  <label for={id} class="text-sm font-semibold text-ink">
+    {label}
+    {required && <span aria-hidden="true" class="text-sig-text"> *</span>}
+  </label>
+  <div class="relative">
+    {
+      hasIcon && (
+        <span
+          aria-hidden="true"
+          class:list={['pointer-events-none absolute left-4 flex text-muted', kind === 'textarea' ? 'top-3.5' : 'top-1/2 -translate-y-1/2']}
+        >
+          <slot name="icon" />
+        </span>
+      )
+    }
+    {
+      kind === 'textarea' ? (
+        <textarea
+          id={id}
+          name={name}
+          rows={rows}
+          required={required}
+          minlength={minLength}
+          maxlength={maxLength}
+          aria-describedby={describedBy}
+          data-error-id={errorId}
+          class:list={[controlClasses, 'block resize-y py-3', hasIcon && 'pl-12']}
+        />
+      ) : kind === 'select' ? (
+        <select
+          id={id}
+          name={name}
+          required={required}
+          aria-describedby={describedBy}
+          data-error-id={errorId}
+          class:list={[controlClasses, 'min-h-12', hasIcon && 'pl-12']}
+        >
+          {options.map((option) => (
+            <option value={option.value}>{option.label}</option>
+          ))}
+        </select>
+      ) : (
         <input
           id={id}
           name={name}
@@ -85,9 +100,9 @@ const controlClasses =
           data-error-id={errorId}
           class:list={[controlClasses, 'min-h-12', hasIcon && 'pl-12']}
         />
-      </div>
-    )
-  }
+      )
+    }
+  </div>
   {help && <p id={helpId} class="m-0 text-sm text-muted">{help}</p>}
   <p id={errorId} class="m-0 hidden text-sm font-medium text-danger" data-error-message={error}></p>
 </div>

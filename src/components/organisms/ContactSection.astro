@@ -6,6 +6,7 @@ import Heart from '@lucide/astro/icons/heart';
 import Mail from '@lucide/astro/icons/mail';
 import MapPin from '@lucide/astro/icons/map-pin';
 import MessageSquare from '@lucide/astro/icons/message-square';
+import Undo2 from '@lucide/astro/icons/undo-2';
 import Zap from '@lucide/astro/icons/zap';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import ContactForm from '@/components/organisms/ContactForm.astro';
@@ -32,7 +33,7 @@ const socialLinks = [
   <span aria-hidden="true" class="absolute top-20 right-36 hidden size-4 rounded-full bg-sig md:block"></span>
 
   <div class="container-page relative flex flex-col gap-10 pt-20 pb-10">
-    <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)_minmax(0,1.3fr)]">
+    <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)_minmax(0,1.25fr)]">
       <div class="flex flex-col gap-5">
         <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} />
         <ul class="m-0 mt-2 flex list-none flex-col gap-5 p-0">
@@ -53,32 +54,43 @@ const socialLinks = [
             })
           }
         </ul>
-        <div class="mt-auto max-w-[20rem] pt-4">
-          <p class="m-0 -rotate-[6deg] font-hand text-[1.625rem] leading-[1.15] font-semibold text-action">{contact.note}</p>
+        <div class="relative max-w-[19rem] pt-6">
+          <p class="m-0 -rotate-[8deg] font-hand text-[1.625rem] leading-[1.15] font-semibold text-action">{contact.note}</p>
           <span aria-hidden="true" class="mt-2.5 ml-16 block h-[3px] w-28 -rotate-[6deg] rounded-full bg-sig"></span>
+          <Undo2 aria-hidden="true" size={34} class="absolute -right-14 bottom-2 hidden -rotate-[100deg] text-action sm:block" />
         </div>
       </div>
 
-      <!-- Portrait sur l'arche violette, avec une bulle de discussion : décoratif, masqué sous le grand format -->
-      <div aria-hidden="true" class="relative hidden h-[520px] self-end lg:block">
-        <span class="absolute right-0 bottom-0 left-7 h-[400px] rounded-t-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
-        <span class="absolute bottom-28 left-0 size-[300px] -rotate-[20deg] rounded-full border-2 border-[#f5a25d] border-r-transparent border-b-transparent"></span>
+      <!--
+        Portrait sur un grand disque violet posé sur un socle lavande, bulle de discussion près du visage :
+        décoratif, affiché seulement en grand format
+      -->
+      <div aria-hidden="true" class="relative hidden h-[520px] self-center lg:block">
+        <span class="absolute -inset-x-[8%] bottom-6 h-36 rounded-[44px] bg-tint dark:bg-tint/70"></span>
+        <span class="absolute top-[160px] left-1/2 size-[320px] -translate-x-1/2 rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
+        <span class="absolute top-[120px] left-[4%] size-[220px] -rotate-[25deg] rounded-full border-[3px] border-sig border-r-transparent border-b-transparent"></span>
         <Image
           src={portrait}
           alt=""
           widths={[420, 840]}
-          sizes="(min-width: 1024px) 30vw, 1px"
+          sizes="(min-width: 1024px) 28vw, 1px"
           loading="lazy"
-          class="absolute bottom-0 left-2.5 h-[470px] w-full object-contain object-bottom"
+          class="absolute bottom-6 left-1/2 h-[430px] w-auto max-w-none -translate-x-1/2 object-contain object-bottom"
         />
-        <span class="absolute top-2 right-0 flex h-[62px] w-[90px] items-center justify-center gap-2 rounded-[18px_18px_18px_4px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
+        <span class="absolute top-[70px] right-[10%] flex h-[62px] w-[86px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
           <span class="size-[9px] rounded-full bg-white"></span>
           <span class="size-[9px] rounded-full bg-white"></span>
           <span class="size-[9px] rounded-full bg-white"></span>
+          <span class="absolute -bottom-2 left-6 size-4 rotate-45 rounded-[3px] bg-brand"></span>
+        </span>
+        <span class="absolute top-[165px] right-[6%] flex flex-col gap-1.5">
+          <span class="h-[3px] w-4 -rotate-[35deg] rounded-full bg-sig"></span>
+          <span class="h-[3px] w-5 rounded-full bg-sig"></span>
+          <span class="h-[3px] w-4 rotate-[35deg] rounded-full bg-sig"></span>
         </span>
       </div>
 
-      <div class="self-start rounded-surface border border-glass-border bg-glass-strong p-5 shadow-glass-lg sm:p-9">
+      <div class="self-center rounded-surface border border-glass-border bg-glass-strong p-5 shadow-glass-lg sm:p-9">
         <ContactForm locale={locale} variant="card" class="relative" />
       </div>
     </div>
@@ -88,14 +100,14 @@ const socialLinks = [
       <span aria-hidden="true" class="absolute -bottom-8 -left-7 -z-10 size-[70px] rounded-full bg-[#f5a25d]"></span>
       <span aria-hidden="true" class="absolute -right-8 -bottom-10 -z-10 size-[90px] rounded-full bg-brand"></span>
       <a href={`mailto:${profile.email}`} class="flex min-h-12 flex-[1_1_260px] items-center gap-4 font-semibold text-ink underline underline-offset-4">
-        <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-full bg-white text-action dark:bg-white/10">
+        <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-full bg-brand text-white">
           <Mail size={20} />
         </span>
         {profile.email}
       </a>
       <span aria-hidden="true" class="hidden h-[52px] w-px bg-[#d9cef9] md:block dark:bg-white/15"></span>
       <p class="m-0 flex flex-[1_1_220px] items-center gap-4 font-semibold text-ink">
-        <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-full bg-white text-action dark:bg-white/10">
+        <span aria-hidden="true" class="flex size-12 flex-none items-center justify-center rounded-full bg-brand text-white">
           <MapPin size={20} />
         </span>
         {dictionary.aboutPage.location}

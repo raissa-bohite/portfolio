@@ -5,6 +5,8 @@ import Mail from '@lucide/astro/icons/mail';
 import Send from '@lucide/astro/icons/send';
 import User from '@lucide/astro/icons/user';
 import FormField from '@/components/molecules/FormField.astro';
+import MessagesSquare from '@lucide/astro/icons/messages-square';
+import TextAlignStart from '@lucide/astro/icons/text-align-start';
 import RequestTypeChoice from '@/components/molecules/RequestTypeChoice.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
@@ -13,7 +15,7 @@ import { contactLimits, contactRequestTypes } from '@/lib/contact-schema';
 type Props = {
   locale: Locale;
   // « compact » : liste déroulante ; « full » : page Contact, cartes de choix ;
-  // « card » : accueil, champs empilés et cartes de choix dans une carte étroite
+  // « card » : accueil, champs empilés avec icônes dans une carte étroite
   variant?: 'compact' | 'full' | 'card';
   class?: string;
 };
@@ -76,20 +78,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
     </div>
 
     {
-      isCard && (
-        <fieldset class="m-0 flex flex-col gap-2 border-0 p-0">
-          <legend class="mb-2 text-sm font-semibold text-ink">{form.typeLegend}</legend>
-          <div class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-2.5">
-            {typeOptions.map((option, index) => (
-              <RequestTypeChoice name="type" value={option.value} label={option.label} hint={option.hint} checked={index === 0} />
-            ))}
-          </div>
-        </fieldset>
-      )
-    }
-
-    {
-      variant === 'compact' && (
+      variant !== 'full' && (
         <FormField
           id={`${variant}-type`}
           name="type"
@@ -98,7 +87,9 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
           error=""
           maxLength={20}
           options={typeOptions.map(({ value, label }) => ({ value, label }))}
-        />
+        >
+          {isCard && <MessagesSquare slot="icon" size={20} />}
+        </FormField>
       )
     }
     <FormField
@@ -111,7 +102,9 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
       error={form.messageError}
       minLength={contactLimits.messageMin}
       maxLength={contactLimits.messageMax}
-    />
+    >
+      {isCard && <TextAlignStart slot="icon" size={20} />}
+    </FormField>
     <!-- Rendu par turnstile.ts : version compacte quand la carte est plus étroite que le widget standard (300 px) -->
     {turnstileSiteKey && <div data-turnstile data-sitekey={turnstileSiteKey} data-language={locale} />}
     <p role="alert" class="m-0 hidden rounded-control border border-danger/40 bg-glass-strong p-4 text-sm font-medium text-ink group-data-[state=failure]/form:block">

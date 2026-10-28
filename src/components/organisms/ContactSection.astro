@@ -33,7 +33,7 @@ const socialLinks = [
   <span aria-hidden="true" class="absolute top-20 right-36 hidden size-4 rounded-full bg-sig md:block"></span>
 
   <div class="container-page relative flex flex-col gap-10 pt-20 pb-10">
-    <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,17.5rem)_minmax(0,1fr)_minmax(0,27rem)]">
+    <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,17rem)_minmax(0,1fr)_minmax(0,24rem)]">
       <div class="flex flex-col gap-5">
         <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} />
         <ul class="m-0 mt-2 flex list-none flex-col gap-5 p-0">
@@ -66,7 +66,7 @@ const socialLinks = [
         net à la ligne du bureau, un halo lavande sous la plante, la bulle de discussion près du visage.
         Décorative et affichée seulement en grand format ; la scène mord un peu sur les gouttières sans toucher les colonnes voisines.
       -->
-      <div aria-hidden="true" class="relative -mx-5 hidden self-end lg:block">
+      <div aria-hidden="true" class="relative -mx-7 hidden self-end lg:block">
         <div class="relative aspect-[1217/1090] w-full">
           <span class="absolute -bottom-[4%] left-[2%] aspect-square w-[38%] rounded-full bg-tint/70 dark:bg-tint/50"></span>
           <span class="absolute inset-0 overflow-hidden">
@@ -76,7 +76,7 @@ const socialLinks = [
             src={portraitDesk}
             alt=""
             widths={[480, 960]}
-            sizes="(min-width: 1024px) 480px, 1px"
+            sizes="(min-width: 1024px) 520px, 1px"
             loading="lazy"
             class="absolute bottom-0 left-0 h-auto w-full"
           />
@@ -89,7 +89,7 @@ const socialLinks = [
         </div>
       </div>
 
-      <div class="self-center rounded-surface border border-glass-border bg-glass-strong p-5 shadow-glass-lg sm:p-8">
+      <div class="self-center rounded-surface border border-glass-border bg-glass-strong p-5 shadow-glass-lg sm:p-7">
         <ContactForm locale={locale} variant="card" class="relative" />
       </div>
     </div>

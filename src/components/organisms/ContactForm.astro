@@ -96,7 +96,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
       id={`${variant}-message`}
       name="message"
       kind="textarea"
-      rows={variant === 'full' ? 6 : 4}
+      rows={variant === 'full' ? 6 : isCard ? 3 : 4}
       label={form.message}
       help={form.messageHelp}
       error={form.messageError}

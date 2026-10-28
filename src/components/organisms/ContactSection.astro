@@ -13,7 +13,7 @@ import ContactForm from '@/components/organisms/ContactForm.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import { profile } from '@/lib/profile';
-import portrait from '@/assets/portrait/portrait-cutout.png';
+import portraitDesk from '@/assets/portrait/portrait-desk.png';
 
 type Props = { locale: Locale };
 
@@ -33,7 +33,7 @@ const socialLinks = [
   <span aria-hidden="true" class="absolute top-20 right-36 hidden size-4 rounded-full bg-sig md:block"></span>
 
   <div class="container-page relative flex flex-col gap-10 pt-20 pb-10">
-    <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)_minmax(0,1.25fr)]">
+    <div class="grid items-stretch gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)_minmax(0,1.15fr)]">
       <div class="flex flex-col gap-5">
         <SectionIntro id="contact-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} highlight={false} />
         <ul class="m-0 mt-2 flex list-none flex-col gap-5 p-0">
@@ -62,34 +62,29 @@ const socialLinks = [
       </div>
 
       <!--
-        Portrait sur un grand disque violet, bulle de discussion près du visage : décoratif, affiché seulement en grand format.
-        Le cadre qui contient la photo épouse le bas du disque : la découpe de la photo disparaît dans sa courbe
-        et les épaules ne débordent plus sur le formulaire.
+        Photo au bureau sur un grand disque violet, posée sur un socle lavande, bulle de discussion près du visage.
+        Décorative, affichée seulement en grand format ; la scène est dessinée en proportions pour rester dans sa colonne.
       -->
-      <div aria-hidden="true" class="relative hidden h-[500px] self-center lg:block">
-        <span class="absolute top-[150px] left-1/2 size-[320px] -translate-x-1/2 rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
-        <span class="absolute top-[110px] left-[4%] size-[220px] -rotate-[25deg] rounded-full border-[3px] border-sig border-r-transparent border-b-transparent"></span>
-        <span class="absolute top-[30px] left-1/2 h-[440px] w-[320px] -translate-x-1/2 overflow-hidden rounded-b-[160px]">
+      <div aria-hidden="true" class="relative hidden self-center lg:block">
+        <div class="relative aspect-[440/480] w-full">
+          <span class="absolute bottom-0 -left-[4%] h-[23%] w-[70%] rounded-[56px] bg-tint/70 dark:bg-tint/60"></span>
+          <span class="absolute top-[23%] left-[11.4%] aspect-square w-[72.7%] rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
+          <span class="absolute top-[18%] left-[5%] aspect-square w-[52%] -rotate-[30deg] rounded-full border-[3px] border-sig border-r-transparent border-b-transparent"></span>
           <Image
-            src={portrait}
+            src={portraitDesk}
             alt=""
-            widths={[420, 840]}
-            sizes="(min-width: 1024px) 420px, 1px"
+            widths={[440, 880]}
+            sizes="(min-width: 1024px) 400px, 1px"
             loading="lazy"
-            class="absolute bottom-0 left-1/2 h-[430px] w-auto max-w-none -translate-x-1/2 object-contain object-bottom"
+            class="absolute bottom-0 left-0 h-auto w-full"
           />
-        </span>
-        <span class="absolute top-[60px] right-[8%] flex h-[62px] w-[86px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
-          <span class="size-[9px] rounded-full bg-white"></span>
-          <span class="size-[9px] rounded-full bg-white"></span>
-          <span class="size-[9px] rounded-full bg-white"></span>
-          <span class="absolute -bottom-2 left-6 size-4 rotate-45 rounded-[3px] bg-brand"></span>
-        </span>
-        <span class="absolute top-[165px] right-[6%] flex flex-col gap-1.5">
-          <span class="h-[3px] w-4 -rotate-[35deg] rounded-full bg-sig"></span>
-          <span class="h-[3px] w-5 rounded-full bg-sig"></span>
-          <span class="h-[3px] w-4 rotate-[35deg] rounded-full bg-sig"></span>
-        </span>
+          <span class="absolute top-[13%] right-[7%] flex h-[58px] w-[82px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
+            <span class="size-[9px] rounded-full bg-white"></span>
+            <span class="size-[9px] rounded-full bg-white"></span>
+            <span class="size-[9px] rounded-full bg-white"></span>
+            <span class="absolute -bottom-2 left-6 size-4 rotate-45 rounded-[3px] bg-brand"></span>
+          </span>
+        </div>
       </div>
 
       <div class="self-center rounded-surface border border-glass-border bg-glass-strong p-5 shadow-glass-lg sm:p-9">

@@ -20,22 +20,26 @@ const lastIndex = method.steps.length - 1;
 ---
 
 <!-- Fond plein (et non translucide) : l'anneau autour des pastilles reprend exactement sa couleur pour « couper » le rail -->
-<section aria-labelledby="method-title" class="relative overflow-hidden bg-[#f4f0fd] dark:bg-[#170e33]">
+<section aria-labelledby="method-title" class="relative overflow-hidden bg-[#f4f0fd] dark:bg-[#1e1344]">
   <span aria-hidden="true" class="absolute -top-36 -right-28 size-80 rounded-full bg-[#e6ddfb] dark:bg-tint/60"></span>
   <span aria-hidden="true" class="absolute top-16 left-[46%] hidden size-4 rounded-full bg-sig md:block"></span>
 
   <div class="container-page relative flex flex-col gap-14 py-22">
     <div class="flex flex-wrap items-end justify-between gap-8">
-      <SectionIntro id="method-title" eyebrow={method.eyebrow} title={method.title} highlight={false} cursor="bar" />
+      <SectionIntro id="method-title" eyebrow={method.eyebrow} title={method.title} highlight={false} cursor />
       <div class="flex max-w-[27rem] flex-col gap-2 border-l-[3px] border-brand pl-6">
         <p class="m-0 text-subtitle font-bold text-ink">{method.closing.title}</p>
         <p class="m-0 text-base text-text">{method.closing.text}</p>
       </div>
     </div>
 
-    <ol data-scroll-group aria-label={method.listLabel} class="relative m-0 grid list-none gap-x-7 gap-y-12 p-0 sm:grid-cols-2 lg:grid-cols-4">
-      <!-- Rail de progression : relie les quatre pastilles sur grand écran, du violet foncé à l'orange -->
-      <li aria-hidden="true" class="absolute top-[266px] right-[calc(25%-47px)] left-[26px] hidden h-[3px] rounded-full bg-linear-to-r from-brand-deeper via-brand via-45% to-sig lg:block"></li>
+    <ol data-scroll-group data-progress="x" data-progress-min-width="1024px" aria-label={method.listLabel} class="relative m-0 grid list-none gap-x-7 gap-y-12 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      <!--
+        Rail de progression sur grand écran : un fond pâle, et par-dessus le dégradé violet → orange
+        qui se remplit au défilement (scroll-progress.ts) ; sans animation, le dégradé est simplement plein
+      -->
+      <li data-progress-track aria-hidden="true" class="absolute top-[266px] right-[calc(25%-47px)] left-[26px] hidden h-[3px] rounded-full bg-[#ddd2f8] lg:block dark:bg-white/12"></li>
+      <li data-progress-fill aria-hidden="true" class="absolute top-[266px] right-[calc(25%-47px)] left-[26px] hidden h-[3px] rounded-full bg-linear-to-r from-brand-deeper via-brand via-45% to-sig lg:block"></li>
       {
         method.steps.map((step, index) => (
           <li data-scroll-item class="group relative flex flex-col gap-[18px]">
@@ -56,10 +60,10 @@ const lastIndex = method.steps.length - 1;
               />
             </div>
             <span
-              data-scroll-pop
+              data-progress-step
               aria-hidden="true"
               class:list={[
-                'relative mt-1 flex size-[52px] items-center justify-center rounded-full text-lg font-bold ring-[7px] ring-[#f4f0fd] dark:ring-[#170e33]',
+                'relative mt-1 flex size-[52px] items-center justify-center rounded-full text-lg font-bold ring-[7px] ring-[#f4f0fd] dark:ring-[#1e1344]',
                 badgeClasses[index]
               ]}
             >

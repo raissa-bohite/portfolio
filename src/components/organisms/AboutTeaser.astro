@@ -32,7 +32,7 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
   <div class="container-page relative flex flex-col gap-8 py-20">
     <div class="flex flex-wrap items-end gap-6">
       <div class="flex flex-[1_1_440px] flex-col gap-4 pb-6 md:pb-10">
-        <SectionIntro id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.text} highlight={false} cursor="bar" />
+        <SectionIntro id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.text} highlight={false} cursor />
       </div>
       <!-- Photo au bureau sur une arche lavande, avec l'arc orange : décorative, la scène garde ses proportions -->
       <div aria-hidden="true" class="relative hidden flex-[1_1_420px] sm:block">
@@ -51,9 +51,11 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
       </div>
     </div>
 
-    <ol data-scroll-group aria-label={aboutPage.timeline.title} class="relative m-0 flex list-none flex-col gap-7 p-0">
+    <ol data-scroll-group data-progress="y" data-progress-min-width="768px" aria-label={aboutPage.timeline.title} class="relative m-0 flex list-none flex-col gap-7 p-0">
       <!-- Axe de la frise : à gauche sur mobile, au centre à partir du format tablette -->
-      <li aria-hidden="true" class="absolute top-0 bottom-0 left-[29px] w-0.5 bg-[#d9cef9] md:left-1/2 md:-ml-px dark:bg-white/15"></li>
+      <li data-progress-track aria-hidden="true" class="absolute top-0 bottom-0 left-[29px] w-0.5 bg-[#d9cef9] md:left-1/2 md:-ml-px dark:bg-white/15"></li>
+      <!-- Remplissage de l'axe au défilement (scroll-progress.ts), plein quand l'animation est désactivée -->
+      <li data-progress-fill aria-hidden="true" class="absolute top-0 bottom-0 left-[29px] w-0.5 bg-linear-to-b from-brand via-brand to-sig md:left-1/2 md:-ml-px"></li>
       {
         steps.map((step, index) => {
           const Icon = stepIcons[index] ?? Code;
@@ -62,7 +64,7 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
           return (
             <li data-scroll-item class="relative grid grid-cols-[60px_minmax(0,1fr)] items-center gap-x-6 gap-y-4 md:grid-cols-[minmax(0,1fr)_60px_minmax(0,1fr)]">
               <span
-                data-scroll-pop
+                data-progress-step
                 aria-hidden="true"
                 class:list={[
                   'relative col-start-1 row-start-1 flex size-[60px] items-center justify-center rounded-full text-white shadow-[0_0_0_8px_var(--bg)] md:col-start-2',

@@ -2,12 +2,13 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-type Props = { image: ImageMetadata; sizes: string; class?: string; priority?: boolean };
-const { image, sizes, class: className, priority = false } = Astro.props;
+// parallax : amplitude en pixels de l'effet de profondeur au défilement (voir parallax.ts)
+type Props = { image: ImageMetadata; sizes: string; class?: string; priority?: boolean; parallax?: number };
+const { image, sizes, class: className, priority = false, parallax } = Astro.props;
 ---
 
 <!-- Ordinateur portable décoratif : écran à bord sombre, caméra, socle argenté plus large que l'écran -->
-<div aria-hidden="true" class:list={['drop-shadow-[0_30px_40px_rgb(30_15_69/0.3)]', className]}>
+<div aria-hidden="true" data-parallax={parallax} class:list={['drop-shadow-[0_30px_40px_rgb(30_15_69/0.3)]', className]}>
   <div class="relative rounded-t-[16px] bg-[#17122b] p-[2.6%] pb-[3.4%]">
     <span class="absolute top-[1%] left-1/2 size-1 -translate-x-1/2 rounded-full bg-[#3a3352]"></span>
     <Image

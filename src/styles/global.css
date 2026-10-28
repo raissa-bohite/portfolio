@@ -245,3 +245,47 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Rails de progression (Méthode, Parcours) : tant que le remplissage n'a pas atteint une étape, elle reste éteinte.
+   Les propriétés individuelles (scale) évitent d'entrer en conflit avec les transformations posées par GSAP */
+[data-progress-step] {
+  transition:
+    filter 0.45s var(--ease-out-soft),
+    opacity 0.45s var(--ease-out-soft),
+    scale 0.45s var(--ease-out-soft);
+}
+
+[data-progress-ready] [data-progress-step]:not([data-reached]) {
+  filter: grayscale(1);
+  opacity: 0.4;
+  scale: 0.86;
+}
+
+/* Bulle de discussion du contact : trois points qui sautillent, comme quelqu'un en train d'écrire */
+@media (prefers-reduced-motion: no-preference) {
+  .typing-dot {
+    animation: typing-dot 1.4s ease-in-out infinite;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.36s;
+  }
+}
+
+@keyframes typing-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.45;
+    translate: 0 0;
+  }
+
+  30% {
+    opacity: 1;
+    translate: 0 -4px;
+  }
+}

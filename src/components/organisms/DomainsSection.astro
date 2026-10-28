@@ -30,7 +30,7 @@ const linkClasses =
 
   <div class="container-page relative grid gap-12 py-24 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
     <div class="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
-      <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} intro={domains.closing.text} highlight={false} onDark cursor="bar" />
+      <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} intro={domains.closing.text} highlight={false} onDark cursor />
       <span aria-hidden="true" class="flex gap-2.5 pt-3">
         <span class="size-2.5 rounded-full bg-sig"></span>
         <span class="size-2.5 rounded-full bg-[#8b63ea]"></span>
@@ -47,7 +47,7 @@ const linkClasses =
           return (
             <li data-scroll-item class="flex flex-col gap-5 border-b border-white/15 py-9 sm:flex-row sm:gap-7">
               <span
-                data-scroll-pop
+                data-in-view="wipe"
                 aria-hidden="true"
                 class:list={[
                   'w-24 flex-none text-[4rem] leading-none font-extrabold tracking-[-0.04em] text-transparent',

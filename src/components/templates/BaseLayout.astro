@@ -111,10 +111,18 @@ const personData = {
 </html>
 
 <script>
-  // Toutes les pages partagent la même révélation au défilement : les sections la déclarent par data-scroll-group
+  // Toutes les pages partagent les mêmes gestes au défilement ; les sections les déclarent par attributs data-*
+  import { setupInView } from '@/scripts/in-view';
   import { setupPageTransitions } from '@/scripts/page-transition';
+  import { setupParallax } from '@/scripts/parallax';
+  import { setupScrollProgress } from '@/scripts/scroll-progress';
   import { setupScrollReveal } from '@/scripts/scroll-reveal';
+  import { setupTitleReveal } from '@/scripts/title-reveal';
 
   setupPageTransitions();
   for (const group of document.querySelectorAll<HTMLElement>('[data-scroll-group]')) setupScrollReveal(group);
+  for (const title of document.querySelectorAll<HTMLElement>('[data-split-title]')) setupTitleReveal(title);
+  for (const container of document.querySelectorAll<HTMLElement>('[data-progress]')) setupScrollProgress(container);
+  for (const element of document.querySelectorAll<HTMLElement>('[data-in-view]')) setupInView(element);
+  for (const element of document.querySelectorAll<HTMLElement>('[data-parallax]')) setupParallax(element);
 </script>

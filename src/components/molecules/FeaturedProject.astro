@@ -72,7 +72,7 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
     </div>
 
     <!-- Décor : formes violettes, anneaux orange et appareils ; masqué aux lecteurs d'écran -->
-    <div aria-hidden="true" class="relative h-[280px] sm:h-[380px] lg:col-span-7 lg:h-[460px]">
+    <div aria-hidden="true" data-parallax-scope class="relative h-[280px] sm:h-[380px] lg:col-span-7 lg:h-[460px]">
       <div class="absolute -top-16 right-[-12%] size-[120%] rounded-full bg-linear-to-br from-[#b9a4f5]/50 to-transparent"></div>
       <div class="absolute -right-[18%] -bottom-[38%] size-[95%] rounded-full bg-linear-to-br from-[#6d3fd6] to-[#36188a]"></div>
       <div class="absolute top-[9%] left-[5%] h-16 w-11 -rotate-12 rounded-[50%] border-2 border-sig/80"></div>
@@ -84,6 +84,7 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
       <!-- L'ordinateur à gauche, le téléphone vient chevaucher son bord droit comme sur la maquette -->
       <LaptopFrame
         image={project.cover}
+        parallax={40}
         sizes="(min-width: 1024px) 460px, 70vw"
         class="absolute top-[14%] left-[10%] w-[64%] transition-transform duration-500 ease-out-soft group-hover:-translate-y-2 sm:top-[22%] sm:left-[10%] sm:w-[58%]"
       />
@@ -91,6 +92,7 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
         phoneShot && (
           <MiniPhone
             image={phoneShot}
+            parallax={110}
             bezel="thick"
             class="absolute top-[24%] left-[66%] w-[21%] transition-transform delay-75 duration-500 ease-out-soft group-hover:-translate-y-3 sm:top-[33%] sm:left-[62%] sm:w-[18%]"
           />
@@ -100,8 +102,8 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
         Annotation manuscrite et sa flèche courbe, placées après les appareils pour passer au premier plan :
         le coin haut droit leur est réservé, la flèche descend jusqu'au téléphone.
       -->
-      <p class="absolute top-[3%] right-[3%] z-10 m-0 hidden max-w-[14ch] -rotate-[8deg] text-center font-hand text-[1.375rem] leading-[1.05] font-semibold text-action sm:block">{note}</p>
-      <Undo2 size={30} class="absolute top-[21%] right-[14%] z-10 hidden -rotate-[100deg] text-action sm:block" />
+      <p data-in-view="wipe" data-in-view-delay="0.3" class="absolute top-[3%] right-[3%] z-10 m-0 hidden max-w-[14ch] -rotate-[8deg] text-center font-hand text-[1.375rem] leading-[1.05] font-semibold text-action sm:block">{note}</p>
+      <Undo2 data-in-view="wipe" data-in-view-delay="1.1" size={30} class="absolute top-[21%] right-[14%] z-10 hidden -rotate-[100deg] text-action sm:block" />
     </div>
   </div>
 </article>

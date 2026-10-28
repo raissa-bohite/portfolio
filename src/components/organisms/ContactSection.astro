@@ -62,22 +62,24 @@ const socialLinks = [
       </div>
 
       <!--
-        Portrait sur un grand disque violet posé sur un socle lavande, bulle de discussion près du visage :
-        décoratif, affiché seulement en grand format
+        Portrait sur un grand disque violet, bulle de discussion près du visage : décoratif, affiché seulement en grand format.
+        Le cadre qui contient la photo épouse le bas du disque : la découpe de la photo disparaît dans sa courbe
+        et les épaules ne débordent plus sur le formulaire.
       -->
-      <div aria-hidden="true" class="relative hidden h-[520px] self-center lg:block">
-        <span class="absolute -inset-x-[8%] bottom-6 h-36 rounded-[44px] bg-tint dark:bg-tint/70"></span>
-        <span class="absolute top-[160px] left-1/2 size-[320px] -translate-x-1/2 rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
-        <span class="absolute top-[120px] left-[4%] size-[220px] -rotate-[25deg] rounded-full border-[3px] border-sig border-r-transparent border-b-transparent"></span>
-        <Image
-          src={portrait}
-          alt=""
-          widths={[420, 840]}
-          sizes="(min-width: 1024px) 28vw, 1px"
-          loading="lazy"
-          class="absolute bottom-6 left-1/2 h-[430px] w-auto max-w-none -translate-x-1/2 object-contain object-bottom"
-        />
-        <span class="absolute top-[70px] right-[10%] flex h-[62px] w-[86px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
+      <div aria-hidden="true" class="relative hidden h-[500px] self-center lg:block">
+        <span class="absolute top-[150px] left-1/2 size-[320px] -translate-x-1/2 rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
+        <span class="absolute top-[110px] left-[4%] size-[220px] -rotate-[25deg] rounded-full border-[3px] border-sig border-r-transparent border-b-transparent"></span>
+        <span class="absolute top-[30px] left-1/2 h-[440px] w-[320px] -translate-x-1/2 overflow-hidden rounded-b-[160px]">
+          <Image
+            src={portrait}
+            alt=""
+            widths={[420, 840]}
+            sizes="(min-width: 1024px) 420px, 1px"
+            loading="lazy"
+            class="absolute bottom-0 left-1/2 h-[430px] w-auto max-w-none -translate-x-1/2 object-contain object-bottom"
+          />
+        </span>
+        <span class="absolute top-[60px] right-[8%] flex h-[62px] w-[86px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
           <span class="size-[9px] rounded-full bg-white"></span>
           <span class="size-[9px] rounded-full bg-white"></span>
           <span class="size-[9px] rounded-full bg-white"></span>

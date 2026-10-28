@@ -28,7 +28,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
 ---
 
 <div data-contact-form data-state="idle" class:list={['group/form', className]}>
-  <form action="/api/contact" method="post" aria-label={form.label} class="flex flex-col gap-6 group-data-[state=success]/form:hidden">
+  <form action="/api/contact" method="post" aria-label={form.label} class:list={['flex flex-col group-data-[state=success]/form:hidden', isCard ? 'gap-4' : 'gap-6']}>
     <input type="hidden" name="locale" value={locale} />
     <div class="absolute -left-[9999px]" aria-hidden="true">
       <label for={`${variant}-website`}>Website</label>
@@ -41,7 +41,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
           <span aria-hidden="true" class="flex size-[52px] flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
             <Send size={22} />
           </span>
-          <p class="m-0 pt-1 text-base text-text">{form.privacy}</p>
+          <p class="m-0 pt-1 text-sm text-text">{form.privacy}</p>
         </div>
       )
     }

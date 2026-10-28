@@ -32,6 +32,8 @@ const projects = defineCollection({
       // Captures secondaires composées autour de la couverture dans la vignette de la galerie
       shots: z.array(image()).max(3).default([]),
       shotFrame: z.enum(['desktop', 'phone']).default('desktop'),
+      // Visuel de mise en avant sur l'accueil (appareils déjà composés, fond détouré) ; sinon ordinateur et téléphone sont montés en code
+      showcase: image().optional(),
       gallery: z.array(z.object({ image: image(), alt: localizedText })).default([])
     })
 });

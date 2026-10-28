@@ -44,5 +44,6 @@
     "../../assets/case-studies/fassbar/login.jpg",
     "../../assets/case-studies/fassbar/splash.jpg"
   ],
-  "shotFrame": "phone"
+  "shotFrame": "phone",
+  "showcase": "../../assets/projects/fassbar-devices.png"
 }

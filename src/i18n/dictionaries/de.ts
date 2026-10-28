@@ -90,6 +90,9 @@ export const de: Dictionary = {
           skills: ["Claude API", "Coding-Agenten"],
         },
       ],
+      proofLabel: "Umgesetzt in",
+      proofCertification: "Cisco-Zertifizierung",
+      proofContactForm: "Das Kontaktformular dieser Website",
       closing: {
         title: "Ein ganzheitlicher Ansatz für dauerhafte Lösungen.",
         text: "Diese drei Bereiche ergänzen sich zu robusten, barrierefreien und weiterentwickelbaren Anwendungen, die sich an den echten Bedürfnissen von Nutzern und Unternehmen orientieren.",

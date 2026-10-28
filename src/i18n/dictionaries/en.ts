@@ -89,6 +89,9 @@ export const en: Dictionary = {
           skills: ["Claude API", "Coding agents"],
         },
       ],
+      proofLabel: "Put into practice in",
+      proofCertification: "Cisco certification",
+      proofContactForm: "This site's contact form",
       closing: {
         title: "A complete approach, for solutions built to last.",
         text: "These three areas work together to build applications that are robust, accessible and able to evolve, shaped around the real needs of users and businesses.",

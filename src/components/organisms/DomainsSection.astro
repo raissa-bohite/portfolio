@@ -1,141 +1,111 @@
 ---
-import Bot from '@lucide/astro/icons/bot';
-import Brain from '@lucide/astro/icons/brain';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Award from '@lucide/astro/icons/award';
 import Monitor from '@lucide/astro/icons/monitor';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
-import Target from '@lucide/astro/icons/target';
-import ClosingBand from '@/components/molecules/ClosingBand.astro';
+import Sparkles from '@lucide/astro/icons/sparkles';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
-import dashboardIllustration from '@/assets/illustrations/dashboard.svg';
+import { resolveDomainProofs } from '@/lib/domain-proofs';
+import type { ProjectSummary } from '@/lib/projects';
 
-type Props = { locale: Locale };
+type Props = { locale: Locale; projects: ProjectSummary[] };
 
-const { locale } = Astro.props;
+const { locale, projects } = Astro.props;
 const dictionary = getDictionary(locale);
 const domains = dictionary.home.domains;
 const skillsLabel = dictionary.projectPage.stack;
-const domainIcons = { dashboard: Monitor, security: ShieldCheck, ai: Brain } as const;
+const proofLabels = { certification: domains.proofCertification, contactForm: domains.proofContactForm };
+const domainIcons = { dashboard: Monitor, security: ShieldCheck, ai: Sparkles } as const;
+const linkClasses =
+  'inline-flex min-h-10 items-center gap-2 rounded-full border border-white/20 bg-white/[0.08] px-4 text-small font-semibold text-white no-underline transition-colors hover:border-white/40 hover:bg-white/[0.14] hover:text-white focus-visible:outline-white';
 ---
 
-<section aria-labelledby="domains-title" class="relative overflow-hidden">
-  <span aria-hidden="true" class="absolute -top-32 -right-24 size-64 rounded-full bg-tint/80 dark:bg-tint/50"></span>
-  <span aria-hidden="true" class="absolute top-20 right-48 hidden size-4 rounded-full bg-sig md:block"></span>
+<!-- Seule section sombre de l'accueil : une pause visuelle entre les projets et la démarche. « overflow-clip » rogne le décor sans casser la colonne collante -->
+<section aria-labelledby="domains-title" class="relative overflow-clip bg-linear-to-br from-[#2a1466] via-[#1e0f45] to-[#170b38] text-white">
+  <span aria-hidden="true" class="absolute -top-40 -right-36 size-[420px] rounded-full bg-brand/35"></span>
+  <span aria-hidden="true" class="absolute -bottom-44 -left-32 hidden size-[360px] rounded-full border-2 md:block border-[#f5a25d]/45 border-r-transparent border-b-transparent"></span>
+  <span aria-hidden="true" class="absolute right-16 bottom-14 hidden h-16 w-20 bg-[radial-gradient(circle,rgb(196_178_255/0.55)_2px,transparent_2.5px)] bg-size-[21px_21px] md:block"></span>
 
-  <div class="container-page relative flex flex-col gap-10 py-20">
-    <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} highlight={false} cursor="bar" />
+  <div class="container-page relative grid gap-12 py-24 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
+    <div class="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
+      <SectionIntro id="domains-title" eyebrow={domains.eyebrow} title={domains.title} intro={domains.closing.text} highlight={false} onDark cursor="bar" />
+      <span aria-hidden="true" class="flex gap-2.5 pt-3">
+        <span class="size-2.5 rounded-full bg-sig"></span>
+        <span class="size-2.5 rounded-full bg-[#8b63ea]"></span>
+        <span class="size-2.5 rounded-full bg-[#c4b2ff]"></span>
+      </span>
+    </div>
 
-    <div data-scroll-group class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <ol data-scroll-group class="m-0 flex list-none flex-col border-t border-white/15 p-0">
       {
-        domains.items.map((domain) => {
+        domains.items.map((domain, index) => {
           const Icon = domainIcons[domain.icon as keyof typeof domainIcons] ?? Monitor;
           const isAi = domain.icon === 'ai';
+          const proofs = resolveDomainProofs(domain.icon, projects, proofLabels, '#contact');
           return (
-            <article
-              data-scroll-item
-              class:list={[
-                'relative flex flex-col gap-4 overflow-hidden rounded-surface border p-7 shadow-glass',
-                isAi
-                  ? 'border-[#fbe3d3] bg-linear-to-b from-bg from-40% to-[#fff4ec] dark:border-glass-border dark:from-glass-strong dark:to-[#2a1530]'
-                  : 'border-glass-border bg-glass-strong'
-              ]}
-            >
-              <div class="flex min-h-36 items-start justify-between gap-3">
-                <span
-                  aria-hidden="true"
-                  class:list={[
-                    'flex size-14 flex-none items-center justify-center rounded-[14px]',
-                    isAi ? 'bg-[#fde3d2] text-[#e0590c]' : 'bg-linear-to-br from-brand to-brand-deep text-white'
-                  ]}
-                >
-                  <Icon size={26} />
-                </span>
-
-                <!-- Illustration propre à chaque domaine, décorative -->
-                <div aria-hidden="true" class="relative h-32 w-48 flex-none">
-                  {domain.icon === 'dashboard' && (
-                    <>
-                      <span class="absolute inset-y-0 right-0 left-5 rounded-full bg-tint/70 dark:bg-tint" />
-                      <span class="absolute top-2 left-0 w-40 overflow-hidden rounded-lg bg-white shadow-[0_10px_24px_rgb(30_15_69/0.18)]">
-                        <img src={dashboardIllustration.src} alt="" width="640" height="400" loading="lazy" decoding="async" class="block h-auto w-full" />
-                      </span>
-                      <span class="absolute right-0 bottom-1.5 flex items-end gap-1 rounded-[10px] bg-white px-3 py-2.5 shadow-[0_8px_20px_rgb(30_15_69/0.14)]">
-                        <span class="h-3.5 w-[7px] rounded-[2px] bg-sig" />
-                        <span class="h-6 w-[7px] rounded-[2px] bg-[#f5a25d]" />
-                        <span class="h-8 w-[7px] rounded-[2px] bg-brand" />
-                      </span>
-                    </>
-                  )}
-                  {domain.icon === 'security' && (
-                    <>
-                      <span class="absolute top-0 left-0 flex h-28 w-44 flex-col gap-[7px] rounded-[10px] bg-[#1b1530] p-2.5 shadow-[0_12px_26px_rgb(30_15_69/0.25)]">
-                        <span class="flex gap-1">
-                          <span class="size-1.5 rounded-full bg-sig" />
-                          <span class="size-1.5 rounded-full bg-[#f5a25d]" />
-                          <span class="size-1.5 rounded-full bg-[#6ccf8e]" />
-                        </span>
-                        <span class="h-[5px] w-[70%] rounded-full bg-[#8b63ea]" />
-                        <span class="ml-3 h-[5px] w-[50%] rounded-full bg-[#4c4570]" />
-                        <span class="ml-3 h-[5px] w-[62%] rounded-full bg-lilac" />
-                        <span class="h-[5px] w-[40%] rounded-full bg-[#4c4570]" />
-                        <span class="h-[5px] w-[58%] rounded-full bg-[#8b63ea]" />
-                      </span>
-                      <span class="absolute right-0 bottom-0 flex size-16 items-center justify-center rounded-[14px] bg-white shadow-[0_10px_22px_rgb(30_15_69/0.16)]">
-                        <span class="flex size-10 items-center justify-center rounded-xl bg-[#1f9d55] text-white">
-                          <ShieldCheck size={22} />
-                        </span>
-                      </span>
-                    </>
-                  )}
-                  {isAi && (
-                    <>
-                      <span class="absolute top-9 left-0 flex h-[88px] w-[150px] flex-col gap-2.5 rounded-[14px] bg-white p-3.5 shadow-[0_12px_26px_rgb(30_15_69/0.14)]">
-                        <span class="h-1.5 w-[75%] rounded-full bg-brand" />
-                        <span class="h-1.5 w-[55%] rounded-full bg-lilac" />
-                        <span class="h-1.5 w-[65%] rounded-full bg-brand" />
-                      </span>
-                      <span class="absolute top-0 right-1 flex size-16 items-center justify-center rounded-full bg-tint text-action">
-                        <Bot size={30} />
-                      </span>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              <h3 class="m-0 text-title font-extrabold text-ink">{domain.title}</h3>
-              <p class="m-0 text-base text-text">{domain.text}</p>
-              <ul class="m-0 mt-auto flex list-none flex-wrap gap-2 p-0 pt-1.5" aria-label={skillsLabel}>
-                {domain.skills.map((skill) => (
-                  <li>
-                    <span
-                      class:list={[
-                        'inline-block rounded-full px-3 py-1.5 text-[13px] font-medium',
-                        isAi ? 'bg-[#fde8dc] text-[#a33f08] dark:bg-[#4a2318] dark:text-[#ffc7a6]' : 'bg-tint text-tint-ink'
-                      ]}
-                    >
-                      {skill}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
+            <li data-scroll-item class="flex flex-col gap-5 border-b border-white/15 py-9 sm:flex-row sm:gap-7">
               <span
+                data-scroll-pop
                 aria-hidden="true"
                 class:list={[
-                  'absolute -right-10 -bottom-10 size-28 rotate-0 rounded-full border-2 border-r-transparent border-b-transparent',
-                  isAi ? 'border-sig' : 'border-brand',
-                  domain.icon === 'security' && 'hidden'
+                  'w-24 flex-none text-[4rem] leading-none font-extrabold tracking-[-0.04em] text-transparent',
+                  isAi ? '[-webkit-text-stroke:1.5px_#f5a25d]' : '[-webkit-text-stroke:1.5px_#c4b2ff]'
                 ]}
-              />
-            </article>
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div class="flex min-w-0 flex-1 flex-col gap-3">
+                <div class="flex items-center gap-3.5">
+                  <span
+                    aria-hidden="true"
+                    class:list={[
+                      'flex size-11 flex-none items-center justify-center rounded-xl',
+                      isAi ? 'bg-linear-to-br from-[#f58a45] to-[#e0590c]' : 'bg-linear-to-br from-[#7b4fe0] to-brand-deep'
+                    ]}
+                  >
+                    <Icon size={22} />
+                  </span>
+                  <h3 class="m-0 text-title font-extrabold text-white sm:text-[1.75rem]">{domain.title}</h3>
+                </div>
+                <p class="m-0 text-body-lg text-white/85">{domain.text}</p>
+                <p class="m-0 font-mono text-[13px] text-white/70">
+                  <span class="sr-only">{skillsLabel} : </span>
+                  {domain.skills.join(' · ')}
+                </p>
+                {proofs.length > 0 && (
+                  <div class="flex flex-wrap items-center gap-2.5 pt-1.5">
+                    <span class="text-sm font-bold text-[#ffd9c2]">{domains.proofLabel}</span>
+                    <ul class="m-0 flex list-none flex-wrap gap-2.5 p-0">
+                      {proofs.map((proof) => (
+                        <li>
+                          {proof.href ? (
+                            <a href={proof.href} class={linkClasses}>
+                              {proof.label}
+                              <ArrowRight aria-hidden="true" size={15} />
+                            </a>
+                          ) : (
+                            <span
+                              class:list={[
+                                'inline-flex min-h-10 items-center gap-2 rounded-full border px-4 text-small font-semibold',
+                                proof.highlighted ? 'border-sig/40 bg-sig/15 text-[#ffd9c2]' : 'border-white/20 bg-white/[0.08] text-white'
+                              ]}
+                            >
+                              {proof.highlighted && <Award aria-hidden="true" size={15} />}
+                              {proof.label}
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </li>
           );
         })
       }
-    </div>
-
-    <ClosingBand tone="brand" title={domains.closing.title} text={domains.closing.text}>
-      <Target slot="icon" size={44} />
-    </ClosingBand>
+    </ol>
   </div>
 </section>

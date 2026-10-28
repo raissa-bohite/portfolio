@@ -99,6 +99,9 @@ const dictionary = {
           skills: ["Claude API", "Agents de code"],
         },
       ],
+      proofLabel: "Mis en pratique dans",
+      proofCertification: "Certification Cisco",
+      proofContactForm: "Le formulaire de contact de ce site",
       closing: {
         title: "Une approche globale, pour des solutions durables.",
         text: "Ces trois domaines se complètent pour créer des applications robustes, accessibles et évolutives, adaptées aux besoins réels des utilisateurs et des entreprises.",

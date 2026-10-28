@@ -1,5 +1,8 @@
 ---
-import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import Heart from '@lucide/astro/icons/heart';
+import MessageSquare from '@lucide/astro/icons/message-square';
+import Zap from '@lucide/astro/icons/zap';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import ContactAside from '@/components/organisms/ContactAside.astro';
 import ContactForm from '@/components/organisms/ContactForm.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
@@ -10,24 +13,57 @@ import { getDictionary } from '@/i18n/translate';
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
-const page = getDictionary(locale).contactPage;
+const dictionary = getDictionary(locale);
+const page = dictionary.contactPage;
+const homeContact = dictionary.home.contact;
+const highlightIcons = { zap: Zap, message: MessageSquare, heart: Heart } as const;
 const alternates = getAlternateLinks((alternateLocale) => getRoutePath('contact', alternateLocale));
 ---
 
 <BaseLayout locale={locale} title={page.seoTitle} description={page.seoDescription} currentRoute="contact" alternates={alternates}>
-  <section data-scroll-group class="container-page flex flex-col gap-4 pt-16 pb-12">
-    <div data-scroll-item class="flex flex-col gap-3">
-      <Eyebrow>{page.eyebrow}</Eyebrow>
-      <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{page.title}</h1>
+  <!-- Même en-tête que les pages Projets et À propos ; la note manuscrite de l'accueil répond au titre -->
+  <section aria-labelledby="contact-page-title" class="relative overflow-hidden">
+    <span aria-hidden="true" class="absolute top-2 -right-24 hidden size-72 rounded-full bg-tint/80 md:block dark:bg-tint/50"></span>
+    <span aria-hidden="true" class="absolute top-16 right-80 hidden size-4 rounded-full bg-sig md:block"></span>
+    <span aria-hidden="true" class="absolute top-72 right-10 hidden h-16 w-20 bg-[radial-gradient(circle,#b9a4f5_2px,transparent_2.5px)] bg-size-[21px_21px] lg:block"></span>
+
+    <div class="container-page relative flex flex-col gap-12 pt-16 pb-10">
+      <div class="flex flex-wrap items-end justify-between gap-10">
+        <SectionIntro id="contact-page-title" eyebrow={page.eyebrow} title={page.title} intro={page.intro} highlight={false} cursor level="page" class="max-w-[48rem]" />
+        <div class="relative max-w-[20rem] pr-5 pb-6">
+          <p class="m-0 -rotate-6 font-hand text-[1.75rem] leading-[1.15] font-semibold text-action">{homeContact.note}</p>
+          <span aria-hidden="true" class="mt-3 ml-18 block h-[3px] w-28 -rotate-6 rounded-full bg-sig"></span>
+        </div>
+      </div>
+
+      <!-- Les trois engagements de l'accueil, en ligne sous un filet -->
+      <ul data-scroll-group class="m-0 flex list-none flex-wrap gap-7 border-t border-line p-0 pt-7">
+        {
+          homeContact.highlights.map((highlight) => {
+            const Icon = highlightIcons[highlight.icon as keyof typeof highlightIcons] ?? Zap;
+            return (
+              <li data-scroll-item class="flex flex-[1_1_260px] items-start gap-4">
+                <span aria-hidden="true" class="flex size-[52px] flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
+                  <Icon size={22} />
+                </span>
+                <span class="flex flex-col gap-1">
+                  <strong class="text-[1.0625rem] font-bold text-ink">{highlight.title}</strong>
+                  <span class="text-[0.9375rem] text-text">{highlight.text}</span>
+                </span>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
-    <p data-scroll-item class="m-0 max-w-[52ch] text-lead">{page.intro}</p>
   </section>
-  <section class="container-page pb-24">
-    <div class="grid items-stretch gap-x-6 gap-y-8 lg:grid-cols-12">
-      <div class="rounded-block border border-glass-border bg-bg p-6 shadow-glass-lg sm:p-10 lg:col-span-8">
+
+  <section class="container-page pt-6 pb-24">
+    <div class="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)]">
+      <div class="rounded-block border border-glass-border bg-[var(--material)] p-6 shadow-glass-lg sm:p-10">
         <ContactForm locale={locale} variant="full" class="relative" />
       </div>
-      <ContactAside locale={locale} class="lg:col-span-4" />
+      <ContactAside locale={locale} />
     </div>
   </section>
 </BaseLayout>

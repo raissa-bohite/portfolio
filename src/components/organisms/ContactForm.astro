@@ -24,6 +24,9 @@ const { locale, variant = 'compact', class: className } = Astro.props;
 const form = getDictionary(locale).contactForm;
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const isCard = variant === 'card';
+const isFull = variant === 'full';
+// Icônes dans les champs nom et email : accueil et page Contact
+const hasFieldIcons = isCard || isFull;
 const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.types[value], hint: form.typeHints[value] }));
 ---
 
@@ -61,7 +64,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
 
     <div class:list={['grid gap-4', !isCard && 'sm:grid-cols-2']}>
       <FormField id={`${variant}-name`} name="name" label={form.name} autocomplete="name" error={form.nameError} maxLength={contactLimits.nameMax}>
-        {isCard && <User slot="icon" size={20} />}
+        {hasFieldIcons && <User slot="icon" size={20} />}
       </FormField>
       <FormField
         id={`${variant}-email`}
@@ -73,7 +76,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
         error={form.emailError}
         maxLength={contactLimits.emailMax}
       >
-        {isCard && <Mail slot="icon" size={20} />}
+        {hasFieldIcons && <Mail slot="icon" size={20} />}
       </FormField>
     </div>
 
@@ -96,7 +99,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
       id={`${variant}-message`}
       name="message"
       kind="textarea"
-      rows={variant === 'full' ? 6 : isCard ? 3 : 4}
+      rows={variant === 'full' ? 9 : isCard ? 3 : 4}
       label={form.message}
       help={form.messageHelp}
       error={form.messageError}
@@ -110,20 +113,34 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
     <p role="alert" class="m-0 hidden rounded-control border border-danger/40 bg-glass-strong p-4 text-sm font-medium text-ink group-data-[state=failure]/form:block">
       {form.failure}
     </p>
-    <div class:list={['flex flex-wrap items-center justify-between gap-4', isCard && 'flex-col items-stretch']}>
-      {!isCard && <p class="m-0 max-w-[44ch] text-sm text-muted">{form.privacy}</p>}
+    <div class:list={['flex flex-wrap items-center justify-between gap-4', isCard && 'flex-col items-stretch', isFull && 'gap-5 border-t border-line pt-5']}>
+      {
+        isFull ? (
+          <p class="m-0 flex max-w-[52ch] flex-[1_1_300px] items-center gap-3.5 text-sm text-text">
+            <span aria-hidden="true" class="flex size-11 flex-none items-center justify-center rounded-full bg-tint text-tint-ink">
+              <Send size={20} />
+            </span>
+            {form.privacy}
+          </p>
+        ) : (
+          !isCard && <p class="m-0 max-w-[44ch] text-sm text-muted">{form.privacy}</p>
+        )
+      }
       <button
         type="submit"
         data-label-idle={form.submit}
         data-label-sending={form.sending}
         class:list={[
           'inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 whitespace-nowrap border-0 bg-action px-6 active:scale-[0.97] font-sans text-base font-semibold text-action-ink transition-colors hover:bg-action-hover disabled:cursor-wait disabled:opacity-70',
-          isCard ? 'min-h-14 gap-3 rounded-full font-bold shadow-[0_12px_28px_rgb(74_35_160/0.28)]' : 'rounded-control sm:w-auto'
+          isCard && 'min-h-14 gap-3 rounded-full font-bold shadow-[0_12px_28px_rgb(74_35_160/0.28)]',
+          isFull && 'min-h-[58px] gap-3 rounded-full px-8 text-[1.0625rem] font-bold shadow-[0_12px_28px_rgb(74_35_160/0.28)] sm:w-auto',
+          !isCard && !isFull && 'rounded-control sm:w-auto'
         ]}
       >
-        {isCard && <Send aria-hidden="true" size={18} />}
+        {(isCard || isFull) && <Send aria-hidden="true" size={18} />}
         <span data-submit-label>{form.submit}</span>
-        {isCard ? <ArrowRight aria-hidden="true" size={18} /> : <Send aria-hidden="true" size={18} />}
+        {isCard && <ArrowRight aria-hidden="true" size={18} />}
+        {!isCard && !isFull && <Send aria-hidden="true" size={18} />}
       </button>
     </div>
   </form>
@@ -139,7 +156,7 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
       data-action="again"
       class:list={[
         'min-h-12 cursor-pointer border-[1.5px] border-action bg-glass-strong px-6 transition-transform duration-150 active:scale-[0.97] font-sans text-base font-semibold text-action',
-        isCard ? 'rounded-full' : 'rounded-control'
+        isCard || isFull ? 'rounded-full' : 'rounded-control'
       ]}
     >
       {form.again}

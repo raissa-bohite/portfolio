@@ -1,7 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import Clock from '@lucide/astro/icons/clock';
 import Copy from '@lucide/astro/icons/copy';
 import Download from '@lucide/astro/icons/download';
+import MapPin from '@lucide/astro/icons/map-pin';
+import portrait from '@/assets/portrait/portrait-cutout.png';
 import BrandIcon from '@/components/atoms/BrandIcon.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath } from '@/i18n/routes';
@@ -18,21 +22,41 @@ const links = [
   { href: profile.githubUrl, label: 'GitHub', external: true, brand: 'github' as const },
   { href: getCvPath(locale), label: dictionary.common.cv, external: false, brand: undefined }
 ];
+const headingClasses = 'm-0 text-[13px] font-bold tracking-[0.12em] text-[#ffd9c2] uppercase';
+const iconDotClasses = 'flex size-[38px] flex-none items-center justify-center rounded-full bg-white/12';
 ---
 
-<!-- Coordonnées dans le bloc violet du contact de l'accueil. Couleurs fixes sur le violet : contraste supérieur à 7:1 -->
+<!--
+  Coordonnées sur le violet profond de la section Expertises (couleurs fixes, contraste supérieur à 7:1 dans les deux thèmes) :
+  portrait, email à copier, liens en pastilles, lieu et fuseau horaire
+-->
 <aside
   data-scroll-group
-  class:list={['relative isolate flex flex-col gap-8 overflow-hidden rounded-block bg-linear-to-br from-[#6d3fd6] to-[#36188a] shadow-glass-lg p-8 text-white', className]}
+  class:list={[
+    'relative isolate flex flex-col gap-7 overflow-hidden rounded-block bg-linear-to-br from-[#2a1466] via-[#1e0f45] to-[#170b38] px-8 py-9 text-white shadow-glass-lg',
+    className
+  ]}
 >
-  <div aria-hidden="true" class="absolute -right-24 -bottom-36 -z-10 size-[320px] rounded-t-full bg-white/[0.06]"></div>
+  <span aria-hidden="true" class="absolute -top-28 -right-28 -z-10 size-[280px] rounded-full bg-brand/35"></span>
+  <span aria-hidden="true" class="absolute -bottom-[262px] -left-20 -z-10 size-[300px] rounded-full border-2 border-[#f5a25d]/45 border-r-transparent border-b-transparent"></span>
+
+  <div data-scroll-item aria-hidden="true" class="flex items-center gap-4">
+    <span class="relative size-21 flex-none overflow-hidden rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep ring-4 ring-white/12">
+      <Image src={portrait} alt="" widths={[168, 336]} sizes="168px" loading="lazy" class="absolute -top-1 -left-[39px] w-[165px] max-w-none" />
+    </span>
+    <span class="flex h-11 w-16 items-center justify-center gap-1.5 rounded-[14px_14px_14px_4px] bg-brand">
+      <span class="typing-dot size-[7px] rounded-full bg-white"></span>
+      <span class="typing-dot size-[7px] rounded-full bg-white"></span>
+      <span class="typing-dot size-[7px] rounded-full bg-white"></span>
+    </span>
+  </div>
 
   <div data-scroll-item class="flex flex-col gap-3" data-copy-email data-copied={page.copied} data-copy-failed={page.copyFailed}>
-    <h2 class="m-0 text-sm font-semibold text-[#ffd9c2]">{page.directEmail}</h2>
+    <h2 class={headingClasses}>{page.directEmail}</h2>
     <a
       href={`mailto:${profile.email}`}
       data-email
-      class="text-xl font-semibold text-white underline decoration-white/50 underline-offset-[5px] [overflow-wrap:anywhere] hover:text-white hover:decoration-white focus-visible:outline-white"
+      class="text-[1.375rem] font-bold text-white underline decoration-white/50 underline-offset-[5px] [overflow-wrap:anywhere] hover:text-white hover:decoration-white focus-visible:outline-white"
     >
       {profile.email}
     </a>
@@ -40,7 +64,7 @@ const links = [
       type="button"
       data-copy-button
       hidden
-      class="inline-flex min-h-11 cursor-pointer items-center gap-2 self-start rounded-control border-0 bg-white px-4 font-sans text-small font-semibold text-[#36188a] transition-transform duration-100 focus-visible:outline-white active:scale-[0.97]"
+      class="inline-flex min-h-[46px] cursor-pointer items-center gap-2.5 self-start rounded-full border-0 bg-white px-5 font-sans text-small font-bold text-[#36188a] transition-transform duration-100 focus-visible:outline-white active:scale-[0.97]"
     >
       <Copy aria-hidden="true" size={16} />
       {page.copy}
@@ -48,34 +72,38 @@ const links = [
     <p data-copy-status role="status" class="m-0 min-h-px text-sm text-white/85"></p>
   </div>
 
-  <nav data-scroll-item aria-labelledby="elsewhere-title" class="flex flex-col">
-    <h2 id="elsewhere-title" class="mt-0 mb-2 text-sm font-semibold text-[#ffd9c2]">{page.elsewhere}</h2>
+  <nav data-scroll-item aria-labelledby="elsewhere-title" class="flex flex-col gap-2.5 border-t border-white/15 pt-6">
+    <h2 id="elsewhere-title" class:list={[headingClasses, 'mb-1']}>{page.elsewhere}</h2>
     {
       links.map((link) => (
         <a
           href={link.href}
           rel={link.external ? 'me noopener' : undefined}
           download={link.external ? undefined : true}
-          class="group flex min-h-12 items-center justify-between border-t border-white/20 font-semibold text-white no-underline hover:text-white focus-visible:outline-white"
+          class="group flex min-h-[52px] items-center gap-3 rounded-full border border-white/20 bg-white/[0.08] py-1.5 pr-[18px] pl-1.5 font-semibold text-white no-underline transition-colors hover:border-white/40 hover:bg-white/[0.14] hover:text-white focus-visible:outline-white"
         >
-          <span class="flex items-center gap-3">
-            {link.brand && <BrandIcon brand={link.brand} class="size-[18px]" />}
-            {link.label}
+          <span aria-hidden="true" class={iconDotClasses}>
+            {link.brand ? <BrandIcon brand={link.brand} class="size-[18px]" /> : <Download size={18} />}
           </span>
-          {link.external ? (
+          <span class="flex-1">{link.label}</span>
+          {link.external && (
             <ArrowUpRight aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          ) : (
-            <Download aria-hidden="true" size={18} class="transition-transform duration-300 group-hover:translate-y-0.5" />
           )}
         </a>
       ))
     }
   </nav>
 
-  <div data-scroll-item class="flex flex-col gap-1 border-t border-white/20 pt-6">
-    <h2 class="m-0 text-sm font-semibold text-[#ffd9c2]">{page.whereWhen}</h2>
-    <p class="m-0 font-semibold">{page.location}</p>
-    <p class="m-0 text-small text-white/85">{page.timezone}</p>
+  <div data-scroll-item class="flex flex-col gap-3.5 border-t border-white/15 pt-6">
+    <h2 class={headingClasses}>{page.whereWhen}</h2>
+    <p class="m-0 flex items-center gap-3 font-bold">
+      <span aria-hidden="true" class:list={[iconDotClasses, 'bg-sig!']}><MapPin size={18} /></span>
+      {page.location}
+    </p>
+    <p class="m-0 flex items-start gap-3 text-small text-white/85">
+      <span aria-hidden="true" class={iconDotClasses}><Clock size={18} /></span>
+      <span class="pt-2">{page.timezone}</span>
+    </p>
   </div>
 </aside>
 

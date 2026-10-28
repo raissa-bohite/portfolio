@@ -7,13 +7,19 @@ type Props = {
 const { label, facts } = Astro.props;
 ---
 
+<!-- Fiche du projet : libellés en capitales comme les sur-titres, séparés par des traits verticaux sur grand écran -->
 <section aria-label={label}>
-  <dl class:list={['glass m-0 grid gap-x-6 gap-y-5 px-8 py-6 sm:grid-cols-2', facts.length >= 4 && 'lg:grid-cols-4']}>
+  <dl
+    class:list={[
+      'm-0 grid gap-x-8 gap-y-6 rounded-surface border border-glass-border bg-glass-strong px-8 py-7 shadow-glass sm:grid-cols-2',
+      facts.length >= 4 && 'lg:grid-cols-4'
+    ]}
+  >
     {
       facts.map((fact) => (
-        <div>
-          <dt class="text-sm font-medium text-muted">{fact.term}</dt>
-          <dd class="mt-1 mb-0 font-semibold text-ink">{fact.value}</dd>
+        <div class="flex flex-col gap-1.5 lg:border-l lg:border-line lg:pl-6 lg:first:border-l-0 lg:first:pl-0">
+          <dt class="text-xs font-semibold tracking-[0.12em] text-action uppercase">{fact.term}</dt>
+          <dd class="m-0 text-base font-bold text-ink">{fact.value}</dd>
         </div>
       ))
     }

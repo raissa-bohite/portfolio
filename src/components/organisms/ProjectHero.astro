@@ -1,8 +1,8 @@
 ---
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import Button from '@/components/atoms/Button.astro';
-import Eyebrow from '@/components/atoms/Eyebrow.astro';
 import Breadcrumb from '@/components/molecules/Breadcrumb.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
@@ -20,25 +20,24 @@ const { locale, name, eyebrow, title, lead, liveUrl } = Astro.props;
 const dictionary = getDictionary(locale);
 ---
 
-<section data-scroll-group class="container-page flex flex-col gap-6 pt-16 pb-12">
-  <Breadcrumb
-    label={dictionary.projectPage.breadcrumb}
-    parent={{ href: getRoutePath('projects', locale), label: dictionary.nav.projects }}
-    current={name}
-  />
-  <div data-scroll-item class="flex flex-col gap-3">
-    <Eyebrow>{eyebrow}</Eyebrow>
-    <h1 class="m-0 max-w-[20ch] text-display font-bold text-ink">{title}</h1>
-  </div>
-  <p data-scroll-item class="m-0 max-w-[60ch] text-lead">{lead}</p>
-  {
-    liveUrl && (
-      <div data-scroll-item>
-        <Button href={liveUrl} rel="noopener" target="_blank">
+<!-- Même en-tête que la page Projets : sur-titre à trait, titre à curseur, décor de cercles à droite -->
+<section aria-labelledby="project-title" class="relative overflow-hidden">
+  <span aria-hidden="true" class="absolute top-2 -right-16 hidden size-64 rounded-full bg-tint/80 md:block dark:bg-tint/50"></span>
+  <span aria-hidden="true" class="absolute top-16 right-64 hidden size-4 rounded-full bg-sig md:block"></span>
+  <div class="container-page relative flex flex-col items-start gap-7 pt-14 pb-12">
+    <Breadcrumb
+      label={dictionary.projectPage.breadcrumb}
+      parent={{ href: getRoutePath('projects', locale), label: dictionary.nav.projects }}
+      current={name}
+    />
+    <SectionIntro id="project-title" eyebrow={eyebrow} title={title} intro={lead} highlight={false} cursor level="page" class="max-w-[52rem]" />
+    {
+      liveUrl && (
+        <Button href={liveUrl} rel="noopener" target="_blank" shape="pill">
           {dictionary.projectPage.visit}
           <ArrowUpRight aria-hidden="true" size={18} />
         </Button>
-      </div>
-    )
-  }
+      )
+    }
+  </div>
 </section>

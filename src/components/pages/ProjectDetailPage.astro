@@ -1,4 +1,7 @@
 ---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import MessageSquare from '@lucide/astro/icons/message-square';
+import ClosingBand from '@/components/molecules/ClosingBand.astro';
 import FactList from '@/components/molecules/FactList.astro';
 import ProjectRow from '@/components/molecules/ProjectRow.astro';
 import CaseStudyBody from '@/components/organisms/CaseStudyBody.astro';
@@ -8,7 +11,7 @@ import ProjectSummaryBody from '@/components/organisms/ProjectSummaryBody.astro'
 import ScreenshotLightbox from '@/components/organisms/ScreenshotLightbox.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
-import { getAlternateLinks, getProjectPath } from '@/i18n/routes';
+import { getAlternateLinks, getProjectPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
 import { findCaseStudy, getNextProject, getProjectSummaries } from '@/lib/projects';
 
@@ -66,18 +69,37 @@ const facts = caseStudy
     )
   }
   <ScreenshotLightbox closeLabel={labels.closePreview} />
-  {
-    nextProject && (
-      <section aria-label={labels.next} data-scroll-group class="container-page flex flex-col gap-8 pb-24">
-        <p class="m-0 pt-8 text-sm font-semibold text-action">{labels.next}</p>
-        <ProjectRow
-          project={nextProject}
-          position={(projectIndex + 1) % projects.length + 1}
-          actionLabel={nextProject.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
-          stackLabel={labels.stack}
-          pendingLabel={dictionary.projectsPage.caseStudySoon}
-        />
-      </section>
-    )
-  }
+  <div class="container-page flex flex-col gap-12 pb-24">
+    {
+      nextProject && (
+        <section aria-labelledby="next-project-title" data-scroll-group class="flex flex-col gap-8">
+          <!-- Même sur-titre à trait que les en-têtes de section -->
+          <h2 id="next-project-title" class="m-0 flex items-center gap-3 pt-6 text-sm font-semibold tracking-[0.12em] text-action uppercase">
+            {labels.next}
+            <span aria-hidden="true" class="h-0.5 w-12 rounded-full bg-linear-to-r from-brand to-lilac"></span>
+          </h2>
+          <ProjectRow
+            project={nextProject}
+            position={(projectIndex + 1) % projects.length + 1}
+            actionLabel={nextProject.hasCaseStudy ? dictionary.common.caseStudy : dictionary.common.viewProject}
+            stackLabel={labels.stack}
+            pendingLabel={dictionary.projectsPage.caseStudySoon}
+          />
+        </section>
+      )
+    }
+
+    <!-- Bandeau de contact identique à celui de la page Projets -->
+    <ClosingBand tone="brand" title={dictionary.home.contact.title} text={dictionary.home.contact.text} class="mt-6">
+      <MessageSquare slot="icon" size={40} />
+      <a
+        slot="aside"
+        href={getRoutePath('contact', locale)}
+        class="relative inline-flex min-h-14 items-center gap-3 rounded-full bg-white px-7 text-base font-bold text-brand-deeper no-underline transition-transform duration-200 hover:-translate-y-0.5 hover:text-brand-deeper focus-visible:outline-white"
+      >
+        {dictionary.nav.cta}
+        <ArrowRight aria-hidden="true" size={18} />
+      </a>
+    </ClosingBand>
+  </div>
 </BaseLayout>

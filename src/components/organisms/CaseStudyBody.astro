@@ -1,6 +1,5 @@
 ---
 import Plus from '@lucide/astro/icons/plus';
-import Tag from '@/components/atoms/Tag.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import type { CaseStudy } from '@/lib/projects';
@@ -12,19 +11,25 @@ const { locale, caseStudy } = Astro.props;
 const labels = getDictionary(locale).projectPage;
 
 const sectionNumber = (position: number): string => String(position).padStart(2, '0');
-const labelClasses = 'm-0 font-mono text-sm font-semibold text-sig-text';
-const headingClasses = 'm-0 text-h2 font-bold text-ink';
+// Grand numéro en contour, comme les projets et l'expertise de l'accueil : décoratif, le titre porte le sens
+const numberClasses = 'text-[4rem] leading-none font-extrabold tracking-[-0.04em] text-transparent';
+const lightNumberClasses = `${numberClasses} [-webkit-text-stroke:1.5px_#b9a4f5]`;
+const orangeNumberClasses = `${numberClasses} [-webkit-text-stroke:1.5px_#f5a25d]`;
+const headingClasses = 'm-0 text-h2 font-bold text-balance text-ink';
+const cursorClasses = 'ml-1 inline-block h-[0.08em] w-[0.45em] bg-sig align-baseline';
 const splitClasses = 'container-page grid w-full scroll-mt-32 gap-6 lg:grid-cols-12 lg:gap-x-12';
-const asideClasses = 'flex flex-col gap-3 lg:sticky lg:top-32 lg:col-span-4 lg:self-start';
-const bodyClasses = 'flex flex-col gap-5 lg:col-span-8';
+const asideClasses = 'flex flex-col gap-4 lg:sticky lg:top-32 lg:col-span-4 lg:self-start';
+const bodyClasses = 'flex flex-col gap-5 lg:col-span-8 lg:pt-4';
 const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
 ---
 
 <article data-case-study class="flex flex-col gap-24 pb-24">
   <section id="context" data-scroll-group aria-labelledby="context-title" class={splitClasses}>
     <div data-scroll-item class={asideClasses}>
-      <p class={labelClasses}>{sectionNumber(1)}</p>
-      <h2 id="context-title" class={headingClasses}>{labels.sections.context}</h2>
+      <span data-in-view="wipe" aria-hidden="true" class={lightNumberClasses}>{sectionNumber(1)}</span>
+      <h2 id="context-title" data-split-title class={headingClasses}>
+        {labels.sections.context}<span data-section-cursor aria-hidden="true" class={cursorClasses}></span>
+      </h2>
     </div>
     <div data-scroll-item class={bodyClasses}>
       {caseStudy.context.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
@@ -33,16 +38,21 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
 
   <section id="role" data-scroll-group aria-labelledby="role-title" class={splitClasses}>
     <div data-scroll-item class={asideClasses}>
-      <p class={labelClasses}>{sectionNumber(2)}</p>
-      <h2 id="role-title" class={headingClasses}>{labels.sections.role}</h2>
+      <span data-in-view="wipe" aria-hidden="true" class={lightNumberClasses}>{sectionNumber(2)}</span>
+      <h2 id="role-title" data-split-title class={headingClasses}>
+        {labels.sections.role}<span data-section-cursor aria-hidden="true" class={cursorClasses}></span>
+      </h2>
     </div>
     <div class={bodyClasses}>
       {caseStudy.role.paragraphs.map((paragraph) => <p data-scroll-item class={paragraphClasses}>{paragraph}</p>)}
-      <ul class="m-0 mt-2 grid list-none gap-3 p-0 sm:grid-cols-2">
+      <!-- Missions en pastilles, comme les filtres de la page Projets -->
+      <ul class="m-0 mt-2 flex list-none flex-wrap gap-3 p-0">
         {
           caseStudy.role.highlights.map((highlight, index) => (
-            <li data-scroll-item class="glass flex items-center gap-4 shadow-glass-sm! px-5 py-4 font-semibold text-ink">
-              <span class="font-mono text-sm text-sig-text">{sectionNumber(index + 1)}</span>
+            <li data-scroll-item class="inline-flex min-h-12 items-center gap-3 rounded-full border border-line bg-bg py-2 pr-5 pl-2 font-semibold text-ink shadow-glass-sm">
+              <span class="flex size-8 flex-none items-center justify-center rounded-full bg-tint font-mono text-xs font-bold text-tint-ink">
+                {sectionNumber(index + 1)}
+              </span>
               {highlight}
             </li>
           ))
@@ -54,69 +64,84 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
   <section id="approach" aria-labelledby="approach-title" class="flex scroll-mt-32 flex-col gap-14">
     <div data-scroll-group class={splitClasses}>
       <div data-scroll-item class={asideClasses}>
-        <p class={labelClasses}>{sectionNumber(3)}</p>
-        <h2 id="approach-title" class={headingClasses}>{labels.sections.approach}</h2>
+        <span data-in-view="wipe" aria-hidden="true" class={lightNumberClasses}>{sectionNumber(3)}</span>
+        <h2 id="approach-title" data-split-title class={headingClasses}>
+          {labels.sections.approach}<span data-section-cursor aria-hidden="true" class={cursorClasses}></span>
+        </h2>
       </div>
       <div data-scroll-item class={bodyClasses}>
         {caseStudy.approach.paragraphs.map((paragraph) => <p class={paragraphClasses}>{paragraph}</p>)}
       </div>
     </div>
 
-      {caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} />}
+    {caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} />}
   </section>
 
-  <section id="technical" aria-labelledby="technical-title" class={splitClasses}>
-    <div data-scroll-group class={asideClasses}>
-      <p data-scroll-item class={labelClasses}>{sectionNumber(4)}</p>
-      <h2 data-scroll-item id="technical-title" class={headingClasses}>{labels.sections.technical}</h2>
-      <p data-scroll-item class="m-0 text-lg">{caseStudy.technical.intro}</p>
-      <ul data-scroll-item class="m-0 mt-2 flex list-none flex-wrap gap-2 p-0" aria-label={labels.stack}>
+  <!-- Bande sombre pleine largeur, comme l'expertise de l'accueil : une pause visuelle au milieu du récit. « overflow-clip » garde la colonne collante -->
+  <section
+    id="technical"
+    aria-labelledby="technical-title"
+    class="relative scroll-mt-20 overflow-clip bg-linear-to-br from-[#2a1466] via-[#1e0f45] to-[#170b38] text-white"
+  >
+    <span aria-hidden="true" class="absolute -top-40 -right-36 size-[420px] rounded-full bg-brand/35"></span>
+    <span aria-hidden="true" class="absolute -bottom-44 -left-32 hidden size-[360px] rounded-full border-2 border-[#f5a25d]/45 border-r-transparent border-b-transparent md:block"></span>
+
+    <div class="container-page relative grid gap-12 py-24 lg:grid-cols-12 lg:gap-x-12">
+      <div data-scroll-group class="flex flex-col gap-4 lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+        <span data-scroll-item data-in-view="wipe" aria-hidden="true" class={orangeNumberClasses}>{sectionNumber(4)}</span>
+        <h2 data-scroll-item id="technical-title" data-split-title class="m-0 text-h2 font-bold text-balance text-white">
+          {labels.sections.technical}<span data-section-cursor aria-hidden="true" class={cursorClasses}></span>
+        </h2>
+        <p data-scroll-item class="m-0 text-lg text-white/85">{caseStudy.technical.intro}</p>
+        <ul data-scroll-item class="m-0 mt-2 flex list-none flex-wrap gap-2 p-0" aria-label={labels.stack}>
+          {
+            caseStudy.technical.stack.map((technology) => (
+              <li class="rounded-full border border-white/20 bg-white/[0.08] px-3.5 py-1.5 font-mono text-[13px] font-semibold text-white">{technology}</li>
+            ))
+          }
+        </ul>
+      </div>
+      <!-- Les choix se lisent d'abord par leur titre : le détail s'ouvre à la demande, la page reste aérée -->
+      <ol data-scroll-group class="m-0 flex list-none flex-col border-t border-white/15 p-0 lg:col-span-8">
         {
-          caseStudy.technical.stack.map((technology) => (
-            <li>
-              <Tag>{technology}</Tag>
+          caseStudy.technical.decisions.map((decision, index) => (
+            <li data-scroll-item class="border-b border-white/15">
+              <details class="group" open={index === 0}>
+                <summary class="flex cursor-pointer list-none items-center gap-5 py-7 text-white [&::-webkit-details-marker]:hidden">
+                  <span class="font-mono text-sm font-semibold text-[#ffd9c2]">{sectionNumber(index + 1)}</span>
+                  <span class="flex-1 text-xl font-bold tracking-[-0.01em]">{decision.title}</span>
+                  <span class="flex size-10 flex-none items-center justify-center rounded-full bg-white/10 text-white transition-[rotate,background-color] duration-300 group-open:rotate-45 group-open:bg-sig">
+                    <Plus aria-hidden="true" size={18} />
+                  </span>
+                </summary>
+                <p class="m-0 max-w-[62ch] pb-7 pl-10 text-base leading-[1.7] text-white/85">{decision.text}</p>
+              </details>
             </li>
           ))
         }
-      </ul>
+      </ol>
     </div>
-    <!-- Les choix se lisent d'abord par leur titre : le détail s'ouvre à la demande, la page reste aérée -->
-    <ol data-scroll-group class="m-0 flex list-none flex-col p-0 lg:col-span-8">
-      {
-        caseStudy.technical.decisions.map((decision, index) => (
-          <li data-scroll-item class="border-b border-line first:border-t">
-            <details class="group" open={index === 0}>
-              <summary class="flex cursor-pointer list-none items-center gap-5 py-6 text-ink [&::-webkit-details-marker]:hidden">
-                <span class="font-mono text-sm font-semibold text-sig-text">{sectionNumber(index + 1)}</span>
-                <span class="flex-1 text-xl font-bold tracking-[-0.01em]">{decision.title}</span>
-                <span class="flex size-9 flex-none items-center justify-center rounded-full bg-tint text-tint-ink transition-transform duration-300 group-open:rotate-45">
-                  <Plus aria-hidden="true" size={18} />
-                </span>
-              </summary>
-              <p class="m-0 max-w-[62ch] pb-6 pl-10 text-base leading-[1.7]">{decision.text}</p>
-            </details>
-          </li>
-        ))
-      }
-    </ol>
   </section>
 
-  <!-- Bandeau sombre dans les deux thèmes : les résultats ressortent dans le rythme de la page -->
-  <!-- Résultats dans un bloc violet, comme le contact de l'accueil : couleurs fixes, contraste supérieur à 7:1 -->
-  <section id="results" aria-labelledby="results-title" class="container-page w-full scroll-mt-32">
-    <div data-scroll-group class="relative isolate flex flex-col gap-10 overflow-hidden rounded-block bg-linear-to-br from-[#6d3fd6] to-[#36188a] shadow-glass-lg p-8 md:p-12">
-      <div aria-hidden="true" class="absolute -right-32 -bottom-40 -z-10 size-[420px] rounded-t-full bg-white/[0.06]"></div>
-      <div data-scroll-item class="flex max-w-3xl flex-col gap-3">
-        <p class="m-0 font-mono text-sm font-semibold text-[#ffd9c2]">{sectionNumber(5)}</p>
-        <h2 id="results-title" class="m-0 text-h2 font-bold text-white">{labels.sections.results}</h2>
-        <p class="m-0 text-lg text-white/85">{caseStudy.results.intro}</p>
+  <!-- Résultats sur la bande lavande de la page À propos : les chiffres ressortent sans doubler le bandeau violet de fin de page -->
+  <section id="results" aria-labelledby="results-title" class="-mt-24 scroll-mt-20 bg-[#f4f0fd] dark:bg-[#1e1344]">
+    <div class={`${splitClasses} py-22`}>
+      <div data-scroll-group class={asideClasses}>
+        <span data-scroll-item data-in-view="wipe" aria-hidden="true" class={lightNumberClasses}>{sectionNumber(5)}</span>
+        <h2 data-scroll-item id="results-title" data-split-title class={headingClasses}>
+          {labels.sections.results}<span data-section-cursor aria-hidden="true" class={cursorClasses}></span>
+        </h2>
+        <p data-scroll-item class="m-0 text-lg">{caseStudy.results.intro}</p>
       </div>
-      <dl class="m-0 grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
+      <dl data-scroll-group class="m-0 grid gap-5 sm:grid-cols-2 lg:col-span-8 lg:pt-4">
         {
           caseStudy.results.metrics.map((metric) => (
-            <div data-scroll-item class="flex flex-col gap-2 border-t-2 border-[#ff9a5c] pt-5">
-              <dt class="order-2 m-0 text-small text-white/85">{metric.label}</dt>
-              <dd class="order-1 m-0 text-[clamp(36px,3.8vw,56px)] leading-none font-bold tracking-[-0.03em] break-words text-white">{metric.value}</dd>
+            <div data-scroll-item class="flex flex-col gap-3 rounded-surface border border-glass-border bg-bg p-7 shadow-glass">
+              <dt class="order-2 m-0 text-base text-text">{metric.label}</dt>
+              <dd class="order-1 m-0 flex items-end gap-1 text-[clamp(48px,5vw,72px)] leading-none font-extrabold tracking-[-0.04em] break-words text-action">
+                {metric.value}
+                <span aria-hidden="true" class="mb-2 inline-block h-1.5 w-6 rounded-full bg-sig"></span>
+              </dd>
             </div>
           ))
         }
@@ -126,10 +151,12 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
 
   <section id="learnings" data-scroll-group aria-labelledby="learnings-title" class={splitClasses}>
     <div data-scroll-item class={asideClasses}>
-      <p class={labelClasses}>{sectionNumber(6)}</p>
-      <h2 id="learnings-title" class={headingClasses}>{labels.sections.learnings}</h2>
+      <span data-in-view="wipe" aria-hidden="true" class={orangeNumberClasses}>{sectionNumber(6)}</span>
+      <h2 id="learnings-title" data-split-title class={headingClasses}>
+        {labels.sections.learnings}<span data-section-cursor aria-hidden="true" class={cursorClasses}></span>
+      </h2>
     </div>
-    <div class="flex flex-col gap-8 lg:col-span-8">
+    <div class={`${bodyClasses} gap-8`}>
       {
         caseStudy.learnings.map((learning) => (
           <p data-scroll-item class="m-0 max-w-[58ch] border-l-4 border-sig pl-6 text-xl leading-[1.6] font-medium text-ink">

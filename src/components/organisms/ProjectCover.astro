@@ -1,12 +1,41 @@
 ---
+import { Image } from 'astro:assets';
 import ProjectVisual from '@/components/molecules/ProjectVisual.astro';
+import { accentBackgroundClasses } from '@/lib/accents';
 import type { ProjectSummary } from '@/lib/projects';
 
 type Props = { label: string; project: ProjectSummary };
 const { label, project } = Astro.props;
+const showcase = project.showcase;
 ---
 
-<!-- Couverture de l'étude de cas : la même vignette aux couleurs du projet que dans la galerie, en grand format -->
+<!--
+  Couverture de l'étude de cas. Avec un visuel composé, les appareils occupent toute la largeur et débordent
+  au-dessus d'un bandeau aux couleurs du projet : plus de grand aplat vide autour d'un visuel réduit.
+  Sans visuel composé, la vignette de la galerie en grand format.
+-->
 <section aria-label={label} class="container-page pb-24">
-  <ProjectVisual project={project} label={project.coverAlt} aspectClass="aspect-[4/3] md:aspect-[21/9]" priority />
+  {
+    showcase ? (
+      <div role="img" aria-label={project.coverAlt} class="relative px-[3%] pb-[4%]">
+        <div aria-hidden="true" class:list={['absolute inset-x-0 top-[30%] bottom-0 overflow-hidden rounded-block', accentBackgroundClasses[project.accent]]}>
+          <span class="absolute inset-0 bg-[radial-gradient(90%_120%_at_0%_0%,rgb(255_255_255/0.25),transparent_60%)]"></span>
+          <span class="absolute -right-24 -bottom-32 size-[420px] rounded-full bg-white/[0.08]"></span>
+        </div>
+        <div aria-hidden="true" class="absolute bottom-[6%] left-1/2 h-[8%] w-[70%] -translate-x-1/2 rounded-full bg-[#140a32]/40 blur-2xl"></div>
+        <Image
+          src={showcase}
+          alt=""
+          widths={[640, 1000, 1400, 1800]}
+          sizes="(min-width: 1248px) 1120px, 94vw"
+          loading="eager"
+          fetchpriority="high"
+          data-in-view="zoom"
+          class="relative mx-auto block h-auto w-full max-w-[1120px] origin-bottom"
+        />
+      </div>
+    ) : (
+      <ProjectVisual project={project} label={project.coverAlt} aspectClass="aspect-[4/3] md:aspect-[21/9]" priority />
+    )
+  }
 </section>

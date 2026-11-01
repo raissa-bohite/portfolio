@@ -27,6 +27,7 @@
     "Stripe"
   ],
   "cover": "../../assets/projects/yofeii.jpg",
+  "showcase": "../../assets/projects/yofeii-devices.png",
   "coverAlt": {
     "fr": "Page d'accueil de Yofeii Délices : bannière avec la gamme de mélanges d'épices",
     "en": "Yofeii Délices home page: banner showing the range of spice blends",

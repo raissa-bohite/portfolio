@@ -28,6 +28,7 @@
     "MSW"
   ],
   "cover": "../../assets/projects/erp.jpg",
+  "showcase": "../../assets/projects/erp-devices.png",
   "coverAlt": {
     "fr": "Tableau de bord de l'ERP scolaire d'EPC AL ANIFIYAT : effectifs et croissance des inscriptions",
     "en": "EPC AL ANIFIYAT school ERP dashboard: enrolment figures and growth",

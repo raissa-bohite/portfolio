@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import MiniBrowser from '@/components/molecules/MiniBrowser.astro';
 import MiniPhone from '@/components/molecules/MiniPhone.astro';
@@ -21,6 +22,8 @@ type Props = {
 };
 
 const { project, actionLabel, featured = false, priority = false, label, aspectClass, roundedClass = 'rounded-surface' } = Astro.props;
+// Visuel composé et détouré (appareils et pictogrammes) : prioritaire, il flotte au centre de la couleur du projet
+const showcase = project.showcase;
 const phoneShots = project.shotFrame === 'phone' ? project.shots : [];
 const desktopShots = project.shotFrame === 'desktop' ? project.shots : [];
 // Téléphones en escalier à droite de la capture principale, le dernier coupé par le bord comme sur un « shot »
@@ -45,7 +48,19 @@ const phonePositions = [
 >
   <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(120%_90%_at_0%_0%,rgb(255_255_255/0.22),transparent_60%)]"></div>
   {
-    phoneShots.length > 0 ? (
+    showcase ? (
+      <div class="absolute inset-[6%] flex items-center justify-center transition-transform duration-500 ease-out-soft group-hover:-translate-y-2">
+        <Image
+          src={showcase}
+          alt=""
+          widths={[480, 800, 1200]}
+          sizes={featured ? '(min-width: 1248px) 1100px, 92vw' : '(min-width: 1024px) 640px, 92vw'}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchpriority={priority ? 'high' : undefined}
+          class="block max-h-full w-auto max-w-full object-contain drop-shadow-[0_24px_32px_rgb(20_10_50/0.3)]"
+        />
+      </div>
+    ) : phoneShots.length > 0 ? (
       <>
         <MiniBrowser priority={priority}
           image={project.cover}

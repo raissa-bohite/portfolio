@@ -25,6 +25,7 @@ approach:
   paragraphs:
     - "Ein Prinzip leitete alle Entscheidungen: vom Dokument ausgehen, ohne sich darauf zu beschränken. Die KI bleibt dem Kurs treu und kennzeichnet klar, wenn sie darüber hinausgeht."
     - Zusammenfassungen entstehen in der Sprache des Dokuments, schwierige Wörter werden ins Französische übersetzt. Die Themen des Kurses lassen sich anklicken und vertiefen.
+  showcase: ../../../assets/case-studies/fassbar/phones.png
   gallery:
     - image: ../../../assets/case-studies/fassbar/splash.jpg
       alt: Startbildschirm von Fassbar mit dem Maskottchen und dem Slogan „Werde zum Meister deines Kurses“

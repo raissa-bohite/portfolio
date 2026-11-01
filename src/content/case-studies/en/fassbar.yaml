@@ -25,6 +25,7 @@ approach:
   paragraphs:
     - "One principle guided every decision: start from the document without being confined to it. The AI stays faithful to the course and clearly flags when it goes beyond it."
     - Summaries are written in the document's language, with difficult words translated into French. Course themes become clickable to explore each concept.
+  showcase: ../../../assets/case-studies/fassbar/phones.png
   gallery:
     - image: ../../../assets/case-studies/fassbar/splash.jpg
       alt: Fassbar splash screen with the mascot and the tagline "Master your course"

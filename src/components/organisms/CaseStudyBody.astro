@@ -74,7 +74,7 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
       </div>
     </div>
 
-    {caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} />}
+    {caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} showcase={caseStudy.approach.showcase} />}
   </section>
 
   <!-- Bande sombre pleine largeur, comme l'expertise de l'accueil : une pause visuelle au milieu du récit. « overflow-clip » garde la colonne collante -->

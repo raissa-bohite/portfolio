@@ -25,6 +25,7 @@ approach:
   paragraphs:
     - "Un principe a guidé toutes les décisions : partir du document, sans s'y enfermer. L'IA reste fidèle au cours de l'étudiant, et signale clairement quand elle apporte une explication qui va au-delà."
     - Le résumé est rédigé dans la langue du document, avec les mots difficiles traduits en français. Les thèmes du cours deviennent cliquables pour approfondir chaque notion.
+  showcase: ../../../assets/case-studies/fassbar/phones.png
   gallery:
     - image: ../../../assets/case-studies/fassbar/splash.jpg
       alt: Écran de démarrage de Fassbar avec la mascotte et le slogan « Deviens le maître de ton cours »

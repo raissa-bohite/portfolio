@@ -69,7 +69,9 @@ const caseStudies = defineCollection({
               frame: z.enum(['phone', 'desktop']).default('phone')
             })
           )
-          .default([])
+          .default([]),
+        // Visuel composé (plusieurs téléphones et décor) qui remplace les maquettes de téléphone une à une
+        showcase: image().optional()
       }),
       technical: z.object({
         intro: z.string().min(1),

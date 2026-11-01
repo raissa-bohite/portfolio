@@ -9,9 +9,10 @@ import type { Locale } from '@/i18n/config';
 import { formatMessage, getDictionary } from '@/i18n/translate';
 import type { CaseStudy } from '@/lib/projects';
 
-type Props = { locale: Locale; shots: CaseStudy['approach']['gallery'] };
+type Props = { locale: Locale; shots: CaseStudy['approach']['gallery']; showcase?: ImageMetadata | undefined };
 
-const { locale, shots } = Astro.props;
+const { locale, shots, showcase } = Astro.props;
+const phoneShowcase = showcase;
 const labels = getDictionary(locale).projectPage;
 const desktopShots = shots.filter((shot) => shot.frame === 'desktop');
 const phoneShots = shots.filter((shot) => shot.frame === 'phone');
@@ -115,8 +116,36 @@ const surfaceClasses = 'rounded-block bg-[#f5f4f8] dark:bg-white/[0.05]';
   )
 }
 
+<!-- Visuel composé : les téléphones sont dans l'image, décorative ; la liste en dessous porte les descriptions et les légendes -->
 {
-  phoneShots.length > 0 && (
+  phoneShots.length > 0 && phoneShowcase && (
+    <div class="container-page w-full">
+      <div class={`flex flex-col gap-6 px-4 pt-10 pb-8 sm:px-10 ${surfaceClasses}`}>
+        <Image
+          src={phoneShowcase}
+          alt=""
+          widths={[640, 1000, 1460]}
+          sizes="(min-width: 1248px) 1100px, 92vw"
+          loading="lazy"
+          data-in-view="zoom"
+          class="mx-auto block h-auto w-full max-w-[1100px] origin-bottom"
+        />
+        <ol class="m-0 mx-auto grid w-full max-w-[860px] list-none gap-3 p-0 text-center sm:grid-cols-3">
+          {phoneShots.map((shot, index) => (
+            <li class="flex items-baseline justify-center gap-2 text-base leading-snug">
+              <span aria-hidden="true" class="font-mono text-sm text-muted">{String(index + 1).padStart(2, '0')}</span>
+              <span class="font-semibold text-ink">{shot.caption}</span>
+              <span class="sr-only"> : {shot.alt}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  )
+}
+
+{
+  phoneShots.length > 0 && !phoneShowcase && (
     <div class="container-page w-full">
       <div class={`flex flex-wrap justify-center gap-x-12 gap-y-10 px-6 py-14 ${surfaceClasses}`}>
         {phoneShots.map((shot) => (

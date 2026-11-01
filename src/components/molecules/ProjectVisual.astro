@@ -49,7 +49,11 @@ const phonePositions = [
   <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(120%_90%_at_0%_0%,rgb(255_255_255/0.22),transparent_60%)]"></div>
   {
     showcase ? (
-      <div class="absolute inset-[6%] flex items-center justify-center transition-transform duration-500 ease-out-soft group-hover:-translate-y-2">
+      <>
+        <div aria-hidden="true" class="absolute top-1/2 left-1/2 aspect-[16/10] w-[80%] -translate-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(255_255_255/0.45),transparent)]"></div>
+        <!-- Ombre portée posée sous les appareils : un filtre drop-shadow sur une grande image laissait des aplats rectangulaires -->
+        <div aria-hidden="true" class="absolute bottom-[9%] left-1/2 h-[9%] w-[72%] -translate-x-1/2 rounded-full bg-[#140a32]/35 blur-xl"></div>
+        <div class="absolute inset-x-[2%] inset-y-[4%] flex items-center justify-center transition-transform duration-500 ease-out-soft group-hover:-translate-y-2 group-hover:scale-[1.03]">
         <Image
           src={showcase}
           alt=""
@@ -57,9 +61,10 @@ const phonePositions = [
           sizes={featured ? '(min-width: 1248px) 1100px, 92vw' : '(min-width: 1024px) 640px, 92vw'}
           loading={priority ? 'eager' : 'lazy'}
           fetchpriority={priority ? 'high' : undefined}
-          class="block max-h-full w-auto max-w-full object-contain drop-shadow-[0_24px_32px_rgb(20_10_50/0.3)]"
+          class="block max-h-full w-auto max-w-full object-contain"
         />
-      </div>
+        </div>
+      </>
     ) : phoneShots.length > 0 ? (
       <>
         <MiniBrowser priority={priority}

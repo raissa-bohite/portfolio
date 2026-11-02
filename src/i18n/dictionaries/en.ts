@@ -250,6 +250,7 @@ export const en: Dictionary = {
     tourPagesLabel: "Website pages",
     pauseTour: "Pause the tour",
     playTour: "Resume the tour",
+    tourHint: "Click the website menu to explore it yourself, or let the tour play.",
     caseStudyPending: "The full case study for this project is in progress.",
     next: "Next project",
     tocTitle: "Contents",

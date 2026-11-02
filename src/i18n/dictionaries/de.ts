@@ -253,6 +253,7 @@ export const de: Dictionary = {
     tourPagesLabel: "Seiten der Website",
     pauseTour: "Rundgang pausieren",
     playTour: "Rundgang fortsetzen",
+    tourHint: "Klicken Sie ins Menü der Website, um sie selbst zu erkunden, oder lassen Sie den Rundgang laufen.",
     caseStudyPending:
       "Die ausführliche Fallstudie zu diesem Projekt ist in Vorbereitung.",
     next: "Nächstes Projekt",

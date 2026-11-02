@@ -71,9 +71,18 @@ export function setupSiteTour(root: HTMLElement): void {
     currentIndex = index;
   };
 
-  // Sans animation : les onglets changent de page, le visiteur fait défiler l'écran lui-même
+  // Liens du menu dans les captures : positionnés en pourcentage de la largeur (marge haute en % = % de la largeur)
+  const menuLinks = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tour-link]'));
+  for (const link of menuLinks) {
+    link.style.left = `${Number(link.dataset['linkX'])}%`;
+    link.style.marginTop = `${Number(link.dataset['linkY'])}%`;
+    link.hidden = false;
+  }
+
+  // Sans animation : les onglets et le menu changent de page, le visiteur fait défiler l'écran lui-même
   if (prefersReducedMotion()) {
     tabs.forEach((tab, index) => tab.addEventListener('click', () => showPage(index, false)));
+    menuLinks.forEach((link) => link.addEventListener('click', () => showPage(Number(link.dataset['tourLink']), false)));
     return;
   }
 
@@ -96,11 +105,12 @@ export function setupSiteTour(root: HTMLElement): void {
   const buildPageTimeline = (index: number): gsap.core.Timeline => {
     const page = pages[index] as HTMLElement;
     const nextIndex = getNextPageIndex(index, pages.length);
-    const nextPage = pages[nextIndex] as HTMLElement;
     const screenWidth = screen.clientWidth;
     const distance = Math.max(page.scrollHeight - page.clientHeight, 0);
     const speed = getScrollSpeed(Number(page.dataset['imageWidth']), Number(page.dataset['imageHeight']), screenWidth);
-    const target = getNavPoint(Number(nextPage.dataset['navX']), Number(nextPage.dataset['navY']), screenWidth);
+    // Le lien à viser est celui du menu de la page affichée : sa position peut varier d'une capture à l'autre
+    const menuPositions = (page.dataset['menuX'] ?? '').split(',').map(Number);
+    const target = getNavPoint(menuPositions[nextIndex] ?? 0, Number(page.dataset['navY']), screenWidth);
     const rest = { x: screen.clientWidth * CURSOR_REST.x, y: screen.clientHeight * CURSOR_REST.y };
     const scroll = { top: 0 };
     const applyScroll = (): void => {
@@ -166,6 +176,19 @@ export function setupSiteTour(root: HTMLElement): void {
   }
 
   tabs.forEach((tab, index) => tab.addEventListener('click', () => void run(index, true)));
+
+  // Clic dans le menu du site : le visiteur prend la main, la visite s'arrête et la page demandée s'affiche.
+  // Le bouton lecture relance la visite depuis cette page.
+  menuLinks.forEach((link) =>
+    link.addEventListener('click', () => {
+      runToken += 1;
+      timeline?.kill();
+      timeline = null;
+      setStopped(true);
+      setProgress(getTourProgress(Number(link.dataset['tourLink']), 0, pages.length));
+      showPage(Number(link.dataset['tourLink']), true);
+    })
+  );
 
   // Le visiteur prend la main sur l'écran (molette, doigt, clavier) : la visite s'arrête, il fait défiler lui-même
   for (const page of pages) {

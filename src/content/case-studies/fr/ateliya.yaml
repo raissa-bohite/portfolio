@@ -31,7 +31,7 @@ approach:
       - label: "Accueil"
         alt: "Page Accueil du site Ateliya, en entier"
         image: ../../../assets/case-studies/ateliya/tour-home.jpg
-        navX: 11.4
+        navX: 16.4
       - label: "Fonctionnalités"
         alt: "Page Fonctionnalités du site Ateliya, en entier"
         image: ../../../assets/case-studies/ateliya/tour-features.jpg

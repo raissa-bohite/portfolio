@@ -84,7 +84,10 @@ const caseStudies = defineCollection({
                   alt: z.string().min(1),
                   image: image(),
                   // Position horizontale du lien de menu qui mène à cette page, en pourcentage de la largeur
-                  navX: z.number().min(0).max(100)
+                  navX: z.number().min(0).max(100),
+                  // Menu placé autrement sur cette capture : positions des liens vers chaque page, et hauteur du menu
+                  menuX: z.array(z.number().min(0).max(100)).optional(),
+                  menuY: z.number().min(0).max(20).optional()
                 })
               )
               .min(2)

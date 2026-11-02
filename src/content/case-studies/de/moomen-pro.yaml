@@ -32,10 +32,14 @@ approach:
         alt: "Seite „Startseite“ der Website von Moomen Pro, vollständig"
         image: ../../../assets/case-studies/moomen/tour-home.jpg
         navX: 26.8
+        menuX: [29.2, 35.5, 47.8, 55.7, 61.5]
+        menuY: 2.5
       - label: "Funktionen"
         alt: "Seite „Funktionen“ der Website von Moomen Pro, vollständig"
         image: ../../../assets/case-studies/moomen/tour-features.jpg
         navX: 34.3
+        menuX: [31.4, 37.5, 49.0, 55.2, 60.2]
+        menuY: 2.2
       - label: "Verbrauchsmaterial"
         alt: "Seite „Verbrauchsmaterial“ der Website von Moomen Pro, vollständig"
         image: ../../../assets/case-studies/moomen/tour-shop.jpg

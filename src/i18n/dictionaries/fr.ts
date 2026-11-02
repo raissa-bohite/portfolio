@@ -260,6 +260,7 @@ const dictionary = {
     tourPagesLabel: "Pages du site",
     pauseTour: "Mettre la visite en pause",
     playTour: "Reprendre la visite",
+    tourHint: "Cliquez dans le menu du site pour l'explorer vous-même, ou laissez la visite défiler.",
     caseStudyPending:
       "L’étude de cas détaillée de ce projet est en préparation.",
     next: "Projet suivant",

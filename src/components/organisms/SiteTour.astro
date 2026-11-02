@@ -44,6 +44,8 @@ const labels = getDictionary(locale).projectPage;
       }
     </div>
 
+    <p class="m-0 -mt-3 max-w-[52ch] text-center text-small text-text">{labels.tourHint}</p>
+
     <div class="flex w-full flex-col items-center gap-6 lg:flex-row lg:justify-center lg:gap-9">
       <div class="relative aspect-[1437/948] w-full max-w-[980px]">
         <div data-tour-screen class="absolute top-[7.278%] left-[9.464%] h-[77.743%] w-[81.907%] overflow-hidden bg-white">
@@ -51,8 +53,8 @@ const labels = getDictionary(locale).projectPage;
             tour.pages.map((page, index) => (
               <div
                 data-tour-page={index}
-                data-nav-x={page.navX}
-                data-nav-y={tour.navY}
+                data-menu-x={tour.pages.map((target, targetIndex) => page.menuX?.[targetIndex] ?? target.navX).join(',')}
+                data-nav-y={page.menuY ?? tour.navY}
                 data-image-width={page.image.width}
                 data-image-height={page.image.height}
                 role="region"
@@ -63,6 +65,7 @@ const labels = getDictionary(locale).projectPage;
                   index !== 0 && 'invisible opacity-0'
                 ]}
               >
+                <div class="relative">
                 <Image
                   src={page.image}
                   alt={page.alt}
@@ -71,6 +74,21 @@ const labels = getDictionary(locale).projectPage;
                   loading={index === 0 ? 'eager' : 'lazy'}
                   class="block h-auto w-full"
                 />
+                {/* Zones cliquables posées sur les liens du menu de la capture, placées par le script (la CSP refuse les styles en ligne).
+                    Réservées au pointeur : au clavier et aux lecteurs d'écran, les onglets au-dessus font la même chose. */}
+                {tour.pages.map((target, targetIndex) => (
+                  <button
+                    type="button"
+                    data-tour-link={targetIndex}
+                    tabindex="-1"
+                    aria-hidden="true"
+                    class="absolute top-0 aspect-[2/1] w-[6.5%] -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full border-0 bg-transparent p-0 transition-shadow duration-200 hover:shadow-[0_0_0_2px_#f26a1b]"
+                    data-link-x={page.menuX?.[targetIndex] ?? target.navX}
+                    data-link-y={page.menuY ?? tour.navY}
+                    hidden
+                  />
+                ))}
+                </div>
               </div>
             ))
           }

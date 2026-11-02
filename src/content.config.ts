@@ -71,7 +71,25 @@ const caseStudies = defineCollection({
           )
           .default([]),
         // Visuel composé (plusieurs téléphones et décor) qui remplace les maquettes de téléphone une à une
-        showcase: image().optional()
+        showcase: image().optional(),
+        // Visite en direct : captures pleine page parcourues dans un ordinateur, le curseur cliquant dans le menu du site
+        tour: z
+          .object({
+            // Hauteur du menu du site, en pourcentage de la largeur de la capture
+            navY: z.number().min(0).max(20),
+            pages: z
+              .array(
+                z.object({
+                  label: z.string().min(1),
+                  alt: z.string().min(1),
+                  image: image(),
+                  // Position horizontale du lien de menu qui mène à cette page, en pourcentage de la largeur
+                  navX: z.number().min(0).max(100)
+                })
+              )
+              .min(2)
+          })
+          .optional()
       }),
       technical: z.object({
         intro: z.string().min(1),

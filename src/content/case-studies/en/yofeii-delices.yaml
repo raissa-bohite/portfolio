@@ -25,6 +25,25 @@ approach:
   paragraphs:
   - On the website, customers browse the catalogue, open a product page, fill their cart and pay with Stripe. The cart is kept if they close the page.
   - In the back office, the team manages products, stock, orders and customers, and changes the home page banners. A dashboard sums up sales.
+  tour:
+    navY: 3.0
+    pages:
+      - label: "Home"
+        alt: "Home page of the Yofeii Délices website, in full"
+        image: ../../../assets/case-studies/yofeii/tour-home.jpg
+        navX: 39.4
+      - label: "Shop"
+        alt: "Shop page of the Yofeii Délices website, in full"
+        image: ../../../assets/case-studies/yofeii/tour-shop.jpg
+        navX: 46.6
+      - label: "About"
+        alt: "About page of the Yofeii Délices website, in full"
+        image: ../../../assets/case-studies/yofeii/tour-about.jpg
+        navX: 54.2
+      - label: "Contact"
+        alt: "Contact page of the Yofeii Délices website, in full"
+        image: ../../../assets/case-studies/yofeii/tour-contact.jpg
+        navX: 61.7
   gallery:
   - image: ../../../assets/case-studies/yofeii/product.jpg
     alt: 'Product page: photos, discounted price, size, quantity, customer reviews and Add to cart button'

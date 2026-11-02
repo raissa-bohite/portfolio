@@ -25,6 +25,21 @@ approach:
   paragraphs:
   - 'I took inspiration from payment app websites: full-colour sections, an energetic tone and light animations.'
   - A stitching pattern separates the sections and recalls the craft. A real screenshot of the app appears in the home photo, and a mockup shows customers, orders and activity.
+  tour:
+    navY: 2.5
+    pages:
+      - label: "Home"
+        alt: "Home page of the Ateliya website, in full"
+        image: ../../../assets/case-studies/ateliya/tour-home.jpg
+        navX: 11.4
+      - label: "Features"
+        alt: "Features page of the Ateliya website, in full"
+        image: ../../../assets/case-studies/ateliya/tour-features.jpg
+        navX: 40.4
+      - label: "Contact"
+        alt: "Contact page of the Ateliya website, in full"
+        image: ../../../assets/case-studies/ateliya/tour-contact.jpg
+        navX: 61.3
   gallery:
   - image: ../../../assets/case-studies/ateliya/features.jpg
     alt: '"Why choose Ateliya" section: four solid-colour cards with isometric illustrations'

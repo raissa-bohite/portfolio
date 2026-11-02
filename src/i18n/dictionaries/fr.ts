@@ -256,6 +256,10 @@ const dictionary = {
     shotPosition: "Capture {current} sur {total}",
     pauseShots: "Mettre en pause le défilement des captures",
     playShots: "Reprendre le défilement des captures",
+    tourLabel: "Visite du site, page par page",
+    tourPagesLabel: "Pages du site",
+    pauseTour: "Mettre la visite en pause",
+    playTour: "Reprendre la visite",
     caseStudyPending:
       "L’étude de cas détaillée de ce projet est en préparation.",
     next: "Projet suivant",

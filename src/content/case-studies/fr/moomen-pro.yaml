@@ -25,6 +25,29 @@ approach:
   paragraphs:
   - Les visiteurs sont surtout sur mobile, parfois avec une connexion lente. J'ai donc fait un site léger, en pages statiques, qui s'affichent vite.
   - 'Dans la boutique, chaque produit a un bouton qui ouvre WhatsApp avec le produit déjà indiqué : c''est ainsi que les clients ont l''habitude de commander. Les tarifs s''affichent dans la devise du pays.'
+  tour:
+    navY: 2.8
+    pages:
+      - label: "Accueil"
+        alt: "Page Accueil du site Moomen Pro, en entier"
+        image: ../../../assets/case-studies/moomen/tour-home.jpg
+        navX: 26.8
+      - label: "Fonctionnalités"
+        alt: "Page Fonctionnalités du site Moomen Pro, en entier"
+        image: ../../../assets/case-studies/moomen/tour-features.jpg
+        navX: 34.3
+      - label: "Consommables"
+        alt: "Page Consommables du site Moomen Pro, en entier"
+        image: ../../../assets/case-studies/moomen/tour-shop.jpg
+        navX: 48.7
+      - label: "À propos"
+        alt: "Page À propos du site Moomen Pro, en entier"
+        image: ../../../assets/case-studies/moomen/tour-about.jpg
+        navX: 56.5
+      - label: "Contact"
+        alt: "Page Contact du site Moomen Pro, en entier"
+        image: ../../../assets/case-studies/moomen/tour-contact.jpg
+        navX: 62.6
   gallery:
   - image: ../../../assets/case-studies/moomen/pricing.jpg
     alt: 'Tarifs : choix du pays, trois formules mensuelles ou annuelles en FCFA et plan gratuit'

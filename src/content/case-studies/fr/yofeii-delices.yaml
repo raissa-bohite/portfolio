@@ -25,6 +25,25 @@ approach:
   paragraphs:
   - Sur le site, le client parcourt le catalogue, consulte une fiche produit, remplit son panier et paie avec Stripe. Son panier reste enregistré s'il ferme la page.
   - Dans le back-office, l'équipe gère les produits, les stocks, les commandes et les clients, et change les bannières de la page d'accueil. Un tableau de bord résume les ventes.
+  tour:
+    navY: 3.0
+    pages:
+      - label: "Accueil"
+        alt: "Page Accueil du site Yofeii Délices, en entier"
+        image: ../../../assets/case-studies/yofeii/tour-home.jpg
+        navX: 39.4
+      - label: "Boutique"
+        alt: "Page Boutique du site Yofeii Délices, en entier"
+        image: ../../../assets/case-studies/yofeii/tour-shop.jpg
+        navX: 46.6
+      - label: "À propos"
+        alt: "Page À propos du site Yofeii Délices, en entier"
+        image: ../../../assets/case-studies/yofeii/tour-about.jpg
+        navX: 54.2
+      - label: "Contact"
+        alt: "Page Contact du site Yofeii Délices, en entier"
+        image: ../../../assets/case-studies/yofeii/tour-contact.jpg
+        navX: 61.7
   gallery:
   - image: ../../../assets/case-studies/yofeii/product.jpg
     alt: 'Fiche produit : photos, prix barré, format, quantité, avis clients et bouton Ajouter au panier'

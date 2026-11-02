@@ -25,6 +25,21 @@ approach:
   paragraphs:
   - 'Je me suis inspirée de sites d''applications de paiement : sections en couleur pleine, ton dynamique, animations légères.'
   - Un motif de point de couture sépare les sections et rappelle le métier. Une vraie capture de l'application apparaît dans la photo d'accueil, et une maquette montre les clients, les commandes et l'activité.
+  tour:
+    navY: 2.5
+    pages:
+      - label: "Accueil"
+        alt: "Page Accueil du site Ateliya, en entier"
+        image: ../../../assets/case-studies/ateliya/tour-home.jpg
+        navX: 11.4
+      - label: "Fonctionnalités"
+        alt: "Page Fonctionnalités du site Ateliya, en entier"
+        image: ../../../assets/case-studies/ateliya/tour-features.jpg
+        navX: 40.4
+      - label: "Contact"
+        alt: "Page Contact du site Ateliya, en entier"
+        image: ../../../assets/case-studies/ateliya/tour-contact.jpg
+        navX: 61.3
   gallery:
   - image: ../../../assets/case-studies/ateliya/features.jpg
     alt: 'Section « Pourquoi choisir Ateliya » : quatre cartes en couleur pleine avec illustrations isométriques'

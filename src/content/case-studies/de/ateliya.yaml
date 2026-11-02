@@ -25,6 +25,21 @@ approach:
   paragraphs:
   - 'Inspiriert haben mich Websites von Bezahl-Apps: vollfarbige Abschnitte, ein dynamischer Ton und leichte Animationen.'
   - Ein Steppstich-Motiv trennt die Abschnitte und erinnert an das Handwerk. Ein echter Screenshot der App erscheint im Startfoto, und ein Mockup zeigt Kundschaft, Aufträge und Aktivität.
+  tour:
+    navY: 2.5
+    pages:
+      - label: "Startseite"
+        alt: "Seite „Startseite“ der Website von Ateliya, vollständig"
+        image: ../../../assets/case-studies/ateliya/tour-home.jpg
+        navX: 11.4
+      - label: "Funktionen"
+        alt: "Seite „Funktionen“ der Website von Ateliya, vollständig"
+        image: ../../../assets/case-studies/ateliya/tour-features.jpg
+        navX: 40.4
+      - label: "Kontakt"
+        alt: "Seite „Kontakt“ der Website von Ateliya, vollständig"
+        image: ../../../assets/case-studies/ateliya/tour-contact.jpg
+        navX: 61.3
   gallery:
   - image: ../../../assets/case-studies/ateliya/features.jpg
     alt: 'Abschnitt „Warum Ateliya“: vier Karten in Vollfarbe mit isometrischen Illustrationen'

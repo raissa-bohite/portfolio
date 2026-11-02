@@ -25,6 +25,29 @@ approach:
   paragraphs:
   - Visitors are mostly on mobile, sometimes with a slow connection. So I built a light website with static pages that load fast.
   - 'In the shop, each product has a button that opens WhatsApp with the product already filled in: this is how customers are used to ordering. Prices are shown in the local currency.'
+  tour:
+    navY: 2.8
+    pages:
+      - label: "Home"
+        alt: "Home page of the Moomen Pro website, in full"
+        image: ../../../assets/case-studies/moomen/tour-home.jpg
+        navX: 26.8
+      - label: "Features"
+        alt: "Features page of the Moomen Pro website, in full"
+        image: ../../../assets/case-studies/moomen/tour-features.jpg
+        navX: 34.3
+      - label: "Supplies"
+        alt: "Supplies page of the Moomen Pro website, in full"
+        image: ../../../assets/case-studies/moomen/tour-shop.jpg
+        navX: 48.7
+      - label: "About"
+        alt: "About page of the Moomen Pro website, in full"
+        image: ../../../assets/case-studies/moomen/tour-about.jpg
+        navX: 56.5
+      - label: "Contact"
+        alt: "Contact page of the Moomen Pro website, in full"
+        image: ../../../assets/case-studies/moomen/tour-contact.jpg
+        navX: 62.6
   gallery:
   - image: ../../../assets/case-studies/moomen/pricing.jpg
     alt: 'Pricing: country selector, three monthly or yearly plans in CFA francs and a free plan'

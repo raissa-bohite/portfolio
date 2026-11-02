@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import MousePointer2 from '@lucide/astro/icons/mouse-pointer-2';
+import Pause from '@lucide/astro/icons/pause';
+import Play from '@lucide/astro/icons/play';
+import laptopFrame from '@/assets/case-studies/laptop-frame.png';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+import { accentGlowClasses } from '@/lib/accents';
+import type { CaseStudy, ProjectSummary } from '@/lib/projects';
+
+type Props = {
+  locale: Locale;
+  tour: NonNullable<CaseStudy['approach']['tour']>;
+  accent: ProjectSummary['accent'];
+};
+
+const { locale, tour, accent } = Astro.props;
+const labels = getDictionary(locale).projectPage;
+---
+
+<!--
+  Visite en direct : les captures pleine page du site défilent dans l'écran d'un ordinateur,
+  puis un curseur clique dans le menu du site pour ouvrir la page suivante.
+  Le cadre de l'ordinateur est une image détourée dont l'écran est transparent : l'écran est posé dessous, aux mêmes proportions.
+  Sans script ou sans animation, l'écran se fait défiler à la main et les onglets changent de page.
+-->
+<div data-site-tour class="container-page w-full">
+  <div class="relative isolate flex flex-col items-center gap-7 overflow-hidden rounded-block bg-[#f5f4f8] px-3 pt-8 pb-10 sm:px-10 dark:bg-white/[0.05]">
+    <span aria-hidden="true" class:list={['absolute top-1/2 left-1/2 -z-10 aspect-[16/9] w-[85%] -translate-1/2 rounded-full', accentGlowClasses[accent]]}></span>
+
+    <div role="group" aria-label={labels.tourPagesLabel} class="flex max-w-full gap-1.5 overflow-x-auto rounded-full bg-bg p-1.5 shadow-glass-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {
+        tour.pages.map((page, index) => (
+          <button
+            type="button"
+            data-tour-tab={index}
+            aria-pressed={index === 0 ? 'true' : 'false'}
+            class="min-h-11 flex-none cursor-pointer whitespace-nowrap rounded-full border-0 bg-transparent px-4 font-sans text-small font-bold text-tint-ink transition-colors duration-200 hover:bg-tint aria-pressed:bg-action aria-pressed:text-action-ink sm:px-5"
+          >
+            {page.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="flex w-full flex-col items-center gap-6 lg:flex-row lg:justify-center lg:gap-9">
+      <div class="relative aspect-[1437/948] w-full max-w-[980px]">
+        <div data-tour-screen class="absolute top-[7.278%] left-[9.464%] h-[77.743%] w-[81.907%] overflow-hidden bg-white">
+          {
+            tour.pages.map((page, index) => (
+              <div
+                data-tour-page={index}
+                data-nav-x={page.navX}
+                data-nav-y={tour.navY}
+                data-image-width={page.image.width}
+                data-image-height={page.image.height}
+                role="region"
+                aria-label={page.label}
+                tabindex="0"
+                class:list={[
+                  'absolute inset-0 overflow-y-auto overscroll-contain [scrollbar-width:none] focus-visible:outline-offset-[-3px] [&::-webkit-scrollbar]:hidden',
+                  index !== 0 && 'invisible opacity-0'
+                ]}
+              >
+                <Image
+                  src={page.image}
+                  alt={page.alt}
+                  widths={[...new Set([800, 1200, 1600].filter((width) => width < page.image.width).concat(Math.min(page.image.width, 1600)))]}
+                  sizes="(min-width: 1248px) 800px, 78vw"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  class="block h-auto w-full"
+                />
+              </div>
+            ))
+          }
+          <span data-tour-ripple aria-hidden="true" class="pointer-events-none absolute top-0 left-0 z-20 -mt-[18px] -ml-[18px] size-9 rounded-full bg-sig opacity-0"></span>
+          <span data-tour-cursor aria-hidden="true" class="pointer-events-none absolute top-0 left-0 z-30 flex opacity-0 drop-shadow-[0_4px_6px_rgb(0_0_0/0.25)]">
+            <MousePointer2 size={28} fill="#1e0f45" color="#ffffff" stroke-width={1.5} />
+          </span>
+        </div>
+        <Image
+          src={laptopFrame}
+          alt=""
+          widths={[700, 1000, 1437]}
+          sizes="(min-width: 1248px) 980px, 92vw"
+          loading="lazy"
+          class="pointer-events-none absolute inset-0 h-full w-full"
+        />
+      </div>
+
+      <div class="flex items-center gap-3 lg:flex-col">
+        <span aria-hidden="true" class="relative hidden h-80 w-1 overflow-hidden rounded-full bg-[#e2dbf7] lg:block dark:bg-white/15">
+          <span data-tour-progress class="absolute inset-0 origin-top scale-y-0 rounded-full bg-sig"></span>
+        </span>
+        <button
+          type="button"
+          data-tour-toggle
+          data-label-pause={labels.pauseTour}
+          data-label-play={labels.playTour}
+          aria-label={labels.pauseTour}
+          hidden
+          class="group/toggle flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-tint text-tint-ink transition-transform duration-100 active:scale-95"
+        >
+          <Pause aria-hidden="true" size={18} class="group-data-[state=paused]/toggle:hidden" />
+          <Play aria-hidden="true" size={18} class="hidden group-data-[state=paused]/toggle:block" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { setupSiteTour } from '@/scripts/site-tour';
+
+  for (const tour of document.querySelectorAll<HTMLElement>('[data-site-tour]')) setupSiteTour(tour);
+</script>

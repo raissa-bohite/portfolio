@@ -63,7 +63,7 @@ const facts = caseStudy
   </div>
   {
     caseStudy ? (
-      <CaseStudyBody locale={locale} caseStudy={caseStudy} />
+      <CaseStudyBody locale={locale} caseStudy={caseStudy} accent={project.accent} />
     ) : (
       <ProjectSummaryBody locale={locale} project={project} host={host} />
     )

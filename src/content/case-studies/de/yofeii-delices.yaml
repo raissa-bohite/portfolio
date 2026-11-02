@@ -25,6 +25,25 @@ approach:
   paragraphs:
   - Auf der Website durchsucht die Kundschaft den Katalog, öffnet eine Produktseite, füllt den Warenkorb und bezahlt mit Stripe. Der Warenkorb bleibt erhalten, wenn man die Seite schließt.
   - Im Back-Office verwaltet das Team Produkte, Lagerbestand, Bestellungen und Kundschaft und ändert die Banner der Startseite. Ein Dashboard fasst die Verkäufe zusammen.
+  tour:
+    navY: 3.0
+    pages:
+      - label: "Startseite"
+        alt: "Seite „Startseite“ der Website von Yofeii Délices, vollständig"
+        image: ../../../assets/case-studies/yofeii/tour-home.jpg
+        navX: 39.4
+      - label: "Shop"
+        alt: "Seite „Shop“ der Website von Yofeii Délices, vollständig"
+        image: ../../../assets/case-studies/yofeii/tour-shop.jpg
+        navX: 46.6
+      - label: "Über uns"
+        alt: "Seite „Über uns“ der Website von Yofeii Délices, vollständig"
+        image: ../../../assets/case-studies/yofeii/tour-about.jpg
+        navX: 54.2
+      - label: "Kontakt"
+        alt: "Seite „Kontakt“ der Website von Yofeii Délices, vollständig"
+        image: ../../../assets/case-studies/yofeii/tour-contact.jpg
+        navX: 61.7
   gallery:
   - image: ../../../assets/case-studies/yofeii/product.jpg
     alt: 'Produktseite: Fotos, reduzierter Preis, Format, Menge, Kundenbewertungen und Button In den Warenkorb'

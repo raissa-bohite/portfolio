@@ -2,12 +2,14 @@
 import Plus from '@lucide/astro/icons/plus';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
-import type { CaseStudy } from '@/lib/projects';
+import type { CaseStudy, ProjectSummary } from '@/lib/projects';
 import ScreenshotGallery from '@/components/organisms/ScreenshotGallery.astro';
+import SiteTour from '@/components/organisms/SiteTour.astro';
 
-type Props = { locale: Locale; caseStudy: CaseStudy };
+type Props = { locale: Locale; caseStudy: CaseStudy; accent: ProjectSummary['accent'] };
 
-const { locale, caseStudy } = Astro.props;
+const { locale, caseStudy, accent } = Astro.props;
+const tour = caseStudy.approach.tour;
 const labels = getDictionary(locale).projectPage;
 
 const sectionNumber = (position: number): string => String(position).padStart(2, '0');
@@ -74,7 +76,13 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
       </div>
     </div>
 
-    {caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} showcase={caseStudy.approach.showcase} />}
+    {
+      tour ? (
+        <SiteTour locale={locale} tour={tour} accent={accent} />
+      ) : (
+        caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} showcase={caseStudy.approach.showcase} />
+      )
+    }
   </section>
 
   <!-- Bande sombre pleine largeur, comme l'expertise de l'accueil : une pause visuelle au milieu du récit. « overflow-clip » garde la colonne collante -->

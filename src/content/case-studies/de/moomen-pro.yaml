@@ -25,6 +25,29 @@ approach:
   paragraphs:
   - Die Besucherinnen und Besucher sind meist mobil unterwegs, oft mit langsamer Verbindung. Deshalb habe ich eine leichte Website mit statischen Seiten gebaut, die schnell laden.
   - 'Im Shop öffnet jedes Produkt mit einem Button WhatsApp, das Produkt ist schon angegeben: So bestellt die Kundschaft gewohnt. Die Preise erscheinen in der Landeswährung.'
+  tour:
+    navY: 2.8
+    pages:
+      - label: "Startseite"
+        alt: "Seite „Startseite“ der Website von Moomen Pro, vollständig"
+        image: ../../../assets/case-studies/moomen/tour-home.jpg
+        navX: 26.8
+      - label: "Funktionen"
+        alt: "Seite „Funktionen“ der Website von Moomen Pro, vollständig"
+        image: ../../../assets/case-studies/moomen/tour-features.jpg
+        navX: 34.3
+      - label: "Verbrauchsmaterial"
+        alt: "Seite „Verbrauchsmaterial“ der Website von Moomen Pro, vollständig"
+        image: ../../../assets/case-studies/moomen/tour-shop.jpg
+        navX: 48.7
+      - label: "Über uns"
+        alt: "Seite „Über uns“ der Website von Moomen Pro, vollständig"
+        image: ../../../assets/case-studies/moomen/tour-about.jpg
+        navX: 56.5
+      - label: "Kontakt"
+        alt: "Seite „Kontakt“ der Website von Moomen Pro, vollständig"
+        image: ../../../assets/case-studies/moomen/tour-contact.jpg
+        navX: 62.6
   gallery:
   - image: ../../../assets/case-studies/moomen/pricing.jpg
     alt: 'Preise: Länderauswahl, drei Monats- oder Jahrestarife in CFA-Franc und ein kostenloser Tarif'

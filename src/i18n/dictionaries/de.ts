@@ -249,6 +249,10 @@ export const de: Dictionary = {
     shotPosition: "Screenshot {current} von {total}",
     pauseShots: "Screenshot-Diashow anhalten",
     playShots: "Screenshot-Diashow fortsetzen",
+    tourLabel: "Rundgang durch die Website, Seite für Seite",
+    tourPagesLabel: "Seiten der Website",
+    pauseTour: "Rundgang pausieren",
+    playTour: "Rundgang fortsetzen",
     caseStudyPending:
       "Die ausführliche Fallstudie zu diesem Projekt ist in Vorbereitung.",
     next: "Nächstes Projekt",

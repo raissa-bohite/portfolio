@@ -1,6 +1,7 @@
 ---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Button from '@/components/atoms/Button.astro';
-import Eyebrow from '@/components/atoms/Eyebrow.astro';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import { defaultLocale, locales } from '@/i18n/config';
 import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
@@ -19,25 +20,39 @@ const alternates = getAlternateLinks((locale) => getRoutePath('home', locale));
   alternates={alternates}
   noindex
 >
-  <section class="container-page flex flex-col gap-6 pt-16 pb-24">
-    <Eyebrow>404</Eyebrow>
-    <h1 class="m-0 max-w-[18ch] text-display font-bold text-ink">{dictionary.notFound.title}</h1>
-    <p class="m-0 max-w-[52ch] text-lead">{dictionary.notFound.text}</p>
-    <div>
-      <Button href={getRoutePath('home', defaultLocale)}>{dictionary.notFound.cta}</Button>
+  <section aria-labelledby="not-found-title" class="relative overflow-hidden">
+    <span aria-hidden="true" class="absolute top-2 -right-16 hidden size-64 rounded-full bg-tint/80 md:block dark:bg-tint/50"></span>
+    <span aria-hidden="true" class="absolute top-16 right-64 hidden size-4 rounded-full bg-sig md:block"></span>
+    <div class="container-page relative grid items-center gap-10 pt-16 pb-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
+      <div class="flex flex-col items-start gap-7">
+        <SectionIntro id="not-found-title" eyebrow="404" title={dictionary.notFound.title} intro={dictionary.notFound.text} highlight={false} cursor level="page" />
+        <Button href={getRoutePath('home', defaultLocale)} shape="pill">
+          {dictionary.notFound.cta}
+          <ArrowRight aria-hidden="true" size={18} />
+        </Button>
+        <!-- Le même message dans les autres langues, pour qui arrive depuis la version anglaise ou allemande -->
+        <ul class="m-0 mt-4 flex w-full list-none flex-col gap-3 border-t border-dashed border-[#cdbff3] p-0 pt-7 dark:border-white/15">
+          {
+            otherLocales.map((locale) => {
+              const translation = getDictionary(locale).notFound;
+              return (
+                <li lang={locale} class="flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-text">
+                  <span class="rounded-full bg-tint px-2.5 py-0.5 font-mono text-xs font-semibold text-tint-ink uppercase">{locale}</span>
+                  {translation.text}
+                  <a href={getRoutePath('home', locale)} class="font-semibold">{translation.cta}</a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+      <!-- Grand 404 en contour, dans le style des numéros de section : décoratif -->
+      <p
+        aria-hidden="true"
+        class="m-0 hidden text-[clamp(8rem,16vw,14rem)] leading-none font-extrabold tracking-[-0.06em] text-transparent select-none [-webkit-text-stroke:2px_#b9a4f5] lg:block"
+      >
+        4<span class="[-webkit-text-stroke:2px_#f5a25d]">0</span>4
+      </p>
     </div>
-    <!-- Le même message dans les autres langues, pour qui arrive depuis la version anglaise ou allemande -->
-    <ul class="m-0 mt-8 flex list-none flex-col gap-3 border-t border-line p-0 pt-8">
-      {
-        otherLocales.map((locale) => {
-          const translation = getDictionary(locale).notFound;
-          return (
-            <li lang={locale} class="text-base">
-              {translation.text} <a href={getRoutePath('home', locale)}>{translation.cta}</a>
-            </li>
-          );
-        })
-      }
-    </ul>
   </section>
 </BaseLayout>

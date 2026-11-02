@@ -12,8 +12,9 @@ import ScreenshotLightbox from '@/components/organisms/ScreenshotLightbox.astro'
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getProjectPath, getRoutePath } from '@/i18n/routes';
-import { getDictionary } from '@/i18n/translate';
+import { formatMessage, getDictionary } from '@/i18n/translate';
 import { findCaseStudy, getNextProject, getProjectSummaries } from '@/lib/projects';
+import { getProjectSocialImagePath } from '@/lib/social-image';
 
 type Props = { locale: Locale; slug: string };
 
@@ -33,6 +34,10 @@ const alternates = getAlternateLinks((alternateLocale) => getProjectPath(slug, a
 // Sans étude de cas rédigée, la page reste utile : la fiche du projet et ses captures
 const title = caseStudy?.seoTitle ?? `${project.name} · ${project.kind}`;
 const description = caseStudy?.seoDescription ?? project.description;
+const socialImage = {
+  path: getProjectSocialImagePath(slug, locale),
+  alt: formatMessage(labels.socialImageAlt, { project: project.name, kind: project.kind })
+};
 const facts = caseStudy
   ? [
       { term: labels.role, value: caseStudy.meta.role },
@@ -46,7 +51,7 @@ const facts = caseStudy
     ];
 ---
 
-<BaseLayout locale={locale} title={title} description={description} currentRoute="projects" alternates={alternates}>
+<BaseLayout locale={locale} title={title} description={description} currentRoute="projects" alternates={alternates} socialImage={socialImage}>
   <ProjectHero
     locale={locale}
     name={project.name}

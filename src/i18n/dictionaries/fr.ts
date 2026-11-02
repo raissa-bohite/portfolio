@@ -249,6 +249,7 @@ const dictionary = {
     previewLabel: "Aperçu principal",
     galleryLabel: "Autres captures",
     enlarge: "Agrandir la capture : {caption}",
+    socialImageAlt: "{project} ({kind}), un projet de Raïssa Bohité présenté sur plusieurs écrans",
     closePreview: "Fermer l'aperçu",
     tourLabel: "Visite du site, page par page",
     tourPagesLabel: "Pages du site",

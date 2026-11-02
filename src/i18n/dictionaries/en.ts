@@ -239,6 +239,7 @@ export const en: Dictionary = {
     previewLabel: "Main preview",
     galleryLabel: "More screenshots",
     enlarge: "Enlarge screenshot: {caption}",
+    socialImageAlt: "{project} ({kind}), a project by Raïssa Bohité shown on several screens",
     closePreview: "Close preview",
     tourLabel: "Website tour, page by page",
     tourPagesLabel: "Website pages",

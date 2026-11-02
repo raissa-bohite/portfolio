@@ -242,6 +242,7 @@ export const de: Dictionary = {
     previewLabel: "Hauptansicht",
     galleryLabel: "Weitere Screenshots",
     enlarge: "Screenshot vergrößern: {caption}",
+    socialImageAlt: "{project} ({kind}), ein Projekt von Raïssa Bohité auf mehreren Bildschirmen",
     closePreview: "Vorschau schließen",
     tourLabel: "Rundgang durch die Website, Seite für Seite",
     tourPagesLabel: "Seiten der Website",

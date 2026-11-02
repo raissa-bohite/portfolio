@@ -327,6 +327,50 @@ const dictionary = {
         },
       ],
     },
+    skills: {
+      eyebrow: "Compétences",
+      title: "Mes outils au quotidien",
+      groups: [
+        {
+          title: "Langages",
+          items: [
+            { logo: "html5", name: "HTML" },
+            { logo: "css3", name: "CSS" },
+            { logo: "javascript", name: "JavaScript" },
+            { logo: "typescript", name: "TypeScript" },
+            { logo: "go", name: "Go" },
+          ],
+        },
+        {
+          title: "Frameworks",
+          items: [
+            { logo: "react", name: "React" },
+            { logo: "nextdotjs", name: "Next.js" },
+            { logo: "astro", name: "Astro" },
+            { logo: "svelte", name: "SvelteKit" },
+            { logo: "tailwindcss", name: "Tailwind CSS" },
+          ],
+        },
+        {
+          title: "Données et services",
+          items: [
+            { logo: "drizzle", name: "Drizzle ORM" },
+            { logo: "cloudflare", name: "Cloudflare" },
+            { logo: "stripe", name: "Stripe" },
+            { logo: "anthropic", name: "Claude API" },
+          ],
+        },
+        {
+          title: "Outils",
+          items: [
+            { logo: "git", name: "Git" },
+            { logo: "github", name: "GitHub" },
+            { logo: "figma", name: "Figma" },
+            { logo: "vitest", name: "Vitest" },
+          ],
+        },
+      ],
+    },
     awards: {
       eyebrow: "Distinctions",
       title: "Trois premiers prix en hackathon",

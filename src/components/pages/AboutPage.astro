@@ -10,6 +10,7 @@ import BeyondCodeSection from '@/components/organisms/BeyondCodeSection.astro';
 import LanguagesSection from '@/components/organisms/LanguagesSection.astro';
 import RoadmapSection from '@/components/organisms/RoadmapSection.astro';
 import ScreenshotLightbox from '@/components/organisms/ScreenshotLightbox.astro';
+import SkillsSection from '@/components/organisms/SkillsSection.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
@@ -27,6 +28,7 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('about', 
   <AboutHero locale={locale} />
   <AboutStory locale={locale} />
   <AboutTimeline locale={locale} />
+  <SkillsSection locale={locale} />
   <AwardsSection locale={locale} />
   <ScreenshotLightbox closeLabel={dictionary.projectPage.closePreview} />
   <!-- Langues et centres d'intérêt côte à côte, sur une bande lavande -->

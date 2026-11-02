@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import SectionIntro from '@/components/molecules/SectionIntro.astro';
+import type { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/translate';
+
+type Props = { locale: Locale };
+
+const { locale } = Astro.props;
+const skills = getDictionary(locale).aboutPage.skills;
+
+// Logos officiels en couleur, tirés de Simple Icons (licence CC0), un fichier SVG par outil
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/skills/*.svg', { eager: true });
+const logoFor = (key: string): ImageMetadata | undefined => logoFiles[`/src/assets/skills/${key}.svg`]?.default;
+---
+
+<section aria-labelledby="skills-title" class="relative container-page flex flex-col gap-9 overflow-x-clip py-22">
+  <span aria-hidden="true" class="absolute top-8 -right-20 hidden size-64 rounded-full bg-tint/80 md:block dark:bg-tint/50"></span>
+  <span aria-hidden="true" class="absolute top-20 right-52 hidden size-4 rounded-full bg-sig md:block"></span>
+  <div class="relative">
+    <SectionIntro id="skills-title" eyebrow={skills.eyebrow} title={skills.title} highlight={false} cursor />
+  </div>
+
+  <!-- Outils regroupés par famille : le nom de la famille à gauche, les logos en tuiles à droite -->
+  <div class="relative flex flex-col">
+    {
+      skills.groups.map((group, groupIndex) => (
+        <div class="grid items-center gap-x-8 gap-y-4 border-t border-line py-6 md:grid-cols-[13.75rem_minmax(0,1fr)]">
+          <h3 class="m-0 flex items-center gap-3.5 text-subtitle font-extrabold text-ink">
+            <span aria-hidden="true" class:list={['size-2.5 rounded-full', groupIndex === 0 ? 'bg-sig' : 'bg-brand']}></span>
+            {group.title}
+          </h3>
+          <ul data-scroll-group class="m-0 grid list-none grid-cols-3 gap-3 p-0 sm:flex sm:flex-wrap sm:gap-3.5">
+            {group.items.map((item) => {
+              const logo = logoFor(item.logo);
+              return (
+                <li
+                  data-scroll-item
+                  class="flex aspect-square flex-col items-center justify-center gap-3 rounded-[22px] border border-glass-border bg-white px-2 text-center shadow-glass-sm sm:aspect-auto sm:h-31 sm:w-32"
+                >
+                  {logo && <Image src={logo} alt="" width={40} height={40} class="size-9 sm:size-10" />}
+                  <span class="text-sm font-bold text-[#1e0f45]">{item.name}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>

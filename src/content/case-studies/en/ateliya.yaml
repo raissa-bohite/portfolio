@@ -1,7 +1,7 @@
 project: ateliya
 locale: en
 eyebrow: Case study · Client project
-title: Ateliya, redesigning the website of an app for tailoring workshops
+title: The Ateliya landing page, a management app for tailors and fashion designers
 lead: Ateliya helps West African tailors manage their customers, measurements and orders. I redesigned its website, which encourages people to download the app and subscribe.
 seoTitle: Ateliya, website redesign · Case study
 seoDescription: Design overhaul of the Ateliya website in Astro, with sign-up and subscription paid by mobile money.

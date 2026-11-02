@@ -1,7 +1,7 @@
 project: ateliya
 locale: de
 eyebrow: Fallstudie · Kundenprojekt
-title: Ateliya, die Website einer App für Schneiderateliers neu gestalten
+title: Die Landingpage von Ateliya, einer Verwaltungs-App für Schneider und Modedesigner
 lead: Ateliya hilft Schneiderinnen und Schneidern in Westafrika, Kundschaft, Maße und Aufträge zu verwalten. Ich habe das Design der Website erneuert, die Lust machen soll, die App herunterzuladen und ein Abo abzuschließen.
 seoTitle: Ateliya, Neugestaltung der Website · Fallstudie
 seoDescription: Neues Design für die Website von Ateliya mit Astro, mit Registrierung und Abo per Mobile Money.

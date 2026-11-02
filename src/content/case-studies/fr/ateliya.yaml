@@ -1,7 +1,7 @@
 project: ateliya
 locale: fr
 eyebrow: Étude de cas · Mission client
-title: Ateliya, refaire le site d'une app pour ateliers de couture
+title: La landing page d'Ateliya, une application de gestion pour les couturiers et stylistes
 lead: Ateliya aide les couturiers d'Afrique de l'Ouest à gérer leurs clients, leurs mesures et leurs commandes. J'ai refait le design de son site, qui donne envie de télécharger l'application et de s'abonner.
 seoTitle: Ateliya, refonte du site vitrine · Étude de cas
 seoDescription: Refonte du design du site d'Ateliya en Astro, avec inscription et abonnement par mobile money.

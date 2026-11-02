@@ -324,6 +324,7 @@ export const de: Dictionary = {
     awards: {
       eyebrow: "Auszeichnungen",
       title: "Drei erste Plätze bei Hackathons",
+      enlarge: "Foto vergrößern: {title}",
       items: [
         {
           rank: "first",
@@ -331,6 +332,8 @@ export const de: Dictionary = {
           title: "DiplomaChain",
           text: "Echtheitsprüfung von Diplomen per Blockchain",
           event: "WeCode-Hackathon, 2025",
+          photo: "diplomachain",
+          photoAlt: "Das DiplomaChain-Team auf der Bühne bei der Preisverleihung des WeCode-Hackathons",
         },
         {
           rank: "first",
@@ -338,6 +341,8 @@ export const de: Dictionary = {
           title: "KI-gestütztes Kreditscoring",
           text: "Kreditrisiko mit alternativen Daten bewerten",
           event: "Féminitement Digital, DigiFemmes, 2025",
+          photo: "scoring",
+          photoAlt: "Das Siegerteam hält den Scheck für den ersten Preis bei Féminitement Digital, DigiFemmes",
         },
         {
           rank: "finalist",
@@ -345,6 +350,8 @@ export const de: Dictionary = {
           title: "Orivie",
           text: "Gesundheitsplattform auf Basis offener Daten",
           event: "IvoireTech Forum, ANSUT, 2025",
+          photo: "orivie",
+          photoAlt: "Foto einer Preisverleihung bei einem DigiFemmes-Hackathon, bis das Orivie-Foto vorliegt",
         },
         {
           rank: "first",
@@ -352,6 +359,8 @@ export const de: Dictionary = {
           title: "Forum für akademischen Austausch",
           text: "Oberfläche und Back-End-Anbindung in Go",
           event: "DigiFemmes-Hackathon, 2024",
+          photo: "forum",
+          photoAlt: "Drei Gewinnerinnen des DigiFemmes-Hackathons zeigen ihre Medaille für das beste Team",
         },
       ],
     },

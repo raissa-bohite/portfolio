@@ -9,6 +9,7 @@ import AwardsSection from '@/components/organisms/AwardsSection.astro';
 import BeyondCodeSection from '@/components/organisms/BeyondCodeSection.astro';
 import LanguagesSection from '@/components/organisms/LanguagesSection.astro';
 import RoadmapSection from '@/components/organisms/RoadmapSection.astro';
+import ScreenshotLightbox from '@/components/organisms/ScreenshotLightbox.astro';
 import BaseLayout from '@/components/templates/BaseLayout.astro';
 import type { Locale } from '@/i18n/config';
 import { getAlternateLinks, getRoutePath } from '@/i18n/routes';
@@ -17,7 +18,8 @@ import { getDictionary } from '@/i18n/translate';
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
-const page = getDictionary(locale).aboutPage;
+const dictionary = getDictionary(locale);
+const page = dictionary.aboutPage;
 const alternates = getAlternateLinks((alternateLocale) => getRoutePath('about', alternateLocale));
 ---
 
@@ -26,6 +28,7 @@ const alternates = getAlternateLinks((alternateLocale) => getRoutePath('about', 
   <AboutStory locale={locale} />
   <AboutTimeline locale={locale} />
   <AwardsSection locale={locale} />
+  <ScreenshotLightbox closeLabel={dictionary.projectPage.closePreview} />
   <!-- Langues et centres d'intérêt côte à côte, sur une bande lavande -->
   <section class="bg-[#f4f0fd] dark:bg-[#1e1344]">
     <div class="container-page grid gap-14 py-22 lg:grid-cols-2">

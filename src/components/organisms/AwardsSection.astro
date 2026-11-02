@@ -1,39 +1,94 @@
 ---
+import { getImage, Image } from 'astro:assets';
 import Medal from '@lucide/astro/icons/medal';
 import Trophy from '@lucide/astro/icons/trophy';
+import diplomachainPhoto from '@/assets/awards/diplomachain.jpg';
+import forumPhoto from '@/assets/awards/forum.jpg';
+import scoringPhoto from '@/assets/awards/scoring.jpg';
 import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/translate';
+import { formatMessage, getDictionary } from '@/i18n/translate';
 
 type Props = { locale: Locale };
 
 const { locale } = Astro.props;
 const awards = getDictionary(locale).aboutPage.awards;
+
+// Photo de chaque prix et point à garder dans le cadrage en hauteur de la vignette.
+// Orivie reprend la photo du Forum en attendant la sienne.
+const photos = {
+  diplomachain: { image: diplomachainPhoto, focusClass: 'object-[50%_center]' },
+  scoring: { image: scoringPhoto, focusClass: 'object-[45%_center]' },
+  orivie: { image: forumPhoto, focusClass: 'object-[center_30%]' },
+  forum: { image: forumPhoto, focusClass: 'object-[center_30%]' }
+} as const;
+
+// Versions grand format servies seulement à l'ouverture de l'aperçu
+const largeSources = await Promise.all(
+  awards.items.map((award) => getImage({ src: photos[award.photo as keyof typeof photos].image, width: 1600, format: 'webp' }))
+);
 ---
 
-<section aria-labelledby="awards-title" class="container-page flex flex-col gap-10 py-22">
+<section aria-labelledby="awards-title" class="relative container-page flex flex-col gap-10 overflow-x-clip py-22">
+  <span aria-hidden="true" class="absolute top-10 -right-16 hidden size-56 -rotate-[20deg] rounded-full border-2 border-[#f5a25d] border-b-transparent border-l-transparent md:block"></span>
   <SectionIntro id="awards-title" eyebrow={awards.eyebrow} title={awards.title} highlight={false} cursor />
-  <ul data-scroll-group class="m-0 grid list-none gap-5 p-0 sm:grid-cols-2 lg:grid-cols-4">
+  <!-- Chaque prix porte sa photo comme preuve ; un clic l'ouvre en entier -->
+  <ul data-scroll-group class="m-0 grid list-none gap-6 p-0 lg:grid-cols-2">
     {
-      awards.items.map((award) => {
+      awards.items.map((award, index) => {
         const isFirst = award.rank === 'first';
         const Icon = isFirst ? Trophy : Medal;
+        const photo = photos[award.photo as keyof typeof photos];
         return (
-          <li data-scroll-item class="flex flex-col gap-3 rounded-surface border border-glass-border bg-glass-strong p-6 shadow-glass">
-            <span
-              class:list={[
-                'inline-flex items-center gap-2.5 self-start rounded-full py-1.5 pr-3.5 pl-1.5 text-sm font-extrabold',
-                isFirst ? 'bg-[#fde8dc] text-[#9e3409] dark:bg-[#4a2318] dark:text-[#ffc7a6]' : 'bg-tint text-tint-ink'
-              ]}
+          <li
+            data-scroll-item
+            class="grid overflow-hidden rounded-block border border-glass-border bg-glass-strong shadow-glass sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)]"
+          >
+            <button
+              type="button"
+              data-lightbox-src={largeSources[index]?.src}
+              data-lightbox-alt={award.photoAlt}
+              data-lightbox-caption={`${award.title} · ${award.event}`}
+              aria-label={formatMessage(awards.enlarge, { title: award.title })}
+              class="group relative block aspect-[4/3] cursor-zoom-in overflow-hidden border-0 bg-[#1e0f45] p-0 sm:aspect-auto sm:min-h-[19rem]"
             >
-              <span aria-hidden="true" class:list={['flex size-[30px] items-center justify-center rounded-full text-white', isFirst ? 'bg-sig' : 'bg-brand']}>
-                <Icon size={16} />
+              <Image
+                data-lightbox-thumb
+                src={photo.image}
+                alt={award.photoAlt}
+                widths={[400, 700]}
+                sizes="(min-width: 640px) 240px, 92vw"
+                loading="lazy"
+                class:list={['absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out-soft group-hover:scale-[1.04]', photo.focusClass]}
+              />
+              <span aria-hidden="true" class="absolute inset-0 bg-linear-to-b from-transparent from-55% to-[rgb(30_15_69/0.55)]"></span>
+              <span
+                class:list={[
+                  'absolute bottom-3.5 left-3.5 inline-flex items-center gap-2.5 rounded-full py-1.5 pr-3.5 pl-1.5 text-sm font-extrabold shadow-[0_8px_18px_rgb(30_15_69/0.25)]',
+                  isFirst ? 'bg-[#fde8dc] text-[#9e3409]' : 'bg-[#efe9fd] text-[#36188a]'
+                ]}
+              >
+                <span aria-hidden="true" class:list={['flex size-[30px] items-center justify-center rounded-full text-white', isFirst ? 'bg-sig' : 'bg-brand']}>
+                  <Icon size={16} />
+                </span>
+                {award.badge}
               </span>
-              {award.badge}
-            </span>
-            <h3 class="m-0 mt-1.5 text-title font-extrabold text-ink">{award.title}</h3>
-            <p class="m-0 text-base text-text">{award.text}</p>
-            <p class="m-0 mt-auto border-t border-dashed border-[#cdbff3] pt-3.5 text-sm font-semibold text-action dark:border-white/20">{award.event}</p>
+            </button>
+            <div class="flex flex-col gap-3 p-6 sm:p-7">
+              <span
+                data-in-view="wipe"
+                aria-hidden="true"
+                class:list={[
+                  'text-[3.5rem] leading-none font-extrabold tracking-[-0.04em] text-transparent',
+                  isFirst ? '[-webkit-text-stroke:1.5px_#f5a25d]' : '[-webkit-text-stroke:1.5px_#b9a4f5]'
+                ]}
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 class="m-0 mt-1 text-title font-extrabold text-ink">{award.title}</h3>
+              <p class="m-0 text-base text-text">{award.text}</p>
+              <p class="m-0 mt-auto border-t border-dashed border-[#cdbff3] pt-3.5 text-sm font-semibold text-action dark:border-white/20">{award.event}</p>
+            </div>
           </li>
         );
       })

@@ -330,6 +330,7 @@ const dictionary = {
     awards: {
       eyebrow: "Distinctions",
       title: "Trois premiers prix en hackathon",
+      enlarge: "Agrandir la photo : {title}",
       items: [
         {
           rank: "first",
@@ -337,6 +338,8 @@ const dictionary = {
           title: "DiplomaChain",
           text: "Authentification de diplômes par blockchain",
           event: "Hackathon WeCode, 2025",
+          photo: "diplomachain",
+          photoAlt: "L'équipe DiplomaChain sur scène lors de la remise des prix du hackathon WeCode",
         },
         {
           rank: "first",
@@ -344,6 +347,8 @@ const dictionary = {
           title: "Scoring de solvabilité par IA",
           text: "Évaluer le risque de crédit avec des données alternatives",
           event: "Féminitement Digital, DigiFemmes, 2025",
+          photo: "scoring",
+          photoAlt: "L'équipe lauréate tient le chèque du 1er prix de Féminitement Digital, DigiFemmes",
         },
         {
           rank: "finalist",
@@ -351,6 +356,8 @@ const dictionary = {
           title: "Orivie",
           text: "Plateforme santé fondée sur les données ouvertes",
           event: "IvoireTech Forum, ANSUT, 2025",
+          photo: "orivie",
+          photoAlt: "Photo de la remise des prix d'un hackathon DigiFemmes, en attendant la photo d'Orivie",
         },
         {
           rank: "first",
@@ -358,6 +365,8 @@ const dictionary = {
           title: "Forum d'échange académique",
           text: "Interface et intégration back-end en Go",
           event: "Hackathon DigiFemmes, 2024",
+          photo: "forum",
+          photoAlt: "Trois lauréates du hackathon DigiFemmes montrent leur médaille de meilleure équipe",
         },
       ],
     },

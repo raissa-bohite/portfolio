@@ -26,7 +26,7 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
       <SectionIntro id="timeline-title" eyebrow={timeline.eyebrow} title={timeline.title} highlight={false} onDark cursor />
       <figure class="m-0 max-w-full rounded-2xl border border-white/12 bg-[#120a2b] px-5 py-4">
         <figcaption class="mb-1.5 text-[13px] font-semibold text-white/70">{timeline.codeLabel}</figcaption>
-        <p lang="fr" class="m-0 overflow-x-auto font-mono text-sm leading-[1.9] whitespace-nowrap">
+        <p lang="fr" tabindex="0" class="m-0 overflow-x-auto focus-visible:outline-offset-2 font-mono text-sm leading-[1.9] whitespace-nowrap">
           <span class="text-[#c4b2ff]">const</span> parcours = [{
             timeline.steps.map((step, index) => (
               <>

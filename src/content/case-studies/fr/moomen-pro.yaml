@@ -1,7 +1,7 @@
 project: moomen-pro
 locale: fr
 eyebrow: Étude de cas · Mission client
-title: Moomen Pro, un site qui donne envie de s'inscrire
+title: La landing page de Moomen Pro, une application mobile et web de gestion commerciale pour les commerçants et PME
 lead: 'Moomen Pro aide les commerçants d''Afrique de l''Ouest à gérer leurs ventes et leurs stocks depuis leur téléphone. J''ai refait son site : présentation de l''application, tarifs et boutique de consommables.'
 seoTitle: Moomen Pro, refonte du site et boutique · Étude de cas
 seoDescription: Refonte en Astro du site de Moomen Pro, application de caisse pour PME, avec tarifs par pays et boutique commandée sur WhatsApp.

@@ -36,7 +36,7 @@ const personData = {
   email: `mailto:${profile.email}`,
   url: Astro.site?.toString(),
   address: { '@type': 'PostalAddress', addressLocality: profile.city, addressCountry: profile.country },
-  sameAs: [profile.linkedinUrl, profile.githubUrl],
+  sameAs: [profile.linkedinUrl, profile.githubUrl, profile.credlyUrl],
   knowsLanguage: ['fr', 'de', 'en']
 };
 ---

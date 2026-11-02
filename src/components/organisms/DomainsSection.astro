@@ -1,5 +1,6 @@
 ---
 import ArrowRight from '@lucide/astro/icons/arrow-right';
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import Award from '@lucide/astro/icons/award';
 import Monitor from '@lucide/astro/icons/monitor';
 import ShieldCheck from '@lucide/astro/icons/shield-check';
@@ -8,6 +9,7 @@ import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import { resolveDomainProofs } from '@/lib/domain-proofs';
+import { profile } from '@/lib/profile';
 import type { ProjectSummary } from '@/lib/projects';
 
 type Props = { locale: Locale; projects: ProjectSummary[] };
@@ -43,7 +45,7 @@ const linkClasses =
         domains.items.map((domain, index) => {
           const Icon = domainIcons[domain.icon as keyof typeof domainIcons] ?? Monitor;
           const isAi = domain.icon === 'ai';
-          const proofs = resolveDomainProofs(domain.icon, projects, proofLabels, '#contact');
+          const proofs = resolveDomainProofs(domain.icon, projects, proofLabels, { contact: '#contact', certification: profile.credlyUrl });
           return (
             <li data-scroll-item class="flex flex-col gap-5 border-b border-white/15 py-9 sm:flex-row sm:gap-7">
               <span
@@ -81,9 +83,14 @@ const linkClasses =
                       {proofs.map((proof) => (
                         <li>
                           {proof.href ? (
-                            <a href={proof.href} class={linkClasses}>
+                            <a
+                              href={proof.href}
+                              rel={proof.external ? 'me noopener' : undefined}
+                              class:list={[linkClasses, proof.highlighted && 'border-sig/40! bg-sig/15! text-[#ffd9c2]! hover:border-sig/70! hover:text-[#ffd9c2]!']}
+                            >
+                              {proof.highlighted && <Award aria-hidden="true" size={15} />}
                               {proof.label}
-                              <ArrowRight aria-hidden="true" size={15} />
+                              {proof.external ? <ArrowUpRight aria-hidden="true" size={15} /> : <ArrowRight aria-hidden="true" size={15} />}
                             </a>
                           ) : (
                             <span

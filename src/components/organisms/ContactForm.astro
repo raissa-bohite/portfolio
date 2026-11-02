@@ -145,11 +145,32 @@ const typeOptions = contactRequestTypes.map((value) => ({ value, label: form.typ
     </div>
   </form>
 
-  <div data-success tabindex="-1" role="status" class="hidden flex-col items-start gap-4 py-6 group-data-[state=success]/form:flex">
-    <span aria-hidden="true" class="flex size-14 items-center justify-center rounded-control bg-tint text-tint-ink">
-      <CircleCheck size={26} />
-    </span>
-    <h2 class="m-0 text-h2 font-bold text-ink">{form.successTitle}</h2>
+  <!-- Page Contact : la confirmation est centrée dans la carte, qui garde la hauteur du formulaire pour éviter un saut de mise en page -->
+  <div
+    data-success
+    tabindex="-1"
+    role="status"
+    class:list={[
+      'hidden flex-col gap-4 py-6 group-data-[state=success]/form:flex',
+      isFull ? 'flex-1 items-center justify-center text-center' : 'items-start'
+    ]}
+  >
+    {
+      isFull ? (
+        <span aria-hidden="true" class="mb-2 flex size-28 items-center justify-center rounded-full bg-tint/60">
+          <span class="flex size-20 items-center justify-center rounded-full bg-action text-action-ink shadow-[0_12px_28px_rgb(74_35_160/0.28)]">
+            <CircleCheck size={36} />
+          </span>
+        </span>
+      ) : (
+        <span aria-hidden="true" class="flex size-14 items-center justify-center rounded-control bg-tint text-tint-ink">
+          <CircleCheck size={26} />
+        </span>
+      )
+    }
+    <h2 class="m-0 text-h2 font-bold text-ink">
+      {form.successTitle}{isFull && <span aria-hidden="true" class="ml-1 inline-block h-[0.08em] w-[0.45em] bg-sig align-baseline"></span>}
+    </h2>
     <p data-success-text data-template={form.successText} class="m-0 max-w-[48ch]"></p>
     <button
       type="button"

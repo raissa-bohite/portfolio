@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import BadgeCheck from '@lucide/astro/icons/badge-check';
 import Heart from '@lucide/astro/icons/heart';
 import Mail from '@lucide/astro/icons/mail';
 import MapPin from '@lucide/astro/icons/map-pin';
@@ -24,8 +23,7 @@ const highlightIcons = { zap: Zap, message: MessageSquare, heart: Heart } as con
 const socialLinks = [
   { label: 'LinkedIn', href: profile.linkedinUrl, brand: 'linkedin' },
   { label: 'GitHub', href: profile.githubUrl, brand: 'github' },
-  // Pas de logo de marque pour Credly : un badge vérifié générique
-  { label: 'Credly', href: profile.credlyUrl, brand: undefined }
+  { label: 'Credly', href: profile.credlyUrl, brand: 'credly' }
 ] as const;
 ---
 
@@ -128,7 +126,7 @@ const socialLinks = [
                 class="flex min-h-[46px] items-center gap-2.5 rounded-full bg-white py-1.5 pr-5 pl-1.5 text-small font-semibold text-tint-ink no-underline dark:bg-white/10"
               >
                 <span aria-hidden="true" class="flex size-[34px] items-center justify-center rounded-full bg-tint">
-                  {brand ? <BrandIcon brand={brand} class="size-[18px]" /> : <BadgeCheck size={18} />}
+                  <BrandIcon brand={brand} class="size-[18px]" />
                 </span>
                 {label}
               </a>

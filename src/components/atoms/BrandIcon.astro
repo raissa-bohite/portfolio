@@ -1,7 +1,7 @@
 ---
-// Logos de marque (LinkedIn, GitHub) : Lucide ne les fournit plus. Les fichiers SVG servent de masque CSS,
+// Logos de marque (LinkedIn, GitHub, Credly) : Lucide ne les fournit plus. Les fichiers SVG servent de masque CSS,
 // le logo prend donc la couleur du texte (currentColor) et suit le thème clair ou sombre
-type Props = { brand: 'linkedin' | 'github'; class?: string };
+type Props = { brand: 'linkedin' | 'github' | 'credly'; class?: string };
 
 const { brand, class: className } = Astro.props;
 ---

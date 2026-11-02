@@ -304,3 +304,9 @@
 .brand-icon-github {
   mask-image: url('../assets/brand/github.svg');
 }
+
+.brand-icon-credly {
+  mask-image: url('../assets/brand/credly.svg');
+  /* Logo en toutes lettres : agrandi pour rester lisible dans la même pastille que les pictogrammes */
+  scale: 1.5;
+}

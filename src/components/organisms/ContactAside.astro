@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
-import BadgeCheck from '@lucide/astro/icons/badge-check';
 import Clock from '@lucide/astro/icons/clock';
 import Copy from '@lucide/astro/icons/copy';
 import Download from '@lucide/astro/icons/download';
@@ -21,7 +20,7 @@ const page = dictionary.contactPage;
 const links = [
   { href: profile.linkedinUrl, label: 'LinkedIn', external: true, brand: 'linkedin' as const },
   { href: profile.githubUrl, label: 'GitHub', external: true, brand: 'github' as const },
-  { href: profile.credlyUrl, label: 'Credly', external: true, brand: undefined },
+  { href: profile.credlyUrl, label: 'Credly', external: true, brand: 'credly' as const },
   { href: getCvPath(locale), label: dictionary.common.cv, external: false, brand: undefined }
 ];
 const headingClasses = 'm-0 text-[13px] font-bold tracking-[0.12em] text-[#ffd9c2] uppercase';
@@ -85,7 +84,7 @@ const iconDotClasses = 'flex size-[38px] flex-none items-center justify-center r
           class="group flex min-h-[52px] items-center gap-3 rounded-full border border-white/20 bg-white/[0.08] py-1.5 pr-[18px] pl-1.5 font-semibold text-white no-underline transition-colors hover:border-white/40 hover:bg-white/[0.14] hover:text-white focus-visible:outline-white"
         >
           <span aria-hidden="true" class={iconDotClasses}>
-            {link.brand ? <BrandIcon brand={link.brand} class="size-[18px]" /> : link.external ? <BadgeCheck size={18} /> : <Download size={18} />}
+            {link.brand ? <BrandIcon brand={link.brand} class="size-[18px]" /> : <Download size={18} />}
           </span>
           <span class="flex-1">{link.label}</span>
           {link.external && (

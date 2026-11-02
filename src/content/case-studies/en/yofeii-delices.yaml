@@ -44,31 +44,6 @@ approach:
         alt: "Contact page of the Yofeii Délices website, in full"
         image: ../../../assets/case-studies/yofeii/tour-contact.jpg
         navX: 61.7
-  gallery:
-  - image: ../../../assets/case-studies/yofeii/product.jpg
-    alt: 'Product page: photos, discounted price, size, quantity, customer reviews and Add to cart button'
-    caption: Site · product page
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/collection.jpg
-    alt: Collection with category filters and sorting by relevance, price or rating
-    caption: Site · collection and filters
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/cart.jpg
-    alt: Cart with quantity controls, removal and order summary
-    caption: Site · cart
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/checkout.jpg
-    alt: 'Checkout: sign in or guest purchase, personal and delivery details, order summary'
-    caption: Site · checkout
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
-    alt: 'Back office, catalogue: products with category, price, stock status and filters'
-    caption: Back office · catalogue and stock
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
-    alt: 'Back office, banners: home page visuals with their titles, ready to edit or delete'
-    caption: Back office · site banners
-    frame: desktop
 technical:
   intro: A few choices helped me work with an API that changed at the same time as the front end.
   decisions:

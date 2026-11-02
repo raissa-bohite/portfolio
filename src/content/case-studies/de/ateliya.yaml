@@ -40,27 +40,6 @@ approach:
         alt: "Seite „Kontakt“ der Website von Ateliya, vollständig"
         image: ../../../assets/case-studies/ateliya/tour-contact.jpg
         navX: 61.3
-  gallery:
-  - image: ../../../assets/case-studies/ateliya/features.jpg
-    alt: 'Abschnitt „Warum Ateliya“: vier Karten in Vollfarbe mit isometrischen Illustrationen'
-    caption: Funktionen in Vollfarbe
-    frame: desktop
-  - image: ../../../assets/case-studies/ateliya/showcase.jpg
-    alt: 'Abschnitt „Jeder Kunde gut betreut“: App-Mockup, das beim Scrollen fixiert bleibt, mit drei Schritten'
-    caption: Beim Scrollen fixierte Präsentation
-    frame: desktop
-  - image: ../../../assets/case-studies/ateliya/testimonials.jpg
-    alt: 'Abschnitt „Ateliya im Alltag“: drei Erfahrungsberichte von Schneiderinnen auf Karten in Vollfarbe'
-    caption: Erfahrungsberichte
-    frame: desktop
-  - image: ../../../assets/case-studies/ateliya/faq.jpg
-    alt: 'Häufige Fragen als Akkordeon: Funktionsweise, kostenloser Test, Zahlung, Android und iPhone, Sicherheit, Preise'
-    caption: Häufige Fragen
-    frame: desktop
-  - image: ../../../assets/case-studies/ateliya/download.jpg
-    alt: Abschließender Aufruf „Jetzt Ateliya beitreten“ über einem Foto von Schneidern, mit Download-Button und QR-Code
-    caption: Aufruf zum Download
-    frame: desktop
 technical:
   intro: Mein Ziel war eine schnelle Website mit zuverlässigen Formularen.
   decisions:

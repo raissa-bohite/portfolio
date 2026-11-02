@@ -44,31 +44,6 @@ approach:
         alt: "Seite „Kontakt“ der Website von Yofeii Délices, vollständig"
         image: ../../../assets/case-studies/yofeii/tour-contact.jpg
         navX: 61.7
-  gallery:
-  - image: ../../../assets/case-studies/yofeii/product.jpg
-    alt: 'Produktseite: Fotos, reduzierter Preis, Format, Menge, Kundenbewertungen und Button In den Warenkorb'
-    caption: Website · Produktseite
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/collection.jpg
-    alt: Kollektion mit Kategoriefiltern und Sortierung nach Relevanz, Preis oder Bewertung
-    caption: Website · Kollektion und Filter
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/cart.jpg
-    alt: Warenkorb mit Mengenänderung, Entfernen und Zusammenfassung
-    caption: Website · Warenkorb
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/checkout.jpg
-    alt: 'Bestellung: Anmeldung oder Gastkauf, persönliche Daten, Lieferadresse und Zusammenfassung'
-    caption: Website · Bestellung
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
-    alt: 'Backoffice, Katalog: Produkte mit Kategorie, Preis, Lagerstatus und Filtern'
-    caption: Backoffice · Katalog und Bestand
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
-    alt: 'Backoffice, Banner: Bilder der Startseite mit Titeln, zum Bearbeiten oder Löschen'
-    caption: Backoffice · Banner der Website
-    frame: desktop
 technical:
   intro: Einige Entscheidungen haben mir die Arbeit mit einer API erleichtert, die sich gleichzeitig mit dem Front-End weiterentwickelte.
   decisions:

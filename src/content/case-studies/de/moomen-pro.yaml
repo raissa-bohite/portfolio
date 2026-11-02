@@ -52,23 +52,6 @@ approach:
         alt: "Seite „Kontakt“ der Website von Moomen Pro, vollständig"
         image: ../../../assets/case-studies/moomen/tour-contact.jpg
         navX: 62.6
-  gallery:
-  - image: ../../../assets/case-studies/moomen/pricing.jpg
-    alt: 'Preise: Länderauswahl, drei Monats- oder Jahrestarife in CFA-Franc und ein kostenloser Tarif'
-    caption: Preise in der Landeswährung
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/sectors.jpg
-    alt: 'Abschnitt „Für wen ist Moomen Pro?“: Läden, Handwerk, Supermärkte, Lebensmittelhändler, Gastronomie, Friseure'
-    caption: Die Zielbranchen
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/shop.jpg
-    alt: Shop für Verbrauchsmaterial mit Suche, Kategoriefiltern und Produktkarten
-    caption: Shop für Verbrauchsmaterial
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/product.jpg
-    alt: 'Produktseite: Preis in CFA-Franc, Menge, Button Über WhatsApp bestellen und Lagerinformationen'
-    caption: Direkte Bestellung über WhatsApp
-    frame: desktop
 technical:
   intro: Meine Entscheidungen kamen vor allem aus konkreten Problemen.
   decisions:

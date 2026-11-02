@@ -80,7 +80,7 @@ const paragraphClasses = 'm-0 max-w-[62ch] text-body-lg';
       tour ? (
         <SiteTour locale={locale} tour={tour} accent={accent} />
       ) : (
-        caseStudy.approach.gallery.length > 0 && <ScreenshotGallery locale={locale} shots={caseStudy.approach.gallery} showcase={caseStudy.approach.showcase} />
+        caseStudy.approach.gallery.length > 0 && <ScreenshotGallery shots={caseStudy.approach.gallery} showcase={caseStudy.approach.showcase} />
       )
     }
   </section>

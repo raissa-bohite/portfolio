@@ -44,31 +44,6 @@ approach:
         alt: "Page Contact du site Yofeii Délices, en entier"
         image: ../../../assets/case-studies/yofeii/tour-contact.jpg
         navX: 61.7
-  gallery:
-  - image: ../../../assets/case-studies/yofeii/product.jpg
-    alt: 'Fiche produit : photos, prix barré, format, quantité, avis clients et bouton Ajouter au panier'
-    caption: Site · fiche produit
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/collection.jpg
-    alt: Collection avec filtres par catégorie et tri par pertinence, prix ou note
-    caption: Site · collection et filtres
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/cart.jpg
-    alt: Panier avec modification des quantités, suppression et récapitulatif
-    caption: Site · panier
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/checkout.jpg
-    alt: 'Commande : connexion ou achat en invité, informations personnelles et de livraison, récapitulatif'
-    caption: Site · commande
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/admin-catalog.jpg
-    alt: 'Back-office, catalogue : produits avec catégorie, prix, état du stock et filtres'
-    caption: Back-office · catalogue et stock
-    frame: desktop
-  - image: ../../../assets/case-studies/yofeii/admin-banners.jpg
-    alt: 'Back-office, bannières : visuels de la page d''accueil avec leurs titres, à modifier ou supprimer'
-    caption: Back-office · bannières du site
-    frame: desktop
 technical:
   intro: Quelques choix m'ont aidée à travailler avec une API qui évoluait en même temps que le front.
   decisions:

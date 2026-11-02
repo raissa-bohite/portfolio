@@ -1,120 +1,17 @@
 ---
-import ChevronLeft from '@lucide/astro/icons/chevron-left';
-import ChevronRight from '@lucide/astro/icons/chevron-right';
-import Pause from '@lucide/astro/icons/pause';
-import Play from '@lucide/astro/icons/play';
-import { getImage, Image } from 'astro:assets';
+import { Image } from 'astro:assets';
 import PhoneFrame from '@/components/molecules/PhoneFrame.astro';
-import type { Locale } from '@/i18n/config';
-import { formatMessage, getDictionary } from '@/i18n/translate';
 import type { CaseStudy } from '@/lib/projects';
 
-type Props = { locale: Locale; shots: CaseStudy['approach']['gallery']; showcase?: ImageMetadata | undefined };
+// Captures mobiles d'une étude de cas : un visuel composé avec ses légendes, ou chaque écran dans une maquette de téléphone.
+// Les captures d'ordinateur passent désormais par la visite en direct (SiteTour).
+type Props = { shots: CaseStudy['approach']['gallery']; showcase?: ImageMetadata | undefined };
 
-const { locale, shots, showcase } = Astro.props;
+const { shots, showcase } = Astro.props;
 const phoneShowcase = showcase;
-const labels = getDictionary(locale).projectPage;
-const desktopShots = shots.filter((shot) => shot.frame === 'desktop');
-const phoneShots = shots.filter((shot) => shot.frame === 'phone');
-// Versions grand format servies seulement à l'ouverture de l'aperçu
-const largeSources = await Promise.all(desktopShots.map((shot) => getImage({ src: shot.image, width: 1920, format: 'webp' })));
+const phoneShots = shots;
 const surfaceClasses = 'rounded-block bg-[#f5f4f8] dark:bg-white/[0.05]';
 ---
-
-<!--
-  Galerie à la manière des pages produit d'Apple : une capture entière à la fois sur une surface neutre,
-  la suivante dépasse à droite pour inviter au défilement (défilement natif, avec son élan et son aimantation).
--->
-{
-  desktopShots.length > 0 && (
-    <div data-shot-gallery role="region" aria-roledescription="carousel" aria-label={labels.screenshotsLabel} class="flex flex-col gap-6">
-      <ul
-        data-shot-track
-        tabindex="0"
-        class="m-0 flex list-none snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth p-0 px-[max(24px,calc((100vw-1200px)/2+24px))] pb-2 [scroll-padding-inline:max(24px,calc((100vw-1200px)/2+24px))] [scrollbar-width:none] motion-reduce:scroll-auto focus-visible:outline-offset-[-3px] [&::-webkit-scrollbar]:hidden"
-      >
-        {
-          desktopShots.map((shot, index) => (
-            <li
-              data-shot-slide
-              aria-roledescription="slide"
-              aria-label={formatMessage(labels.shotPosition, { current: index + 1, total: desktopShots.length })}
-              class="w-[86%] flex-none snap-start sm:w-[78%] lg:w-[min(1000px,80vw)]"
-            >
-              <figure class="m-0 flex flex-col gap-4">
-                <button
-                  type="button"
-                  data-lightbox-src={largeSources[index]?.src}
-                  data-lightbox-alt={shot.alt}
-                  data-lightbox-caption={shot.caption}
-                  aria-label={formatMessage(labels.enlarge, { caption: shot.caption })}
-                  class={`group block w-full cursor-zoom-in border-0 p-[clamp(16px,4%,48px)] transition-transform duration-100 ease-out active:scale-[0.985] ${surfaceClasses}`}
-                >
-                  <Image
-                    data-lightbox-thumb
-                    src={shot.image}
-                    alt={shot.alt}
-                    widths={[640, 1200, 1800]}
-                    sizes="(min-width: 1248px) 920px, 80vw"
-                    loading="lazy"
-                    class="block aspect-[16/9.4] h-auto w-full rounded-[12px] bg-white object-cover object-top shadow-[0_1px_2px_rgb(0_0_0/0.06),0_20px_40px_-24px_rgb(30_15_69/0.35)] transition-transform duration-500 ease-out-soft group-hover:scale-[1.012]"
-                  />
-                </button>
-                <figcaption class="flex items-baseline gap-3 px-1 text-base leading-snug">
-                  <span class="font-mono text-sm text-muted">{String(index + 1).padStart(2, '0')}</span>
-                  <span class="font-semibold text-ink">{shot.caption}</span>
-                </figcaption>
-              </figure>
-            </li>
-          ))
-        }
-      </ul>
-
-      {
-        desktopShots.length > 1 && (
-          <div class="container-page flex w-full items-center justify-end gap-3">
-            <!-- Lecture automatique : le bouton porte une barre de progression vers la capture suivante -->
-            <button
-              type="button"
-              data-shot-toggle
-              data-label-pause={labels.pauseShots}
-              data-label-play={labels.playShots}
-              aria-label={labels.pauseShots}
-              hidden
-              class="group/toggle relative flex size-11 cursor-pointer items-center justify-center overflow-hidden rounded-full border-0 bg-tint text-tint-ink transition-transform duration-100 active:scale-95"
-            >
-              <Pause aria-hidden="true" size={18} class="group-data-[state=paused]/toggle:hidden" />
-              <Play aria-hidden="true" size={18} class="hidden group-data-[state=paused]/toggle:block" />
-              <span aria-hidden="true" class="absolute inset-x-2.5 bottom-1.5 h-0.5 overflow-hidden rounded-full bg-tint-ink/20">
-                <span data-shot-progress class="block h-full w-full origin-left scale-x-0 rounded-full bg-sig"></span>
-              </span>
-            </button>
-            <p data-shot-counter aria-live="polite" class="m-0 mr-auto font-mono text-sm text-muted">
-              {formatMessage(labels.shotPosition, { current: 1, total: desktopShots.length })}
-            </p>
-            <button
-              type="button"
-              data-shot-previous
-              aria-label={labels.previousShot}
-              disabled
-              class="flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-tint text-tint-ink transition-[transform,opacity] duration-100 active:scale-95 disabled:cursor-default disabled:opacity-40"
-            >
-              <ChevronLeft aria-hidden="true" size={20} />
-            </button>
-            <button
-              type="button"
-              data-shot-next
-              aria-label={labels.nextShot}
-              class="flex size-11 cursor-pointer items-center justify-center rounded-full border-0 bg-tint text-tint-ink transition-[transform,opacity] duration-100 active:scale-95 disabled:cursor-default disabled:opacity-40"
-            >
-              <ChevronRight aria-hidden="true" size={20} />
-            </button>
-          </div>
-        )
-      }
-    </div>
-  )
-}
 
 <!-- Visuel composé : les téléphones sont dans l'image, décorative ; la liste en dessous porte les descriptions et les légendes -->
 {
@@ -157,9 +54,3 @@ const surfaceClasses = 'rounded-block bg-[#f5f4f8] dark:bg-white/[0.05]';
     </div>
   )
 }
-
-<script>
-  import { setupShotGallery } from '@/scripts/shot-gallery';
-
-  for (const gallery of document.querySelectorAll<HTMLElement>('[data-shot-gallery]')) setupShotGallery(gallery);
-</script>

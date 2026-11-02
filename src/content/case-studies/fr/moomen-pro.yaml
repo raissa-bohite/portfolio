@@ -52,23 +52,6 @@ approach:
         alt: "Page Contact du site Moomen Pro, en entier"
         image: ../../../assets/case-studies/moomen/tour-contact.jpg
         navX: 62.6
-  gallery:
-  - image: ../../../assets/case-studies/moomen/pricing.jpg
-    alt: 'Tarifs : choix du pays, trois formules mensuelles ou annuelles en FCFA et plan gratuit'
-    caption: Tarifs dans la devise du pays
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/sectors.jpg
-    alt: 'Section « À qui est destiné Moomen Pro ? » : boutiques, artisans, supermarchés, revendeurs, restaurateurs, coiffeurs'
-    caption: Les métiers ciblés
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/shop.jpg
-    alt: Boutique des consommables avec recherche, filtres par catégorie et cartes produits
-    caption: Boutique des consommables
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/product.jpg
-    alt: 'Fiche produit : prix en FCFA, quantité, bouton Commander sur WhatsApp et informations de stock'
-    caption: Commande directe sur WhatsApp
-    frame: desktop
 technical:
   intro: Ce sont surtout des problèmes concrets qui ont guidé mes choix.
   decisions:

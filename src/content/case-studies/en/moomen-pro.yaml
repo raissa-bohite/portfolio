@@ -52,23 +52,6 @@ approach:
         alt: "Contact page of the Moomen Pro website, in full"
         image: ../../../assets/case-studies/moomen/tour-contact.jpg
         navX: 62.6
-  gallery:
-  - image: ../../../assets/case-studies/moomen/pricing.jpg
-    alt: 'Pricing: country selector, three monthly or yearly plans in CFA francs and a free plan'
-    caption: Pricing in the local currency
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/sectors.jpg
-    alt: '"Who is Moomen Pro for?" section: shops, artisans, supermarkets, food resellers, caterers, hair salons'
-    caption: Target trades
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/shop.jpg
-    alt: Supplies shop with search, category filters and product cards
-    caption: Supplies shop
-    frame: desktop
-  - image: ../../../assets/case-studies/moomen/product.jpg
-    alt: 'Product page: price in CFA francs, quantity, Order on WhatsApp button and stock details'
-    caption: Direct ordering on WhatsApp
-    frame: desktop
 technical:
   intro: My choices were mostly driven by concrete problems.
   decisions:

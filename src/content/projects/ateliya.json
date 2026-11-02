@@ -2,14 +2,14 @@
   "order": 4,
   "name": "Ateliya",
   "kind": {
-    "fr": "Refonte de site vitrine",
-    "en": "Website redesign",
-    "de": "Website-Neugestaltung"
+    "fr": "Landing page",
+    "en": "Landing page",
+    "de": "Landingpage"
   },
   "category": {
-    "fr": "Site vitrine",
-    "en": "Showcase website",
-    "de": "Präsentationsseite"
+    "fr": "Landing page",
+    "en": "Landing page",
+    "de": "Landingpage"
   },
   "role": {
     "fr": "Développeuse front-end · design, intégration et sécurité",
@@ -17,9 +17,9 @@
     "de": "Frontend-Entwicklerin · Design, Umsetzung und Sicherheit"
   },
   "description": {
-    "fr": "Le site de l'application qui gère clients, mesures, commandes et paiements des ateliers de couture, et la vitrine en ligne des stylistes.",
-    "en": "The website of the app that manages clients, measurements, orders and payments for tailoring workshops, and the online showcase for designers.",
-    "de": "Die Website der App, mit der Schneiderateliers Kunden, Maße, Aufträge und Zahlungen verwalten, und das Online-Schaufenster für Modedesigner."
+    "fr": "La landing page de l'application qui gère clients, mesures, commandes et paiements des ateliers de couture, et la vitrine en ligne des stylistes.",
+    "en": "The landing page of the app that manages clients, measurements, orders and payments for tailoring workshops, and the online showcase for designers.",
+    "de": "Die Landingpage der App, mit der Schneiderateliers Kunden, Maße, Aufträge und Zahlungen verwalten, und das Online-Schaufenster für Modedesigner."
   },
   "stack": [
     "Astro",

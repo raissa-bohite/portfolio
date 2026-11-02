@@ -1,10 +1,10 @@
 project: ateliya
 locale: fr
 eyebrow: Étude de cas · Mission client
-title: La landing page d'Ateliya, une application de gestion pour les couturiers et stylistes
-lead: Ateliya aide les couturiers d'Afrique de l'Ouest à gérer leurs clients, leurs mesures et leurs commandes. J'ai refait le design de son site, qui donne envie de télécharger l'application et de s'abonner.
-seoTitle: Ateliya, refonte du site vitrine · Étude de cas
-seoDescription: Refonte du design du site d'Ateliya en Astro, avec inscription et abonnement par mobile money.
+title: "La landing page d'Ateliya, l'app des couturiers et stylistes"
+lead: "Ateliya aide les couturiers d'Afrique de l'Ouest à gérer leurs clients, leurs mesures et leurs commandes. J'ai développé sa landing page, qui donne envie de télécharger l'application et de s'abonner."
+seoTitle: "Ateliya, landing page de l'application · Étude de cas"
+seoDescription: "Landing page d'Ateliya en Astro, avec inscription et abonnement par mobile money."
 meta:
   role: Développeuse front-end
   team: Seule, avec validation de la cliente page par page
@@ -15,7 +15,7 @@ context:
 - L'ancien site fonctionnait, mais son design ne convenait plus à la cliente. Il fallait refaire le design en gardant les mêmes pages, les mêmes parcours et les mêmes API.
 role:
   paragraphs:
-  - 'J''ai mené la refonte seule, du design à la mise en ligne, en respectant la charte de la cliente : vert, or, ivoire et la police Cormorant Garamond. La cliente validait chaque page avant que je passe à la suivante.'
+  - 'J''ai réalisé la landing page seule, du design à la mise en ligne, en respectant la charte de la cliente : vert, or, ivoire et la police Cormorant Garamond. La cliente validait chaque page avant que je passe à la suivante.'
   highlights:
   - Design à partir de la charte
   - Intégration en Astro

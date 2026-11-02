@@ -1,10 +1,10 @@
 project: moomen-pro
 locale: fr
 eyebrow: Étude de cas · Mission client
-title: La landing page de Moomen Pro, une application mobile et web de gestion commerciale pour les commerçants et PME
-lead: 'Moomen Pro aide les commerçants d''Afrique de l''Ouest à gérer leurs ventes et leurs stocks depuis leur téléphone. J''ai refait son site : présentation de l''application, tarifs et boutique de consommables.'
-seoTitle: Moomen Pro, refonte du site et boutique · Étude de cas
-seoDescription: Refonte en Astro du site de Moomen Pro, application de caisse pour PME, avec tarifs par pays et boutique commandée sur WhatsApp.
+title: "La landing page de Moomen Pro, l'app de gestion des commerçants et PME"
+lead: "Moomen Pro aide les commerçants d'Afrique de l'Ouest à gérer leurs ventes et leurs stocks depuis leur téléphone. J'ai développé sa landing page : présentation de l'application, tarifs et boutique de consommables."
+seoTitle: "Moomen Pro, landing page et boutique · Étude de cas"
+seoDescription: "Landing page en Astro de Moomen Pro, application de caisse pour PME, avec tarifs par pays et boutique commandée sur WhatsApp."
 meta:
   role: Développeuse front-end, UI/UX et intégration API
   team: Pour Moomen Pro (KORANEX)

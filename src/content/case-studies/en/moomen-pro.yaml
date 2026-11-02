@@ -1,10 +1,10 @@
 project: moomen-pro
 locale: en
 eyebrow: Case study · Client project
-title: The Moomen Pro landing page, a mobile and web sales management app for shopkeepers and small businesses
-lead: 'Moomen Pro helps West African shop owners manage their sales and stock from their phone. I redesigned its website: app presentation, pricing and a shop for supplies.'
-seoTitle: Moomen Pro, website redesign and shop · Case study
-seoDescription: Astro redesign of the Moomen Pro website, a point-of-sale app for small businesses, with local pricing and a shop ordered through WhatsApp.
+title: "The Moomen Pro landing page, the management app for shops and SMEs"
+lead: "Moomen Pro helps West African shop owners manage their sales and stock from their phone. I built its landing page: app presentation, pricing and a shop for supplies."
+seoTitle: "Moomen Pro, landing page and shop · Case study"
+seoDescription: "Astro landing page for Moomen Pro, a point-of-sale app for small businesses, with local pricing and a shop ordered through WhatsApp."
 meta:
   role: Front-end developer, UI/UX and API integration
   team: For Moomen Pro (KORANEX)

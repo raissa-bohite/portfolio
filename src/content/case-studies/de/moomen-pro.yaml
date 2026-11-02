@@ -1,10 +1,10 @@
 project: moomen-pro
 locale: de
 eyebrow: Fallstudie · Kundenprojekt
-title: Die Landingpage von Moomen Pro, einer mobilen und webbasierten Verwaltungs-App für Händler und KMU
-lead: 'Moomen Pro hilft Händlerinnen und Händlern in Westafrika, Verkäufe und Lagerbestand vom Handy aus zu verwalten. Ich habe die Website neu gestaltet: Vorstellung der App, Preise und ein Shop für Verbrauchsmaterial.'
-seoTitle: Moomen Pro, Website-Neugestaltung und Shop · Fallstudie
-seoDescription: Neugestaltung der Website von Moomen Pro mit Astro, einer Kassen-App für KMU, mit Preisen pro Land und Bestellung über WhatsApp.
+title: "Die Landingpage von Moomen Pro, der Verwaltungs-App für Händler und KMU"
+lead: "Moomen Pro hilft Händlerinnen und Händlern in Westafrika, Verkäufe und Lagerbestand vom Handy aus zu verwalten. Ich habe die Landingpage entwickelt: Vorstellung der App, Preise und ein Shop für Verbrauchsmaterial."
+seoTitle: "Moomen Pro, Landingpage und Shop · Fallstudie"
+seoDescription: "Landingpage von Moomen Pro mit Astro, einer Kassen-App für KMU, mit Preisen pro Land und Bestellung über WhatsApp."
 meta:
   role: Frontend-Entwicklerin, UI/UX und API-Integration
   team: Für Moomen Pro (KORANEX)

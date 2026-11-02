@@ -1,10 +1,10 @@
 project: ateliya
 locale: en
 eyebrow: Case study · Client project
-title: The Ateliya landing page, a management app for tailors and fashion designers
-lead: Ateliya helps West African tailors manage their customers, measurements and orders. I redesigned its website, which encourages people to download the app and subscribe.
-seoTitle: Ateliya, website redesign · Case study
-seoDescription: Design overhaul of the Ateliya website in Astro, with sign-up and subscription paid by mobile money.
+title: "The Ateliya landing page, the app for tailors and designers"
+lead: "Ateliya helps West African tailors manage their customers, measurements and orders. I built its landing page, which encourages people to download the app and subscribe."
+seoTitle: "Ateliya, app landing page · Case study"
+seoDescription: "Ateliya landing page built with Astro, with sign-up and subscription paid by mobile money."
 meta:
   role: Front-end developer
   team: Solo, with page-by-page client approval
@@ -15,7 +15,7 @@ context:
 - The old website worked, but the client no longer liked its design. The job was to redo the design while keeping the same pages, flows and APIs.
 role:
   paragraphs:
-  - 'I led the redesign on my own, from design to launch, following the client''s brand guidelines: green, gold, ivory and the Cormorant Garamond typeface. The client approved each page before I moved on to the next.'
+  - 'I built the landing page on my own, from design to launch, following the client''s brand guidelines: green, gold, ivory and the Cormorant Garamond typeface. The client approved each page before I moved on to the next.'
   highlights:
   - Design from the brand guidelines
   - Astro development

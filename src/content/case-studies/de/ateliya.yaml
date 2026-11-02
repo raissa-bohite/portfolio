@@ -1,10 +1,10 @@
 project: ateliya
 locale: de
 eyebrow: Fallstudie · Kundenprojekt
-title: Die Landingpage von Ateliya, einer Verwaltungs-App für Schneider und Modedesigner
-lead: Ateliya hilft Schneiderinnen und Schneidern in Westafrika, Kundschaft, Maße und Aufträge zu verwalten. Ich habe das Design der Website erneuert, die Lust machen soll, die App herunterzuladen und ein Abo abzuschließen.
-seoTitle: Ateliya, Neugestaltung der Website · Fallstudie
-seoDescription: Neues Design für die Website von Ateliya mit Astro, mit Registrierung und Abo per Mobile Money.
+title: "Die Landingpage von Ateliya, der App für Schneider und Modedesigner"
+lead: "Ateliya hilft Schneiderinnen und Schneidern in Westafrika, Kundschaft, Maße und Aufträge zu verwalten. Ich habe die Landingpage entwickelt, die Lust machen soll, die App herunterzuladen und ein Abo abzuschließen."
+seoTitle: "Ateliya, Landingpage der App · Fallstudie"
+seoDescription: "Landingpage von Ateliya mit Astro, mit Registrierung und Abo per Mobile Money."
 meta:
   role: Frontend-Entwicklerin
   team: Allein, mit Freigabe jeder Seite durch die Kundin
@@ -15,7 +15,7 @@ context:
 - Die alte Website funktionierte, aber ihr Design gefiel der Kundin nicht mehr. Die Aufgabe war ein neues Design mit denselben Seiten, Abläufen und APIs.
 role:
   paragraphs:
-  - 'Ich habe die Neugestaltung allein durchgeführt, vom Design bis zum Launch, nach den Markenvorgaben der Kundin: Grün, Gold, Elfenbein und die Schrift Cormorant Garamond. Die Kundin hat jede Seite freigegeben, bevor ich zur nächsten überging.'
+  - 'Ich habe die Landingpage allein umgesetzt, vom Design bis zum Launch, nach den Markenvorgaben der Kundin: Grün, Gold, Elfenbein und die Schrift Cormorant Garamond. Die Kundin hat jede Seite freigegeben, bevor ich zur nächsten überging.'
   highlights:
   - Design nach Markenvorgaben
   - Entwicklung mit Astro

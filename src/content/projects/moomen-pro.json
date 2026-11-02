@@ -2,14 +2,14 @@
   "order": 5,
   "name": "Moomen Pro",
   "kind": {
-    "fr": "Site vitrine, boutique et vibe motion design",
-    "en": "Website, shop and vibe motion design",
-    "de": "Website, Shop und Vibe Motion Design"
+    "fr": "Landing page, boutique et vibe motion design",
+    "en": "Landing page, shop and vibe motion design",
+    "de": "Landingpage, Shop und Vibe Motion Design"
   },
   "category": {
-    "fr": "Site vitrine",
-    "en": "Showcase website",
-    "de": "Präsentationsseite"
+    "fr": "Landing page",
+    "en": "Landing page",
+    "de": "Landingpage"
   },
   "role": {
     "fr": "Développeuse front-end · UI/UX et intégration API",
@@ -17,9 +17,9 @@
     "de": "Frontend-Entwicklerin · UI/UX und API-Integration"
   },
   "description": {
-    "fr": "La refonte du site d'une application de caisse et de gestion pour PME : présentation, tarifs par pays et boutique de consommables.",
-    "en": "The redesign of the website of a point-of-sale and management app for small businesses: product pages, pricing by country and a supplies shop.",
-    "de": "Die Neugestaltung der Website einer Kassen- und Verwaltungs-App für KMU: Produktvorstellung, Preise nach Land und ein Shop für Verbrauchsmaterial."
+    "fr": "La landing page d'une application de caisse et de gestion pour PME : présentation, tarifs par pays et boutique de consommables.",
+    "en": "The landing page of a point-of-sale and management app for small businesses: product pages, pricing by country and a supplies shop.",
+    "de": "Die Landingpage einer Kassen- und Verwaltungs-App für KMU: Produktvorstellung, Preise nach Land und ein Shop für Verbrauchsmaterial."
   },
   "stack": [
     "Astro",

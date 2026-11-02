@@ -12,7 +12,7 @@ import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
 import portraitDesk from '@/assets/portrait/portrait-desk-books.png';
-import fassbarCover from '@/assets/projects/fassbar.jpg';
+import fassbarPhone from '@/assets/projects/fassbar-phone.png';
 
 type Props = { locale: Locale };
 
@@ -109,7 +109,11 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
                     </span>
                   )}
                   {isCurrent && (
-                    <Image src={fassbarCover} alt="" widths={[300]} sizes="144px" loading="lazy" class="h-full w-full object-cover object-left-top" />
+                    <span class="relative flex h-full items-end justify-center overflow-hidden bg-linear-to-br from-[#f3effd] to-[#ddd2fa] px-3 pt-4 dark:from-[#2a1c55] dark:to-[#1e1344]">
+                      <span class="absolute top-1/2 left-1/2 aspect-square w-[90%] -translate-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(13_164_121/0.22),transparent)]"></span>
+                      <span class="absolute top-3 right-3 size-2.5 rounded-full bg-sig"></span>
+                      <Image src={fassbarPhone} alt="" widths={[150, 300]} sizes="120px" loading="lazy" class="relative -mb-6 h-auto w-full max-w-[120px] drop-shadow-[0_10px_14px_rgb(30_15_69/0.25)]" />
+                    </span>
                   )}
                 </div>
               </article>

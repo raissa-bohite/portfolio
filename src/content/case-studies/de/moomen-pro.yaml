@@ -29,7 +29,7 @@ approach:
     navY: 2.8
     pages:
       - label: "Startseite"
-        alt: "Seite „Startseite“ der Website von Moomen Pro, vollständig"
+        alt: "Startseite der Website von Moomen Pro, vollständig"
         image: ../../../assets/case-studies/moomen/tour-home.jpg
         navX: 26.8
         menuX: [29.2, 35.5, 47.8, 55.7, 61.5]

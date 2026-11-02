@@ -22,6 +22,8 @@ type Props = {
 const { project, labels, note, position } = Astro.props;
 const Icon = getProjectIcon(project.slug);
 const showcase = project.showcase;
+// Page Projets (projets numérotés) : le titre suit directement le h1 ; sur l'accueil, il se range sous le h2 de la section
+const Heading = position ? 'h2' : 'h3';
 const phoneShot = project.shotFrame === 'phone' ? project.shots[0] : undefined;
 // Projet en ligne : le bouton principal ouvre le site, l'étude de cas passe en lien secondaire
 const primaryHref = project.liveUrl ?? project.href;
@@ -45,7 +47,7 @@ const showCaseStudyLink = Boolean(project.liveUrl) && project.hasCaseStudy;
           {project.category}
         </span>
       </p>
-      <h3 class="m-0 text-h2 font-bold text-ink">{project.name}</h3>
+      <Heading class="m-0 text-h2 font-bold text-ink">{project.name}</Heading>
       {project.tagline && <p class="m-0 text-xl leading-snug font-semibold text-action">{project.tagline}</p>}
       <p class="m-0 text-base text-text">{project.description}</p>
       <ul class="m-0 flex list-none flex-wrap gap-2 p-0">

@@ -395,7 +395,7 @@ export const de: Dictionary = {
           text: "Gesundheitsplattform auf Basis offener Daten",
           event: "IvoireTech Forum, ANSUT, 2025",
           photo: "orivie",
-          photoAlt: "Foto einer Preisverleihung bei einem DigiFemmes-Hackathon, bis das Orivie-Foto vorliegt",
+          photoAlt: "Drei Gewinnerinnen eines DigiFemmes-Hackathons zeigen ihre Medaille",
         },
         {
           rank: "first",

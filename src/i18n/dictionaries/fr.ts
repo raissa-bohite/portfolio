@@ -401,7 +401,7 @@ const dictionary = {
           text: "Plateforme santé fondée sur les données ouvertes",
           event: "IvoireTech Forum, ANSUT, 2025",
           photo: "orivie",
-          photoAlt: "Photo de la remise des prix d'un hackathon DigiFemmes, en attendant la photo d'Orivie",
+          photoAlt: "Trois lauréates d'un hackathon DigiFemmes montrent leur médaille",
         },
         {
           rank: "first",

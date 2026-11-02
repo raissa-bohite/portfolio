@@ -29,7 +29,7 @@ approach:
     navY: 2.5
     pages:
       - label: "Startseite"
-        alt: "Seite „Startseite“ der Website von Ateliya, vollständig"
+        alt: "Startseite der Website von Ateliya, vollständig"
         image: ../../../assets/case-studies/ateliya/tour-home.jpg
         navX: 16.4
       - label: "Funktionen"

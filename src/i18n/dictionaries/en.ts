@@ -390,7 +390,7 @@ export const en: Dictionary = {
           text: "Health platform built on open data",
           event: "IvoireTech Forum, ANSUT, 2025",
           photo: "orivie",
-          photoAlt: "Photo from a DigiFemmes hackathon award ceremony, until the Orivie photo is added",
+          photoAlt: "Three DigiFemmes hackathon winners show their medals",
         },
         {
           rank: "first",

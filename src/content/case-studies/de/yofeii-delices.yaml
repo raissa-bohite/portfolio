@@ -29,7 +29,7 @@ approach:
     navY: 3.0
     pages:
       - label: "Startseite"
-        alt: "Seite „Startseite“ der Website von Yofeii Délices, vollständig"
+        alt: "Startseite der Website von Yofeii Délices, vollständig"
         image: ../../../assets/case-studies/yofeii/tour-home.jpg
         navX: 39.4
       - label: "Shop"

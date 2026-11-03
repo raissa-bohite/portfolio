@@ -35,6 +35,6 @@
     "de": "Dashboard des Schul-ERP von EPC AL ANIFIYAT: Schülerzahlen und Anmeldungsentwicklung"
   },
   "accent": "forest",
-  "tile": "../../assets/projects/erp-scolaire-tile.jpg",
-  "wide": "../../assets/projects/erp-scolaire-wide.jpg"
+  "tile": "../../assets/projects/erp-scolaire-tile.png",
+  "wide": "../../assets/projects/erp-scolaire-wide.png"
 }

@@ -36,6 +36,8 @@ const projects = defineCollection({
       showcase: image().optional(),
       // Vignette 4:3 de la galerie de l'accueil : appareils et fond de couleur déjà composés
       tile: image().optional(),
+      // Visuel 16:9 sur fond clair, affiché dans les lignes de la page Projets
+      wide: image().optional(),
       gallery: z.array(z.object({ image: image(), alt: localizedText })).default([])
     })
 });

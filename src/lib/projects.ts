@@ -21,6 +21,7 @@ export type ProjectSummary = {
   shotFrame: CollectionEntry<'projects'>['data']['shotFrame'];
   showcase: ImageMetadata | undefined;
   tile: ImageMetadata | undefined;
+  wide: ImageMetadata | undefined;
   gallery: { image: ImageMetadata; alt: string }[];
   hasCaseStudy: boolean;
 };
@@ -47,6 +48,7 @@ export function toProjectSummary(entry: CollectionEntry<'projects'>, locale: Loc
     shotFrame: data.shotFrame,
     showcase: data.showcase,
     tile: data.tile,
+    wide: data.wide,
     gallery: data.gallery.map((item) => ({ image: item.image, alt: item.alt[locale] })),
     hasCaseStudy
   };

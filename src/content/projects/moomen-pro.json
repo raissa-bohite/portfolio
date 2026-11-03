@@ -41,5 +41,6 @@
     "../../assets/case-studies/moomen/product.jpg"
   ],
   "shotFrame": "desktop",
-  "tile": "../../assets/projects/moomen-pro-tile.jpg"
+  "tile": "../../assets/projects/moomen-pro-tile.jpg",
+  "wide": "../../assets/projects/moomen-pro-wide.jpg"
 }

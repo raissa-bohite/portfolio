@@ -40,5 +40,6 @@
     "../../assets/case-studies/yofeii/admin-catalog.jpg"
   ],
   "shotFrame": "desktop",
-  "tile": "../../assets/projects/yofeii-delices-tile.jpg"
+  "tile": "../../assets/projects/yofeii-delices-tile.jpg",
+  "wide": "../../assets/projects/yofeii-delices-wide.jpg"
 }

@@ -16,7 +16,7 @@ const section = dictionary.home.projects;
 const [featuredProject, ...otherProjects] = projects;
 ---
 
-<!-- Galerie de l'accueil : le premier projet en grand, les suivants en cartes -->
+<!-- Galerie de l'accueil : le premier projet en grand, les suivants en grandes vignettes -->
 <section aria-labelledby="projects-title" class="container-page relative flex flex-col gap-10 pt-16 pb-20">
   <!--
     Décor du haut de section : forme lavande coupée par le bord haut, pastille orange et grille de points.
@@ -48,8 +48,16 @@ const [featuredProject, ...otherProjects] = projects;
         />
       )
     }
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {otherProjects.map((project) => <ProjectCard project={project} actionLabel={dictionary.common.viewProject} />)}
+    <!-- Galerie en deux colonnes : de grandes vignettes, comme sur Dribbble et Behance -->
+    <div class="mt-6 grid gap-x-10 gap-y-12 sm:grid-cols-2">
+      {
+        otherProjects.map((project) => (
+          <ProjectCard
+            project={project}
+            labels={{ caseStudy: dictionary.common.caseStudy, viewProject: dictionary.common.viewProject, pending: dictionary.projectsPage.caseStudySoon }}
+          />
+        ))
+      }
     </div>
   </div>
 

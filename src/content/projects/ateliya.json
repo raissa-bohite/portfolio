@@ -39,5 +39,6 @@
     "../../assets/case-studies/ateliya/features.jpg",
     "../../assets/case-studies/ateliya/showcase.jpg"
   ],
-  "shotFrame": "desktop"
+  "shotFrame": "desktop",
+  "tile": "../../assets/projects/ateliya-tile.jpg"
 }

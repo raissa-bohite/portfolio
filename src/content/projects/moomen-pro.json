@@ -40,5 +40,6 @@
     "../../assets/case-studies/moomen/pricing.jpg",
     "../../assets/case-studies/moomen/product.jpg"
   ],
-  "shotFrame": "desktop"
+  "shotFrame": "desktop",
+  "tile": "../../assets/projects/moomen-pro-tile.jpg"
 }

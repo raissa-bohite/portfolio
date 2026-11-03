@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Sparkle from '@lucide/astro/icons/sparkle';
+import { accentBackgroundClasses } from '@/lib/accents';
+import type { ProjectSummary } from '@/lib/projects';
+
+type Props = {
+  project: ProjectSummary & { relief: ImageMetadata };
+  // Largeurs d'affichage de l'image, selon la mise en page qui accueille le visuel
+  sizes: string;
+  // Libellé du bouton qui apparaît au survol ; sans libellé, pas de bouton
+  hoverLabel?: string;
+  class?: string;
+};
+
+const { project, sizes, hoverLabel, class: className } = Astro.props;
+---
+
+<!--
+  Appareils détourés posés en relief : ils débordent par le haut d'un bandeau à la couleur du projet,
+  comme la couverture des études de cas. Décoratif : le lien et le nom du projet portent l'information.
+-->
+<div aria-hidden="true" class:list={['relative', className]}>
+  <div class:list={['absolute inset-x-0 top-[30%] bottom-0 overflow-hidden rounded-[28px]', accentBackgroundClasses[project.accent]]}>
+    <span class="absolute inset-0 bg-[radial-gradient(90%_120%_at_0%_0%,rgb(255_255_255/0.25),transparent_60%)]"></span>
+    <span class="absolute -right-16 -bottom-24 size-64 rounded-full bg-white/[0.08]"></span>
+  </div>
+  <span class="absolute bottom-[7%] left-1/2 h-[8%] w-[70%] -translate-x-1/2 rounded-full bg-[#140a32]/40 blur-xl"></span>
+  <Sparkle size={26} fill="currentColor" stroke-width={0} class="absolute top-[52%] left-[3%] text-[#f5a25d]" />
+  <Sparkle size={22} fill="currentColor" stroke-width={0} class="absolute top-[18%] right-[5%] text-[#f5a25d]" />
+  <div class="absolute inset-x-[4%] top-0 bottom-[6%] flex items-center justify-center transition-transform duration-500 ease-out-soft motion-safe:group-hover:-translate-y-2 motion-safe:group-hover:scale-[1.03]">
+    <Image src={project.relief} alt="" widths={[480, 800, 1200]} sizes={sizes} loading="lazy" class="block max-h-full w-auto max-w-full object-contain" />
+  </div>
+  {
+    hoverLabel && (
+      <span class="absolute bottom-5 left-5 inline-flex min-h-12 translate-y-2 items-center gap-2.5 rounded-full bg-white px-5 font-bold text-[#36188a] opacity-0 shadow-[0_10px_24px_rgb(30_15_69/0.3)] transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-has-[a:focus-visible]:translate-y-0 group-has-[a:focus-visible]:opacity-100 sm:bottom-7 sm:left-7">
+        {hoverLabel}
+        <ArrowRight size={18} />
+      </span>
+    )
+  }
+</div>

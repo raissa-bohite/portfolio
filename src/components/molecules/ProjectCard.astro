@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import ProjectVisual from '@/components/molecules/ProjectVisual.astro';
+import ReliefVisual from '@/components/molecules/ReliefVisual.astro';
 import type { ProjectSummary } from '@/lib/projects';
 
 type Props = {
@@ -15,36 +15,22 @@ const hoverLabel = project.hasCaseStudy ? labels.caseStudy : labels.viewProject;
 ---
 
 <!--
-  Vignette de galerie, à la manière de Dribbble et Behance : l'image porte la carte, le texte se limite au nom et à la catégorie.
+  Vignette de galerie : les appareils en relief portent la carte, le texte se limite au nom et à la catégorie.
   Toute la carte est cliquable ; le bouton du survol est un repère visuel, le lien porte le nom du projet.
 -->
 <article data-scroll-item class="group relative flex flex-col gap-4">
-  <div class="relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-glass">
-    {
-      project.tile ? (
-        <Image
-          src={project.tile}
-          alt=""
-          widths={[480, 720, 1000, 1448]}
-          sizes="(min-width: 1280px) 600px, (min-width: 640px) 46vw, 92vw"
-          loading="lazy"
-          class="h-full w-full object-cover transition-transform duration-500 ease-out-soft motion-safe:group-hover:scale-[1.04] motion-safe:group-has-[a:focus-visible]:scale-[1.04]"
-        />
-      ) : (
-        <ProjectVisual project={project} aspectClass="aspect-[4/3]" roundedClass="rounded-none" />
-      )
-    }
-    <!-- Voile et bouton du survol : décoratifs, le lien plus bas porte l'information -->
-    <span
-      aria-hidden="true"
-      class="absolute inset-0 flex items-end bg-linear-to-t from-[rgb(30_15_69/0.55)] to-transparent to-55% p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-has-[a:focus-visible]:opacity-100 sm:p-7"
-    >
-      <span class="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 font-bold text-[#36188a] shadow-[0_10px_24px_rgb(30_15_69/0.3)] transition-transform duration-300 motion-safe:translate-y-2 motion-safe:group-hover:translate-y-0">
-        {hoverLabel}
-        <ArrowRight size={18} />
-      </span>
-    </span>
-  </div>
+  {
+    project.relief ? (
+      <ReliefVisual
+        project={{ ...project, relief: project.relief }}
+        sizes="(min-width: 1280px) 560px, (min-width: 640px) 44vw, 88vw"
+        hoverLabel={hoverLabel}
+        class="aspect-[4/3]"
+      />
+    ) : (
+      <ProjectVisual project={project} actionLabel={hoverLabel} aspectClass="aspect-[4/3]" />
+    )
+  }
 
   <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
     <h3 class="m-0 text-[1.375rem] font-extrabold tracking-[-0.01em] text-ink">

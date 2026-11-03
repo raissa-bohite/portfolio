@@ -2,7 +2,7 @@ import type { Locale } from '@/i18n/config';
 
 // À incrémenter quand les images sont régénérées (scripts/generate-social-images.cjs) :
 // LinkedIn, Facebook et WhatsApp gardent l'aperçu en cache par adresse
-export const SOCIAL_IMAGE_VERSION = 2;
+export const SOCIAL_IMAGE_VERSION = 3;
 
 export const defaultSocialImagePath = '/og-image-v3.jpg';
 

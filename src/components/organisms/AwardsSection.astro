@@ -2,6 +2,7 @@
 import { getImage, Image } from 'astro:assets';
 import Medal from '@lucide/astro/icons/medal';
 import Trophy from '@lucide/astro/icons/trophy';
+import akwabuyPhoto from '@/assets/awards/akwabuy.jpg';
 import diplomachainPhoto from '@/assets/awards/diplomachain.jpg';
 import forumPhoto from '@/assets/awards/forum.jpg';
 import scoringPhoto from '@/assets/awards/scoring.jpg';
@@ -15,11 +16,11 @@ const { locale } = Astro.props;
 const awards = getDictionary(locale).aboutPage.awards;
 
 // Photo de chaque prix et point à garder dans le cadrage en hauteur de la vignette.
-// Orivie reprend la photo du Forum en attendant la sienne.
 const photos = {
   diplomachain: { image: diplomachainPhoto, focusClass: 'object-[50%_center]' },
   scoring: { image: scoringPhoto, focusClass: 'object-[45%_center]' },
-  orivie: { image: forumPhoto, focusClass: 'object-[center_30%]' },
+  // Photo du chèque : l'équipe qui le tient occupe la partie gauche
+  akwabuy: { image: akwabuyPhoto, focusClass: 'object-[28%_center]' },
   forum: { image: forumPhoto, focusClass: 'object-[center_30%]' }
 } as const;
 

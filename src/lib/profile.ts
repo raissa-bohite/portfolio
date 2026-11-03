@@ -1,6 +1,6 @@
 // Coordonnées publiques réutilisées dans le site et les données structurées
 export const profile = {
-  name: 'Raïssa Bohité',
+  name: 'Raissa Bohité',
   email: 'raissabohite@gmail.com',
   linkedinUrl: 'https://www.linkedin.com/in/raissa-bohite',
   githubUrl: 'https://github.com/raissa-bohite',

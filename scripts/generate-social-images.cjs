@@ -53,7 +53,7 @@ h1 { font-size: 76px; line-height: 0.98; font-weight: 800; letter-spacing: -0.04
   <h1>${escapeHtml(project.name)}<span class="cursor"></span></h1>
   <p class="kind">${escapeHtml(project.kind[locale])}</p>
 </div>
-<p class="footer"><strong>Raïssa Bohité</strong> · raissa-bohite.pages.dev</p>
+<p class="footer"><strong>Raissa Bohité</strong> · raissa-bohite.pages.dev</p>
 </body></html>`;
 }
 

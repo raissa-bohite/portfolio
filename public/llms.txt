@@ -1,6 +1,6 @@
-# Raïssa Bohité
+# Raissa Bohité
 
-> Portfolio de Raïssa Bohité, développeuse front-end orientée full-stack, junior, basée à Abidjan (Côte d'Ivoire). Le site présente ses projets, son parcours et un formulaire de contact, en français, anglais et allemand.
+> Portfolio de Raissa Bohité, développeuse front-end orientée full-stack, junior, basée à Abidjan (Côte d'Ivoire). Le site présente ses projets, son parcours et un formulaire de contact, en français, anglais et allemand.
 
 Langues : français (langue maternelle), allemand (niveau intermédiaire), anglais (notions). Technologies principales : Astro, SvelteKit, React, TypeScript, Tailwind CSS, Cloudflare.
 

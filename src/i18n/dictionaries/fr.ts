@@ -394,7 +394,7 @@ const dictionary = {
           badge: "4e prix",
           title: "AkwaBuy",
           text: "Application e-commerce pour les vendeuses de produits locaux",
-          event: "Hackathon DigiFemmes et M-SOCITECH, 2024",
+          event: "Hackathon DigiFemmes, Féminitement Digital, mars 2024",
           photo: "akwabuy",
           photoAlt: "L'équipe AkwaBuy tient le chèque du 4e prix du hackathon, aux côtés des organisateurs",
         },

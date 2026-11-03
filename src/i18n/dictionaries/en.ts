@@ -383,7 +383,7 @@ export const en: Dictionary = {
           badge: "4th prize",
           title: "AkwaBuy",
           text: "E-commerce app for women selling local products",
-          event: "DigiFemmes and M-SOCITECH hackathon, 2024",
+          event: "DigiFemmes hackathon, Féminitement Digital, March 2024",
           photo: "akwabuy",
           photoAlt: "The AkwaBuy team holds the hackathon's 4th prize cheque, next to the organisers",
         },

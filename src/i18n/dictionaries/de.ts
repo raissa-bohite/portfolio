@@ -388,7 +388,7 @@ export const de: Dictionary = {
           badge: "4. Platz",
           title: "AkwaBuy",
           text: "E-Commerce-App für Verkäuferinnen lokaler Produkte",
-          event: "Hackathon von DigiFemmes und M-SOCITECH, 2024",
+          event: "DigiFemmes-Hackathon, Féminitement Digital, März 2024",
           photo: "akwabuy",
           photoAlt: "Das AkwaBuy-Team hält den Scheck für den 4. Platz des Hackathons, neben den Veranstaltern",
         },

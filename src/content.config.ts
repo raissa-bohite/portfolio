@@ -34,8 +34,6 @@ const projects = defineCollection({
       shotFrame: z.enum(['desktop', 'phone']).default('desktop'),
       // Visuel de mise en avant sur l'accueil (appareils déjà composés, fond détouré) ; sinon ordinateur et téléphone sont montés en code
       showcase: image().optional(),
-      // Visuel 16:9 sur fond clair, affiché dans les lignes de la page Projets
-      wide: image().optional(),
       // Appareils détourés posés en relief sur le bandeau de couleur (galerie de l'accueil, projet mis en avant)
       relief: image().optional(),
       gallery: z.array(z.object({ image: image(), alt: localizedText })).default([])

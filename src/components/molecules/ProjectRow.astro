@@ -1,8 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
 import ProjectVisual from '@/components/molecules/ProjectVisual.astro';
+import ReliefVisual from '@/components/molecules/ReliefVisual.astro';
 import { accentBackgroundClasses } from '@/lib/accents';
 import { getProjectIcon } from '@/lib/project-icons';
 import type { ProjectSummary } from '@/lib/projects';
@@ -28,26 +27,10 @@ const accentClass = accentBackgroundClasses[project.accent];
 <!-- Ligne de la page Projets : la vignette du projet d'un côté, la fiche de l'autre, en alternance ; toute la ligne est cliquable -->
 <article data-scroll-item class="group relative grid items-center gap-8 border-t border-line pt-12 lg:grid-cols-12 lg:gap-14">
   <div class:list={['lg:col-span-7', reversed && 'lg:order-2']}>
-    <!-- Visuel 16:9 sur fond clair : posé dans une carte blanche, il grossit légèrement au survol -->
+    <!-- Appareils en relief sur le bandeau de couleur du projet, comme la galerie de l'accueil et les études de cas -->
     {
-      project.wide ? (
-        <div class="relative aspect-video overflow-hidden rounded-surface border border-glass-border bg-white shadow-glass">
-          <Image
-            src={project.wide}
-            alt=""
-            widths={[480, 800, 1200, 1670]}
-            sizes="(min-width: 1024px) 700px, 92vw"
-            loading="lazy"
-            class="h-full w-full object-cover transition-transform duration-500 ease-out-soft motion-safe:group-hover:scale-[1.03]"
-          />
-          <span
-            aria-hidden="true"
-            class="absolute bottom-5 left-5 inline-flex translate-y-3 items-center gap-2 rounded-full bg-[#36188a] px-4 py-2 text-sm font-semibold text-white opacity-0 shadow-lg transition duration-300 ease-out-soft group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
-          >
-            {actionLabel}
-            <ArrowUpRight size={16} />
-          </span>
-        </div>
+      project.relief ? (
+        <ReliefVisual project={{ ...project, relief: project.relief }} sizes="(min-width: 1024px) 680px, 92vw" hoverLabel={actionLabel} class="aspect-[4/3] lg:aspect-[16/11]" />
       ) : (
         <ProjectVisual project={project} actionLabel={actionLabel} aspectClass="aspect-[4/3] lg:aspect-[16/11]" />
       )

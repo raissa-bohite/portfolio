@@ -11,7 +11,7 @@ import SectionIntro from '@/components/molecules/SectionIntro.astro';
 import type { Locale } from '@/i18n/config';
 import { getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
-import portraitDesk from '@/assets/portrait/portrait-desk-books.png';
+import portraitLaptop from '@/assets/portrait/portrait-laptop.png';
 import fassbarPhone from '@/assets/projects/fassbar-phone.png';
 
 type Props = { locale: Locale };
@@ -34,18 +34,18 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
       <div class="flex flex-[1_1_440px] flex-col gap-4 pb-6 md:pb-10">
         <SectionIntro id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.text} highlight={false} cursor />
       </div>
-      <!-- Photo au bureau sur une arche lavande, avec l'arc orange : décorative, la scène garde ses proportions -->
+      <!-- Portrait ordinateur en main sur une arche lavande, avec l'arc orange : décoratif -->
       <div aria-hidden="true" class="relative hidden flex-[1_1_420px] sm:block">
-        <div class="relative ml-auto aspect-[1250/1060] w-full max-w-[500px]">
-          <span class="absolute bottom-[18%] left-[22%] h-[76%] w-[52%] rounded-t-full bg-tint dark:bg-tint/80"></span>
-          <span class="absolute top-[10%] left-[14%] aspect-square w-[62%] -rotate-[30deg] rounded-full border-2 border-[#f5a25d] border-r-transparent border-b-transparent"></span>
+        <div class="relative ml-auto aspect-square w-full max-w-[460px]">
+          <span class="absolute right-[14%] bottom-0 left-[14%] h-[78%] rounded-t-full rounded-b-[28px] bg-linear-to-br from-[#e4dafd] to-[#b9a4f5] dark:from-[#cbbcf7] dark:to-[#9b80ea]"></span>
+          <span class="absolute top-[6%] left-[4%] aspect-square w-[80%] -rotate-[30deg] rounded-full border-2 border-[#f5a25d] border-r-transparent border-b-transparent"></span>
           <Image
-            src={portraitDesk}
+            src={portraitLaptop}
             alt=""
-            widths={[500, 1000]}
-            sizes="(min-width: 640px) 500px, 1px"
+            widths={[460, 920]}
+            sizes="(min-width: 640px) 460px, 1px"
             loading="lazy"
-            class="absolute bottom-0 left-0 h-auto w-full"
+            class="absolute bottom-0 left-1/2 h-auto w-[80%] -translate-x-[52%]"
           />
         </div>
       </div>

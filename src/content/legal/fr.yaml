@@ -1,19 +1,19 @@
 locale: fr
 eyebrow: Informations légales
 title: Mentions légales
-seoTitle: Mentions légales · Raissa Bohité
-seoDescription: Éditrice, hébergement, données personnelles, cookies, propriété intellectuelle et crédits du portfolio de Raissa Bohité.
+seoTitle: Mentions légales · Raissa Bohite
+seoDescription: Éditrice, hébergement, données personnelles, cookies, propriété intellectuelle et crédits du portfolio de Raissa Bohite.
 updatedLabel: Dernière mise à jour
 updatedAt: 2026-10-17
 sections:
   - id: editor
     title: Éditrice du site
     facts:
-      - { term: Nom, value: Raissa Bohité }
+      - { term: Nom, value: Raissa Bohite }
       - { term: Activité, value: "Développeuse front-end, orientée full-stack" }
       - { term: Localisation, value: "Abidjan, Côte d'Ivoire" }
       - { term: Contact, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
-      - { term: Directrice de la publication, value: Raissa Bohité }
+      - { term: Directrice de la publication, value: Raissa Bohite }
   - id: hosting
     title: Hébergement
     facts:
@@ -35,11 +35,11 @@ sections:
   - id: property
     title: Propriété intellectuelle
     paragraphs:
-      - "Le code source du portfolio est publié sur GitHub sous licence MIT. Les textes, les photos et le design restent la propriété de Raissa Bohité : tous droits réservés."
+      - "Le code source du portfolio est publié sur GitHub sous licence MIT. Les textes, les photos et le design restent la propriété de Raissa Bohite : tous droits réservés."
       - Les projets présentés restent la propriété de leurs clients respectifs. Les noms, logos et captures de Yofeii Délices, Ateliya, Moomen Pro et de l'ERP scolaire sont montrés avec leur accord, à titre de références professionnelles.
   - id: credits
     title: Crédits
     facts:
       - { term: Polices, value: "Bricolage Grotesque et JetBrains Mono, sous licence SIL Open Font License" }
       - { term: Icônes, value: "Lucide, sous licence ISC" }
-      - { term: Conception et développement, value: Raissa Bohité }
+      - { term: Conception et développement, value: Raissa Bohite }

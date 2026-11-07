@@ -1,19 +1,19 @@
 locale: de
 eyebrow: Rechtliche Hinweise
 title: Impressum
-seoTitle: Impressum · Raissa Bohité
-seoDescription: Anbieterin, Hosting, personenbezogene Daten, Cookies, geistiges Eigentum und Credits des Portfolios von Raissa Bohité.
+seoTitle: Impressum · Raissa Bohite
+seoDescription: Anbieterin, Hosting, personenbezogene Daten, Cookies, geistiges Eigentum und Credits des Portfolios von Raissa Bohite.
 updatedLabel: Zuletzt aktualisiert
 updatedAt: 2026-10-17
 sections:
   - id: editor
     title: Anbieterin der Website
     facts:
-      - { term: Name, value: Raissa Bohité }
+      - { term: Name, value: Raissa Bohite }
       - { term: Tätigkeit, value: Front-End-Entwicklerin mit Full-Stack-Fokus }
       - { term: Standort, value: "Abidjan, Côte d’Ivoire" }
       - { term: Kontakt, value: raissabohite@gmail.com, href: "mailto:raissabohite@gmail.com" }
-      - { term: Inhaltlich verantwortlich, value: Raissa Bohité }
+      - { term: Inhaltlich verantwortlich, value: Raissa Bohite }
   - id: hosting
     title: Hosting
     facts:
@@ -35,11 +35,11 @@ sections:
   - id: property
     title: Geistiges Eigentum
     paragraphs:
-      - "Der Quellcode des Portfolios ist auf GitHub unter der MIT-Lizenz veröffentlicht. Texte, Fotos und Design bleiben Eigentum von Raissa Bohité: alle Rechte vorbehalten."
+      - "Der Quellcode des Portfolios ist auf GitHub unter der MIT-Lizenz veröffentlicht. Texte, Fotos und Design bleiben Eigentum von Raissa Bohite: alle Rechte vorbehalten."
       - Die vorgestellten Projekte bleiben Eigentum der jeweiligen Kunden. Namen, Logos und Screenshots von Yofeii Délices, Ateliya, Moomen Pro und dem Schul-ERP werden mit deren Einverständnis als berufliche Referenzen gezeigt.
   - id: credits
     title: Credits
     facts:
       - { term: Schriften, value: "Bricolage Grotesque und JetBrains Mono, unter der SIL Open Font License" }
       - { term: Icons, value: "Lucide, unter der ISC-Lizenz" }
-      - { term: Gestaltung und Entwicklung, value: Raissa Bohité }
+      - { term: Gestaltung und Entwicklung, value: Raissa Bohite }

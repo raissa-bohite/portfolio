@@ -1,4 +1,4 @@
-# Portfolio — Raissa Bohité
+# Portfolio — Raissa Bohite
 
 Site statique Astro en trois langues (français, anglais, allemand), déployé sur Cloudflare Pages.
 
@@ -68,4 +68,4 @@ Remplacer `SITE_URL` dans `astro.config.mjs` et l'adresse de `public/robots.txt`
 ## Licence
 
 Le code est publié sous licence MIT (voir `LICENSE`). Les textes, photos, design et captures de projets
-(`src/assets`, `src/content`) restent © Raissa Bohité ou ses clients : tous droits réservés.
+(`src/assets`, `src/content`) restent © Raissa Bohite ou ses clients : tous droits réservés.

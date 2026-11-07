@@ -7,12 +7,12 @@ type Widen<Value> = Value extends string
 
 const dictionary = {
   meta: {
-    homeTitle: "Raissa Bohité · Développeuse front-end, orientée full-stack",
+    homeTitle: "Raissa Bohite · Développeuse front-end, orientée full-stack",
     homeDescription:
       "Interfaces et tableaux de bord clairs, accessibles et sécurisés. Projets : Fassbar, Yofeii Délices, Ateliya, Moomen Pro.",
-    portraitAlt: "Portrait de Raissa Bohité",
+    portraitAlt: "Portrait de Raissa Bohite",
     socialImageAlt:
-      "Logo RB de Raissa Bohité et sa devise : comprendre avant de construire",
+      "Logo RB de Raissa Bohite et sa devise : comprendre avant de construire",
   },
   nav: {
     label: "Navigation principale",
@@ -43,7 +43,7 @@ const dictionary = {
     tagline: "Développeuse front-end, orientée full-stack",
   },
   notFound: {
-    seoTitle: "Page introuvable · Raissa Bohité",
+    seoTitle: "Page introuvable · Raissa Bohite",
     seoDescription: "Cette page n'existe pas ou a été déplacée.",
     title: "Cette page est introuvable",
     text: "Le lien est peut-être ancien, ou l'adresse contient une faute de frappe.",
@@ -232,7 +232,7 @@ const dictionary = {
     filterAll: "Tous",
     resultsCount: "{count} projets affichés",
     caseStudySoon: "Étude de cas en préparation",
-    seoTitle: "Projets · Raissa Bohité",
+    seoTitle: "Projets · Raissa Bohite",
     seoDescription:
       "Du tuteur IA à l’e-commerce, des projets conçus et développés avec soin.",
   },
@@ -249,7 +249,7 @@ const dictionary = {
     previewLabel: "Aperçu principal",
     galleryLabel: "Autres captures",
     enlarge: "Agrandir la capture : {caption}",
-    socialImageAlt: "{project} ({kind}), un projet de Raissa Bohité présenté sur plusieurs écrans",
+    socialImageAlt: "{project} ({kind}), un projet de Raissa Bohite présenté sur plusieurs écrans",
     closePreview: "Fermer l'aperçu",
     tourLabel: "Visite du site, page par page",
     tourPagesLabel: "Pages du site",
@@ -271,13 +271,13 @@ const dictionary = {
     },
   },
   aboutPage: {
-    seoTitle: "À propos · Raissa Bohité",
+    seoTitle: "À propos · Raissa Bohite",
     seoDescription:
       "De la linguistique au code : mon parcours, mes langues de travail et la direction que je prends.",
     eyebrow: "À propos",
     title: "De la linguistique au code",
     intro:
-      "Je suis Raissa Bohité, développeuse front-end orientée full-stack. Avant d'écrire du code, j'ai appris à décortiquer une langue étrangère. C'est la même méthode que j'applique aujourd'hui à chaque interface.",
+      "Je suis Raissa Bohite, développeuse front-end orientée full-stack. Avant d'écrire du code, j'ai appris à décortiquer une langue étrangère. C'est la même méthode que j'applique aujourd'hui à chaque interface.",
     contactCta: "Me contacter",
     location: "Abidjan, Côte d'Ivoire",
     story: {
@@ -482,7 +482,7 @@ const dictionary = {
     },
   },
   contactPage: {
-    seoTitle: "Contact · Raissa Bohité",
+    seoTitle: "Contact · Raissa Bohite",
     seoDescription:
       "Un poste, une mission ou une question ? Écrivez-moi en français, en allemand ou en anglais.",
     eyebrow: "Contact",
@@ -503,7 +503,7 @@ const dictionary = {
     tocLabel: "Sommaire des mentions légales",
   },
   footer: {
-    copyright: "© 2026 Raissa Bohité, Abidjan",
+    copyright: "© 2026 Raissa Bohite, Abidjan",
     secondaryLabel: "Liens secondaires",
     cv: "CV",
     legal: "Mentions légales",

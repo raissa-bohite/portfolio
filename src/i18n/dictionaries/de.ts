@@ -2,12 +2,12 @@ import type { Dictionary } from "./fr";
 
 export const de: Dictionary = {
   meta: {
-    homeTitle: "Raissa Bohité · Front-End-Entwicklerin mit Full-Stack-Fokus",
+    homeTitle: "Raissa Bohite · Front-End-Entwicklerin mit Full-Stack-Fokus",
     homeDescription:
       "Klare, barrierefreie und sichere Oberflächen und Dashboards. Projekte: Fassbar, Yofeii Délices, Ateliya, Moomen Pro.",
-    portraitAlt: "Porträt von Raissa Bohité",
+    portraitAlt: "Porträt von Raissa Bohite",
     socialImageAlt:
-      "RB-Logo von Raissa Bohité und ihr Motto: verstehen, bevor man baut",
+      "RB-Logo von Raissa Bohite und ihr Motto: verstehen, bevor man baut",
   },
   nav: {
     label: "Hauptnavigation",
@@ -38,7 +38,7 @@ export const de: Dictionary = {
     tagline: "Front-End-Entwicklerin mit Full-Stack-Fokus",
   },
   notFound: {
-    seoTitle: "Seite nicht gefunden · Raissa Bohité",
+    seoTitle: "Seite nicht gefunden · Raissa Bohite",
     seoDescription: "Diese Seite existiert nicht oder wurde verschoben.",
     title: "Diese Seite wurde nicht gefunden",
     text: "Der Link ist vielleicht veraltet, oder die Adresse enthält einen Tippfehler.",
@@ -225,7 +225,7 @@ export const de: Dictionary = {
     filterAll: "Alle",
     resultsCount: "{count} Projekte angezeigt",
     caseStudySoon: "Fallstudie in Vorbereitung",
-    seoTitle: "Projekte · Raissa Bohité",
+    seoTitle: "Projekte · Raissa Bohite",
     seoDescription:
       "Vom KI-Tutor bis zum E-Commerce: Projekte, mit Sorgfalt gestaltet und entwickelt.",
   },
@@ -242,7 +242,7 @@ export const de: Dictionary = {
     previewLabel: "Hauptansicht",
     galleryLabel: "Weitere Screenshots",
     enlarge: "Screenshot vergrößern: {caption}",
-    socialImageAlt: "{project} ({kind}), ein Projekt von Raissa Bohité auf mehreren Bildschirmen",
+    socialImageAlt: "{project} ({kind}), ein Projekt von Raissa Bohite auf mehreren Bildschirmen",
     closePreview: "Vorschau schließen",
     tourLabel: "Rundgang durch die Website, Seite für Seite",
     tourPagesLabel: "Seiten der Website",
@@ -264,13 +264,13 @@ export const de: Dictionary = {
     },
   },
   aboutPage: {
-    seoTitle: "Über mich · Raissa Bohité",
+    seoTitle: "Über mich · Raissa Bohite",
     seoDescription:
       "Von der Linguistik zum Code: mein Werdegang, meine Arbeitssprachen und meine nächsten Schritte.",
     eyebrow: "Über mich",
     title: "Von der Linguistik zum Code",
     intro:
-      "Ich bin Raissa Bohité, Front-End-Entwicklerin mit Full-Stack-Fokus in Abidjan. Bevor ich Code geschrieben habe, habe ich gelernt, eine Fremdsprache zu zerlegen. Dieselbe Methode wende ich heute auf jede Oberfläche an.",
+      "Ich bin Raissa Bohite, Front-End-Entwicklerin mit Full-Stack-Fokus in Abidjan. Bevor ich Code geschrieben habe, habe ich gelernt, eine Fremdsprache zu zerlegen. Dieselbe Methode wende ich heute auf jede Oberfläche an.",
     contactCta: "Kontakt aufnehmen",
     location: "Abidjan, Côte d’Ivoire",
     story: {
@@ -476,7 +476,7 @@ export const de: Dictionary = {
     },
   },
   contactPage: {
-    seoTitle: "Kontakt · Raissa Bohité",
+    seoTitle: "Kontakt · Raissa Bohite",
     seoDescription:
       "Eine Stelle, ein Projekt oder eine Frage? Schreiben Sie mir auf Deutsch, Französisch oder Englisch.",
     eyebrow: "Kontakt",
@@ -497,7 +497,7 @@ export const de: Dictionary = {
     tocLabel: "Inhalt des Impressums",
   },
   footer: {
-    copyright: "© 2026 Raissa Bohité, Abidjan",
+    copyright: "© 2026 Raissa Bohite, Abidjan",
     secondaryLabel: "Weitere Links",
     cv: "Lebenslauf",
     legal: "Impressum",

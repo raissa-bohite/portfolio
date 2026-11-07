@@ -40,15 +40,18 @@ const languageCodes = page.languages.items.map((language) => language.code);
       <div class="relative mx-auto aspect-[46/54] w-full max-w-[460px]">
         <div aria-hidden="true" class="absolute right-[6%] bottom-0 left-[6%] h-[85%] rounded-t-full rounded-b-[32px] bg-linear-to-br from-[#7b4fe0] to-brand-deep"></div>
         <div aria-hidden="true" class="absolute top-[6%] left-[-1%] aspect-square w-[102%] -rotate-[15deg] rounded-full border-2 border-[#f5a25d] border-b-transparent border-l-transparent"></div>
-        <Image
-          src={portrait}
-          alt={dictionary.meta.portraitAlt}
-          widths={[460, 920]}
-          sizes="(min-width: 1024px) 460px, 90vw"
-          loading="eager"
-          fetchpriority="high"
-          class="absolute bottom-0 left-[-6%] w-[112%] max-w-none"
-        />
+        <!-- Photo rognée à la largeur de l'arche, coins bas arrondis ; la tête dépasse par le haut -->
+        <div class="absolute inset-y-0 right-[6%] left-[6%] overflow-hidden rounded-b-[32px]">
+          <Image
+            src={portrait}
+            alt={dictionary.meta.portraitAlt}
+            widths={[460, 920]}
+            sizes="(min-width: 1024px) 460px, 90vw"
+            loading="eager"
+            fetchpriority="high"
+            class="absolute bottom-0 left-1/2 w-[124%] max-w-none -translate-x-[48%]"
+          />
+        </div>
         <p class="absolute bottom-[18%] left-0 m-0 inline-flex items-center gap-3 rounded-full border border-glass-border bg-bg py-2 pr-5 pl-2 text-base font-bold text-ink shadow-glass sm:-left-6">
           <span aria-hidden="true" class="flex size-10 items-center justify-center rounded-full bg-sig text-white">
             <MapPin size={18} />

@@ -3,17 +3,22 @@
 type Props = {
   href: string;
   label: string;
+  class?: string;
 };
 
-const { href, label } = Astro.props;
+const { href, label, class: className } = Astro.props;
 ---
 
 <!-- Simple ligne de texte précédée du point orange : lien discret vers la page Contact -->
 <a
   href={href}
   data-reveal
-  class="inline-flex min-h-11 items-center gap-2.5 self-start text-sm font-semibold text-ink no-underline hover:text-action"
+  class:list={['inline-flex min-h-11 items-center gap-2.5 self-start text-sm font-semibold text-ink no-underline hover:text-action', className]}
 >
-  <span aria-hidden="true" class="size-2 rounded-full bg-sig"></span>
+  <!-- Point orange qui pulse comme un voyant « en ligne » ; immobile si le visiteur réduit les animations -->
+  <span aria-hidden="true" class="relative flex size-2">
+    <span class="absolute inset-0 rounded-full bg-sig/60 motion-safe:animate-ping"></span>
+    <span class="relative size-2 rounded-full bg-sig"></span>
+  </span>
   {label}
 </a>

@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import portrait from '@/assets/portrait/portrait-about.png';
+import portrait from '@/assets/portrait/portrait-loader.png';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import { profile } from '@/lib/profile';
@@ -26,7 +26,7 @@ const lastName = otherNames.join(' ');
     </p>
     <p class="page-loader-tagline">{dictionary.loader.tagline}</p>
   </div>
-  <!-- Mêmes tailles que le portrait du haut de page : le navigateur réutilise l'image, aucun téléchargement en plus -->
+  <!-- Portrait propre à l'écran de chargement : la main ouverte désigne le nom, à gauche -->
   <div class="page-loader-portrait" aria-hidden="true">
     <div class="page-loader-arch"></div>
     <Image
@@ -195,9 +195,9 @@ const lastName = otherNames.join(' ');
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 84%;
+    width: 92%;
     height: auto;
-    transform: translateX(-50%);
+    transform: translateX(-56%);
   }
 
   .page-loader-count {

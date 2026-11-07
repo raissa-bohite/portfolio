@@ -12,7 +12,7 @@ import ContactForm from '@/components/organisms/ContactForm.astro';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import { profile } from '@/lib/profile';
-import portraitDesk from '@/assets/portrait/portrait-desk.png';
+import portraitCrossed from '@/assets/portrait/portrait-crossed.png';
 
 type Props = { locale: Locale };
 
@@ -64,8 +64,8 @@ const socialLinks = [
       </div>
 
       <!--
-        Photo au bureau, grande, entre le texte et le formulaire : le disque violet passe derrière le buste et s'arrête
-        net à la ligne du bureau, un halo lavande sous la plante, la bulle de discussion près du visage.
+        Portrait bras croisés, grand, entre le texte et le formulaire : le disque lavande passe derrière le buste
+        (la veste violette ressort), un halo lavande en bas, la bulle de discussion près du visage.
         Décorative et affichée seulement en grand format : comme sur la maquette, l'ordinateur passe sous la carte du formulaire,
         ce qui permet d'agrandir la photo sans toucher le texte.
       -->
@@ -73,18 +73,18 @@ const socialLinks = [
         <div class="relative aspect-[1217/1090] w-full">
           <span class="absolute -bottom-[4%] left-[2%] aspect-square w-[38%] rounded-full bg-tint/70 dark:bg-tint/50"></span>
           <span class="absolute inset-0 overflow-hidden">
-            <span class="absolute top-[24%] left-[13%] aspect-square w-[80%] rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep"></span>
+            <span class="absolute top-[24%] left-[13%] aspect-square w-[80%] rounded-full bg-linear-to-br from-[#e4dafd] to-[#b9a4f5] dark:from-[#cbbcf7] dark:to-[#9b80ea]"></span>
           </span>
           <Image
-            src={portraitDesk}
+            src={portraitCrossed}
             alt=""
             widths={[480, 960]}
             sizes="(min-width: 1024px) 600px, 1px"
             loading="lazy"
             data-in-view="zoom"
-            class="absolute bottom-0 left-0 h-auto w-full origin-bottom"
+            class="absolute bottom-0 left-[53%] h-auto w-[70%] origin-bottom -translate-x-1/2"
           />
-          <span class="absolute top-[4%] right-[30%] flex h-[58px] w-[82px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
+          <span class="absolute top-[14%] left-[18%] flex h-[58px] w-[82px] items-center justify-center gap-2 rounded-[18px] bg-brand shadow-[0_12px_26px_rgb(74_35_160/0.3)]">
             <span class="typing-dot size-[9px] rounded-full bg-white"></span>
             <span class="typing-dot size-[9px] rounded-full bg-white"></span>
             <span class="typing-dot size-[9px] rounded-full bg-white"></span>

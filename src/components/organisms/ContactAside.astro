@@ -5,7 +5,7 @@ import Clock from '@lucide/astro/icons/clock';
 import Copy from '@lucide/astro/icons/copy';
 import Download from '@lucide/astro/icons/download';
 import MapPin from '@lucide/astro/icons/map-pin';
-import portrait from '@/assets/portrait/portrait-cutout.png';
+import portrait from '@/assets/portrait/portrait-about.png';
 import BrandIcon from '@/components/atoms/BrandIcon.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath } from '@/i18n/routes';
@@ -43,7 +43,7 @@ const iconDotClasses = 'flex size-[38px] flex-none items-center justify-center r
 
   <div data-scroll-item aria-hidden="true" class="flex items-center gap-4">
     <span class="relative size-21 flex-none overflow-hidden rounded-full bg-linear-to-br from-[#7b4fe0] to-brand-deep ring-4 ring-white/12">
-      <Image src={portrait} alt="" widths={[168, 336]} sizes="168px" loading="lazy" class="absolute -top-1 -left-[39px] w-[165px] max-w-none" />
+      <Image src={portrait} alt="" widths={[168, 336]} sizes="168px" loading="lazy" class="absolute -top-1 left-1/2 w-[150px] max-w-none -translate-x-[54%]" />
     </span>
     <span class="flex h-11 w-16 items-center justify-center gap-1.5 rounded-[14px_14px_14px_4px] bg-brand">
       <span class="typing-dot size-[7px] rounded-full bg-white"></span>

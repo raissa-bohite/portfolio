@@ -7,11 +7,10 @@ import ShieldCheck from '@lucide/astro/icons/shield-check';
 import { Image } from 'astro:assets';
 import Button from '@/components/atoms/Button.astro';
 import AvailabilityBadge from '@/components/molecules/AvailabilityBadge.astro';
-import CodeConsole from '@/components/molecules/CodeConsole.astro';
 import type { Locale } from '@/i18n/config';
 import { getCvPath, getRoutePath } from '@/i18n/routes';
 import { getDictionary } from '@/i18n/translate';
-import portrait from '@/assets/portrait/portrait-cutout.png';
+import portrait from '@/assets/portrait/portrait-about.png';
 
 type Props = {
   locale: Locale;
@@ -45,7 +44,6 @@ const connectorDots = [
   <div class="grid items-center gap-x-6 gap-y-12 lg:grid-cols-12">
     <div class="flex flex-col gap-6 lg:col-span-6">
       <AvailabilityBadge href={getRoutePath('contact', locale)} label={home.availability} />
-      <CodeConsole variable={home.codeConsole.variable} value={home.codeConsole.value} />
       <h1 id="hero-title" class="m-0 text-display font-bold text-ink">
         {
           home.titleWords.map((word, index) => (
@@ -78,8 +76,7 @@ const connectorDots = [
         <!-- Décor : orbite orange autour de l'arche, grille de points, anneau et pastilles -->
         <div aria-hidden="true" class="hero-orbit hidden sm:block"></div>
         <div aria-hidden="true" class="absolute top-[3%] -right-[4%] hidden size-16 bg-[radial-gradient(circle,#b9a4f5_1.6px,transparent_1.8px)] bg-size-[22px_22px] sm:block"></div>
-        <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[78%] rounded-t-full bg-linear-to-b from-[#6d3fd6] to-[#4a23a0]"></div>
-        <div aria-hidden="true" class="absolute top-[6%] right-[14%] size-16 rounded-full border-[3px] border-sig"></div>
+        <div aria-hidden="true" class="absolute right-[7%] bottom-0 left-[7%] h-[78%] rounded-t-full bg-linear-to-br from-[#e4dafd] to-[#b9a4f5] dark:from-[#cbbcf7] dark:to-[#9b80ea]"></div>
         <div aria-hidden="true" class="absolute top-[34%] left-[4%] size-3 rounded-full bg-sig"></div>
         <div aria-hidden="true" class="absolute top-[70%] -right-[3%] hidden size-3.5 rounded-full bg-action sm:block"></div>
         <Image
@@ -89,7 +86,7 @@ const connectorDots = [
           sizes="(min-width: 1024px) 490px, 90vw"
           loading="eager"
           fetchpriority="high"
-          class="absolute bottom-0 left-[3%] w-[94%]"
+          class="absolute bottom-0 left-1/2 w-[84%] -translate-x-1/2"
         />
         <ul class="m-0 list-none p-0">
           {
@@ -156,17 +153,13 @@ const connectorDots = [
 </style>
 
 <script>
-  import { playCodeConsole } from '@/scripts/code-console';
   import { playIntro } from '@/scripts/intro';
   import { whenPageReady } from '@/scripts/page-transition';
 
   const hero = document.querySelector<HTMLElement>('[data-hero]');
-  const codeConsole = hero?.querySelector<HTMLElement>('[data-code-console]');
   // À la première visite, l'entrée du haut de page démarre quand le chargeur se lève
   if (hero)
     void whenPageReady().then(() => {
-      // Le grand titre arrive comme la sortie de console.log, une fois les deux lignes tapées
-      const consoleEnd = codeConsole ? playCodeConsole(codeConsole) : 0;
-      playIntro(hero, consoleEnd > 0 ? consoleEnd + 0.15 : 0.25);
+      playIntro(hero, 0.25);
     });
 </script>

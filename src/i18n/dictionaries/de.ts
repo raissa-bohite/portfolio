@@ -46,10 +46,9 @@ export const de: Dictionary = {
   },
   home: {
     availability: "Verfügbar für eine Stelle oder ein Projekt",
-    codeConsole: { variable: "ansatz", value: "erst verstehen, dann bauen" },
     titleWords: ["Erst", "verstehen,", "dann", "bauen."],
     intro:
-      "Ich gestalte moderne, barrierefreie und sichere Weboberflächen sowie klare und intuitive Dashboards. Vom Front-End bis zum Back-End setze ich Anforderungen in konkrete Lösungen um.",
+      "Vom Front-End bis zum Back-End setze ich Anforderungen in konkrete Lösungen um.",
     ctaProjects: "Meine Projekte ansehen",
     heroBadges: ["Frontend-Entwicklerin", "Dashboards", "Websicherheit"],
     stack: {

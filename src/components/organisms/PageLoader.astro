@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import portrait from '@/assets/portrait/portrait-cutout.png';
+import portrait from '@/assets/portrait/portrait-about.png';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/translate';
 import { profile } from '@/lib/profile';
@@ -188,15 +188,16 @@ const lastName = otherNames.join(' ');
     left: 7%;
     height: 78%;
     border-radius: 999px 999px 0 0;
-    background: linear-gradient(to bottom, #6d3fd6, #4a23a0);
+    background: linear-gradient(135deg, #e4dafd, #b9a4f5);
   }
 
   .page-loader-photo {
     position: absolute;
     bottom: 0;
-    left: 3%;
-    width: 94%;
+    left: 50%;
+    width: 84%;
     height: auto;
+    transform: translateX(-50%);
   }
 
   .page-loader-count {

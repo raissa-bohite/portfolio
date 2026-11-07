@@ -52,13 +52,9 @@ const dictionary = {
   home: {
     availability: "Disponible pour un poste ou une mission",
     // Bloc de code animé du haut de page : nom de la variable et texte affiché par console.log
-    codeConsole: {
-      variable: "approche",
-      value: "comprendre avant de construire",
-    },
     titleWords: ["Comprendre", "avant", "de", "construire."],
     intro:
-      "Je conçois des interfaces web modernes, accessibles et sécurisées, ainsi que des tableaux de bord clairs et intuitifs. Du front-end au back-end, je transforme les besoins en solutions concrètes.",
+      "Du front-end au back-end, je transforme les besoins en solutions concrètes.",
     ctaProjects: "Voir mes projets",
     heroBadges: ["Développeuse front-end", "Tableaux de bord", "Sécurité web"],
     stack: {

@@ -46,10 +46,9 @@ export const en: Dictionary = {
   },
   home: {
     availability: "Available for a job or a project",
-    codeConsole: { variable: "approach", value: "understand before you build" },
     titleWords: ["Understand", "before", "you", "build."],
     intro:
-      "I design modern, accessible and secure web interfaces, as well as clear and intuitive dashboards. From front end to back end, I turn needs into concrete solutions.",
+      "From front end to back end, I turn needs into concrete solutions.",
     ctaProjects: "See my projects",
     heroBadges: ["Front-end developer", "Dashboards", "Web security"],
     stack: {

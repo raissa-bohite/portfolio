@@ -34,19 +34,23 @@ const stepIcons = [GraduationCap, Code, ShieldCheck, Rocket];
       <div class="flex flex-[1_1_440px] flex-col gap-4 pb-6 md:pb-10">
         <SectionIntro id="about-title" eyebrow={about.eyebrow} title={about.title} intro={about.text} highlight={false} cursor />
       </div>
-      <!-- Portrait ordinateur en main sur une arche lavande, avec l'arc orange : décoratif -->
+      <!-- Portrait ordinateur en main, mis en valeur comme sur la page À propos : halo, arche lavande ombrée, photo rognée à l'arche. Décoratif -->
       <div aria-hidden="true" class="relative hidden flex-[1_1_420px] sm:block">
-        <div class="relative ml-auto aspect-square w-full max-w-[460px]">
-          <span class="absolute right-[14%] bottom-0 left-[14%] h-[78%] rounded-t-full rounded-b-[28px] bg-linear-to-br from-[#e4dafd] to-[#b9a4f5] dark:from-[#cbbcf7] dark:to-[#9b80ea]"></span>
-          <span class="absolute top-[6%] left-[4%] aspect-square w-[80%] -rotate-[30deg] rounded-full border-2 border-[#f5a25d] border-r-transparent border-b-transparent"></span>
-          <Image
-            src={portraitLaptop}
-            alt=""
-            widths={[460, 920]}
-            sizes="(min-width: 640px) 460px, 1px"
-            loading="lazy"
-            class="absolute bottom-0 left-1/2 h-auto w-[80%] -translate-x-[52%]"
-          />
+        <div class="relative isolate ml-auto aspect-[46/54] w-full max-w-[460px]">
+          <span class="absolute -inset-x-[12%] top-[8%] -bottom-[6%] -z-10 rounded-full bg-[radial-gradient(closest-side,rgb(185_164_245/0.75),transparent)] dark:bg-[radial-gradient(closest-side,rgb(109_63_214/0.45),transparent)]"></span>
+          <span class="absolute right-[6%] bottom-0 left-[6%] h-[74%] rounded-t-full rounded-b-[32px] bg-linear-to-br from-[#e4dafd] to-[#b9a4f5] shadow-[0_40px_80px_-20px_rgb(74_35_160/0.45)] dark:from-[#cbbcf7] dark:to-[#9b80ea]"></span>
+          <span class="absolute top-[8%] -left-[2%] aspect-square w-[100%] -rotate-[30deg] rounded-full border-2 border-[#f5a25d] border-r-transparent border-b-transparent"></span>
+          <span class="absolute inset-y-0 right-[6%] left-[6%] overflow-hidden rounded-b-[32px]">
+            <Image
+              src={portraitLaptop}
+              alt=""
+              widths={[460, 920]}
+              sizes="(min-width: 640px) 460px, 1px"
+              loading="lazy"
+              class="absolute bottom-0 left-1/2 h-auto w-[104%] max-w-none -translate-x-1/2 drop-shadow-[0_18px_24px_rgb(30_15_69/0.35)]"
+            />
+          </span>
+          <span class="absolute bottom-[4%] -left-[4%] -z-10 size-24 bg-[radial-gradient(circle,#b9a4f5_2px,transparent_2.5px)] bg-size-[16px_16px]"></span>
         </div>
       </div>
     </div>

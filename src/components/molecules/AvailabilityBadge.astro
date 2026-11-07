@@ -8,10 +8,11 @@ type Props = {
 const { href, label } = Astro.props;
 ---
 
+<!-- Simple ligne de texte précédée du point orange : lien discret vers la page Contact -->
 <a
   href={href}
   data-reveal
-  class="glass inline-flex border-0! shadow-glass-sm! min-h-11 items-center gap-2.5 self-start rounded-full! bg-glass-strong py-1.5 pr-4 pl-3.5 text-sm font-semibold text-ink no-underline hover:text-ink"
+  class="inline-flex min-h-11 items-center gap-2.5 self-start text-sm font-semibold text-ink no-underline hover:text-action"
 >
   <span aria-hidden="true" class="size-2 rounded-full bg-sig"></span>
   {label}

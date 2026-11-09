@@ -21,11 +21,11 @@ const dictionary = getDictionary(locale);
 const home = dictionary.home;
 // Badges flottants autour du portrait : icône et position propres à chacun
 const badgeIcons = [Code, LayoutDashboard, ShieldCheck];
-// Sur mobile, les badges s'écartent du visage : en haut à gauche, puis sur la veste
+// Sur mobile, les badges laissent le visage libre : à gauche sous le menton, puis en bas sur la veste
 const badgePositions = [
-  'top-[8%] left-0 sm:top-[12%] sm:-left-10 [animation-delay:-1s]',
-  'top-[64%] right-0 sm:top-[48%] sm:-right-12 [animation-delay:-2.5s]',
-  'bottom-[5%] left-0 sm:bottom-[16%] sm:-left-8 [animation-delay:-4s]'
+  'top-[42%] left-0 sm:top-[12%] sm:-left-10 [animation-delay:-1s]',
+  'bottom-[20%] right-0 sm:top-[48%] sm:bottom-auto sm:-right-12 [animation-delay:-2.5s]',
+  'bottom-[4%] left-0 sm:bottom-[16%] sm:-left-8 [animation-delay:-4s]'
 ];
 // Trait fin qui relie chaque badge à l'arche, terminé par un point (masqué sur mobile) ; celui de droite monte, pour ne pas tomber sur la main
 const badgeConnectors = [
